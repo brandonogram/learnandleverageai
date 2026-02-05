@@ -8,6 +8,7 @@ const EVENT_TIME = '2:00 PM';
 const EVENT_TIMEZONE = 'EST';
 const TOTAL_SEATS = 50;
 const SEATS_REMAINING = 17;
+const EVENT_PRICE = 47;
 const STRATEGY_CALL_URL = 'https://learnandleverageai.com';
 
 export default function EventPage() {
@@ -94,7 +95,7 @@ export default function EventPage() {
           <div className="animate-fade-up flex justify-center mb-8">
             <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-800 px-4 py-2 rounded-full font-body text-sm font-medium">
               <span className="w-2 h-2 bg-amber-500 rounded-full animate-pulse" />
-              Free Live Event — {EVENT_DATE} at {EVENT_TIME} {EVENT_TIMEZONE}
+              Live Event — {EVENT_DATE} at {EVENT_TIME} {EVENT_TIMEZONE} &middot; ${EVENT_PRICE}
             </div>
           </div>
 
@@ -117,14 +118,14 @@ export default function EventPage() {
               href="#register"
               className="group inline-flex items-center gap-3 bg-[#1C1917] text-white px-8 py-4 rounded-xl font-body font-semibold text-lg hover:bg-amber-600 transition-all duration-300 shadow-xl shadow-black/10 hover:shadow-amber-500/25 hover:-translate-y-0.5"
             >
-              Secure My Free Spot
+              Reserve My Spot — ${EVENT_PRICE}
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </a>
           </div>
           <p className="animate-fade-up-delay-3 text-center font-body text-amber-700 font-medium text-sm mb-16">
-            Only {SEATS_REMAINING} of {TOTAL_SEATS} spots remaining — No credit card required
+            Only {SEATS_REMAINING} of {TOTAL_SEATS} spots remaining
           </p>
 
           {/* Social proof stats */}
@@ -543,8 +544,8 @@ export default function EventPage() {
                 <div className="font-display text-lg text-[#1C1917] font-medium">Live Online</div>
               </div>
               <div className="text-center p-4 bg-[#FFFBF5] rounded-xl">
-                <div className="font-body text-sm text-[#78716C] mb-1">Cost</div>
-                <div className="font-display text-lg text-amber-600 font-medium">FREE</div>
+                <div className="font-body text-sm text-[#78716C] mb-1">Investment</div>
+                <div className="font-display text-lg text-amber-600 font-medium">${EVENT_PRICE}</div>
               </div>
             </div>
 
@@ -670,21 +671,21 @@ export default function EventPage() {
                   disabled={formState === 'loading'}
                   className="w-full bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-body font-semibold text-lg py-4 rounded-xl transition-all duration-300 shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 hover:-translate-y-0.5 disabled:hover:translate-y-0"
                 >
-                  {formState === 'loading' ? 'Reserving Your Spot...' : 'Secure My Free Spot'}
+                  {formState === 'loading' ? 'Processing...' : `Reserve My Spot — $${EVENT_PRICE}`}
                 </button>
 
                 <p className="font-body text-center text-sm text-[#A8A29E]">
-                  You&apos;ll receive event details and a reminder. No spam, ever. Unsubscribe anytime.
+                  Secure checkout. You&apos;ll receive event details and a calendar invite immediately.
                 </p>
               </form>
             )}
           </div>
 
-          {/* Why free */}
+          {/* Why this price */}
           <div className="mt-12 text-center">
-            <h3 className="font-display text-xl text-white mb-3">Why Free?</h3>
+            <h3 className="font-display text-xl text-white mb-3">Why ${EVENT_PRICE}?</h3>
             <p className="font-body text-gray-400 max-w-2xl mx-auto">
-              Because every home service business deserves access to clear, practical information about AI—not just companies with six-figure tech budgets. We believe informed business owners make better decisions.
+              We keep the price low so it&apos;s accessible to any business owner. But we do charge because it keeps the room full of people who are serious about learning—not just browsing. The result: a better experience, better Q&amp;A, and real conversations with real business owners.
             </p>
           </div>
         </div>
@@ -718,7 +719,7 @@ export default function EventPage() {
               href="#register"
               className="inline-flex items-center justify-center gap-2 border-2 border-[#1C1917] text-[#1C1917] px-8 py-4 rounded-xl font-body font-semibold text-lg hover:bg-[#1C1917] hover:text-white transition-all duration-300"
             >
-              Register for the Free Event
+              Register for the Event — ${EVENT_PRICE}
             </a>
           </div>
         </div>

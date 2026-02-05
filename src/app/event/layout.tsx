@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Free AI Event for Home Service Businesses | Learn & Leverage AI",
-  description: "Free 60-minute live event: Discover how HVAC, plumbing, electrical, pool, landscaping, and roofing companies are using AI to answer every call, book more jobs, and save 15+ hours per week.",
+  title: "Learn & Leverage AI — Live Event for Business Owners",
+  description: "60-minute live event: Learn what AI actually is, how it applies to your business, and how to start using it. Plain English, no jargon. February 20 at 2:00 PM EST. Only $47.",
   openGraph: {
-    title: "Free AI Event for Home Service Businesses",
-    description: "60-minute live event: How home service businesses are using AI to answer every call, book more jobs, and save 15+ hours per week. February 20 at 2:00 PM EST.",
+    title: "Learn & Leverage AI — Live Event for Business Owners",
+    description: "60-minute live event: Learn what AI is, how businesses are using it, and how to start leveraging it yourself. February 20 at 2:00 PM EST. Only $47.",
     url: "https://learnandleverageai.com/event",
   },
   other: {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
       {
         "@context": "https://schema.org",
         "@type": "EducationEvent",
-        "name": "AI for Home Service Businesses: A Practical Guide",
+        "name": "Learn & Leverage AI: A Practical Guide for Business Owners",
         "description": "Free 60-minute live event for HVAC, plumbing, electrical, pool, landscaping, and roofing company owners. Learn how AI can help your business answer every call, book more jobs, and save 15+ hours per week.",
         "startDate": "2026-02-20T14:00:00-05:00",
         "endDate": "2026-02-20T15:00:00-05:00",
@@ -34,13 +34,13 @@ export const metadata: Metadata = {
         },
         "offers": {
           "@type": "Offer",
-          "price": "0",
+          "price": "47",
           "priceCurrency": "USD",
           "availability": "https://schema.org/LimitedAvailability",
           "url": "https://learnandleverageai.com/event"
         },
         "maximumAttendeeCapacity": 50,
-        "isAccessibleForFree": true
+        "isAccessibleForFree": false
       },
       {
         "@context": "https://schema.org",
@@ -98,7 +98,7 @@ export default function EventLayout({
             {
               "@context": "https://schema.org",
               "@type": "EducationEvent",
-              "name": "AI for Home Service Businesses: A Practical Guide",
+              "name": "Learn & Leverage AI: A Practical Guide for Business Owners",
               "description": "Free 60-minute live event for home service company owners.",
               "startDate": "2026-02-20T14:00:00-05:00",
               "endDate": "2026-02-20T15:00:00-05:00",
@@ -119,13 +119,13 @@ export default function EventLayout({
               },
               "offers": {
                 "@type": "Offer",
-                "price": "0",
+                "price": "47",
                 "priceCurrency": "USD",
                 "availability": "https://schema.org/LimitedAvailability",
                 "url": "https://learnandleverageai.com/event"
               },
               "maximumAttendeeCapacity": 50,
-              "isAccessibleForFree": true
+              "isAccessibleForFree": false
             },
             {
               "@context": "https://schema.org",
