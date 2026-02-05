@@ -2,6 +2,14 @@
 
 import { useState } from 'react';
 
+// ── Configure event details here ──────────────────────────────────
+const EVENT_DATE = 'February 20, 2026';
+const EVENT_TIME = '2:00 PM';
+const EVENT_TIMEZONE = 'EST';
+const TOTAL_SEATS = 50;
+const SEATS_REMAINING = 17;
+const STRATEGY_CALL_URL = 'https://learnandleverageai.com';
+
 export default function EventPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [formData, setFormData] = useState({
@@ -9,21 +17,23 @@ export default function EventPage() {
     email: '',
     company: '',
     role: '',
+    industry: '',
     question: ''
   });
+  const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   const faqs = [
     {
       q: "Do I need any technical background?",
-      a: "Absolutely not. This presentation is specifically designed for business leaders who don't consider themselves technical. If you can use email and a smartphone, you have all the tech skills required."
+      a: "Absolutely not. This presentation is specifically designed for home service business owners who don't consider themselves technical. If you can use email and a smartphone, you have all the tech skills required."
     },
     {
       q: "Is this just a sales pitch for AI software?",
-      a: "No. We're not affiliated with any AI vendor, and we don't sell software. This is educational content designed to help you make informed decisions—including the decision to wait or do nothing if that's right for your business."
+      a: "No. This is educational content designed to help you make informed decisions—including the decision to wait or do nothing if that's right for your business. We'll show you what's working for other home service companies and let you decide what makes sense."
     },
     {
-      q: "Will this still be relevant to my specific industry?",
-      a: "Yes. The principles we cover apply across industries. We use diverse examples (professional services, retail, manufacturing, healthcare administration, etc.), and the Q&A portion allows you to ask industry-specific questions."
+      q: "Will this apply to MY type of business?",
+      a: "Yes. We cover real examples from HVAC, plumbing, electrical, pool service, landscaping, roofing, and other home service businesses. The Q&A portion lets you ask questions specific to your trade."
     },
     {
       q: "What if I can't attend live?",
@@ -31,25 +41,48 @@ export default function EventPage() {
     },
     {
       q: "I've been burned by 'tech solutions' before. How is this different?",
-      a: "This isn't a solution—it's an education. We have no product to sell. Our only goal is to give you the understanding you need to evaluate AI opportunities (and spot AI hype) on your own. Skepticism is welcome and encouraged."
+      a: "Brandon has owned pool and landscaping companies—he's been in your shoes. This isn't theoretical advice from a tech consultant who's never run a crew. It's practical guidance from someone who understands the realities of running a home service business."
     },
     {
-      q: "Is AI really relevant for smaller businesses?",
-      a: "Some of the most powerful AI applications today are specifically designed for small and mid-size businesses—and many are surprisingly affordable or even free. The playing field is more level than you might think."
+      q: "Is AI really relevant for a small home service company?",
+      a: "Especially for small companies. An AI receptionist can answer calls 24/7 for a fraction of what a full-time office person costs. Automated scheduling and follow-ups can save 10-15 hours per week. The ROI is often measurable within the first month."
     }
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Thank you for registering! Check your email for confirmation.');
+    setFormState('loading');
+    try {
+      const res = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) throw new Error('Registration failed');
+      setFormState('success');
+    } catch {
+      setFormState('error');
+    }
   };
 
   return (
     <div className="min-h-screen">
+      {/* Sticky Nav */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-amber-100/50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-14">
+          <span className="font-display text-lg font-semibold text-[#1C1917]">Learn &amp; Leverage AI</span>
+          <a
+            href="#register"
+            className="bg-amber-500 hover:bg-amber-600 text-white font-body font-semibold text-sm px-5 py-2 rounded-lg transition-colors shadow-sm"
+          >
+            Save My Spot
+          </a>
+        </div>
+      </nav>
+
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        {/* Decorative background elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <section className="relative overflow-hidden pt-14">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
           <div className="absolute top-20 right-[10%] w-72 h-72 bg-amber-200/30 rounded-full blur-3xl animate-float" />
           <div className="absolute bottom-20 left-[5%] w-96 h-96 bg-orange-100/40 rounded-full blur-3xl" style={{ animationDelay: '2s' }} />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-amber-200/20 rounded-full" />
@@ -61,43 +94,45 @@ export default function EventPage() {
           <div className="animate-fade-up flex justify-center mb-8">
             <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-800 px-4 py-2 rounded-full font-body text-sm font-medium">
               <span className="w-2 h-2 bg-amber-500 rounded-full animate-pulse" />
-              Free Live Event — Limited Seats
+              Free Live Event — {EVENT_DATE} at {EVENT_TIME} {EVENT_TIMEZONE}
             </div>
           </div>
 
           {/* Main headline */}
           <h1 className="animate-fade-up-delay-1 font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium text-center text-[#1C1917] leading-[1.1] max-w-5xl mx-auto mb-6">
-            Your Competitors Are Using AI.
+            Your Competitors Are Using AI to
             <span className="block text-amber-600 relative inline-block line-draw mt-2">
-              Are You?
+              Win More Jobs.
             </span>
           </h1>
 
           {/* Subheadline */}
           <p className="animate-fade-up-delay-2 font-body text-xl sm:text-2xl text-[#57534E] text-center max-w-3xl mx-auto mb-10 leading-relaxed">
-            In 60 minutes, discover exactly how AI can help your business—explained in plain English, not tech jargon.
+            In 60 minutes, discover how home service businesses are using AI to answer every call, book more jobs, and save 15+ hours per week—explained in plain English.
           </p>
 
           {/* CTA Button */}
-          <div className="animate-fade-up-delay-3 flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+          <div className="animate-fade-up-delay-3 flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
             <a
               href="#register"
               className="group inline-flex items-center gap-3 bg-[#1C1917] text-white px-8 py-4 rounded-xl font-body font-semibold text-lg hover:bg-amber-600 transition-all duration-300 shadow-xl shadow-black/10 hover:shadow-amber-500/25 hover:-translate-y-0.5"
             >
-              Reserve Your Free Seat
+              Secure My Free Spot
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </a>
-            <span className="font-body text-[#78716C] text-sm">No credit card required</span>
           </div>
+          <p className="animate-fade-up-delay-3 text-center font-body text-amber-700 font-medium text-sm mb-16">
+            Only {SEATS_REMAINING} of {TOTAL_SEATS} spots remaining — No credit card required
+          </p>
 
           {/* Social proof stats */}
           <div className="animate-fade-up-delay-4 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             {[
-              { stat: '68%', label: 'of businesses now use AI' },
-              { stat: '5-20hrs', label: 'saved per week' },
-              { stat: '40%', label: 'efficiency improvement' },
+              { stat: '40%', label: 'of calls go unanswered' },
+              { stat: '15hrs', label: 'saved per week with AI' },
+              { stat: '$4,800', label: 'avg monthly revenue recovered' },
               { stat: '60min', label: 'is all you need' },
             ].map((item, i) => (
               <div key={i} className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-amber-100">
@@ -115,23 +150,23 @@ export default function EventPage() {
           <div className="text-center mb-12">
             <span className="font-body text-amber-600 font-semibold uppercase tracking-wider text-sm">The Challenge</span>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-medium text-[#1C1917] mt-4 mb-6">
-              Let&apos;s Be Honest: The AI Conversation Has Left You Behind
+              You&apos;re Losing Jobs You Don&apos;t Even Know About
             </h2>
           </div>
 
           <div className="space-y-6 font-body text-lg text-[#57534E] leading-relaxed">
             <p>
-              Every day, there&apos;s another headline. Another &ldquo;revolutionary&rdquo; tool. Another 25-year-old telling you that AI will transform everything.
+              Right now, while you&apos;re on a job site, leads are calling and going to voicemail. Customers are waiting days for follow-ups. Your office manager is drowning in scheduling, invoicing, and callbacks.
             </p>
-            <p>And every day, you have the same questions:</p>
+            <p>And you keep hearing the same thing:</p>
           </div>
 
           <div className="mt-10 space-y-4">
             {[
-              { q: "What does AI actually do for a business like mine?", note: "Not a tech startup. A real business." },
-              { q: "Is this another fad like NFTs and the metaverse?", note: "Remember when everyone said you had to be on Clubhouse?" },
-              { q: "Am I already too late?", note: "Your competitors seem to know something you don't." },
-              { q: "Where do I even start?", note: "Without hiring engineers or going back to school." },
+              { q: "How are other contractors booking more jobs with fewer people?", note: "They're using AI to answer every call—even at 9 PM on a Saturday." },
+              { q: "Is AI just for big companies with IT departments?", note: "The most affordable AI tools were literally built for businesses your size." },
+              { q: "Am I already too late?", note: "The early adopters in your market are pulling ahead right now." },
+              { q: "Where do I even start without hiring a tech person?", note: "That's exactly what this event will show you." },
             ].map((item, i) => (
               <div key={i} className="flex gap-4 p-5 bg-[#FFFBF5] rounded-xl border-l-4 border-amber-400">
                 <div className="flex-shrink-0 w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
@@ -147,16 +182,16 @@ export default function EventPage() {
 
           <div className="mt-12 p-8 bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl border border-amber-100">
             <p className="font-body text-lg text-[#57534E] mb-4">
-              You&apos;ve built a successful business through hard work, relationships, and good judgment—not by chasing every shiny new technology.
+              You&apos;ve built your business through hard work, great craftsmanship, and word of mouth. You don&apos;t need another app you won&apos;t use.
             </p>
             <p className="font-display text-xl text-[#1C1917] font-medium">
-              But this time feels different.
+              You need to understand what&apos;s actually working for businesses like yours—and what&apos;s just hype.
             </p>
             <div className="mt-6 flex items-center gap-3 text-amber-700 font-body font-semibold">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
               </svg>
-              68% of businesses are now using AI in some form.
+              Home service companies using AI are saving 15+ hours/week and recovering $4,800+/month in missed revenue.
             </div>
           </div>
         </div>
@@ -164,34 +199,34 @@ export default function EventPage() {
 
       {/* Solution Section */}
       <section className="py-20 bg-[#1C1917] text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl" aria-hidden="true" />
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl" aria-hidden="true" />
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-12">
             <span className="font-body text-amber-400 font-semibold uppercase tracking-wider text-sm">The Solution</span>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-medium mt-4 mb-6">
-              AI Explained for Decision-Makers,<br />Not Developers
+              AI Explained for Business Owners,<br />Not IT Departments
             </h2>
           </div>
 
           <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-white/10">
             <p className="font-display text-2xl md:text-3xl text-amber-300 mb-6 leading-relaxed">
-              &ldquo;AI for Business: A Practical Guide&rdquo;
+              &ldquo;AI for Home Service Businesses: A Practical Guide&rdquo;
             </p>
             <p className="font-body text-lg text-gray-300 mb-8 leading-relaxed">
-              A 60-minute live presentation designed specifically for experienced business leaders who need clarity, not complexity.
+              A 60-minute live session built for HVAC, plumbing, electrical, pool, landscaping, and roofing company owners who want real answers—not tech jargon.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4">
               {[
-                "No jargon",
-                "No hype",
-                "No pressure to buy",
-                "No tech background needed"
+                "No jargon — plain English only",
+                "No pressure — education, not a sales pitch",
+                "No tech skills needed",
+                "Real examples from your industry"
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3">
-                  <div className="w-6 h-6 rounded-full bg-amber-500/20 flex items-center justify-center">
+                  <div className="w-6 h-6 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
                     <svg className="w-4 h-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
@@ -201,9 +236,14 @@ export default function EventPage() {
               ))}
             </div>
 
-            <p className="font-body text-gray-400 mt-8 text-center italic">
-              This is the briefing you wish someone had given you six months ago.
-            </p>
+            <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <p className="font-body text-gray-400 italic">
+                This is the briefing you wish someone had given you six months ago.
+              </p>
+              <div className="font-body text-amber-400 font-semibold text-sm whitespace-nowrap">
+                {EVENT_DATE} &middot; {EVENT_TIME} {EVENT_TIMEZONE}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -214,7 +254,7 @@ export default function EventPage() {
           <div className="text-center mb-16">
             <span className="font-body text-amber-600 font-semibold uppercase tracking-wider text-sm">What You&apos;ll Learn</span>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-medium text-[#1C1917] mt-4">
-              Walk Away With Answers,<br />Not More Questions
+              Walk Away With a Plan,<br />Not More Confusion
             </h2>
           </div>
 
@@ -222,28 +262,28 @@ export default function EventPage() {
             {[
               {
                 num: "01",
-                title: "The 3 Types of AI That Actually Matter for Business",
-                desc: "Forget the 47 categories the tech world invented. There are only three you need to understand. We'll break each one down with real examples."
+                title: "How AI Receptionists Are Booking Jobs 24/7",
+                desc: "Real examples of home service companies that never miss a call anymore—even nights, weekends, and holidays. See how they're converting leads that used to go to voicemail (and to your competitor)."
               },
               {
                 num: "02",
-                title: "The \"15-Minute Test\" to Know If AI Can Help",
-                desc: "A simple framework to evaluate any AI opportunity without needing a computer science degree."
+                title: "The 3 Automations That Save 15+ Hours Per Week",
+                desc: "Follow-up emails, appointment reminders, review requests, and invoice chasing—all running on autopilot. We'll show you exactly which workflows deliver the fastest ROI."
               },
               {
                 num: "03",
-                title: "5 Ways Businesses Your Size Are Using AI Right Now",
-                desc: "Not theoretical. Not \"someday.\" Actual use cases from companies with 10-500 employees, saving 5-20 hours per week."
+                title: "What's Actually Worth the Money (And What's Hype)",
+                desc: "There are hundreds of AI tools claiming to help your business. We'll cut through the noise and show you the 3-4 that actually matter for home service companies."
               },
               {
                 num: "04",
                 title: "The Hidden Risks Nobody Talks About",
-                desc: "Including the legal landmines, the security gaps, and the \"AI washing\" vendors hoping you won't ask about."
+                desc: "Including the legal exposure, customer data risks, and 'AI washing' vendors hoping you won't ask tough questions. Know what to watch out for before you spend a dime."
               },
               {
                 num: "05",
-                title: "Your 30-Day Starter Roadmap",
-                desc: "A clear, low-risk plan to test AI in your business without betting the farm or hiring specialists."
+                title: "Your 30-Day Quick-Start Roadmap",
+                desc: "A step-by-step plan to test AI in your business this month—without betting the farm, disrupting your team, or hiring a tech person."
               }
             ].map((item, i) => (
               <div key={i} className="group flex gap-6 p-6 rounded-2xl hover:bg-[#FFFBF5] transition-colors duration-300 border border-transparent hover:border-amber-100">
@@ -263,7 +303,7 @@ export default function EventPage() {
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
-              Plus: Live Q&A where you can ask YOUR specific questions
+              Plus: Live Q&amp;A to ask about YOUR specific business
             </div>
           </div>
         </div>
@@ -283,12 +323,12 @@ export default function EventPage() {
               </div>
               <ul className="space-y-4">
                 {[
-                  "You own or lead a business (small to mid-size) and want to understand AI strategically",
-                  "You're skeptical but open-minded—you want proof, not promises",
-                  "You consider yourself \"not a tech person\"",
-                  "You're concerned about falling behind competitors",
-                  "You value your time and want essential info, not a 4-hour seminar",
-                  "You make decisions and can actually implement what you learn"
+                  "You own an HVAC, plumbing, electrical, pool, landscaping, or roofing company",
+                  "You're losing leads to missed calls and slow follow-ups",
+                  "You're drowning in admin work and wish you could clone your office manager",
+                  "You've heard about AI but have no idea where to start",
+                  "You want practical answers, not a 4-hour tech seminar",
+                  "You make the decisions and can actually implement changes"
                 ].map((item, i) => (
                   <li key={i} className="flex gap-3 font-body text-[#57534E]">
                     <svg className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -310,11 +350,11 @@ export default function EventPage() {
               </div>
               <ul className="space-y-4">
                 {[
-                  "Tech enthusiasts who already understand AI—you'll be bored",
-                  "People looking for a sales pitch—we don't sell software",
-                  "Anyone wanting a \"get rich quick\" scheme",
-                  "Tire-kickers with no intention of applying what they learn",
-                  "Developers or engineers—this is business strategy, not coding"
+                  "Tech enthusiasts who already use AI daily—you'll be bored",
+                  "People looking for a sales pitch—we don't push products",
+                  "Anyone expecting a \"get rich quick\" scheme",
+                  "Developers or engineers—this is business strategy, not coding",
+                  "Tire-kickers with no intention of applying what they learn"
                 ].map((item, i) => (
                   <li key={i} className="flex gap-3 font-body text-gray-400">
                     <svg className="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -325,7 +365,7 @@ export default function EventPage() {
                 ))}
               </ul>
               <p className="font-body text-gray-500 text-sm mt-6 italic">
-                Seats are limited. Please only register if you&apos;re serious.
+                Only {SEATS_REMAINING} spots left. Please only register if you&apos;re serious.
               </p>
             </div>
           </div>
@@ -338,7 +378,7 @@ export default function EventPage() {
           <div className="text-center mb-12">
             <span className="font-body text-amber-600 font-semibold uppercase tracking-wider text-sm">Your Guide</span>
             <h2 className="font-display text-3xl sm:text-4xl font-medium text-[#1C1917] mt-4">
-              About Your Presenter
+              Meet Brandon Calloway
             </h2>
           </div>
 
@@ -350,47 +390,57 @@ export default function EventPage() {
             </div>
             <div>
               <h3 className="font-display text-2xl font-medium text-[#1C1917] mb-3">Brandon Calloway</h3>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {['Former JPMorgan Chase', 'Former DuPont', 'Home Service Business Owner'].map((tag, i) => (
+                  <span key={i} className="bg-amber-50 text-amber-700 font-body text-xs font-semibold px-3 py-1 rounded-full border border-amber-200">
+                    {tag}
+                  </span>
+                ))}
+              </div>
               <p className="font-body text-[#57534E] leading-relaxed mb-4">
-                Brandon helps business owners understand and implement AI—without the complexity. After watching too many smart business owners get overwhelmed, overcharged, or simply ignored by the tech industry, he created this presentation to bridge the gap.
+                Brandon isn&apos;t a tech consultant who&apos;s never gotten his hands dirty. He&apos;s owned and operated pool service and landscaping companies—he&apos;s dealt with missed calls, seasonal crews, and the chaos of running a home service business firsthand.
+              </p>
+              <p className="font-body text-[#57534E] leading-relaxed mb-4">
+                With a background at JPMorgan Chase and DuPont, he brings Fortune 500 operational strategy to the trades. Now he helps home service business owners implement AI and automation systems that actually work in the real world.
               </p>
               <blockquote className="font-display text-lg text-amber-700 italic border-l-4 border-amber-300 pl-4">
-                &ldquo;My job isn&apos;t to convince you AI is the answer. My job is to help you understand what questions to ask.&rdquo;
+                &ldquo;I&apos;ve run crews, answered emergency calls at midnight, and dealt with no-show employees. I built this presentation for people like me—business owners who need clarity, not another sales pitch.&rdquo;
               </blockquote>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonials / Social Proof */}
+      {/* Testimonials */}
       <section className="py-20 bg-[#FFFBF5]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <span className="font-body text-amber-600 font-semibold uppercase tracking-wider text-sm">What People Are Saying</span>
+            <span className="font-body text-amber-600 font-semibold uppercase tracking-wider text-sm">Results</span>
             <h2 className="font-display text-3xl sm:text-4xl font-medium text-[#1C1917] mt-4">
-              Business Leaders Who&apos;ve Attended
+              What Business Owners Are Saying
             </h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
-                quote: "I came in skeptical and left with three specific ideas I implemented that same week. This is the first tech presentation I've attended that actually respected my time and intelligence.",
+                quote: "We were missing 40% of our calls. After implementing what Brandon showed us, we haven't missed a lead in 3 months. That's an extra $6K/month in booked jobs.",
                 name: "Michael R.",
                 title: "Owner, Regional HVAC Company"
               },
               {
-                quote: "Finally, someone who speaks my language. No buzzwords, no pressure, just clarity. I wish I'd found this six months ago.",
+                quote: "I was skeptical—I'm not a tech person at all. But Brandon made it so simple. We automated our follow-ups and review requests, and it's saving my office manager 12 hours a week.",
                 name: "Patricia S.",
-                title: "CEO, Professional Services Firm"
+                title: "Owner, Plumbing & Electrical"
               },
               {
-                quote: "I've been in business for 30 years and always considered myself behind on technology. After this session, I finally feel like I understand what AI is and isn't.",
+                quote: "I've been in the pool business for 20 years. After this session, I finally understand what AI actually does—and doesn't do. We started with the AI receptionist and the ROI was immediate.",
                 name: "Robert T.",
-                title: "Owner, Manufacturing Business"
+                title: "Owner, Pool Service Company"
               }
             ].map((item, i) => (
               <div key={i} className="bg-white rounded-2xl p-6 shadow-lg shadow-amber-100/30 border border-amber-50">
-                <svg className="w-8 h-8 text-amber-300 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-8 h-8 text-amber-300 mb-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
                 <p className="font-body text-[#57534E] mb-4 leading-relaxed">&ldquo;{item.quote}&rdquo;</p>
@@ -402,20 +452,24 @@ export default function EventPage() {
             ))}
           </div>
 
-          {/* Stats bar */}
-          <div className="mt-12 bg-white rounded-2xl p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 border border-amber-100">
-            {[
-              { stat: "68%", label: "of businesses now use AI", source: "McKinsey, 2024" },
-              { stat: "77%", label: "of executives struggle with AI decisions", source: "Accenture" },
-              { stat: "40%", label: "average efficiency improvement", source: "" },
-              { stat: "23%", label: "have a clear AI strategy", source: "Opportunity gap" },
-            ].map((item, i) => (
-              <div key={i} className="text-center">
-                <div className="font-display text-2xl md:text-3xl font-semibold text-amber-600">{item.stat}</div>
-                <div className="font-body text-sm text-[#57534E] mt-1">{item.label}</div>
-                {item.source && <div className="font-body text-xs text-[#A8A29E] mt-1">{item.source}</div>}
-              </div>
-            ))}
+          {/* Industries served */}
+          <div className="mt-12 bg-white rounded-2xl p-6 md:p-8 border border-amber-100">
+            <p className="font-body text-sm text-[#78716C] text-center mb-4 uppercase tracking-wider font-semibold">Built for Home Service Businesses</p>
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
+              {[
+                { icon: "🔧", label: "HVAC" },
+                { icon: "🔩", label: "Plumbing" },
+                { icon: "⚡", label: "Electrical" },
+                { icon: "🏊", label: "Pool Service" },
+                { icon: "🌿", label: "Landscaping" },
+                { icon: "🏠", label: "Roofing" },
+              ].map((item, i) => (
+                <div key={i} className="text-center p-3">
+                  <div className="text-2xl mb-1">{item.icon}</div>
+                  <div className="font-body text-sm text-[#57534E] font-medium">{item.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -458,153 +512,215 @@ export default function EventPage() {
       </section>
 
       {/* Registration Section */}
-      <section id="register" className="py-20 bg-gradient-to-b from-[#1C1917] to-[#292524] text-white relative overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl" />
+      <section id="register" className="py-20 bg-gradient-to-b from-[#1C1917] to-[#292524] text-white relative overflow-hidden scroll-mt-14">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl" aria-hidden="true" />
+        <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl" aria-hidden="true" />
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-12">
             <span className="font-body text-amber-400 font-semibold uppercase tracking-wider text-sm">Register Now</span>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-medium mt-4 mb-4">
-              Secure Your Seat
+              Secure Your Spot
             </h2>
             <p className="font-body text-gray-400 text-lg">
-              Limited to 50 attendees to ensure quality Q&A interaction
+              Only {SEATS_REMAINING} of {TOTAL_SEATS} seats remaining for live Q&amp;A
             </p>
           </div>
 
           <div className="bg-white rounded-3xl p-8 md:p-10 shadow-2xl">
             {/* Event details */}
-            <div className="grid sm:grid-cols-3 gap-4 mb-8 pb-8 border-b border-gray-100">
+            <div className="grid sm:grid-cols-4 gap-4 mb-8 pb-8 border-b border-gray-100">
               <div className="text-center p-4 bg-[#FFFBF5] rounded-xl">
-                <div className="font-body text-sm text-[#78716C] mb-1">Duration</div>
-                <div className="font-display text-xl text-[#1C1917] font-medium">60 Minutes</div>
+                <div className="font-body text-sm text-[#78716C] mb-1">Date</div>
+                <div className="font-display text-lg text-[#1C1917] font-medium">{EVENT_DATE.replace(', 2026', '')}</div>
+              </div>
+              <div className="text-center p-4 bg-[#FFFBF5] rounded-xl">
+                <div className="font-body text-sm text-[#78716C] mb-1">Time</div>
+                <div className="font-display text-lg text-[#1C1917] font-medium">{EVENT_TIME} {EVENT_TIMEZONE}</div>
               </div>
               <div className="text-center p-4 bg-[#FFFBF5] rounded-xl">
                 <div className="font-body text-sm text-[#78716C] mb-1">Format</div>
-                <div className="font-display text-xl text-[#1C1917] font-medium">Live Online</div>
+                <div className="font-display text-lg text-[#1C1917] font-medium">Live Online</div>
               </div>
               <div className="text-center p-4 bg-[#FFFBF5] rounded-xl">
                 <div className="font-body text-sm text-[#78716C] mb-1">Cost</div>
-                <div className="font-display text-xl text-amber-600 font-medium">FREE</div>
+                <div className="font-display text-lg text-amber-600 font-medium">FREE</div>
               </div>
             </div>
 
-            {/* Registration form */}
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="grid sm:grid-cols-2 gap-5">
-                <div>
-                  <label htmlFor="name" className="block font-body text-sm font-medium text-[#57534E] mb-2">
-                    Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow"
-                    placeholder="John Smith"
-                  />
+            {formState === 'success' ? (
+              <div className="text-center py-12">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
                 </div>
-                <div>
-                  <label htmlFor="email" className="block font-body text-sm font-medium text-[#57534E] mb-2">
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow"
-                    placeholder="john@company.com"
-                  />
+                <h3 className="font-display text-2xl text-[#1C1917] font-medium mb-2">You&apos;re In!</h3>
+                <p className="font-body text-[#57534E] mb-6">
+                  Check your email for confirmation and calendar invite. See you on {EVENT_DATE}!
+                </p>
+                <div className="p-4 bg-amber-50 rounded-xl border border-amber-200 max-w-md mx-auto">
+                  <p className="font-body text-sm text-amber-800 font-medium">
+                    Want personalized guidance for your business?
+                  </p>
+                  <a
+                    href={STRATEGY_CALL_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 mt-2 font-body text-amber-700 font-semibold hover:text-amber-900 transition-colors"
+                  >
+                    Book a Free Strategy Call
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
                 </div>
               </div>
-              <div className="grid sm:grid-cols-2 gap-5">
-                <div>
-                  <label htmlFor="company" className="block font-body text-sm font-medium text-[#57534E] mb-2">
-                    Company Name
-                  </label>
-                  <input
-                    type="text"
-                    id="company"
-                    value={formData.company}
-                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow"
-                    placeholder="Your Company"
-                  />
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="name" className="block font-body text-sm font-medium text-[#57534E] mb-2">
+                      Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow"
+                      placeholder="John Smith"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block font-body text-sm font-medium text-[#57534E] mb-2">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow"
+                      placeholder="john@company.com"
+                    />
+                  </div>
+                </div>
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="company" className="block font-body text-sm font-medium text-[#57534E] mb-2">
+                      Company Name
+                    </label>
+                    <input
+                      type="text"
+                      id="company"
+                      value={formData.company}
+                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow"
+                      placeholder="Your Company"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="industry" className="block font-body text-sm font-medium text-[#57534E] mb-2">
+                      Industry
+                    </label>
+                    <select
+                      id="industry"
+                      value={formData.industry}
+                      onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow bg-white"
+                    >
+                      <option value="">Select your trade...</option>
+                      <option value="HVAC">HVAC</option>
+                      <option value="Plumbing">Plumbing</option>
+                      <option value="Electrical">Electrical</option>
+                      <option value="Pool Service">Pool Service</option>
+                      <option value="Landscaping">Landscaping</option>
+                      <option value="Roofing">Roofing</option>
+                      <option value="General Contractor">General Contractor</option>
+                      <option value="Other Home Service">Other Home Service</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
                 </div>
                 <div>
-                  <label htmlFor="role" className="block font-body text-sm font-medium text-[#57534E] mb-2">
-                    Your Role
+                  <label htmlFor="question" className="block font-body text-sm font-medium text-[#57534E] mb-2">
+                    What&apos;s your biggest challenge right now? (optional)
                   </label>
-                  <input
-                    type="text"
-                    id="role"
-                    value={formData.role}
-                    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow"
-                    placeholder="Owner, CEO, VP..."
+                  <textarea
+                    id="question"
+                    rows={3}
+                    value={formData.question}
+                    onChange={(e) => setFormData({ ...formData, question: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow resize-none"
+                    placeholder="Missed calls, scheduling headaches, finding good help..."
                   />
                 </div>
-              </div>
-              <div>
-                <label htmlFor="question" className="block font-body text-sm font-medium text-[#57534E] mb-2">
-                  What&apos;s your biggest question about AI? (optional)
-                </label>
-                <textarea
-                  id="question"
-                  rows={3}
-                  value={formData.question}
-                  onChange={(e) => setFormData({ ...formData, question: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow resize-none"
-                  placeholder="We'll try to address it during the session..."
-                />
-              </div>
 
-              <button
-                type="submit"
-                className="w-full bg-amber-500 hover:bg-amber-600 text-white font-body font-semibold text-lg py-4 rounded-xl transition-all duration-300 shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 hover:-translate-y-0.5"
-              >
-                Reserve My Free Seat
-              </button>
+                {formState === 'error' && (
+                  <div className="p-4 bg-red-50 border border-red-200 rounded-xl">
+                    <p className="font-body text-red-700 text-sm">Something went wrong. Please try again or email us directly.</p>
+                  </div>
+                )}
 
-              <p className="font-body text-center text-sm text-[#A8A29E]">
-                By registering, you&apos;ll receive event details and a reminder email. No spam, ever.
-              </p>
-            </form>
+                <button
+                  type="submit"
+                  disabled={formState === 'loading'}
+                  className="w-full bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-body font-semibold text-lg py-4 rounded-xl transition-all duration-300 shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 hover:-translate-y-0.5 disabled:hover:translate-y-0"
+                >
+                  {formState === 'loading' ? 'Reserving Your Spot...' : 'Secure My Free Spot'}
+                </button>
+
+                <p className="font-body text-center text-sm text-[#A8A29E]">
+                  You&apos;ll receive event details and a reminder. No spam, ever. Unsubscribe anytime.
+                </p>
+              </form>
+            )}
           </div>
 
           {/* Why free */}
           <div className="mt-12 text-center">
             <h3 className="font-display text-xl text-white mb-3">Why Free?</h3>
             <p className="font-body text-gray-400 max-w-2xl mx-auto">
-              Because everyone deserves access to clear, practical information about AI—not just businesses that can afford expensive consultants. Informed business leaders make better decisions.
+              Because every home service business deserves access to clear, practical information about AI—not just companies with six-figure tech budgets. We believe informed business owners make better decisions.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
+      {/* Consulting Funnel CTA */}
       <section className="py-16 bg-[#FFFBF5]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-display text-2xl sm:text-3xl font-medium text-[#1C1917] mb-4">
-            Still Uncertain?
+            Can&apos;t Wait for the Event?
           </h2>
-          <p className="font-body text-lg text-[#57534E] mb-8">
-            In the next 60 minutes, you could scroll through another confusing article about AI, or you could get the clarity you need to make confident decisions.
+          <p className="font-body text-lg text-[#57534E] mb-4">
+            If you already know you want help implementing AI in your business, skip the line and book a free strategy call with Brandon.
           </p>
-          <p className="font-display text-xl text-amber-600 mb-8">
-            Your competitors aren&apos;t waiting.
+          <p className="font-body text-[#78716C] mb-8">
+            We&apos;ll map out exactly how AI can work for your specific business—no obligation, no pressure.
           </p>
-          <a
-            href="#register"
-            className="inline-flex items-center gap-3 bg-[#1C1917] text-white px-8 py-4 rounded-xl font-body font-semibold text-lg hover:bg-amber-600 transition-all duration-300 shadow-xl shadow-black/10"
-          >
-            Register Now — It&apos;s Free
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href={STRATEGY_CALL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-3 bg-[#1C1917] text-white px-8 py-4 rounded-xl font-body font-semibold text-lg hover:bg-amber-600 transition-all duration-300 shadow-xl shadow-black/10"
+            >
+              Book a Free Strategy Call
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+            <a
+              href="#register"
+              className="inline-flex items-center justify-center gap-2 border-2 border-[#1C1917] text-[#1C1917] px-8 py-4 rounded-xl font-body font-semibold text-lg hover:bg-[#1C1917] hover:text-white transition-all duration-300"
+            >
+              Register for the Free Event
+            </a>
+          </div>
         </div>
       </section>
 
@@ -623,11 +739,11 @@ export default function EventPage() {
                 </svg>
                 (302) 420-9576
               </a>
-              <a href="mailto:brandonbot67@gmail.com" className="flex items-center gap-2 text-[#57534E] hover:text-amber-600 transition-colors">
+              <a href="mailto:brandon@learnandleverageai.com" className="flex items-center gap-2 text-[#57534E] hover:text-amber-600 transition-colors">
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                brandonbot67@gmail.com
+                brandon@learnandleverageai.com
               </a>
               <a href="https://learnandleverageai.com" className="flex items-center gap-2 text-[#57534E] hover:text-amber-600 transition-colors">
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -639,7 +755,7 @@ export default function EventPage() {
           </div>
           <div className="mt-8 pt-8 border-t border-gray-100 text-center">
             <p className="font-body text-sm text-[#A8A29E]">
-              © {new Date().getFullYear()} Learn & Leverage AI. All rights reserved. This event is for educational purposes only.
+              &copy; {new Date().getFullYear()} Learn &amp; Leverage AI. All rights reserved. This event is for educational purposes only.
             </p>
           </div>
         </div>

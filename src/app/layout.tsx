@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://learnandleverageai.com"),
-  title: "Learn & Leverage AI | Practical AI Solutions for Business",
-  description: "Helping business owners understand and implement AI without the complexity. Practical AI education and consulting for growing businesses.",
-  keywords: ["AI for business", "AI consulting", "business automation", "AI training", "practical AI"],
+  title: {
+    default: "Learn & Leverage AI | AI Solutions for Home Service Businesses",
+    template: "%s | Learn & Leverage AI",
+  },
+  description: "Helping home service business owners understand and implement AI—without the complexity. AI receptionists, workflow automation, and operational systems for HVAC, plumbing, electrical, pool, landscaping, and roofing companies.",
+  keywords: ["AI for home services", "AI receptionist", "HVAC automation", "plumbing business AI", "home service automation", "AI consulting", "business automation", "AI training"],
   authors: [{ name: "Brandon Calloway" }],
   creator: "Learn & Leverage AI",
   openGraph: {
@@ -13,13 +17,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://learnandleverageai.com",
     siteName: "Learn & Leverage AI",
-    title: "Learn & Leverage AI | Practical AI Solutions for Business",
-    description: "Helping business owners understand and implement AI without the complexity.",
+    title: "Learn & Leverage AI | AI Solutions for Home Service Businesses",
+    description: "Helping home service business owners implement AI—without the complexity. Free live event for HVAC, plumbing, electrical, pool, landscaping, and roofing companies.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Learn & Leverage AI | Practical AI Solutions for Business",
-    description: "Practical AI education and consulting for growing businesses.",
+    title: "Learn & Leverage AI | AI for Home Service Businesses",
+    description: "Free live event: How home service businesses are using AI to answer every call, book more jobs, and save 15+ hours per week.",
   },
   robots: {
     index: true,
@@ -36,6 +40,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         {children}
+        <Analytics />
       </body>
     </html>
   );
