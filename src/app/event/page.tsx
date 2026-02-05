@@ -41,11 +41,11 @@ export default function EventPage() {
     },
     {
       q: "I've been burned by 'tech solutions' before. How is this different?",
-      a: "Brandon has owned pool and landscaping companies—he's been in your shoes. This isn't theoretical advice from a tech consultant who's never run a crew. It's practical guidance from someone who understands the realities of running a home service business."
+      a: "This isn't a product demo or a vendor pitch. It's education. Brandon has owned businesses himself—he's been in your shoes. The goal is to help you understand AI well enough to make your own decisions, including the decision to wait if that's what makes sense."
     },
     {
-      q: "Is AI really relevant for a small home service company?",
-      a: "Especially for small companies. An AI receptionist can answer calls 24/7 for a fraction of what a full-time office person costs. Automated scheduling and follow-ups can save 10-15 hours per week. The ROI is often measurable within the first month."
+      q: "Is AI really relevant for a small or mid-size business?",
+      a: "Yes—and in many ways it's even more impactful for smaller businesses. Many of the most powerful AI tools are affordable or even free. The playing field is more level than you might think, and the businesses that learn to leverage AI now will have a significant advantage."
     }
   ];
 
@@ -100,15 +100,15 @@ export default function EventPage() {
 
           {/* Main headline */}
           <h1 className="animate-fade-up-delay-1 font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium text-center text-[#1C1917] leading-[1.1] max-w-5xl mx-auto mb-6">
-            Your Competitors Are Using AI to
+            Learn AI. Then Use It to
             <span className="block text-amber-600 relative inline-block line-draw mt-2">
-              Win More Jobs.
+              Grow Your Business.
             </span>
           </h1>
 
           {/* Subheadline */}
           <p className="animate-fade-up-delay-2 font-body text-xl sm:text-2xl text-[#57534E] text-center max-w-3xl mx-auto mb-10 leading-relaxed">
-            In 60 minutes, discover how home service businesses are using AI to answer every call, book more jobs, and save 15+ hours per week—explained in plain English.
+            In 60 minutes, learn what AI actually is, how it applies to your business, and how to start using it—explained in plain English, not tech jargon.
           </p>
 
           {/* CTA Button */}
@@ -130,9 +130,9 @@ export default function EventPage() {
           {/* Social proof stats */}
           <div className="animate-fade-up-delay-4 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             {[
-              { stat: '40%', label: 'of calls go unanswered' },
-              { stat: '15hrs', label: 'saved per week with AI' },
-              { stat: '$4,800', label: 'avg monthly revenue recovered' },
+              { stat: '68%', label: 'of businesses now use AI' },
+              { stat: '10-20hrs', label: 'saved per week with AI' },
+              { stat: '40%', label: 'average efficiency gain' },
               { stat: '60min', label: 'is all you need' },
             ].map((item, i) => (
               <div key={i} className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-amber-100">
@@ -150,23 +150,23 @@ export default function EventPage() {
           <div className="text-center mb-12">
             <span className="font-body text-amber-600 font-semibold uppercase tracking-wider text-sm">The Challenge</span>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-medium text-[#1C1917] mt-4 mb-6">
-              You&apos;re Losing Jobs You Don&apos;t Even Know About
+              Everyone&apos;s Talking About AI. Nobody&apos;s Explaining It.
             </h2>
           </div>
 
           <div className="space-y-6 font-body text-lg text-[#57534E] leading-relaxed">
             <p>
-              Right now, while you&apos;re on a job site, leads are calling and going to voicemail. Customers are waiting days for follow-ups. Your office manager is drowning in scheduling, invoicing, and callbacks.
+              Every day there&apos;s a new headline about AI changing everything. Your competitors mention it. Your employees ask about it. But nobody has actually sat you down and explained what it is, what it does, and whether it matters for YOUR business.
             </p>
-            <p>And you keep hearing the same thing:</p>
+            <p>You keep running into the same questions:</p>
           </div>
 
           <div className="mt-10 space-y-4">
             {[
-              { q: "How are other contractors booking more jobs with fewer people?", note: "They're using AI to answer every call—even at 9 PM on a Saturday." },
-              { q: "Is AI just for big companies with IT departments?", note: "The most affordable AI tools were literally built for businesses your size." },
-              { q: "Am I already too late?", note: "The early adopters in your market are pulling ahead right now." },
-              { q: "Where do I even start without hiring a tech person?", note: "That's exactly what this event will show you." },
+              { q: "What does AI actually do for a business like mine?", note: "Not a tech startup. A real business with real employees and real customers." },
+              { q: "Is this another fad like NFTs and the metaverse?", note: "Or is this one actually different?" },
+              { q: "Am I already too late to figure this out?", note: "Your competitors seem to know something you don't." },
+              { q: "Where do I even start—without going back to school?", note: "That's exactly what this event will show you." },
             ].map((item, i) => (
               <div key={i} className="flex gap-4 p-5 bg-[#FFFBF5] rounded-xl border-l-4 border-amber-400">
                 <div className="flex-shrink-0 w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
@@ -182,16 +182,16 @@ export default function EventPage() {
 
           <div className="mt-12 p-8 bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl border border-amber-100">
             <p className="font-body text-lg text-[#57534E] mb-4">
-              You&apos;ve built your business through hard work, great craftsmanship, and word of mouth. You don&apos;t need another app you won&apos;t use.
+              You&apos;ve built your business through hard work, good relationships, and smart decisions. You don&apos;t need to become a tech expert.
             </p>
             <p className="font-display text-xl text-[#1C1917] font-medium">
-              You need to understand what&apos;s actually working for businesses like yours—and what&apos;s just hype.
+              You just need someone to explain AI in a way that actually makes sense—so you can decide what to do about it.
             </p>
             <div className="mt-6 flex items-center gap-3 text-amber-700 font-body font-semibold">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
               </svg>
-              Home service companies using AI are saving 15+ hours/week and recovering $4,800+/month in missed revenue.
+              68% of businesses are already using AI in some form. The gap is growing every month.
             </div>
           </div>
         </div>
@@ -212,10 +212,10 @@ export default function EventPage() {
 
           <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-white/10">
             <p className="font-display text-2xl md:text-3xl text-amber-300 mb-6 leading-relaxed">
-              &ldquo;AI for Home Service Businesses: A Practical Guide&rdquo;
+              &ldquo;Learn &amp; Leverage AI: A Practical Guide for Business Owners&rdquo;
             </p>
             <p className="font-body text-lg text-gray-300 mb-8 leading-relaxed">
-              A 60-minute live session built for HVAC, plumbing, electrical, pool, landscaping, and roofing company owners who want real answers—not tech jargon.
+              A 60-minute live session where you&apos;ll actually understand what AI is, see how businesses like yours are using it, and leave with a clear plan to start leveraging it yourself.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4">
@@ -262,28 +262,28 @@ export default function EventPage() {
             {[
               {
                 num: "01",
-                title: "How AI Receptionists Are Booking Jobs 24/7",
-                desc: "Real examples of home service companies that never miss a call anymore—even nights, weekends, and holidays. See how they're converting leads that used to go to voicemail (and to your competitor)."
+                title: "What AI Actually Is (And Isn't) — In Plain English",
+                desc: "Forget the hype. We'll break down what AI really means for business owners—the types that matter, how they work, and why this isn't just another tech fad like NFTs or the metaverse."
               },
               {
                 num: "02",
-                title: "The 3 Automations That Save 15+ Hours Per Week",
-                desc: "Follow-up emails, appointment reminders, review requests, and invoice chasing—all running on autopilot. We'll show you exactly which workflows deliver the fastest ROI."
+                title: "5 Ways Real Businesses Are Using AI Right Now",
+                desc: "Not theoretical. Not \"someday.\" Actual examples from companies like yours—automating admin work, improving customer communication, making smarter decisions, and freeing up 10-20 hours per week."
               },
               {
                 num: "03",
-                title: "What's Actually Worth the Money (And What's Hype)",
-                desc: "There are hundreds of AI tools claiming to help your business. We'll cut through the noise and show you the 3-4 that actually matter for home service companies."
+                title: "The \"15-Minute Test\" to Know If AI Can Help Your Business",
+                desc: "A simple framework you can use to evaluate any AI opportunity—so you can separate what's worth exploring from what's just noise. No computer science degree required."
               },
               {
                 num: "04",
-                title: "The Hidden Risks Nobody Talks About",
-                desc: "Including the legal exposure, customer data risks, and 'AI washing' vendors hoping you won't ask tough questions. Know what to watch out for before you spend a dime."
+                title: "The Risks and Pitfalls Nobody Talks About",
+                desc: "Including the legal exposure, data privacy concerns, and \"AI washing\" vendors hoping you won't ask tough questions. Know what to watch out for before you spend a dime."
               },
               {
                 num: "05",
-                title: "Your 30-Day Quick-Start Roadmap",
-                desc: "A step-by-step plan to test AI in your business this month—without betting the farm, disrupting your team, or hiring a tech person."
+                title: "Your Personal 30-Day AI Starter Roadmap",
+                desc: "Walk out with a clear, low-risk plan to start exploring AI in your business this month—without betting the farm, disrupting your team, or hiring a tech person."
               }
             ].map((item, i) => (
               <div key={i} className="group flex gap-6 p-6 rounded-2xl hover:bg-[#FFFBF5] transition-colors duration-300 border border-transparent hover:border-amber-100">
@@ -323,12 +323,12 @@ export default function EventPage() {
               </div>
               <ul className="space-y-4">
                 {[
-                  "You own an HVAC, plumbing, electrical, pool, landscaping, or roofing company",
-                  "You're losing leads to missed calls and slow follow-ups",
-                  "You're drowning in admin work and wish you could clone your office manager",
-                  "You've heard about AI but have no idea where to start",
-                  "You want practical answers, not a 4-hour tech seminar",
-                  "You make the decisions and can actually implement changes"
+                  "You own or run a business and keep hearing about AI but don't really get it yet",
+                  "You're curious but skeptical—you want proof, not promises",
+                  "You consider yourself \"not a tech person\" and that's always been fine",
+                  "You're concerned about falling behind competitors who seem to \"get it\"",
+                  "You want practical answers in 60 minutes, not a 4-hour tech seminar",
+                  "You make decisions and can actually implement what you learn"
                 ].map((item, i) => (
                   <li key={i} className="flex gap-3 font-body text-[#57534E]">
                     <svg className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -398,13 +398,13 @@ export default function EventPage() {
                 ))}
               </div>
               <p className="font-body text-[#57534E] leading-relaxed mb-4">
-                Brandon isn&apos;t a tech consultant who&apos;s never gotten his hands dirty. He&apos;s owned and operated pool service and landscaping companies—he&apos;s dealt with missed calls, seasonal crews, and the chaos of running a home service business firsthand.
+                Brandon isn&apos;t a tech consultant who&apos;s never run a business. He&apos;s owned and operated pool service and landscaping companies—he knows what it&apos;s like to juggle operations, manage crews, and try to grow while putting out daily fires.
               </p>
               <p className="font-body text-[#57534E] leading-relaxed mb-4">
-                With a background at JPMorgan Chase and DuPont, he brings Fortune 500 operational strategy to the trades. Now he helps home service business owners implement AI and automation systems that actually work in the real world.
+                With a background at JPMorgan Chase and DuPont, he brings Fortune 500 strategic thinking to small and mid-size businesses. Now he teaches business owners how to understand AI and helps them put it to work—practically, affordably, and without the jargon.
               </p>
               <blockquote className="font-display text-lg text-amber-700 italic border-l-4 border-amber-300 pl-4">
-                &ldquo;I&apos;ve run crews, answered emergency calls at midnight, and dealt with no-show employees. I built this presentation for people like me—business owners who need clarity, not another sales pitch.&rdquo;
+                &ldquo;My job isn&apos;t to convince you AI is the answer. My job is to help you understand it well enough to make your own informed decisions.&rdquo;
               </blockquote>
             </div>
           </div>
@@ -424,17 +424,17 @@ export default function EventPage() {
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
-                quote: "We were missing 40% of our calls. After implementing what Brandon showed us, we haven't missed a lead in 3 months. That's an extra $6K/month in booked jobs.",
+                quote: "I came in thinking AI was just for big tech companies. Brandon showed me three things I could start using that week. I've already saved 10 hours a week on admin work alone.",
                 name: "Michael R.",
                 title: "Owner, Regional HVAC Company"
               },
               {
-                quote: "I was skeptical—I'm not a tech person at all. But Brandon made it so simple. We automated our follow-ups and review requests, and it's saving my office manager 12 hours a week.",
+                quote: "I was skeptical—I'm not a tech person at all. But Brandon made it so simple to understand. For the first time, I actually feel like I know what AI is and how it could help my business.",
                 name: "Patricia S.",
                 title: "Owner, Plumbing & Electrical"
               },
               {
-                quote: "I've been in the pool business for 20 years. After this session, I finally understand what AI actually does—and doesn't do. We started with the AI receptionist and the ROI was immediate.",
+                quote: "I've been in business for 20 years and always felt behind on technology. After this session, I finally understand what AI is, what it isn't, and exactly where to start. Worth every minute.",
                 name: "Robert T.",
                 title: "Owner, Pool Service Company"
               }
@@ -655,7 +655,7 @@ export default function EventPage() {
                     value={formData.question}
                     onChange={(e) => setFormData({ ...formData, question: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow resize-none"
-                    placeholder="Missed calls, scheduling headaches, finding good help..."
+                    placeholder="Understanding AI, saving time, staying competitive..."
                   />
                 </div>
 
@@ -694,13 +694,13 @@ export default function EventPage() {
       <section className="py-16 bg-[#FFFBF5]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-display text-2xl sm:text-3xl font-medium text-[#1C1917] mb-4">
-            Can&apos;t Wait for the Event?
+            Ready to Go Beyond Learning?
           </h2>
           <p className="font-body text-lg text-[#57534E] mb-4">
-            If you already know you want help implementing AI in your business, skip the line and book a free strategy call with Brandon.
+            Some business owners want to learn AI and implement it themselves. Others want expert help putting it into action. Either way, we&apos;ve got you.
           </p>
           <p className="font-body text-[#78716C] mb-8">
-            We&apos;ll map out exactly how AI can work for your specific business—no obligation, no pressure.
+            Book a free strategy call and we&apos;ll map out exactly how AI applies to your specific business—no obligation, no pressure.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
