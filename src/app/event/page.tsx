@@ -9,7 +9,6 @@ const EVENT_TIMEZONE = 'EST';
 const TOTAL_SEATS = 50;
 const SEATS_REMAINING = 17;
 const EVENT_PRICE = 47;
-const STRATEGY_CALL_URL = 'https://learnandleverageai.com';
 
 export default function EventPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -22,6 +21,13 @@ export default function EventPage() {
     question: ''
   });
   const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [contactData, setContactData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+  const [contactState, setContactState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   const faqs = [
     {
@@ -63,6 +69,22 @@ export default function EventPage() {
       setFormState('success');
     } catch {
       setFormState('error');
+    }
+  };
+
+  const handleContactSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setContactState('loading');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(contactData),
+      });
+      if (!res.ok) throw new Error('Contact request failed');
+      setContactState('success');
+    } catch {
+      setContactState('error');
     }
   };
 
@@ -561,20 +583,26 @@ export default function EventPage() {
                   Check your email for confirmation and calendar invite. See you on {EVENT_DATE}!
                 </p>
                 <div className="p-4 bg-amber-50 rounded-xl border border-amber-200 max-w-md mx-auto">
-                  <p className="font-body text-sm text-amber-800 font-medium">
+                  <p className="font-body text-sm text-amber-800 font-medium mb-3">
                     Want personalized guidance for your business?
                   </p>
-                  <a
-                    href={STRATEGY_CALL_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 mt-2 font-body text-amber-700 font-semibold hover:text-amber-900 transition-colors"
-                  >
-                    Book a Free Strategy Call
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </a>
+                  <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                    <a
+                      href="#contact"
+                      className="inline-flex items-center justify-center gap-2 bg-[#1C1917] text-white px-5 py-2.5 rounded-lg font-body font-semibold text-sm hover:bg-amber-600 transition-colors"
+                    >
+                      Request a Callback
+                    </a>
+                    <a
+                      href="tel:+13024209576"
+                      className="inline-flex items-center justify-center gap-2 border border-amber-300 text-amber-800 px-5 py-2.5 rounded-lg font-body font-semibold text-sm hover:bg-amber-100 transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                      (302) 420-9576
+                    </a>
+                  </div>
                 </div>
               </div>
             ) : (
@@ -691,36 +719,128 @@ export default function EventPage() {
         </div>
       </section>
 
-      {/* Consulting Funnel CTA */}
-      <section className="py-16 bg-[#FFFBF5]">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-display text-2xl sm:text-3xl font-medium text-[#1C1917] mb-4">
-            Ready to Go Beyond Learning?
-          </h2>
-          <p className="font-body text-lg text-[#57534E] mb-4">
-            Some business owners want to learn AI and implement it themselves. Others want expert help putting it into action. Either way, we&apos;ve got you.
-          </p>
-          <p className="font-body text-[#78716C] mb-8">
-            Book a free strategy call and we&apos;ll map out exactly how AI applies to your specific business—no obligation, no pressure.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href={STRATEGY_CALL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-3 bg-[#1C1917] text-white px-8 py-4 rounded-xl font-body font-semibold text-lg hover:bg-amber-600 transition-all duration-300 shadow-xl shadow-black/10"
-            >
-              Book a Free Strategy Call
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-            <a
-              href="#register"
-              className="inline-flex items-center justify-center gap-2 border-2 border-[#1C1917] text-[#1C1917] px-8 py-4 rounded-xl font-body font-semibold text-lg hover:bg-[#1C1917] hover:text-white transition-all duration-300"
-            >
-              Register for the Event — ${EVENT_PRICE}
-            </a>
+      {/* Request a Callback */}
+      <section id="contact" className="py-16 bg-[#FFFBF5] scroll-mt-14">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <span className="font-body text-amber-600 font-semibold uppercase tracking-wider text-sm">Free Strategy Call</span>
+            <h2 className="font-display text-2xl sm:text-3xl font-medium text-[#1C1917] mt-4 mb-4">
+              Want Expert Help With AI?
+            </h2>
+            <p className="font-body text-[#57534E]">
+              Request a free callback and we&apos;ll map out exactly how AI applies to your specific business—no obligation, no pressure.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-2xl p-8 shadow-lg shadow-amber-100/30 border border-amber-100">
+            {contactState === 'success' ? (
+              <div className="text-center py-8">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h3 className="font-display text-2xl text-[#1C1917] font-medium mb-2">Request Received!</h3>
+                <p className="font-body text-[#57534E]">
+                  We&apos;ll be in touch within 24 hours to schedule your free strategy call.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleContactSubmit} className="space-y-5">
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="contact-name" className="block font-body text-sm font-medium text-[#57534E] mb-2">
+                      Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      id="contact-name"
+                      required
+                      value={contactData.name}
+                      onChange={(e) => setContactData({ ...contactData, name: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow"
+                      placeholder="John Smith"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="contact-email" className="block font-body text-sm font-medium text-[#57534E] mb-2">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      id="contact-email"
+                      required
+                      value={contactData.email}
+                      onChange={(e) => setContactData({ ...contactData, email: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow"
+                      placeholder="john@company.com"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="contact-phone" className="block font-body text-sm font-medium text-[#57534E] mb-2">
+                    Phone Number *
+                  </label>
+                  <input
+                    type="tel"
+                    id="contact-phone"
+                    required
+                    value={contactData.phone}
+                    onChange={(e) => setContactData({ ...contactData, phone: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow"
+                    placeholder="(555) 123-4567"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="contact-message" className="block font-body text-sm font-medium text-[#57534E] mb-2">
+                    Tell us about your business (optional)
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    rows={3}
+                    value={contactData.message}
+                    onChange={(e) => setContactData({ ...contactData, message: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow resize-none"
+                    placeholder="What industry are you in? What are you hoping AI can help with?"
+                  />
+                </div>
+
+                {contactState === 'error' && (
+                  <div className="p-4 bg-red-50 border border-red-200 rounded-xl">
+                    <p className="font-body text-red-700 text-sm">Something went wrong. Please try again or call us at (302) 420-9576.</p>
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={contactState === 'loading'}
+                  className="w-full bg-[#1C1917] hover:bg-amber-600 disabled:bg-gray-400 text-white font-body font-semibold text-lg py-4 rounded-xl transition-all duration-300 shadow-lg shadow-black/10 hover:shadow-amber-500/25 hover:-translate-y-0.5 disabled:hover:translate-y-0"
+                >
+                  {contactState === 'loading' ? 'Sending...' : 'Request a Free Callback'}
+                </button>
+                <p className="font-body text-center text-sm text-[#A8A29E]">
+                  We&apos;ll reach out within 24 hours. No spam, no pressure.
+                </p>
+              </form>
+            )}
+          </div>
+
+          <div className="mt-6 text-center">
+            <p className="font-body text-[#78716C] text-sm mb-3">Prefer to reach out directly?</p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a href="tel:+13024209576" className="inline-flex items-center gap-2 text-[#57534E] hover:text-amber-600 transition-colors font-body font-medium">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                (302) 420-9576
+              </a>
+              <a href="mailto:brandon@learnandleverageai.com" className="inline-flex items-center gap-2 text-[#57534E] hover:text-amber-600 transition-colors font-body font-medium">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                brandon@learnandleverageai.com
+              </a>
+            </div>
           </div>
         </div>
       </section>

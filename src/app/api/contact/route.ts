@@ -3,12 +3,12 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, company, industry, question } = body;
+    const { name, email, phone, message } = body;
 
     // Validate required fields
-    if (!name || !email) {
+    if (!name || !email || !phone) {
       return NextResponse.json(
-        { error: 'Name and email are required' },
+        { error: 'Name, email, and phone are required' },
         { status: 400 }
       );
     }
@@ -22,26 +22,25 @@ export async function POST(request: Request) {
       );
     }
 
-    const registrationData = {
-      type: 'event_registration',
+    const contactData = {
+      type: 'callback_request',
       name,
       email,
-      company: company || 'N/A',
-      industry: industry || 'N/A',
-      question: question || 'N/A',
+      phone,
+      message: message || 'N/A',
       timestamp: new Date().toISOString(),
     };
 
-    // Log registration (visible in Vercel logs)
-    console.log('NEW EVENT REGISTRATION:', JSON.stringify(registrationData, null, 2));
+    // Log contact request (visible in Vercel logs)
+    console.log('NEW CALLBACK REQUEST:', JSON.stringify(contactData, null, 2));
 
-    // Send notification if webhook is configured
+    // Send notification email if webhook is configured
     if (process.env.NOTIFICATION_WEBHOOK_URL) {
       try {
         await fetch(process.env.NOTIFICATION_WEBHOOK_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(registrationData),
+          body: JSON.stringify(contactData),
         });
       } catch (webhookError) {
         console.error('Webhook notification failed:', webhookError);
@@ -54,7 +53,7 @@ export async function POST(request: Request) {
         await fetch(process.env.GOOGLE_SHEETS_WEBHOOK_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(registrationData),
+          body: JSON.stringify(contactData),
         });
       } catch (sheetsError) {
         console.error('Google Sheets webhook failed:', sheetsError);
@@ -63,7 +62,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true });
   } catch {
-    console.error('Registration error');
+    console.error('Contact form error');
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
