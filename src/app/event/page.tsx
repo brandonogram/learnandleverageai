@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Script from 'next/script';
 
 // ── Configure event details here ──────────────────────────────────
 const EVENT_DATE = 'February 20, 2026';
@@ -21,13 +22,6 @@ export default function EventPage() {
     question: ''
   });
   const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [contactData, setContactData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: ''
-  });
-  const [contactState, setContactState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   const faqs = [
     {
@@ -72,21 +66,6 @@ export default function EventPage() {
     }
   };
 
-  const handleContactSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setContactState('loading');
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(contactData),
-      });
-      if (!res.ok) throw new Error('Contact request failed');
-      setContactState('success');
-    } catch {
-      setContactState('error');
-    }
-  };
 
   return (
     <div className="min-h-screen">
@@ -588,10 +567,10 @@ export default function EventPage() {
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3 justify-center">
                     <a
-                      href="#contact"
+                      href="#book-call"
                       className="inline-flex items-center justify-center gap-2 bg-[#1C1917] text-white px-5 py-2.5 rounded-lg font-body font-semibold text-sm hover:bg-amber-600 transition-colors"
                     >
-                      Request a Callback
+                      Book a Free Strategy Call
                     </a>
                     <a
                       href="tel:+13024209576"
@@ -719,110 +698,27 @@ export default function EventPage() {
         </div>
       </section>
 
-      {/* Request a Callback */}
-      <section id="contact" className="py-16 bg-[#FFFBF5] scroll-mt-14">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Book a Strategy Call - GHL Calendar */}
+      <section id="book-call" className="py-16 bg-[#FFFBF5] scroll-mt-14">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <span className="font-body text-amber-600 font-semibold uppercase tracking-wider text-sm">Free Strategy Call</span>
             <h2 className="font-display text-2xl sm:text-3xl font-medium text-[#1C1917] mt-4 mb-4">
               Want Expert Help With AI?
             </h2>
             <p className="font-body text-[#57534E]">
-              Request a free callback and we&apos;ll map out exactly how AI applies to your specific business—no obligation, no pressure.
+              Book a free strategy call and we&apos;ll map out exactly how AI applies to your specific business—no obligation, no pressure.
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl p-8 shadow-lg shadow-amber-100/30 border border-amber-100">
-            {contactState === 'success' ? (
-              <div className="text-center py-8">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <h3 className="font-display text-2xl text-[#1C1917] font-medium mb-2">Request Received!</h3>
-                <p className="font-body text-[#57534E]">
-                  We&apos;ll be in touch within 24 hours to schedule your free strategy call.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleContactSubmit} className="space-y-5">
-                <div className="grid sm:grid-cols-2 gap-5">
-                  <div>
-                    <label htmlFor="contact-name" className="block font-body text-sm font-medium text-[#57534E] mb-2">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="contact-name"
-                      required
-                      value={contactData.name}
-                      onChange={(e) => setContactData({ ...contactData, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow"
-                      placeholder="John Smith"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="contact-email" className="block font-body text-sm font-medium text-[#57534E] mb-2">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      id="contact-email"
-                      required
-                      value={contactData.email}
-                      onChange={(e) => setContactData({ ...contactData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow"
-                      placeholder="john@company.com"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor="contact-phone" className="block font-body text-sm font-medium text-[#57534E] mb-2">
-                    Phone Number *
-                  </label>
-                  <input
-                    type="tel"
-                    id="contact-phone"
-                    required
-                    value={contactData.phone}
-                    onChange={(e) => setContactData({ ...contactData, phone: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow"
-                    placeholder="(555) 123-4567"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="contact-message" className="block font-body text-sm font-medium text-[#57534E] mb-2">
-                    Tell us about your business (optional)
-                  </label>
-                  <textarea
-                    id="contact-message"
-                    rows={3}
-                    value={contactData.message}
-                    onChange={(e) => setContactData({ ...contactData, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow resize-none"
-                    placeholder="What industry are you in? What are you hoping AI can help with?"
-                  />
-                </div>
-
-                {contactState === 'error' && (
-                  <div className="p-4 bg-red-50 border border-red-200 rounded-xl">
-                    <p className="font-body text-red-700 text-sm">Something went wrong. Please try again or call us at (302) 420-9576.</p>
-                  </div>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={contactState === 'loading'}
-                  className="w-full bg-[#1C1917] hover:bg-amber-600 disabled:bg-gray-400 text-white font-body font-semibold text-lg py-4 rounded-xl transition-all duration-300 shadow-lg shadow-black/10 hover:shadow-amber-500/25 hover:-translate-y-0.5 disabled:hover:translate-y-0"
-                >
-                  {contactState === 'loading' ? 'Sending...' : 'Request a Free Callback'}
-                </button>
-                <p className="font-body text-center text-sm text-[#A8A29E]">
-                  We&apos;ll reach out within 24 hours. No spam, no pressure.
-                </p>
-              </form>
-            )}
+          <div className="bg-white rounded-2xl shadow-lg shadow-amber-100/30 border border-amber-100 overflow-hidden">
+            <iframe
+              src="https://link.boothlaunchpad.com/widget/booking/6KYJXNGIRfCN1WhvYZff"
+              style={{ width: '100%', border: 'none', overflow: 'hidden', minHeight: '650px' }}
+              scrolling="no"
+              id="6KYJXNGIRfCN1WhvYZff_1770342259772"
+              title="Book a Strategy Call"
+            />
           </div>
 
           <div className="mt-6 text-center">
@@ -844,6 +740,12 @@ export default function EventPage() {
           </div>
         </div>
       </section>
+
+      {/* GHL Calendar Embed Script */}
+      <Script
+        src="https://link.boothlaunchpad.com/js/form_embed.js"
+        strategy="lazyOnload"
+      />
 
       {/* Contact Footer */}
       <section className="py-12 bg-white border-t border-gray-100">
