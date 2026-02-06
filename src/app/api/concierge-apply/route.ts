@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { getSupabase } from '@/lib/supabase';
 
 export async function POST(request: Request) {
   try {
@@ -21,41 +20,46 @@ export async function POST(request: Request) {
       );
     }
 
-    // Save to Supabase
-    const supabase = getSupabase();
-    if (supabase) {
-      const { error: dbError } = await supabase.from('leads').insert({
-        type: 'concierge_application',
-        name,
-        email,
-        phone,
-        message: JSON.stringify({
-          role: role || null,
-          linkedin: linkedin || null,
-          referralSource: referralSource || null,
-          timeDrain: timeDrain || null,
-        }),
-      });
-      if (dbError) console.error('Supabase insert error:', dbError);
-    }
+    // Split name into first and last
+    const nameParts = name.trim().split(/\s+/);
+    const firstName = nameParts[0] || '';
+    const lastName = nameParts.slice(1).join(' ') || '';
 
-    // Also send to Google Sheets webhook if configured
-    if (process.env.GOOGLE_SHEETS_WEBHOOK_URL) {
-      fetch(process.env.GOOGLE_SHEETS_WEBHOOK_URL, {
+    // Push contact to GoHighLevel
+    const ghlApiKey = process.env.GHL_API_KEY;
+    const ghlLocationId = process.env.GHL_LOCATION_ID;
+
+    if (ghlApiKey && ghlLocationId) {
+      const ghlRes = await fetch('https://services.leadconnectorhq.com/contacts/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Authorization': `Bearer ${ghlApiKey}`,
+          'Content-Type': 'application/json',
+          'Version': '2021-07-28',
+        },
         body: JSON.stringify({
-          type: 'concierge_application',
-          name,
+          locationId: ghlLocationId,
+          firstName,
+          lastName,
           email,
           phone,
-          linkedin: linkedin || 'N/A',
-          role: role || 'N/A',
-          timeDrain: timeDrain || 'N/A',
-          referralSource: referralSource || 'N/A',
-          timestamp: new Date().toISOString(),
+          tags: ['concierge-application', role || 'unknown-role'],
+          source: 'Learn & Leverage AI - Concierge Application',
+          customFields: [
+            ...(role ? [{ key: 'role', field_value: role }] : []),
+            ...(linkedin ? [{ key: 'linkedin', field_value: linkedin }] : []),
+            ...(timeDrain ? [{ key: 'time_drain', field_value: timeDrain }] : []),
+            ...(referralSource ? [{ key: 'referral_source', field_value: referralSource }] : []),
+          ],
         }),
-      }).catch(() => {});
+      });
+
+      if (!ghlRes.ok) {
+        const errText = await ghlRes.text();
+        console.error('GHL API error:', ghlRes.status, errText);
+      }
+    } else {
+      console.warn('GHL credentials not configured — contact not saved');
     }
 
     return NextResponse.json({ success: true });

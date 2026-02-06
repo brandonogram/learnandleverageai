@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Script from 'next/script';
 
 export default function ConciergePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -829,13 +830,17 @@ export default function ConciergePage() {
                   </svg>
                 </div>
                 <h3 className="font-display text-2xl text-[#1C1917] font-medium mb-2">Application Received</h3>
-                <p className="font-body text-[#57534E] mb-4">
-                  I&apos;ll review your application and reach out within 48 hours to schedule your discovery call.
+                <p className="font-body text-[#57534E] mb-6">
+                  I&apos;ll review your application and reach out within 48 hours. Or skip the wait and book your discovery call now:
                 </p>
-                <p className="font-body text-sm text-[#78716C]">
-                  In the meantime, feel free to reach out directly at{' '}
-                  <a href="mailto:brandon@learnandleverageai.com" className="text-amber-600 hover:text-amber-700 underline">brandon@learnandleverageai.com</a>
-                </p>
+                <div className="bg-[#FFFBF5] rounded-xl border border-amber-100 overflow-hidden">
+                  <iframe
+                    src="https://link.boothlaunchpad.com/widget/booking/6KYJXNGIRfCN1WhvYZff"
+                    style={{ width: '100%', border: 'none', overflow: 'hidden', minHeight: '600px' }}
+                    scrolling="no"
+                    title="Book a Discovery Call"
+                  />
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
@@ -973,6 +978,12 @@ export default function ConciergePage() {
           </div>
         </div>
       </section>
+
+      {/* GHL Calendar Embed Script */}
+      <Script
+        src="https://link.boothlaunchpad.com/js/form_embed.js"
+        strategy="lazyOnload"
+      />
 
       {/* Footer */}
       <section className="py-12 bg-[#1C1917] border-t border-white/5">
