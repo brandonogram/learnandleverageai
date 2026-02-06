@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
+import { getSupabase } from '@/lib/supabase';
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { name, email, company, industry, question } = body;
 
-    // Validate required fields
     if (!name || !email) {
       return NextResponse.json(
         { error: 'Name and email are required' },
@@ -13,7 +13,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
@@ -22,43 +21,31 @@ export async function POST(request: Request) {
       );
     }
 
-    const registrationData = {
-      type: 'event_registration',
-      name,
-      email,
-      company: company || 'N/A',
-      industry: industry || 'N/A',
-      question: question || 'N/A',
-      timestamp: new Date().toISOString(),
-    };
-
-    // Log registration (visible in Vercel logs)
-    console.log('NEW EVENT REGISTRATION:', JSON.stringify(registrationData, null, 2));
-
-    // Send notification if webhook is configured
-    if (process.env.NOTIFICATION_WEBHOOK_URL) {
-      try {
-        await fetch(process.env.NOTIFICATION_WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(registrationData),
-        });
-      } catch (webhookError) {
-        console.error('Webhook notification failed:', webhookError);
-      }
+    // Save to Supabase
+    const supabase = getSupabase();
+    if (supabase) {
+      const { error: dbError } = await supabase.from('leads').insert({
+        type: 'event_registration',
+        name,
+        email,
+        company: company || null,
+        industry: industry || null,
+        message: question || null,
+      });
+      if (dbError) console.error('Supabase insert error:', dbError);
     }
 
-    // Send to Google Sheets if configured
+    // Also send to Google Sheets webhook if configured
     if (process.env.GOOGLE_SHEETS_WEBHOOK_URL) {
-      try {
-        await fetch(process.env.GOOGLE_SHEETS_WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(registrationData),
-        });
-      } catch (sheetsError) {
-        console.error('Google Sheets webhook failed:', sheetsError);
-      }
+      fetch(process.env.GOOGLE_SHEETS_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'event_registration', name, email,
+          company: company || 'N/A', industry: industry || 'N/A',
+          question: question || 'N/A', timestamp: new Date().toISOString(),
+        }),
+      }).catch(() => {});
     }
 
     return NextResponse.json({ success: true });
