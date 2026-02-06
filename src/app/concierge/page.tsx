@@ -5,16 +5,6 @@ import Script from 'next/script';
 
 export default function ConciergePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    linkedin: '',
-    role: '',
-    timeDrain: '',
-    referralSource: '',
-  });
-  const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   const faqs = [
     {
@@ -43,21 +33,6 @@ export default function ConciergePage() {
     }
   ];
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormState('loading');
-    try {
-      const res = await fetch('/api/concierge-apply', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-      if (!res.ok) throw new Error('Application failed');
-      setFormState('success');
-    } catch {
-      setFormState('error');
-    }
-  };
 
   return (
     <div className="min-h-screen">
@@ -805,176 +780,48 @@ export default function ConciergePage() {
         </div>
       </section>
 
-      {/* Application Form */}
+      {/* Book a Discovery Call - GHL Calendar */}
       <section id="apply" className="py-20 bg-gradient-to-b from-[#1C1917] to-[#292524] text-white relative overflow-hidden scroll-mt-14">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl" aria-hidden="true" />
         <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-amber-500/5 rounded-full blur-3xl" aria-hidden="true" />
 
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-12">
             <span className="font-body text-amber-400 font-semibold uppercase tracking-wider text-sm">Get Started</span>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-medium mt-4 mb-4">
-              Request a Discovery Call
+              Book a Discovery Call
             </h2>
             <p className="font-body text-gray-400 text-lg">
-              Tell me about your world. I&apos;ll tell you what I can build.
+              30 minutes. No pitch. Just a conversation to see if we&apos;re a fit.
             </p>
           </div>
 
-          <div className="bg-white rounded-3xl p-8 md:p-10 shadow-2xl">
-            {formState === 'success' ? (
-              <div className="text-center py-12">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <h3 className="font-display text-2xl text-[#1C1917] font-medium mb-2">Application Received</h3>
-                <p className="font-body text-[#57534E] mb-6">
-                  I&apos;ll review your application and reach out within 48 hours. Or skip the wait and book your discovery call now:
-                </p>
-                <div className="bg-[#FFFBF5] rounded-xl border border-amber-100 overflow-hidden">
-                  <iframe
-                    src="https://link.boothlaunchpad.com/widget/booking/6KYJXNGIRfCN1WhvYZff"
-                    style={{ width: '100%', border: 'none', overflow: 'hidden', minHeight: '600px' }}
-                    scrolling="no"
-                    title="Book a Discovery Call"
-                  />
-                </div>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid sm:grid-cols-2 gap-5">
-                  <div>
-                    <label htmlFor="name" className="block font-body text-sm font-medium text-[#57534E] mb-2">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow"
-                      placeholder="Jane Smith"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block font-body text-sm font-medium text-[#57534E] mb-2">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow"
-                      placeholder="jane@company.com"
-                    />
-                  </div>
-                </div>
-                <div className="grid sm:grid-cols-2 gap-5">
-                  <div>
-                    <label htmlFor="phone" className="block font-body text-sm font-medium text-[#57534E] mb-2">
-                      Phone Number *
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      required
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow"
-                      placeholder="(555) 123-4567"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="linkedin" className="block font-body text-sm font-medium text-[#57534E] mb-2">
-                      LinkedIn (optional)
-                    </label>
-                    <input
-                      type="url"
-                      id="linkedin"
-                      value={formData.linkedin}
-                      onChange={(e) => setFormData({ ...formData, linkedin: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow"
-                      placeholder="linkedin.com/in/yourname"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor="role" className="block font-body text-sm font-medium text-[#57534E] mb-2">
-                    Your Role
-                  </label>
-                  <select
-                    id="role"
-                    value={formData.role}
-                    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow bg-white"
-                  >
-                    <option value="">Select your role...</option>
-                    <option value="Founder / CEO">Founder / CEO</option>
-                    <option value="Executive / C-Suite">Executive / C-Suite</option>
-                    <option value="Investor / Partner">Investor / Partner</option>
-                    <option value="Business Owner">Business Owner</option>
-                    <option value="VP / Director">VP / Director</option>
-                    <option value="Creator / Influencer">Creator / Influencer</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="timeDrain" className="block font-body text-sm font-medium text-[#57534E] mb-2">
-                    What&apos;s your biggest time drain right now?
-                  </label>
-                  <textarea
-                    id="timeDrain"
-                    rows={3}
-                    value={formData.timeDrain}
-                    onChange={(e) => setFormData({ ...formData, timeDrain: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow resize-none"
-                    placeholder="Email, meeting prep, repetitive admin, content creation..."
-                  />
-                </div>
-                <div>
-                  <label htmlFor="referralSource" className="block font-body text-sm font-medium text-[#57534E] mb-2">
-                    How did you hear about us?
-                  </label>
-                  <select
-                    id="referralSource"
-                    value={formData.referralSource}
-                    onChange={(e) => setFormData({ ...formData, referralSource: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-shadow bg-white"
-                  >
-                    <option value="">Select...</option>
-                    <option value="Twitter / X">Twitter / X</option>
-                    <option value="LinkedIn">LinkedIn</option>
-                    <option value="Referral">Referral from someone I know</option>
-                    <option value="Google Search">Google Search</option>
-                    <option value="Podcast">Podcast</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
+          <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
+            <iframe
+              src="https://link.boothlaunchpad.com/widget/booking/6KYJXNGIRfCN1WhvYZff"
+              style={{ width: '100%', border: 'none', overflow: 'hidden', minHeight: '650px' }}
+              scrolling="no"
+              id="concierge_booking_calendar"
+              title="Book a Discovery Call"
+            />
+          </div>
 
-                {formState === 'error' && (
-                  <div className="p-4 bg-red-50 border border-red-200 rounded-xl">
-                    <p className="font-body text-red-700 text-sm">Something went wrong. Please try again or email brandon@learnandleverageai.com directly.</p>
-                  </div>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={formState === 'loading'}
-                  className="w-full bg-[#1C1917] hover:bg-amber-600 disabled:bg-gray-400 text-white font-body font-semibold text-lg py-4 rounded-xl transition-all duration-300 shadow-lg shadow-black/10 hover:shadow-amber-500/25 hover:-translate-y-0.5 disabled:hover:translate-y-0"
-                >
-                  {formState === 'loading' ? 'Submitting...' : 'Request a Discovery Call'}
-                </button>
-
-                <p className="font-body text-center text-sm text-[#A8A29E]">
-                  No commitment. No pitch on the call. Just a conversation to see if we&apos;re a fit.
-                </p>
-              </form>
-            )}
+          <div className="mt-8 text-center">
+            <p className="font-body text-gray-500 text-sm mb-3">Prefer to reach out directly?</p>
+            <div className="flex flex-wrap justify-center gap-6">
+              <a href="tel:+13024209576" className="inline-flex items-center gap-2 text-gray-400 hover:text-amber-400 transition-colors font-body font-medium">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                (302) 420-9576
+              </a>
+              <a href="mailto:brandon@learnandleverageai.com" className="inline-flex items-center gap-2 text-gray-400 hover:text-amber-400 transition-colors font-body font-medium">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                brandon@learnandleverageai.com
+              </a>
+            </div>
           </div>
         </div>
       </section>
