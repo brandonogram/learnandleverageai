@@ -59,14 +59,14 @@ export default function ConciergePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#1C1917]">
+    <div className="min-h-screen">
       {/* Sticky Nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#1C1917]/90 backdrop-blur-md border-b border-white/5">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-amber-100/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-14">
-          <span className="font-display text-lg font-semibold text-white">Learn &amp; Leverage AI</span>
+          <span className="font-display text-lg font-semibold text-[#1C1917]">Learn &amp; Leverage AI</span>
           <a
             href="#apply"
-            className="bg-white hover:bg-amber-400 text-[#1C1917] font-body font-semibold text-sm px-5 py-2 rounded-lg transition-colors shadow-sm"
+            className="bg-[#1C1917] hover:bg-amber-600 text-white font-body font-semibold text-sm px-5 py-2 rounded-lg transition-colors shadow-sm"
           >
             Apply Now
           </a>
@@ -74,43 +74,52 @@ export default function ConciergePage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-14">
+      <section className="relative overflow-hidden pt-14 bg-[#FFFBF5]">
         <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-          <div className="absolute top-20 right-[10%] w-72 h-72 bg-amber-500/10 rounded-full blur-3xl animate-float" />
-          <div className="absolute bottom-20 left-[5%] w-96 h-96 bg-amber-600/5 rounded-full blur-3xl" style={{ animationDelay: '2s' }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-white/[0.03] rounded-full" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white/[0.05] rounded-full" />
+          <div className="absolute top-20 right-[10%] w-72 h-72 bg-amber-200/30 rounded-full blur-3xl animate-float" />
+          <div className="absolute bottom-20 left-[5%] w-96 h-96 bg-orange-100/40 rounded-full blur-3xl" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-amber-200/20 rounded-full" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-amber-200/30 rounded-full" />
         </div>
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 relative text-center">
           <div className="animate-fade-up flex justify-center mb-8">
-            <div className="inline-flex items-center gap-2 bg-white/5 text-amber-400 px-4 py-2 rounded-full font-body text-sm font-medium border border-white/10">
-              <span className="w-2 h-2 bg-amber-400 rounded-full" />
+            <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-800 px-4 py-2 rounded-full font-body text-sm font-medium">
+              <span className="w-2 h-2 bg-amber-500 rounded-full" />
               By Application Only
             </div>
           </div>
 
-          <h1 className="animate-fade-up-delay-1 font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium text-white leading-[1.1] max-w-4xl mx-auto mb-6">
-            Your Personal
-            <span className="block text-amber-400 relative inline-block line-draw mt-2">
-              AI Architect
+          <h1 className="animate-fade-up-delay-1 font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium text-[#1C1917] leading-[1.1] max-w-4xl mx-auto mb-6">
+            Stop Learning About AI.
+            <span className="block text-amber-600 relative inline-block line-draw mt-2">
+              Start Using It.
             </span>
           </h1>
 
-          <p className="animate-fade-up-delay-2 font-body text-xl sm:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed">
-            I show up. I learn your world. I build AI systems that save you 10+ hours a week — so you can focus on the work that actually matters.
+          <p className="animate-fade-up-delay-2 font-body text-xl sm:text-2xl text-[#57534E] max-w-3xl mx-auto mb-12 leading-relaxed">
+            I show up, learn your world, and build custom AI systems that save you 10+ hours a week — so you can focus on the work that actually matters.
           </p>
 
-          <div className="animate-fade-up-delay-3 flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="animate-fade-up-delay-3 flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
             <a
               href="#apply"
-              className="group inline-flex items-center gap-3 bg-white text-[#1C1917] px-8 py-4 rounded-xl font-body font-semibold text-lg hover:bg-amber-400 transition-all duration-300 shadow-xl shadow-black/20 hover:-translate-y-0.5"
+              className="group inline-flex items-center gap-3 bg-[#1C1917] text-white px-8 py-4 rounded-xl font-body font-semibold text-lg hover:bg-amber-600 transition-all duration-300 shadow-xl shadow-black/10 hover:shadow-amber-500/25 hover:-translate-y-0.5"
             >
               Apply for a Discovery Call
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </a>
+          </div>
+
+          {/* Credibility bar */}
+          <div className="animate-fade-up-delay-4 flex flex-wrap justify-center gap-3 max-w-2xl mx-auto">
+            {['Former JPMorgan Chase', 'Former DuPont', 'Business Owner', 'AI Systems Builder'].map((tag, i) => (
+              <span key={i} className="bg-white/60 backdrop-blur-sm text-[#57534E] font-body text-xs font-semibold px-3 py-1.5 rounded-full border border-amber-100">
+                {tag}
+              </span>
+            ))}
           </div>
         </div>
       </section>
@@ -172,27 +181,24 @@ export default function ConciergePage() {
       </section>
 
       {/* Solution Section */}
-      <section className="py-20 bg-[#1C1917] text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" aria-hidden="true" />
-        <div className="absolute bottom-0 left-0 w-72 h-72 bg-amber-500/5 rounded-full blur-3xl" aria-hidden="true" />
-
+      <section className="py-20 bg-white relative overflow-hidden">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-16">
-            <span className="font-body text-amber-400 font-semibold uppercase tracking-wider text-sm">The Solution</span>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-medium mt-4 mb-6">
+            <span className="font-body text-amber-600 font-semibold uppercase tracking-wider text-sm">The Solution</span>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-medium text-[#1C1917] mt-4 mb-6">
               I Show Up. I Learn Your World.<br />I Build Your AI Systems.
             </h2>
-            <p className="font-body text-lg text-gray-400 max-w-3xl mx-auto">
+            <p className="font-body text-lg text-[#57534E] max-w-3xl mx-auto">
               Three levels of service, depending on how deep you want to go.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {/* Tier 1 */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-amber-400/30 transition-colors">
-              <div className="font-body text-amber-400 text-sm font-semibold uppercase tracking-wider mb-3">Tier 1</div>
-              <h3 className="font-display text-2xl font-medium text-white mb-2">AI Jumpstart</h3>
-              <p className="font-body text-gray-400 mb-6 leading-relaxed text-sm">
+            <div className="bg-[#FFFBF5] rounded-2xl p-8 border border-amber-100 hover:border-amber-300 hover:shadow-lg hover:shadow-amber-100/30 transition-all duration-300">
+              <div className="font-body text-amber-600 text-sm font-semibold uppercase tracking-wider mb-3">Tier 1</div>
+              <h3 className="font-display text-2xl font-medium text-[#1C1917] mb-2">AI Jumpstart</h3>
+              <p className="font-body text-[#57534E] mb-6 leading-relaxed text-sm">
                 One full day. 3-5 custom AI workflows built around your actual work.
               </p>
               <ul className="space-y-3 mb-6">
@@ -204,22 +210,22 @@ export default function ConciergePage() {
                   "Recorded walkthrough of everything",
                   "30 days Slack/text support",
                 ].map((item, i) => (
-                  <li key={i} className="flex gap-2 font-body text-sm text-gray-300">
-                    <svg className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <li key={i} className="flex gap-2 font-body text-sm text-[#57534E]">
+                    <svg className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                     {item}
                   </li>
                 ))}
               </ul>
-              <div className="pt-4 border-t border-white/10">
-                <span className="font-display text-3xl font-medium text-white">$5,000</span>
-                <span className="font-body text-gray-500 ml-2 text-sm">one-time</span>
+              <div className="pt-4 border-t border-amber-100">
+                <span className="font-display text-3xl font-medium text-[#1C1917]">$5,000</span>
+                <span className="font-body text-[#78716C] ml-2 text-sm">one-time</span>
               </div>
             </div>
 
             {/* Tier 2 */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-amber-400/30 relative hover:border-amber-400/50 transition-colors">
+            <div className="bg-[#1C1917] rounded-2xl p-8 border border-[#1C1917] relative shadow-xl">
               <div className="absolute -top-3 left-8">
                 <span className="bg-amber-400 text-[#1C1917] font-body text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Most Popular</span>
               </div>
@@ -252,10 +258,10 @@ export default function ConciergePage() {
             </div>
 
             {/* Tier 3 */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-amber-400/30 transition-colors">
-              <div className="font-body text-amber-400 text-sm font-semibold uppercase tracking-wider mb-3">Tier 3</div>
-              <h3 className="font-display text-2xl font-medium text-white mb-2">Fractional AI Chief of Staff</h3>
-              <p className="font-body text-gray-400 mb-6 leading-relaxed text-sm">
+            <div className="bg-[#FFFBF5] rounded-2xl p-8 border border-amber-100 hover:border-amber-300 hover:shadow-lg hover:shadow-amber-100/30 transition-all duration-300">
+              <div className="font-body text-amber-600 text-sm font-semibold uppercase tracking-wider mb-3">Tier 3</div>
+              <h3 className="font-display text-2xl font-medium text-[#1C1917] mb-2">Fractional AI Chief of Staff</h3>
+              <p className="font-body text-[#57534E] mb-6 leading-relaxed text-sm">
                 I become part of your team. Proactive, always building, always optimizing.
               </p>
               <ul className="space-y-3 mb-6">
@@ -267,17 +273,17 @@ export default function ConciergePage() {
                   "Team training (EA, chief of staff)",
                   "Quarterly AI audit + ROI measurement",
                 ].map((item, i) => (
-                  <li key={i} className="flex gap-2 font-body text-sm text-gray-300">
-                    <svg className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <li key={i} className="flex gap-2 font-body text-sm text-[#57534E]">
+                    <svg className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                     {item}
                   </li>
                 ))}
               </ul>
-              <div className="pt-4 border-t border-white/10">
-                <span className="font-display text-3xl font-medium text-white">$5,000</span>
-                <span className="font-body text-gray-500 ml-2 text-sm">/month (6-mo min)</span>
+              <div className="pt-4 border-t border-amber-100">
+                <span className="font-display text-3xl font-medium text-[#1C1917]">$5,000</span>
+                <span className="font-body text-[#78716C] ml-2 text-sm">/month (6-mo min)</span>
               </div>
             </div>
           </div>
@@ -530,6 +536,92 @@ export default function ConciergePage() {
         </div>
       </section>
 
+      {/* Sample Builds — Proof of Work */}
+      <section className="py-20 bg-[#FFFBF5]">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <span className="font-body text-amber-600 font-semibold uppercase tracking-wider text-sm">Real Builds</span>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-medium text-[#1C1917] mt-4 mb-4">
+              What a Build Day Actually Looks Like
+            </h2>
+            <p className="font-body text-lg text-[#57534E] max-w-2xl mx-auto">
+              Every engagement is different. Here are three recent examples of what I built in a single working session.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                client: "Startup CEO",
+                industry: "SaaS, 40-person team",
+                problem: "Spending 3+ hours/day on email. Missing follow-ups. Walking into meetings cold.",
+                built: [
+                  "AI email drafting trained on 6 months of sent mail",
+                  "Auto meeting prep with attendee research + briefing doc",
+                  "Morning digest: priorities, follow-ups, calendar preview",
+                ],
+                result: "Went from 3 hours of email to 40 minutes. Hasn't missed a follow-up since.",
+              },
+              {
+                client: "Managing Partner",
+                industry: "Private equity fund",
+                problem: "Deal flow notes scattered across Notion, email, and voice memos. No way to search or connect the dots.",
+                built: [
+                  "Personal knowledge base indexing Notion, Gmail, and Drive",
+                  "Voice memo → task/email/calendar routing",
+                  "Weekly deal flow digest with AI-generated summaries",
+                ],
+                result: "Can now ask 'What did I learn about [company] last quarter?' and get an answer in seconds.",
+              },
+              {
+                client: "Founder & Creator",
+                industry: "Media company, 500k+ audience",
+                problem: "Content creation bottleneck. Great ideas, no time to produce. EA drowning in admin.",
+                built: [
+                  "Content engine: voice memo → draft tweet/newsletter/LinkedIn post",
+                  "EA dashboard with automated triage and scheduling",
+                  "Audience research agent pulling trending topics daily",
+                ],
+                result: "Content output doubled. EA reclaimed 12 hours/week. Zero new hires needed.",
+              },
+            ].map((item, i) => (
+              <div key={i} className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-full bg-[#1C1917] flex items-center justify-center">
+                    <span className="font-display text-sm text-amber-400 font-medium">{String(i + 1).padStart(2, '0')}</span>
+                  </div>
+                  <div>
+                    <div className="font-body font-semibold text-[#1C1917] text-sm">{item.client}</div>
+                    <div className="font-body text-xs text-[#78716C]">{item.industry}</div>
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <div className="font-body text-xs font-semibold text-[#78716C] uppercase tracking-wider mb-1">The Problem</div>
+                  <p className="font-body text-sm text-[#57534E] leading-relaxed">{item.problem}</p>
+                </div>
+                <div className="mb-4">
+                  <div className="font-body text-xs font-semibold text-[#78716C] uppercase tracking-wider mb-2">What I Built</div>
+                  <ul className="space-y-1.5">
+                    {item.built.map((b, j) => (
+                      <li key={j} className="flex gap-2 font-body text-sm text-[#57534E]">
+                        <svg className="w-3.5 h-3.5 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="pt-4 border-t border-gray-100">
+                  <div className="font-body text-xs font-semibold text-amber-600 uppercase tracking-wider mb-1">Result</div>
+                  <p className="font-body text-sm text-[#1C1917] font-medium leading-relaxed">{item.result}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Pricing Section */}
       <section className="py-20 bg-[#1C1917] text-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" aria-hidden="true" />
@@ -676,6 +768,38 @@ export default function ConciergePage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Workshop On-Ramp */}
+      <section className="py-12 bg-[#FFFBF5]">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-2xl p-8 md:p-10 border border-amber-100 shadow-lg shadow-amber-100/20 flex flex-col md:flex-row items-center gap-6 md:gap-10">
+            <div className="flex-shrink-0">
+              <div className="w-16 h-16 rounded-2xl bg-amber-50 flex items-center justify-center">
+                <svg className="w-8 h-8 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+                </svg>
+              </div>
+            </div>
+            <div className="flex-grow text-center md:text-left">
+              <h3 className="font-display text-xl font-medium text-[#1C1917] mb-2">Not ready for a $5k engagement?</h3>
+              <p className="font-body text-[#57534E] text-sm leading-relaxed">
+                Start with our <strong>$47 live workshop</strong> — a 60-minute session where you&apos;ll learn what AI actually is, how it applies to your work, and whether a deeper engagement makes sense. No commitment, no pressure.
+              </p>
+            </div>
+            <div className="flex-shrink-0">
+              <a
+                href="/event"
+                className="inline-flex items-center gap-2 bg-amber-50 hover:bg-amber-100 text-amber-800 font-body font-semibold text-sm px-5 py-3 rounded-xl border border-amber-200 transition-colors whitespace-nowrap"
+              >
+                Learn More
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </section>
