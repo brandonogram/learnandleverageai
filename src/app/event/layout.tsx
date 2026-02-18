@@ -1,86 +1,45 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Learn & Leverage AI — Live Event for Business Owners",
-  description: "60-minute live event: Learn what AI actually is, how it applies to your business, and how to start using it. Plain English, no jargon. February 20 at 2:00 PM EST. Only $47.",
+  title: "Free Webinar: AI for Contractors — Stop Losing Money to Missed Calls",
+  description: "Free live training Feb 27 at 2pm EST. See how contractors use AI to answer every call, book more jobs, and stop wasting nights on paperwork. No tech skills needed.",
   openGraph: {
-    title: "Learn & Leverage AI — Live Event for Business Owners",
-    description: "60-minute live event: Learn what AI is, how businesses are using it, and how to start leveraging it yourself. February 20 at 2:00 PM EST. Only $47.",
+    title: "Free Webinar: AI for Contractors — Stop Losing Money to Missed Calls",
+    description: "Free live training Feb 27 at 2pm EST. See how contractors use AI to answer every call, book more jobs, and stop wasting nights on paperwork.",
     url: "https://learnandleverageai.com/event",
   },
   other: {
-    "script:structured-data": JSON.stringify([
-      {
-        "@context": "https://schema.org",
-        "@type": "EducationEvent",
-        "name": "Learn & Leverage AI: A Practical Guide for Business Owners",
-        "description": "Free 60-minute live event for HVAC, plumbing, electrical, pool, landscaping, and roofing company owners. Learn how AI can help your business answer every call, book more jobs, and save 15+ hours per week.",
-        "startDate": "2026-02-20T14:00:00-05:00",
-        "endDate": "2026-02-20T15:00:00-05:00",
-        "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "location": {
-          "@type": "VirtualLocation",
-          "url": "https://learnandleverageai.com/event"
-        },
-        "organizer": {
-          "@type": "Organization",
-          "name": "Learn & Leverage AI",
-          "url": "https://learnandleverageai.com"
-        },
-        "performer": {
-          "@type": "Person",
-          "name": "Brandon Calloway"
-        },
-        "offers": {
-          "@type": "Offer",
-          "price": "47",
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/LimitedAvailability",
-          "url": "https://learnandleverageai.com/event"
-        },
-        "maximumAttendeeCapacity": 50,
-        "isAccessibleForFree": false
+    "script:structured-data": JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "EducationEvent",
+      "name": "AI for Contractors: Stop Losing Money to Missed Calls & Manual Work",
+      "description": "Free 45-minute live training with demos. See how contractors use AI to answer every call, generate social media content, and save 10+ hours per week.",
+      "startDate": "2026-02-27T14:00:00-05:00",
+      "endDate": "2026-02-27T15:00:00-05:00",
+      "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "location": {
+        "@type": "VirtualLocation",
+        "url": "https://learnandleverageai.com/event"
       },
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Do I need any technical background?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Absolutely not. This presentation is specifically designed for home service business owners who don't consider themselves technical."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is this just a sales pitch for AI software?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "No. This is educational content designed to help you make informed decisions—including the decision to wait or do nothing if that's right for your business."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Will this apply to my type of business?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. We cover real examples from HVAC, plumbing, electrical, pool service, landscaping, roofing, and other home service businesses."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is AI really relevant for a small home service company?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Especially for small companies. An AI receptionist can answer calls 24/7 for a fraction of what a full-time office person costs. Automated scheduling and follow-ups can save 10-15 hours per week."
-            }
-          }
-        ]
-      }
-    ]),
+      "organizer": {
+        "@type": "Organization",
+        "name": "Learn & Leverage AI",
+        "url": "https://learnandleverageai.com"
+      },
+      "performer": {
+        "@type": "Person",
+        "name": "Brandon Calloway"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://learnandleverageai.com/event"
+      },
+      "isAccessibleForFree": true
+    }),
   },
 };
 
@@ -94,78 +53,37 @@ export default function EventLayout({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([
-            {
-              "@context": "https://schema.org",
-              "@type": "EducationEvent",
-              "name": "Learn & Leverage AI: A Practical Guide for Business Owners",
-              "description": "Free 60-minute live event for home service company owners.",
-              "startDate": "2026-02-20T14:00:00-05:00",
-              "endDate": "2026-02-20T15:00:00-05:00",
-              "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
-              "eventStatus": "https://schema.org/EventScheduled",
-              "location": {
-                "@type": "VirtualLocation",
-                "url": "https://learnandleverageai.com/event"
-              },
-              "organizer": {
-                "@type": "Organization",
-                "name": "Learn & Leverage AI",
-                "url": "https://learnandleverageai.com"
-              },
-              "performer": {
-                "@type": "Person",
-                "name": "Brandon Calloway"
-              },
-              "offers": {
-                "@type": "Offer",
-                "price": "47",
-                "priceCurrency": "USD",
-                "availability": "https://schema.org/LimitedAvailability",
-                "url": "https://learnandleverageai.com/event"
-              },
-              "maximumAttendeeCapacity": 50,
-              "isAccessibleForFree": false
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "EducationEvent",
+            "name": "AI for Contractors: Stop Losing Money to Missed Calls & Manual Work",
+            "description": "Free 45-minute live training with demos for contractors and home service businesses.",
+            "startDate": "2026-02-27T14:00:00-05:00",
+            "endDate": "2026-02-27T15:00:00-05:00",
+            "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "location": {
+              "@type": "VirtualLocation",
+              "url": "https://learnandleverageai.com/event"
             },
-            {
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              "mainEntity": [
-                {
-                  "@type": "Question",
-                  "name": "Do I need any technical background?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Absolutely not. This presentation is specifically designed for home service business owners who don't consider themselves technical."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "Is this just a sales pitch for AI software?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "No. This is educational content designed to help you make informed decisions."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "Will this apply to my type of business?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes. We cover real examples from HVAC, plumbing, electrical, pool service, landscaping, roofing, and other home service businesses."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "Is AI really relevant for a small home service company?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Especially for small companies. An AI receptionist can answer calls 24/7 for a fraction of what a full-time office person costs."
-                  }
-                }
-              ]
-            }
-          ]),
+            "organizer": {
+              "@type": "Organization",
+              "name": "Learn & Leverage AI",
+              "url": "https://learnandleverageai.com"
+            },
+            "performer": {
+              "@type": "Person",
+              "name": "Brandon Calloway"
+            },
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock",
+              "url": "https://learnandleverageai.com/event"
+            },
+            "isAccessibleForFree": true
+          }),
         }}
       />
       {children}

@@ -1,0 +1,103 @@
+project: learnandleverageai
+updated: 2026-02-16T10:00:00Z
+priority: 2
+status: active
+owner: elon
+url: learnandleverageai.com
+
+decision: "Free webinar → paid services funnel. Approved by Brandon Feb 14."
+
+event:
+  name: "AI for Contractors: Stop Losing Money to Missed Calls & Manual Work"
+  format: free-live-webinar
+  platform: zoom
+  date: 2026-02-27
+  time: "2:00 PM EST"
+  duration: 45min + 15min Q&A
+  seats: unlimited
+  price: free (email capture)
+  replay: yes (YouTube + email drip)
+  cta: "AI Starter Pack — $497 (webinar-only price)"
+
+tasks:
+  - id: webinar-landing-page
+    status: completed
+    owner: marlo
+    priority: critical
+    deadline: 2026-02-17
+    completed: 2026-02-16
+    notes: "Landing page copy finalized at marketing/webinar-landing-page-copy.md. Ready for implementation. Includes hero, pain section, live demo descriptions, instructor bio, FAQ, and multiple CTAs."
+
+  - id: webinar-script
+    status: completed
+    owner: marlo
+    priority: critical
+    deadline: 2026-02-20
+    completed: 2026-02-16
+    notes: "Full 60-min script finalized at marketing/webinar-script-outline.md. Includes all segments, talking points, transition cues, objection handlers, and pre-webinar checklist. Ready for Brandon to review."
+
+  - id: zoom-setup
+    status: not_started
+    owner: sentinel
+    priority: high
+    deadline: 2026-02-25
+    notes: "Set up Zoom webinar. Registration page with email capture. Configure recording. Test audio/video from Mac mini."
+
+  - id: email-capture-sequence
+    status: completed
+    owner: marlo
+    priority: high
+    deadline: 2026-02-22
+    completed: 2026-02-16
+    notes: "5-email sequence finalized at marketing/webinar-email-sequence.md. All emails drafted with subject lines, body copy, and timing. Includes registration confirmation, day-before reminder, day-of Zoom link, replay + offer, and last chance. Ready for email platform setup."
+
+  - id: ai-starter-pack-offer
+    status: draft_ready
+    owner: cash
+    priority: high
+    deadline: 2026-02-22
+    notes: |
+      2026-02-16: Complete offer page drafted with:
+      - Full sales copy (headline, value stack, guarantee)
+      - Pricing: $497 (34% off $750)
+      - Urgency elements (48hr expiry, 50 spots)
+      - FAQ section
+      - Delivery workflow
+      - Revenue projections
+      Stripe commands documented for checkout page creation.
+      See: ~/.openclaw/workspaces/cash/ai-starter-pack-offer.md
+      BLOCKED: Needs Stripe account + payment link creation
+
+  - id: promotion-campaign
+    status: completed
+    owner: marlo
+    priority: critical
+    deadline: 2026-02-18
+    completed: 2026-02-16
+    notes: "Promotional content finalized at marketing/webinar-promo-posts.md. Includes X/Twitter tweets and thread, Reddit posts for r/smallbusiness and r/Contractor, Facebook group templates. Ready for Brandon to schedule and post."
+
+  - id: ai-audit-checklist
+    status: completed
+    owner: marlo
+    priority: medium
+    deadline: 2026-02-20
+    completed: 2026-02-16
+    notes: "Final PDF-ready playbook completed at marketing/ai-audit-checklist-playbook-FINAL.md. '10 Things AI Can Do for Your Business This Week' — 10 actionable items with problem, action, tool, prompt, and expected result for each. Ready for PDF design and email attachment."
+
+  - id: service-pricing-page
+    status: draft_ready
+    owner: cash
+    notes: "4-tier pricing in docs/pricing-guide.md. Build /services page after webinar validates demand."
+
+  - id: cross-sell-products
+    status: planned
+    owner: cash
+    notes: "Webinar demos Call2Calendar + ContentCreationDude live. Natural upsell: attendees see the products in action, then get offered the Starter Pack that bundles both."
+
+next_actions:
+  - "marlo: START NOW — draft landing page copy + promotion plan"
+  - "marlo: Draft webinar script outline"
+  - "marlo: Draft 5-email sequence"
+  - "cash: Build AI Starter Pack Stripe checkout ($497)"
+  - "sentinel: Research Zoom webinar setup"
+  - "elon: Set cron reminders for all deadlines"
