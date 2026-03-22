@@ -18,6 +18,12 @@ interface RegistrationPayload {
   biggest_challenge: string;
   source: string;
   registered_at: string;
+  // UTM parameters
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_term?: string;
+  utm_content?: string;
 }
 
 function buildConfirmationEmailHtml(firstName: string): string {
@@ -161,6 +167,24 @@ export async function POST(request: NextRequest) {
     const firstName = nameParts[0] || '';
     const lastName = nameParts.slice(1).join(' ') || '';
 
+    // Build UTM-based tags for attribution
+    const tags = ['workshop-lead'];
+    if (body.utm_source) tags.push(`source:${body.utm_source}`);
+    if (body.utm_medium) tags.push(`medium:${body.utm_medium}`);
+    if (body.utm_campaign) tags.push(`campaign:${body.utm_campaign}`);
+
+    // Log UTM parameters for analytics
+    if (body.utm_source || body.utm_medium || body.utm_campaign) {
+      console.log('Workshop registration UTM:', {
+        utm_source: body.utm_source,
+        utm_medium: body.utm_medium,
+        utm_campaign: body.utm_campaign,
+        utm_term: body.utm_term,
+        utm_content: body.utm_content,
+        email: body.email,
+      });
+    }
+
     // Step 1: Create (or update) contact in GHL
     const contactRes = await fetch(`${GHL_API_BASE}/contacts/`, {
       method: 'POST',
@@ -176,8 +200,8 @@ export async function POST(request: NextRequest) {
         email: body.email,
         phone: body.phone,
         companyName: body.company_name,
-        tags: ['workshop-lead'],
-        source: body.source || 'workshop-landing-page',
+        tags,
+        source: body.utm_source || body.source || 'workshop-landing-page',
         customFields: [
           { id: AI_SKILL_FIELD_ID, value: body.ai_skill_level },
           { id: CHALLENGE_FIELD_ID, value: body.biggest_challenge },
