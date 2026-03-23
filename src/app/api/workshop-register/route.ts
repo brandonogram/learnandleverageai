@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const GHL_API_BASE = 'https://services.leadconnectorhq.com';
-const GHL_API_TOKEN = 'pit-9c5383fc-800d-463c-a803-0e6401f30b98';
-const GHL_LOCATION_ID = 'AVkeTAjBMKyrH5q0f7bQ';
-const PIPELINE_ID = 'Lb2EtR2nnxlLGRWCwBpD';
-const STAGE_ID = 'cda116cd-7fa9-428f-9e44-073d9de85036';
+const GHL_API_TOKEN = process.env.GHL_LLAI_API_KEY || process.env.GHL_API_KEY || '';
+const GHL_LOCATION_ID = process.env.GHL_LLAI_LOCATION_ID || process.env.GHL_LOCATION_ID || '';
+const PIPELINE_ID = process.env.GHL_PIPELINE_ID || 'Lb2EtR2nnxlLGRWCwBpD';
+const STAGE_ID = process.env.GHL_STAGE_ID || 'cda116cd-7fa9-428f-9e44-073d9de85036';
 const AI_SKILL_FIELD_ID = 'kZhmzNgVM6wxpGziPzgj';
 const CHALLENGE_FIELD_ID = 'zvozfQ2LOnzBBzpVF204';
 
@@ -186,6 +186,21 @@ export async function POST(request: NextRequest) {
     }
 
     // Step 1: Create (or update) contact in GHL
+    const contactPayload = {
+      locationId: GHL_LOCATION_ID,
+      firstName,
+      lastName,
+      email: body.email,
+      phone: body.phone,
+      companyName: body.company_name,
+      tags,
+      source: body.utm_source || body.source || 'workshop-landing-page',
+      customFields: [
+        { id: AI_SKILL_FIELD_ID, value: body.ai_skill_level },
+        { id: CHALLENGE_FIELD_ID, value: body.biggest_challenge },
+      ],
+    };
+
     const contactRes = await fetch(`${GHL_API_BASE}/contacts/`, {
       method: 'POST',
       headers: {
@@ -193,23 +208,50 @@ export async function POST(request: NextRequest) {
         'Content-Type': 'application/json',
         Version: '2021-07-28',
       },
-      body: JSON.stringify({
-        locationId: GHL_LOCATION_ID,
-        firstName,
-        lastName,
-        email: body.email,
-        phone: body.phone,
-        companyName: body.company_name,
-        tags,
-        source: body.utm_source || body.source || 'workshop-landing-page',
-        customFields: [
-          { id: AI_SKILL_FIELD_ID, value: body.ai_skill_level },
-          { id: CHALLENGE_FIELD_ID, value: body.biggest_challenge },
-        ],
-      }),
+      body: JSON.stringify(contactPayload),
     });
 
-    if (!contactRes.ok) {
+    let contactId: string | undefined;
+
+    if (contactRes.ok) {
+      const contactData = await contactRes.json();
+      contactId = contactData.contact?.id;
+    } else if (contactRes.status === 422) {
+      // Duplicate contact — look up existing contact by email and update
+      console.log('GHL duplicate contact detected, searching for existing:', body.email);
+      const searchRes = await fetch(
+        `${GHL_API_BASE}/contacts/search/duplicate?locationId=${GHL_LOCATION_ID}&email=${encodeURIComponent(body.email)}`,
+        {
+          headers: {
+            Authorization: `Bearer ${GHL_API_TOKEN}`,
+            Version: '2021-07-28',
+          },
+        }
+      );
+      if (searchRes.ok) {
+        const searchData = await searchRes.json();
+        contactId = searchData.contact?.id;
+        if (contactId) {
+          // Update the existing contact with latest info and add tag
+          await fetch(`${GHL_API_BASE}/contacts/${contactId}`, {
+            method: 'PUT',
+            headers: {
+              Authorization: `Bearer ${GHL_API_TOKEN}`,
+              'Content-Type': 'application/json',
+              Version: '2021-07-28',
+            },
+            body: JSON.stringify({
+              firstName,
+              lastName,
+              companyName: body.company_name,
+              tags,
+              customFields: contactPayload.customFields,
+            }),
+          });
+          console.log('Updated existing GHL contact:', contactId);
+        }
+      }
+    } else {
       const errText = await contactRes.text();
       console.error('GHL create contact error:', contactRes.status, errText);
       return NextResponse.json(
@@ -218,11 +260,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const contactData = await contactRes.json();
-    const contactId = contactData.contact?.id;
-
     if (!contactId) {
-      console.error('GHL contact created but no ID returned:', contactData);
+      console.error('GHL contact not found or created for:', body.email);
       return NextResponse.json(
         { error: 'Registration issue. Please try again.' },
         { status: 500 }

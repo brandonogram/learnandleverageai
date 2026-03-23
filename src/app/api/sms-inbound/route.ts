@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID || '';
 const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN || '';
 const TWILIO_PHONE = process.env.TWILIO_PHONE || '';
-const GHL_API_TOKEN = process.env.GHL_API_TOKEN || '';
-const GHL_LOCATION_ID = process.env.GHL_LOCATION_ID || '';
+const GHL_API_TOKEN = process.env.GHL_LLAI_API_KEY || process.env.GHL_API_KEY || '';
+const GHL_LOCATION_ID = process.env.GHL_LLAI_LOCATION_ID || process.env.GHL_LOCATION_ID || '';
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || '';
 
 const SYSTEM_PROMPT = `You are the SMS assistant for Learn & Leverage AI. You text with people who are interested in our free AI workshop. Be friendly, conversational, and helpful. Keep responses SHORT — this is SMS, not email. Max 3-4 sentences per reply.
