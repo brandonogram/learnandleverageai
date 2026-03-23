@@ -392,7 +392,7 @@ export default function WorkshopsPage() {
                 </p>
                 <p>
                   <strong className="text-[#1C1917]">Call2Calendar</strong> — an AI voice agent that answers phones for businesses 24/7 and books appointments automatically.{' '}
-                  <strong className="text-[#1C1917]">Tri-State Aquatic</strong> — a pool service company where AI handles scheduling, customer communication, and operations.{' '}
+                  <strong className="text-[#1C1917]">Tri-State Aquatic</strong> — a service company where AI handles scheduling, customer communication, and operations.{' '}
                   <strong className="text-[#1C1917]">302 Photo Booth</strong> — an event company with AI-automated booking and marketing.
                 </p>
                 <p>

@@ -1,7 +1,16 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+
+function RedirectToWorkshops() {
+  const router = useRouter();
+  useEffect(() => {
+    router.replace('/workshops');
+  }, [router]);
+  return null;
+}
 
 function CountdownTimer() {
   const target = new Date('2026-02-27T19:00:00Z').getTime(); // 2 PM EST = 7 PM UTC
@@ -41,6 +50,11 @@ function CountdownTimer() {
 }
 
 export default function EventPage() {
+  // Redirect all visitors to the new workshops page
+  return <RedirectToWorkshops />;
+}
+
+function EventPageLegacy() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
   const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [openFaq, setOpenFaq] = useState<number | null>(null);

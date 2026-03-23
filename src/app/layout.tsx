@@ -6,11 +6,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://learnandleverageai.com"),
   title: {
-    default: "Learn & Leverage AI | AI Solutions for Home Service Businesses",
+    default: "Learn & Leverage AI | AI Training for Professionals",
     template: "%s | Learn & Leverage AI",
   },
-  description: "Helping home service business owners understand and implement AI—without the complexity. AI receptionists, workflow automation, and operational systems for HVAC, plumbing, electrical, pool, landscaping, and roofing companies.",
-  keywords: ["AI for home services", "AI receptionist", "HVAC automation", "plumbing business AI", "home service automation", "AI consulting", "business automation", "AI training"],
+  description: "Hands-on AI training for corporate professionals. No tech experience needed. In-person workshops in Wilmington, Delaware.",
+  keywords: ["corporate AI training", "professional development", "AI skills", "AI workshop", "Delaware", "Wilmington", "learn AI", "AI for business"],
   authors: [{ name: "Brandon Calloway" }],
   creator: "Learn & Leverage AI",
   openGraph: {
@@ -18,13 +18,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://learnandleverageai.com",
     siteName: "Learn & Leverage AI",
-    title: "Learn & Leverage AI | AI Solutions for Home Service Businesses",
-    description: "Helping home service business owners implement AI—without the complexity. Free live event for HVAC, plumbing, electrical, pool, landscaping, and roofing companies.",
+    title: "Learn & Leverage AI | AI Training for Professionals",
+    description: "Hands-on AI training for corporate professionals. No tech experience needed. In-person workshops in Wilmington, Delaware.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Learn & Leverage AI | AI for Home Service Businesses",
-    description: "Free live event: How home service businesses are using AI to answer every call, book more jobs, and save 15+ hours per week.",
+    title: "Learn & Leverage AI | AI Training for Professionals",
+    description: "Hands-on AI training for corporate professionals. No tech experience needed. In-person workshops in Wilmington, Delaware.",
   },
   robots: {
     index: true,

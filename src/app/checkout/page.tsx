@@ -4,15 +4,13 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 const BUSINESS_TYPES = [
-  'HVAC',
-  'Plumbing',
-  'Electrical',
-  'Landscaping',
-  'Roofing',
-  'General Contractor',
-  'Pool Service',
-  'Cleaning',
-  'Painting',
+  'Finance/Banking',
+  'Pharma/Healthcare',
+  'Tech/IT',
+  'Legal',
+  'Manufacturing',
+  'Government',
+  'Education',
   'Other',
 ];
 
@@ -58,8 +56,8 @@ export default function CheckoutPage() {
       {/* Header */}
       <nav className="bg-[#1C1917] border-b border-white/10">
         <div className="max-w-4xl mx-auto px-4 h-14 flex items-center">
-          <a href="/event" className="font-display text-base font-bold text-white hover:text-amber-400 transition-colors">
-            ← Back to Event
+          <a href="/workshops" className="font-display text-base font-bold text-white hover:text-amber-400 transition-colors">
+            ← Back to Workshops
           </a>
         </div>
       </nav>
@@ -105,7 +103,7 @@ export default function CheckoutPage() {
                 },
                 {
                   title: '"10 Things AI Can Do" Playbook',
-                  desc: 'PDF guide with actionable AI use cases specific to your trade.',
+                  desc: 'PDF guide with actionable AI use cases specific to your role.',
                   value: 'Bonus',
                 },
               ].map((item, i) => (
@@ -160,7 +158,7 @@ export default function CheckoutPage() {
               </div>
               <div>
                 <p className="font-body text-sm text-white font-medium">Brandon Calloway</p>
-                <p className="font-body text-xs text-gray-400">Pool service owner turned AI consultant</p>
+                <p className="font-body text-xs text-gray-400">Business owner turned AI consultant</p>
               </div>
             </div>
           </div>
@@ -226,7 +224,7 @@ export default function CheckoutPage() {
                     value={formData.businessName}
                     onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] text-base focus:outline-none focus:ring-2 focus:ring-amber-500"
-                    placeholder="Smith's HVAC LLC"
+                    placeholder="Acme Corp"
                   />
                 </div>
 
@@ -240,7 +238,7 @@ export default function CheckoutPage() {
                     onChange={(e) => setFormData({ ...formData, businessType: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] text-base focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white"
                   >
-                    <option value="">Select your trade...</option>
+                    <option value="">Select your industry...</option>
                     {BUSINESS_TYPES.map((type) => (
                       <option key={type} value={type}>{type}</option>
                     ))}
