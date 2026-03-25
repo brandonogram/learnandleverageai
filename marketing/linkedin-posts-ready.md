@@ -60,7 +60,7 @@ It's built for corporate professionals who feel behind on AI — the people at J
 
 No tech experience needed. If you can use email, you can do this.
 
-Why free? Because I'd rather have 25 people in a room experiencing what AI can do than try to convince you with an ad. If the workshop is good, some of you will want to go deeper — and I'll have options for that. But the workshop itself is free and worth your evening either way.
+Why free? Because I'd rather have 10 people in a room experiencing what AI can do than try to convince you with an ad. If the workshop is good, some of you will want to go deeper — and I'll have options for that. But the workshop itself is free and worth your evening either way.
 
 Link to register in comments. Seats are limited because it's hands-on — not a lecture hall.
 
@@ -110,7 +110,7 @@ If you work in corporate and keep hearing "learn AI" from your company but nobod
 
 I run five businesses locally and every one of them runs on AI now. Not because I'm a tech person — I figured this out by trial and error and I want to save other people the learning curve.
 
-No tech experience needed. It's free. 25 seats.
+No tech experience needed. It's free. 10 seats.
 
 If you're interested or know someone who'd benefit, I'll drop the registration link in the comments. Happy to answer any questions too.
 
@@ -128,4 +128,4 @@ It's completely hands-on. Bring your laptop and a real task from your job. I'll 
 
 I'm a local business owner (Hockessin) who runs all my companies on AI. This isn't a sales pitch — it's a legit workshop. It's free because I want to prove the value before asking anyone to pay for anything.
 
-25 seats. No tech background needed. Registration link in comments if you're interested.
+10 seats. No tech background needed. Registration link in comments if you're interested.

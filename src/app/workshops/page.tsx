@@ -196,7 +196,7 @@ export default function WorkshopsPage() {
     },
     {
       q: "What if I have to cancel?",
-      a: "No problem — just let us know so we can give your seat to someone on the waitlist. Seats are limited to 25-30 people so everyone gets personal attention.",
+      a: "No problem — just let us know so we can give your seat to someone on the waitlist. Seats are limited to 10 people so everyone gets personal attention.",
     },
   ];
 
@@ -312,7 +312,7 @@ export default function WorkshopsPage() {
                   <p className="font-body text-red-400 text-sm text-center">Something went wrong. Try again.</p>
                 )}
                 <p className="font-body text-gray-600 text-xs text-center">
-                  25 seats only. Takes 10 seconds. No spam.
+                  10 seats only. Takes 10 seconds. No spam.
                 </p>
               </form>
             ) : formState === 'success' ? (
@@ -329,7 +329,7 @@ export default function WorkshopsPage() {
                   Reserve My Free Spot
                 </a>
                 <p className="font-body text-gray-600 text-xs mt-3">
-                  25 seats only. Takes 15 seconds to register.
+                  10 seats only. Takes 15 seconds to register.
                 </p>
               </>
             )}
@@ -560,7 +560,7 @@ export default function WorkshopsPage() {
                   { label: "Address", value: "100 Continental Dr, Newark, DE 19713" },
 
                   { label: "Cost", value: "FREE", highlight: true },
-                  { label: "Seats", value: "Limited to 25" },
+                  { label: "Seats", value: "Limited to 10" },
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="font-body text-[#78716C] text-sm w-16 flex-shrink-0">{item.label}</span>
@@ -695,7 +695,7 @@ export default function WorkshopsPage() {
             </p>
             <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-400/30 text-amber-400 px-4 py-2 rounded-full font-body text-sm font-medium mt-3">
               <span className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
-              Only 23 spots remaining
+              Only 8 spots remaining
             </div>
             <p className="font-body text-red-400 text-sm font-bold mt-2">
               Registration closes March 31
@@ -877,7 +877,7 @@ export default function WorkshopsPage() {
             Register for Free
           </a>
           <p className="font-body text-[#A8A29E] text-sm mt-4">
-            Thursday, April 2 &middot; 6:00 - 8:00 PM &middot; Hilton Christiana, Newark, DE &middot; 25 seats only
+            Thursday, April 2 &middot; 6:00 - 8:00 PM &middot; Hilton Christiana, Newark, DE &middot; 10 seats only
           </p>
         </div>
       </section>

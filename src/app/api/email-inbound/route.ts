@@ -142,7 +142,7 @@ FACTS YOU KNOW (only use these — do NOT invent anything else):
 - Free hands-on AI workshop, Thursday, April 2, 2026, 6-8 PM
 - Venue: Hilton Christiana, 100 Continental Dr, Newark, DE 19713
 - The venue has Wi-Fi, LCD projector, screen, and power outlets. Complimentary water provided.
-- Limited to 25 seats
+- Limited to 10 seats
 - No tech experience needed — bring a laptop and charger
 - Instructor: Brandon Calloway — runs 5+ businesses on AI (pool company, photo booth company, voice agent company). Practitioner, not professor.
 - No guest speakers — it's just Brandon teaching

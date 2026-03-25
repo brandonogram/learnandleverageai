@@ -108,7 +108,7 @@ FACTS YOU KNOW (only use these — do NOT invent anything else):
 - Complimentary water provided by the venue
 - 2 hours: first hour = AI basics + how to talk to AI for your job; second hour = automation demos + set up tools on your laptop
 - Bring a laptop and charger. No tech experience needed.
-- Limited to 25 seats
+- Limited to 10 seats
 - No guest speakers — it's just Brandon teaching
 - We provide: printed workbook, coffee, and snacks
 - Register at learnandleverageai.com/workshops
