@@ -36,9 +36,8 @@ function buildConfirmationEmailHtml(firstName: string): string {
   <table style="border-collapse: collapse; margin: 12px 0; font-size: 15px;">
     <tr><td style="padding: 4px 12px 4px 0; font-weight: bold;">What:</td><td>Free AI Hands-On Workshop</td></tr>
     <tr><td style="padding: 4px 12px 4px 0; font-weight: bold;">When:</td><td>Thursday, April 2, 2026, 6:00 - 8:00 PM EST</td></tr>
-    <tr><td style="padding: 4px 12px 4px 0; font-weight: bold;">Where:</td><td>Hilton Wilmington/Christiana</td></tr>
+    <tr><td style="padding: 4px 12px 4px 0; font-weight: bold;">Where:</td><td>Hilton Christiana</td></tr>
     <tr><td style="padding: 4px 12px 4px 0; font-weight: bold;">Address:</td><td>100 Continental Dr, Newark, DE 19713</td></tr>
-    <tr><td style="padding: 4px 12px 4px 0; font-weight: bold;">Parking:</td><td>Free on-site (400+ spaces)</td></tr>
   </table>
 
   <p><strong>What to bring:</strong> Your laptop (charged), a charger, and a real work task you want to speed up with AI. That's it. We provide everything else — workbook, coffee, snacks, Wi-Fi.</p>
@@ -50,7 +49,7 @@ function buildConfirmationEmailHtml(firstName: string): string {
   <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 16px;">
     <tr>
       <td style="padding-right: 8px;">
-        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=AI+Hands-On+Workshop&dates=20260402T220000Z/20260403T000000Z&details=Free+AI+workshop+with+Brandon+Calloway.+Bring+your+laptop+%26+charger.+100+Continental+Dr,+Newark+DE+19713.+Free+parking.&location=Hilton+Wilmington/Christiana,+100+Continental+Dr,+Newark,+DE+19713&sf=true" style="background-color: #F59E0B; color: #1C1917; padding: 12px 20px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 13px; display: inline-block;">Add to Google Calendar</a>
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=AI+Hands-On+Workshop&dates=20260402T220000Z/20260403T000000Z&details=Free+AI+workshop+with+Brandon+Calloway.+Bring+your+laptop+%26+charger.+100+Continental+Dr,+Newark+DE+19713.&location=Hilton+Christiana,+100+Continental+Dr,+Newark,+DE+19713&sf=true" style="background-color: #F59E0B; color: #1C1917; padding: 12px 20px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 13px; display: inline-block;">Add to Google Calendar</a>
       </td>
       <td>
         <a href="https://learnandleverageai.com/workshop-april2.ics" style="background-color: #FFFFFF; color: #1C1917; padding: 12px 20px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 13px; display: inline-block; border: 1px solid #D6D3D1;">Apple / Outlook (.ics)</a>
@@ -110,7 +109,7 @@ async function sendConfirmationSms(phone: string): Promise<void> {
   }
 
   const body =
-    "You're registered for the free AI workshop! Thursday, April 2, 6-8 PM at Hilton Wilmington/Christiana, 100 Continental Dr, Newark, DE 19713. Free parking on-site. Bring your laptop + charger. — Brandon, Learn & Leverage AI";
+    "You're registered for the free AI workshop! Thursday, April 2, 6-8 PM at Hilton Christiana, 100 Continental Dr, Newark, DE 19713. Bring your laptop + charger. — Brandon, Learn & Leverage AI";
 
   const params = new URLSearchParams();
   params.append('To', phone);

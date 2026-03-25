@@ -110,8 +110,7 @@ ${stateInstructions[caller.state]}
 ## Workshop Details
 - Free AI Hands-On Workshop — "See What AI Can Actually Do For Your Job"
 - Thursday, April 2, 2026, 6:00 PM to 8:00 PM
-- Hilton Wilmington/Christiana, 100 Continental Dr, Newark, DE 19713
-- Free on-site parking (400+ spaces)
+- Hilton Christiana, 100 Continental Dr, Newark, DE 19713
 - Completely FREE. Limited to 25 people.
 - Hands-on, in-person. Bring a laptop. Leave with AI tools set up and working.
 - No tech experience needed. No guest speakers — just Brandon teaching.

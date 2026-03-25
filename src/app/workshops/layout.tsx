@@ -3,11 +3,11 @@ import Script from "next/script";
 import { PostHogProvider } from "@/lib/posthog";
 
 export const metadata: Metadata = {
-  title: "Free AI Workshop — Thursday, April 2 | Hilton Wilmington/Christiana | Learn & Leverage AI",
+  title: "Free AI Workshop — Thursday, April 2 | Hilton Christiana | Learn & Leverage AI",
   description:
-    "Free 2-hour hands-on AI workshop for corporate professionals in Newark, DE. Thursday, April 2, 6-8 PM at Hilton Wilmington/Christiana. Walk out with 3 AI tools working for your job. No tech experience needed.",
+    "Free 2-hour hands-on AI workshop for corporate professionals in Newark, DE. Thursday, April 2, 6-8 PM at Hilton Christiana. Walk out with 3 AI tools working for your job. No tech experience needed.",
   openGraph: {
-    title: "Free AI Workshop — Thursday, April 2 at Hilton Wilmington/Christiana",
+    title: "Free AI Workshop — Thursday, April 2 at Hilton Christiana",
     description:
       "Free 2-hour workshop for professionals in Newark, DE. Thursday, April 2, 6-8 PM. Hands-on AI training — walk out with tools you can use Monday morning. No tech experience required.",
     url: "https://learnandleverageai.com/workshops",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Free AI Workshop — Thursday, April 2 | Newark, DE",
     description:
-      "Your boss said learn AI. We'll show you how. Free hands-on workshop April 2 at Hilton Wilmington/Christiana — walk out with 3 AI tools working for your job.",
+      "Your boss said learn AI. We'll show you how. Free hands-on workshop April 2 at Hilton Christiana — walk out with 3 AI tools working for your job.",
   },
 };
 
@@ -71,7 +71,7 @@ export default function WorkshopsLayout({
             eventStatus: "https://schema.org/EventScheduled",
             location: {
               "@type": "Place",
-              name: "Hilton Wilmington/Christiana",
+              name: "Hilton Christiana",
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "100 Continental Dr",

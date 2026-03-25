@@ -216,9 +216,7 @@ export default function WorkshopsPage() {
           </h1>
 
           <p className="font-body text-lg sm:text-xl text-gray-400 mb-4 max-w-xl mx-auto animate-fade-up-delay-2">
-            Free. Hands-on. 2 hours. Thursday, April 2.
-            Hilton Wilmington/Christiana, Newark, DE.
-            You bring your laptop — you leave with AI working for your actual job.
+            Free. Hands-on. 2 hours. You bring your laptop — you leave with AI tools set up and working for your actual job.
           </p>
 
           <p className="font-body text-base text-gray-500 mb-8 max-w-lg mx-auto animate-fade-up-delay-3">
@@ -448,9 +446,9 @@ export default function WorkshopsPage() {
                 {[
                   { label: "Date", value: "Thursday, April 2, 2026" },
                   { label: "Time", value: "6:00 PM - 8:00 PM" },
-                  { label: "Location", value: "Hilton Wilmington/Christiana" },
+                  { label: "Location", value: "Hilton Christiana" },
                   { label: "Address", value: "100 Continental Dr, Newark, DE 19713" },
-                  { label: "Parking", value: "Free on-site (400+ spaces)" },
+
                   { label: "Cost", value: "FREE", highlight: true },
                   { label: "Seats", value: "Limited to 25" },
                 ].map((item, i) => (
@@ -498,6 +496,47 @@ export default function WorkshopsPage() {
       </section>
 
       {/* ============================================================ */}
+      {/* VALUE STACK — What You Get (for free) */}
+      {/* ============================================================ */}
+      <section className="py-12 px-5 bg-white">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="font-display text-2xl sm:text-3xl font-black text-[#1C1917] text-center mb-2">
+            Everything You Get (for Free)
+          </h2>
+          <p className="font-body text-[#78716C] text-center mb-8">
+            All of this. In one evening. No strings attached.
+          </p>
+          <div className="space-y-3 max-w-lg mx-auto">
+            {[
+              '3 AI tools set up and working on YOUR laptop',
+              'Prompt templates you can use at work the next morning',
+              'Live demo: watch an AI agent answer a real phone call',
+              'Printed workbook with exercises and reference guides',
+              'A clear plan for which AI tools fit your specific role',
+              'Coffee, snacks, and Wi-Fi included',
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-3">
+                <CheckIcon />
+                <span className="font-body text-[#44403C] text-sm font-medium">{item}</span>
+              </div>
+            ))}
+          </div>
+          <p className="font-body text-center text-[#78716C] text-sm mt-6">
+            Total value: <span className="font-bold text-[#1C1917]">$297+</span> — yours for <span className="font-bold text-green-600">$0</span>
+          </p>
+          <div className="text-center mt-6">
+            <a
+              href="#register"
+              onClick={() => trackCtaClicked('Reserve My Free Spot', 'value_stack')}
+              className="inline-block bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-xl font-body font-black text-lg transition-all shadow-lg shadow-amber-500/20 active:scale-95"
+            >
+              Reserve My Free Spot
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
       {/* FAQ */}
       {/* ============================================================ */}
       <section className="py-16 px-5 bg-[#FFFBF5]">
@@ -532,47 +571,6 @@ export default function WorkshopsPage() {
       </section>
 
       {/* ============================================================ */}
-      {/* VALUE STACK — What You Get (for free) */}
-      {/* ============================================================ */}
-      <section className="py-12 px-5 bg-white">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="font-display text-2xl sm:text-3xl font-black text-[#1C1917] text-center mb-2">
-            What You Walk Out With
-          </h2>
-          <p className="font-body text-[#78716C] text-center mb-8">
-            All of this. For free. In one evening.
-          </p>
-          <div className="space-y-3 max-w-lg mx-auto">
-            {[
-              '3 AI tools set up and working on YOUR laptop',
-              'Prompt templates you can use at work the next morning',
-              'Live demo: watch an AI agent answer a real phone call',
-              'Printed workbook with exercises and reference guides',
-              'A clear plan for which AI tools fit your specific role',
-              'Coffee, snacks, Wi-Fi, and free parking',
-            ].map((item, i) => (
-              <div key={i} className="flex items-start gap-3">
-                <CheckIcon />
-                <span className="font-body text-[#44403C] text-sm font-medium">{item}</span>
-              </div>
-            ))}
-          </div>
-          <p className="font-body text-center text-[#78716C] text-sm mt-6">
-            Total value: <span className="font-bold text-[#1C1917]">$297+</span> — yours for <span className="font-bold text-green-600">$0</span>
-          </p>
-          <div className="text-center mt-6">
-            <a
-              href="#register"
-              onClick={() => trackCtaClicked('Reserve My Free Spot', 'value_stack')}
-              className="inline-block bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-xl font-body font-black text-lg transition-all shadow-lg shadow-amber-500/20 active:scale-95"
-            >
-              Reserve My Free Spot
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================ */}
       {/* REGISTRATION FORM */}
       {/* ============================================================ */}
       <section id="register" className="py-16 bg-[#1C1917] text-white scroll-mt-14">
@@ -582,9 +580,13 @@ export default function WorkshopsPage() {
               Register for the Free Workshop
             </h2>
             <p className="font-body text-gray-400 text-sm max-w-md mx-auto">
-              Thursday, April 2 &middot; 6:00 - 8:00 PM &middot; Hilton Wilmington/Christiana, Newark, DE.
-              25 seats available. 3 fields. 15 seconds.
+              Thursday, April 2 &middot; 6:00 - 8:00 PM &middot; Hilton Christiana, Newark, DE.
+              3 fields. 15 seconds.
             </p>
+            <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-400/30 text-amber-400 px-4 py-2 rounded-full font-body text-sm font-medium mt-3">
+              <span className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
+              2 of 25 spots claimed
+            </div>
             <p className="font-body text-red-400 text-sm font-bold mt-2">
               Registration closes March 31
             </p>
@@ -614,16 +616,16 @@ export default function WorkshopsPage() {
                     </div>
                     <div>
                       <span className="font-body text-[#78716C] text-xs uppercase">Where</span>
-                      <p className="font-body font-bold text-[#1C1917]">Hilton Wilmington/Christiana</p>
+                      <p className="font-body font-bold text-[#1C1917]">Hilton Christiana</p>
                     </div>
                   </div>
-                  <p className="font-body text-xs text-[#78716C] mt-2">100 Continental Dr, Newark, DE 19713 &middot; Free parking on-site</p>
+                  <p className="font-body text-xs text-[#78716C] mt-2">100 Continental Dr, Newark, DE 19713</p>
                 </div>
 
                 {/* Add to Calendar */}
                 <div className="flex flex-col sm:flex-row gap-2 mb-4">
                   <a
-                    href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=AI+Hands-On+Workshop&dates=20260402T220000Z/20260403T000000Z&details=Free+AI+workshop+with+Brandon+Calloway.+Bring+your+laptop+%26+charger.+100+Continental+Dr,+Newark+DE+19713.+Free+parking.&location=Hilton+Wilmington/Christiana,+100+Continental+Dr,+Newark,+DE+19713&sf=true"
+                    href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=AI+Hands-On+Workshop&dates=20260402T220000Z/20260403T000000Z&details=Free+AI+workshop+with+Brandon+Calloway.+Bring+your+laptop+%26+charger.+100+Continental+Dr,+Newark+DE+19713.&location=Hilton+Christiana,+100+Continental+Dr,+Newark,+DE+19713&sf=true"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 bg-white border border-gray-200 hover:border-amber-300 text-[#1C1917] font-body font-medium text-sm py-2.5 px-4 rounded-xl transition-colors"
@@ -632,7 +634,7 @@ export default function WorkshopsPage() {
                     Google Calendar
                   </a>
                   <a
-                    href={`data:text/calendar;charset=utf-8,${encodeURIComponent('BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:20260402T220000Z\nDTEND:20260403T000000Z\nSUMMARY:AI Hands-On Workshop\nDESCRIPTION:Free AI workshop with Brandon Calloway. Bring your laptop & charger.\nLOCATION:Hilton Wilmington/Christiana\\, 100 Continental Dr\\, Newark\\, DE 19713\nEND:VEVENT\nEND:VCALENDAR')}`}
+                    href={`data:text/calendar;charset=utf-8,${encodeURIComponent('BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:20260402T220000Z\nDTEND:20260403T000000Z\nSUMMARY:AI Hands-On Workshop\nDESCRIPTION:Free AI workshop with Brandon Calloway. Bring your laptop & charger.\nLOCATION:Hilton Christiana\\, 100 Continental Dr\\, Newark\\, DE 19713\nEND:VEVENT\nEND:VCALENDAR')}`}
                     download="ai-workshop-april2.ics"
                     className="flex-1 flex items-center justify-center gap-2 bg-white border border-gray-200 hover:border-amber-300 text-[#1C1917] font-body font-medium text-sm py-2.5 px-4 rounded-xl transition-colors"
                   >
@@ -697,7 +699,7 @@ export default function WorkshopsPage() {
                 <div>
                   <label htmlFor="reg-phone" className="block font-body text-sm font-medium text-[#1C1917] mb-1.5">
                     Phone Number <span className="text-red-500">*</span>
-                    <span className="text-[#A8A29E] font-normal ml-1">(for event updates)</span>
+                    <span className="text-[#A8A29E] font-normal ml-1">(we&apos;ll text you the address + a free AI tip)</span>
                   </label>
                   <input
                     id="reg-phone"
@@ -766,7 +768,7 @@ export default function WorkshopsPage() {
             Register for Free
           </a>
           <p className="font-body text-[#A8A29E] text-sm mt-4">
-            Thursday, April 2 &middot; 6:00 - 8:00 PM &middot; Hilton Wilmington/Christiana, Newark, DE &middot; 25 seats only
+            Thursday, April 2 &middot; 6:00 - 8:00 PM &middot; Hilton Christiana, Newark, DE &middot; 25 seats only
           </p>
         </div>
       </section>

@@ -104,7 +104,7 @@ function getCTA(state: string): { text: string; url: string } | null {
 // Short template replies (fallback when AI is unavailable)
 function getTemplateReply(firstName: string, subject: string, body: string, state: string): string {
   if (state === 'registered' || state === 'confirmed') {
-    return `<p>Hi ${firstName},</p><p>Got your email. You're registered for Thursday, April 2, 6-8 PM at Hilton Wilmington/Christiana, 100 Continental Dr, Newark, DE 19713. Free parking on-site.</p>`;
+    return `<p>Hi ${firstName},</p><p>Got your email. You're registered for Thursday, April 2, 6-8 PM at Hilton Christiana, 100 Continental Dr, Newark, DE 19713.</p>`;
   }
   if (state === 'attended') {
     return `<p>Hi ${firstName},</p><p>Great to hear from you! If you have questions about the AI tools from the workshop, just reply here.</p>`;
@@ -116,7 +116,7 @@ function getTemplateReply(firstName: string, subject: string, body: string, stat
     return `<p>Hi ${firstName},</p><p>We missed you! Another session is being planned — register to get first access.</p>`;
   }
   // Unknown
-  return `<p>Hi ${firstName},</p><p>Thanks for reaching out! We're running a free hands-on AI workshop on Thursday, April 2, 6-8 PM at Hilton Wilmington/Christiana in Newark, DE. Bring your laptop, leave with tools working for your job. No tech experience needed.</p>`;
+  return `<p>Hi ${firstName},</p><p>Thanks for reaching out! We're running a free hands-on AI workshop on Thursday, April 2, 6-8 PM at Hilton Christiana in Newark, DE. Bring your laptop, leave with tools working for your job. No tech experience needed.</p>`;
 }
 
 async function getAIEmailReply(firstName: string, subject: string, body: string, state: string): Promise<string | null> {
@@ -140,8 +140,7 @@ async function getAIEmailReply(firstName: string, subject: string, body: string,
 
 FACTS YOU KNOW (only use these — do NOT invent anything else):
 - Free hands-on AI workshop, Thursday, April 2, 2026, 6-8 PM
-- Venue: Hilton Wilmington/Christiana, 100 Continental Dr, Newark, DE 19713
-- Parking: free on-site parking (400+ spaces)
+- Venue: Hilton Christiana, 100 Continental Dr, Newark, DE 19713
 - The venue has Wi-Fi, LCD projector, screen, and power outlets. Complimentary water provided.
 - Limited to 25 seats
 - No tech experience needed — bring a laptop and charger

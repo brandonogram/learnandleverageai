@@ -65,14 +65,14 @@ function buildSystemPrompt(contact: ContactInfo): string {
 - Their name: ${contact.name || 'a registered attendee'}
 - Do NOT tell them to register — they already did!
 - Answer their question helpfully and directly
-- Workshop is Thursday, April 2, 6-8 PM at Hilton Wilmington/Christiana, 100 Continental Dr, Newark, DE 19713
+- Workshop is Thursday, April 2, 6-8 PM at Hilton Christiana, 100 Continental Dr, Newark, DE 19713
 - If they ask logistics (what to bring, etc.), answer directly without unnecessary sign-offs`,
 
     confirmed: `CONTACT STATE: This person is REGISTERED and CONFIRMED for the workshop.
 - Their name: ${contact.name || 'a confirmed attendee'}
 - Do NOT tell them to register — they are confirmed!
 - Answer their question helpfully and directly
-- Workshop is Thursday, April 2, 6-8 PM at Hilton Wilmington/Christiana, 100 Continental Dr, Newark, DE 19713`,
+- Workshop is Thursday, April 2, 6-8 PM at Hilton Christiana, 100 Continental Dr, Newark, DE 19713`,
 
     attended: `CONTACT STATE: This person ATTENDED the workshop already.
 - Their name: ${contact.name || 'a past attendee'}
@@ -103,8 +103,7 @@ ${stateContext[contact.state]}
 FACTS YOU KNOW (only use these — do NOT invent anything else):
 - FREE hands-on AI workshop for corporate professionals
 - Thursday, April 2, 2026, 6:00-8:00 PM
-- Venue: Hilton Wilmington/Christiana, 100 Continental Dr, Newark, DE 19713
-- Parking: free on-site parking (400+ spaces)
+- Venue: Hilton Christiana, 100 Continental Dr, Newark, DE 19713
 - The venue has Wi-Fi, LCD projector, screen, and power outlets
 - Complimentary water provided by the venue
 - 2 hours: first hour = AI basics + how to talk to AI for your job; second hour = automation demos + set up tools on your laptop
@@ -174,7 +173,7 @@ function getTemplateResponse(message: string, contact: ContactInfo): string {
 
   // First-time unknown contact
   if (contact.state === 'unknown') {
-    return "Hey! Thanks for reaching out. We're hosting a FREE hands-on AI workshop on Thursday, April 2, 6-8 PM at Hilton Wilmington/Christiana in Newark, DE. No tech experience needed. Register at learnandleverageai.com/workshops. Got any questions?";
+    return "Hey! Thanks for reaching out. We're hosting a FREE hands-on AI workshop on Thursday, April 2, 6-8 PM at Hilton Christiana in Newark, DE. No tech experience needed. Register at learnandleverageai.com/workshops. Got any questions?";
   }
 
   // Post-workshop attendee
@@ -198,10 +197,10 @@ function getTemplateResponse(message: string, contact: ContactInfo): string {
   // Registered person — context-aware responses
   if (isRegistered) {
     if (lower.includes('when') || lower.includes('date') || lower.includes('time')) {
-      return `The workshop is Thursday, April 2, 6-8 PM at Hilton Wilmington/Christiana in Newark, DE. You're all set${name}!`;
+      return `The workshop is Thursday, April 2, 6-8 PM at Hilton Christiana in Newark, DE. You're all set${name}!`;
     }
     if (lower.includes('where') || lower.includes('location') || lower.includes('address')) {
-      return `Hilton Wilmington/Christiana, 100 Continental Dr, Newark, DE 19713. Free parking on-site (400+ spaces).`;
+      return `Hilton Christiana, 100 Continental Dr, Newark, DE 19713.`;
     }
     if (lower.includes('bring') || lower.includes('laptop') || lower.includes('need') || lower.includes('prepare')) {
       return 'Bring your laptop (fully charged), a charger, and ideally a real work task you want to speed up. We provide everything else — workbook, coffee, snacks, Wi-Fi.';
@@ -210,10 +209,10 @@ function getTemplateResponse(message: string, contact: ContactInfo): string {
       return `No problem${name}. Just let us know and we'll open your seat for someone on the waitlist. You can always register for the next one. Thanks for letting us know!`;
     }
     if (lower.includes('thank') || lower.includes('awesome') || lower.includes('great') || lower.includes('perfect')) {
-      return `You're welcome${name}! See you April 2 at the Hilton Wilmington/Christiana.`;
+      return `You're welcome${name}! See you April 2 at the Hilton Christiana.`;
     }
     if (lower.includes('register') || lower.includes('sign up') || lower.includes('rsvp')) {
-      return `You're already registered${name}! Thursday, April 2, 6-8 PM at Hilton Wilmington/Christiana, 100 Continental Dr, Newark, DE 19713. See you there!`;
+      return `You're already registered${name}! Thursday, April 2, 6-8 PM at Hilton Christiana, 100 Continental Dr, Newark, DE 19713. See you there!`;
     }
     // Default for registered person
     return `Hey${name}! You're registered for the workshop on April 2. How can I help? Feel free to ask about what to bring, what we'll cover, or anything else.`;
@@ -221,10 +220,10 @@ function getTemplateResponse(message: string, contact: ContactInfo): string {
 
   // Known but not registered (sms-lead)
   if (lower.includes('when') || lower.includes('date') || lower.includes('time')) {
-    return 'Thursday, April 2, 6:00-8:00 PM at Hilton Wilmington/Christiana, Newark, DE. Register at learnandleverageai.com/workshops!';
+    return 'Thursday, April 2, 6:00-8:00 PM at Hilton Christiana, Newark, DE. Register at learnandleverageai.com/workshops!';
   }
   if (lower.includes('where') || lower.includes('location') || lower.includes('address')) {
-    return "Hilton Wilmington/Christiana, 100 Continental Dr, Newark, DE 19713. Free parking on-site. Register at learnandleverageai.com/workshops!";
+    return "Hilton Christiana, 100 Continental Dr, Newark, DE 19713. Register at learnandleverageai.com/workshops!";
   }
   if (lower.includes('cost') || lower.includes('price') || lower.includes('free') || lower.includes('how much')) {
     return "Completely FREE. No catch. Brandon runs it to show people what AI can do. Optional paid programs start at $297 if you want to go deeper, but the workshop is free.";
