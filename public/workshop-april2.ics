@@ -1,0 +1,13 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Learn & Leverage AI//Workshop//EN
+BEGIN:VEVENT
+DTSTART:20260402T220000Z
+DTEND:20260403T000000Z
+SUMMARY:AI Hands-On Workshop
+DESCRIPTION:Free AI workshop with Brandon Calloway. Bring your laptop & charger. 100 Continental Dr\, Newark DE 19713. Free parking on-site.
+LOCATION:Hilton Wilmington/Christiana\, 100 Continental Dr\, Newark\, DE 19713
+URL:https://learnandleverageai.com/workshops
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR

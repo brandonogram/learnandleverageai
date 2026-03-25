@@ -12,13 +12,12 @@ interface RegistrationPayload {
   full_name: string;
   email: string;
   phone: string;
-  company_name: string;
-  job_title: string;
-  ai_skill_level: string;
-  biggest_challenge: string;
+  company_name?: string;
+  job_title?: string;
+  ai_skill_level?: string;
+  biggest_challenge?: string;
   source: string;
   registered_at: string;
-  // UTM parameters
   utm_source?: string;
   utm_medium?: string;
   utm_campaign?: string;
@@ -28,54 +27,43 @@ interface RegistrationPayload {
 
 function buildConfirmationEmailHtml(firstName: string): string {
   return `
-<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+<div style="font-family: Arial, sans-serif; max-width: 500px; color: #1C1917; font-size: 15px; line-height: 1.5; text-align: left;">
+
   <p>Hi ${firstName},</p>
 
-  <p>You are officially registered for the AI Hands-On Workshop. I am looking forward to meeting you.</p>
+  <p>You're registered. Here are the details:</p>
 
-  <p>Here are the details:</p>
-
-  <table style="border-collapse: collapse; margin: 16px 0;">
-    <tr><td style="padding: 4px 12px 4px 0; font-weight: bold;">What:</td><td>AI Hands-On: Walk Out With 3 Tools Working For Your Job</td></tr>
-    <tr><td style="padding: 4px 12px 4px 0; font-weight: bold;">When:</td><td>Thursday, April 2, 2026, 6:00 PM - 8:00 PM EST</td></tr>
-    <tr><td style="padding: 4px 12px 4px 0; font-weight: bold;">Where:</td><td>Wilmington, DE area (exact venue details coming soon)</td></tr>
-    <tr><td style="padding: 4px 12px 4px 0; font-weight: bold;">Cost:</td><td>Free</td></tr>
-    <tr><td style="padding: 4px 12px 4px 0; font-weight: bold;">Parking:</td><td>Available on-site (free)</td></tr>
+  <table style="border-collapse: collapse; margin: 12px 0; font-size: 15px;">
+    <tr><td style="padding: 4px 12px 4px 0; font-weight: bold;">What:</td><td>Free AI Hands-On Workshop</td></tr>
+    <tr><td style="padding: 4px 12px 4px 0; font-weight: bold;">When:</td><td>Thursday, April 2, 2026, 6:00 - 8:00 PM EST</td></tr>
+    <tr><td style="padding: 4px 12px 4px 0; font-weight: bold;">Where:</td><td>Hilton Wilmington/Christiana</td></tr>
+    <tr><td style="padding: 4px 12px 4px 0; font-weight: bold;">Address:</td><td>100 Continental Dr, Newark, DE 19713</td></tr>
+    <tr><td style="padding: 4px 12px 4px 0; font-weight: bold;">Parking:</td><td>Free on-site (400+ spaces)</td></tr>
   </table>
 
-  <hr style="border: none; border-top: 1px solid #ddd; margin: 24px 0;" />
+  <p><strong>What to bring:</strong> Your laptop (charged), a charger, and a real work task you want to speed up with AI. That's it. We provide everything else — workbook, coffee, snacks, Wi-Fi.</p>
 
-  <p><strong>What to bring:</strong></p>
-  <ol>
-    <li><strong>Your work laptop</strong> (fully charged) — you will be setting up AI tools during the session</li>
-    <li><strong>A charger</strong> — we will have power strips, but bring your own just in case</li>
-    <li><strong>A specific work task</strong> you want AI help with — we will use real examples from your job during the exercises</li>
-    <li><strong>An open mind</strong> — no tech experience required, I promise</li>
-  </ol>
+  <p>Small group (25 max), so you'll get individual attention. If something comes up and you can't make it, just reply so I can open your seat.</p>
 
-  <p><strong>What is provided:</strong></p>
-  <ul>
-    <li>Printed workbook with all exercises</li>
-    <li>Coffee, water, and light snacks</li>
-    <li>Wi-Fi (you will need it — we use AI tools live)</li>
-    <li>Resource guide with QR codes to every tool we cover</li>
-  </ul>
+  <p>— Brandon</p>
 
-  <hr style="border: none; border-top: 1px solid #ddd; margin: 24px 0;" />
+  <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 16px;">
+    <tr>
+      <td style="padding-right: 8px;">
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=AI+Hands-On+Workshop&dates=20260402T220000Z/20260403T000000Z&details=Free+AI+workshop+with+Brandon+Calloway.+Bring+your+laptop+%26+charger.+100+Continental+Dr,+Newark+DE+19713.+Free+parking.&location=Hilton+Wilmington/Christiana,+100+Continental+Dr,+Newark,+DE+19713&sf=true" style="background-color: #F59E0B; color: #1C1917; padding: 12px 20px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 13px; display: inline-block;">Add to Google Calendar</a>
+      </td>
+      <td>
+        <a href="https://learnandleverageai.com/workshop-april2.ics" style="background-color: #FFFFFF; color: #1C1917; padding: 12px 20px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 13px; display: inline-block; border: 1px solid #D6D3D1;">Apple / Outlook (.ics)</a>
+      </td>
+    </tr>
+  </table>
 
-  <p><strong>What to expect:</strong></p>
-  <ul>
-    <li><strong>First Hour:</strong> What AI actually is — demystified, no buzzwords. Live demos. Then prompt engineering for YOUR job — hands-on exercises with your real tasks.</li>
-    <li><strong>Second Hour:</strong> AI agents and automation — see how AI handles repetitive work (I will demo my own tools). Then build your toolkit — you set up AI tools on your laptop. You leave with them working.</li>
-  </ul>
+  <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 12px;">
+    <tr><td><a href="https://learnandleverageai.com/workshops" style="color: #78716C; font-size: 13px; text-decoration: underline;">Know someone who should come? Share this link</a></td></tr>
+  </table>
 
-  <p>This is a small group (25 people max) so you will get individual attention. If you get stuck on anything, I will be right there to help.</p>
+  <p style="color: #78716C; font-size: 13px; margin-top: 20px;">Learn & Leverage AI<br/>(302) 416-6285 | info@learnandleverageai.com</p>
 
-  <p><strong>One favor:</strong> If something comes up and you cannot make it, please let me know so I can give your seat to someone on the waitlist. Just reply to this email.</p>
-
-  <p>See you on April 2,<br/>Brandon</p>
-
-  <p><em>P.S. — Wondering if your company will cover this as professional development? Even though the workshop is free, it helps to have it on record as training.</em></p>
 </div>
 `.trim();
 }
@@ -97,7 +85,7 @@ async function sendConfirmationEmail(email: string, firstName: string): Promise<
       },
       body: JSON.stringify({
         to: [email],
-        subject: "You're in! AI Workshop — Thursday, April 2",
+        subject: "You're in! Free AI Workshop — Thursday, April 2",
         html: buildConfirmationEmailHtml(firstName),
       }),
     }
@@ -122,7 +110,7 @@ async function sendConfirmationSms(phone: string): Promise<void> {
   }
 
   const body =
-    "You're registered for the free AI workshop! Thursday April 2, 6-8 PM, Wilmington DE area. Bring your laptop + charger. Details coming soon. — Brandon, Learn & Leverage AI";
+    "You're registered for the free AI workshop! Thursday, April 2, 6-8 PM at Hilton Wilmington/Christiana, 100 Continental Dr, Newark, DE 19713. Free parking on-site. Bring your laptop + charger. — Brandon, Learn & Leverage AI";
 
   const params = new URLSearchParams();
   params.append('To', phone);
@@ -186,20 +174,21 @@ export async function POST(request: NextRequest) {
     }
 
     // Step 1: Create (or update) contact in GHL
-    const contactPayload = {
+    const customFields: { id: string; value: string }[] = [];
+    if (body.ai_skill_level) customFields.push({ id: AI_SKILL_FIELD_ID, value: body.ai_skill_level });
+    if (body.biggest_challenge) customFields.push({ id: CHALLENGE_FIELD_ID, value: body.biggest_challenge });
+
+    const contactPayload: Record<string, unknown> = {
       locationId: GHL_LOCATION_ID,
       firstName,
       lastName,
       email: body.email,
       phone: body.phone,
-      companyName: body.company_name,
       tags,
       source: body.utm_source || body.source || 'workshop-landing-page',
-      customFields: [
-        { id: AI_SKILL_FIELD_ID, value: body.ai_skill_level },
-        { id: CHALLENGE_FIELD_ID, value: body.biggest_challenge },
-      ],
     };
+    if (body.company_name) contactPayload.companyName = body.company_name;
+    if (customFields.length > 0) contactPayload.customFields = customFields;
 
     const contactRes = await fetch(`${GHL_API_BASE}/contacts/`, {
       method: 'POST',
@@ -216,60 +205,67 @@ export async function POST(request: NextRequest) {
     if (contactRes.ok) {
       const contactData = await contactRes.json();
       contactId = contactData.contact?.id;
-    } else if (contactRes.status === 422) {
-      // Duplicate contact — look up existing contact by email and update
-      console.log('GHL duplicate contact detected, searching for existing:', body.email);
-      const searchRes = await fetch(
-        `${GHL_API_BASE}/contacts/search/duplicate?locationId=${GHL_LOCATION_ID}&email=${encodeURIComponent(body.email)}`,
-        {
-          headers: {
-            Authorization: `Bearer ${GHL_API_TOKEN}`,
-            Version: '2021-07-28',
-          },
+    } else if (contactRes.status === 422 || contactRes.status === 400) {
+      // Duplicate contact — GHL may match on email OR phone
+      const errBody = await contactRes.json().catch(() => ({}));
+      console.log('GHL duplicate detected:', JSON.stringify(errBody));
+
+      // Try to get contactId from the error response (GHL includes it)
+      contactId = errBody?.meta?.contactId;
+
+      // If not in error, search by email then by phone
+      if (!contactId) {
+        const emailSearch = await fetch(
+          `${GHL_API_BASE}/contacts/search/duplicate?locationId=${GHL_LOCATION_ID}&email=${encodeURIComponent(body.email)}`,
+          { headers: { Authorization: `Bearer ${GHL_API_TOKEN}`, Version: '2021-07-28' } }
+        );
+        if (emailSearch.ok) {
+          const data = await emailSearch.json();
+          contactId = data.contact?.id;
         }
-      );
-      if (searchRes.ok) {
-        const searchData = await searchRes.json();
-        contactId = searchData.contact?.id;
-        if (contactId) {
-          // Update the existing contact with latest info and add tag
-          await fetch(`${GHL_API_BASE}/contacts/${contactId}`, {
-            method: 'PUT',
-            headers: {
-              Authorization: `Bearer ${GHL_API_TOKEN}`,
-              'Content-Type': 'application/json',
-              Version: '2021-07-28',
-            },
-            body: JSON.stringify({
-              firstName,
-              lastName,
-              companyName: body.company_name,
-              tags,
-              customFields: contactPayload.customFields,
-            }),
-          });
-          console.log('Updated existing GHL contact:', contactId);
+      }
+
+      if (!contactId) {
+        const phoneSearch = await fetch(
+          `${GHL_API_BASE}/contacts/search/duplicate?locationId=${GHL_LOCATION_ID}&number=${encodeURIComponent(body.phone)}`,
+          { headers: { Authorization: `Bearer ${GHL_API_TOKEN}`, Version: '2021-07-28' } }
+        );
+        if (phoneSearch.ok) {
+          const data = await phoneSearch.json();
+          contactId = data.contact?.id;
         }
+      }
+
+      if (contactId) {
+        // Update existing contact
+        const updatePayload: Record<string, unknown> = { firstName, lastName, tags };
+        if (body.company_name) updatePayload.companyName = body.company_name;
+        if (customFields.length > 0) updatePayload.customFields = customFields;
+        await fetch(`${GHL_API_BASE}/contacts/${contactId}`, {
+          method: 'PUT',
+          headers: { Authorization: `Bearer ${GHL_API_TOKEN}`, 'Content-Type': 'application/json', Version: '2021-07-28' },
+          body: JSON.stringify(updatePayload),
+        });
+        console.log('Updated existing GHL contact:', contactId);
+      } else {
+        // Can't find the duplicate — register anyway, skip GHL pipeline
+        console.error('Duplicate detected but contact not found. Proceeding without GHL pipeline.');
+        contactId = 'skip-pipeline';
       }
     } else {
       const errText = await contactRes.text();
       console.error('GHL create contact error:', contactRes.status, errText);
-      return NextResponse.json(
-        { error: 'Failed to register. Please try again.' },
-        { status: 500 }
-      );
+      // Don't fail the registration — still send confirmation
+      contactId = 'skip-pipeline';
     }
 
-    if (!contactId) {
-      console.error('GHL contact not found or created for:', body.email);
-      return NextResponse.json(
-        { error: 'Registration issue. Please try again.' },
-        { status: 500 }
-      );
-    }
+    // contactId might be 'skip-pipeline' if GHL had issues — still send confirmations
 
-    // Step 2: Add contact to pipeline
-    const opportunityRes = await fetch(`${GHL_API_BASE}/opportunities/`, {
+    // Step 2: Add contact to pipeline (skip if GHL had issues)
+    if (contactId === 'skip-pipeline') {
+      console.log('Skipping pipeline — GHL contact issue, but still sending confirmations');
+    }
+    const opportunityRes = contactId !== 'skip-pipeline' ? await fetch(`${GHL_API_BASE}/opportunities/`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${GHL_API_TOKEN}`,
@@ -284,13 +280,11 @@ export async function POST(request: NextRequest) {
         name: `${body.full_name} - Workshop Registration`,
         status: 'open',
       }),
-    });
+    }) : null;
 
-    if (!opportunityRes.ok) {
+    if (opportunityRes && !opportunityRes.ok) {
       const errText = await opportunityRes.text();
       console.error('GHL create opportunity error:', opportunityRes.status, errText);
-      // Contact was created, so we still consider this partially successful
-      // Don't fail the whole registration
     }
 
     // Step 3: Send confirmation email and SMS (fire-and-forget, don't block response)

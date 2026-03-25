@@ -1,103 +1,139 @@
 project: learnandleverageai
-updated: 2026-02-16T10:00:00Z
-priority: 2
+updated: 2026-03-22T14:00:00Z
+priority: 1
 status: active
-owner: elon
+owner: claude-code
 url: learnandleverageai.com
 
-decision: "Free webinar → paid services funnel. Approved by Brandon Feb 14."
+decision: "In-person workshops for corporate professionals 45-60 in NCC, DE. Free 2-hour session → $25K+ upsells on the spot. No cold email. No webinars. Brandon confirmed March 21."
 
 event:
-  name: "AI for Contractors: Stop Losing Money to Missed Calls & Manual Work"
-  format: free-live-webinar
-  platform: zoom
-  date: 2026-02-27
-  time: "2:00 PM EST"
-  duration: 45min + 15min Q&A
-  seats: unlimited
-  price: free (email capture)
-  replay: yes (YouTube + email drip)
-  cta: "AI Starter Pack — $497 (webinar-only price)"
+  name: "AI Hands-On: See What AI Can Actually Do For Your Job"
+  format: free-in-person-workshop
+  date: 2026-04-02
+  time: "6:00 PM - 8:00 PM EST"
+  venue: "Hilton Christiana, DE (pending confirmation)"
+  capacity: 25-30
+  price: free
+  upsell_target: "$25K+"
+  stay_after: "30 min for conversations"
 
 tasks:
-  - id: webinar-landing-page
-    status: completed
-    owner: marlo
+  - id: venue-confirmation
+    status: waiting
+    owner: brandon
     priority: critical
-    deadline: 2026-02-17
-    completed: 2026-02-16
-    notes: "Landing page copy finalized at marketing/webinar-landing-page-copy.md. Ready for implementation. Includes hero, pain section, live demo descriptions, instructor bio, FAQ, and multiple CTAs."
+    notes: "Emails sent to Hilton Christiana, DoubleTree Wilmington, Embassy Suites Newark. Awaiting responses."
 
-  - id: webinar-script
-    status: completed
-    owner: marlo
+  - id: ghl-workflows
+    status: partially_complete
+    owner: brandon
     priority: critical
-    deadline: 2026-02-20
-    completed: 2026-02-16
-    notes: "Full 60-min script finalized at marketing/webinar-script-outline.md. Includes all segments, talking points, transition cues, objection handlers, and pre-webinar checklist. Ready for Brandon to review."
+    notes: "17 email templates + 5 custom values + 3 tags CREATED via API. Workflow CREATION not possible via API — Brandon must build 7 workflows in GHL UI (~45 min). Complete step-by-step guide at docs/ghl-api-setup-results.md. Each workflow specifies trigger, steps, which email template to select, and SMS copy to paste."
 
-  - id: zoom-setup
-    status: not_started
-    owner: sentinel
+  - id: ghl-voice-ai-agent
+    status: partially_complete
+    owner: brandon
     priority: high
-    deadline: 2026-02-25
-    notes: "Set up Zoom webinar. Registration page with email capture. Configure recording. Test audio/video from Mac mini."
+    notes: "Voice AI agent CREATED via API (ID: 69c08755d5cbc88fcd870d8c). Full workshop knowledge base configured. Phone number +13024166285 NOT assigned — needs to be imported into GHL location via UI first. Brandon must: (1) log into GHL, (2) go to Settings > Phone Numbers, (3) import Twilio number +13024166285, (4) assign it to this Voice AI agent."
 
-  - id: email-capture-sequence
-    status: completed
-    owner: marlo
+  - id: ghl-conversation-ai
+    status: blocked
+    owner: brandon
     priority: high
-    deadline: 2026-02-22
-    completed: 2026-02-16
-    notes: "5-email sequence finalized at marketing/webinar-email-sequence.md. All emails drafted with subject lines, body copy, and timing. Includes registration confirmation, day-before reminder, day-of Zoom link, replay + offer, and last chance. Ready for email platform setup."
+    blocked_by: ghl-2fa-access
+    notes: "Conversation AI API returns 404 with PIT token. Must be configured via GHL UI. Blocked by 2FA — brandon@boothlaunchpad.com email is inaccessible (no MX records)."
 
-  - id: ai-starter-pack-offer
-    status: draft_ready
-    owner: cash
+  - id: ghl-ai-employee-addon
+    status: blocked
+    owner: brandon
     priority: high
-    deadline: 2026-02-22
-    notes: |
-      2026-02-16: Complete offer page drafted with:
-      - Full sales copy (headline, value stack, guarantee)
-      - Pricing: $497 (34% off $750)
-      - Urgency elements (48hr expiry, 50 spots)
-      - FAQ section
-      - Delivery workflow
-      - Revenue projections
-      Stripe commands documented for checkout page creation.
-      See: ~/.openclaw/workspaces/cash/ai-starter-pack-offer.md
-      BLOCKED: Needs Stripe account + payment link creation
+    blocked_by: ghl-2fa-access
+    notes: "AI Employee add-on ($97/mo) must be enabled via GHL UI. Cannot access UI due to 2FA sending to brandon@boothlaunchpad.com which has no MX records. Brandon must either: (1) fix boothlaunchpad.com email, (2) change GHL 2FA to a working email/phone, or (3) log in manually and enable it."
 
-  - id: promotion-campaign
-    status: completed
-    owner: marlo
-    priority: critical
-    deadline: 2026-02-18
-    completed: 2026-02-16
-    notes: "Promotional content finalized at marketing/webinar-promo-posts.md. Includes X/Twitter tweets and thread, Reddit posts for r/smallbusiness and r/Contractor, Facebook group templates. Ready for Brandon to schedule and post."
+  - id: post-workshop-survey
+    status: in_progress
+    owner: claude-code
+    priority: high
+    notes: "Creating 10-question feedback survey. Full spec at docs/typeform-survey.md."
 
-  - id: ai-audit-checklist
-    status: completed
-    owner: marlo
+  - id: post-workshop-systems
+    status: in_progress
+    owner: claude-code
     priority: medium
-    deadline: 2026-02-20
-    completed: 2026-02-16
-    notes: "Final PDF-ready playbook completed at marketing/ai-audit-checklist-playbook-FINAL.md. '10 Things AI Can Do for Your Business This Week' — 10 actionable items with problem, action, tool, prompt, and expected result for each. Ready for PDF design and email attachment."
+    notes: "Testimonial collection, referral program ($50 off), upsell follow-up workflows in GHL."
 
-  - id: service-pricing-page
-    status: draft_ready
-    owner: cash
-    notes: "4-tier pricing in docs/pricing-guide.md. Build /services page after webinar validates demand."
+  - id: meta-pixel-ads
+    status: mostly_complete
+    owner: claude-code
+    priority: high
+    completed_items:
+      - "Facebook Page created (ID: 957593034113587)"
+      - "Page added to Business Manager (CONFIRMED)"
+      - "Page contact info set (phone, email, website)"
+      - "Meta Pixel created (1494764092013977) and installed in code"
+      - "Pixel shared with 3 active ad accounts"
+      - "Profile pic + cover photo generated (public/images/)"
+    remaining_manual:
+      - "Brandon: Upload profile pic + cover photo (2 min)"
+      - "Brandon: Set CTA button Sign Up → /workshops (1 min)"
+      - "Brandon: Create Instagram @learnandleverageai (3 min)"
+    notes: "Ad account limit reached (5 in BM). Use personal act_105109866 for ads. Cannot create new ad account via API."
 
-  - id: cross-sell-products
-    status: planned
-    owner: cash
-    notes: "Webinar demos Call2Calendar + ContentCreationDude live. Natural upsell: attendees see the products in action, then get offered the Starter Pack that bundles both."
+  - id: ghl-workflows-ui
+    status: ready
+    owner: brandon
+    priority: critical
+    notes: "READY FOR BRANDON: Build 7 workflows in GHL UI using pre-created email templates. All templates have subject lines, preview text, from info set via API. Brandon pastes email body from docs/ghl-workshop-setup.md and types SMS copy into workflow SMS steps. Full step-by-step at docs/ghl-api-setup-results.md. Estimated time: 45-60 min."
+
+  - id: eventbrite-listing
+    status: blocked
+    owner: claude-code
+    priority: medium
+    blocked_by: venue-confirmation
+    notes: "Needs confirmed date/venue before creating listing."
+
+  - id: marketing-posts
+    status: in_progress
+    owner: marlo
+    priority: high
+    notes: "Daily sprint Mar 24: 3 posts drafted (FB pain-point 8.5, LI transformation 8.3, IG urgency 8.4). Pending Brandon approval. Images generated. GHL email campaign pending approval."
+    completed_items:
+      - "3 social posts drafted (FB, LinkedIn, IG)"
+      - "Workshop scene, transformation, urgency images generated"
+
+  - id: print-materials
+    status: pending
+    owner: claude-code
+    priority: low
+    notes: "Workbook + reference card formatted as print-ready PDFs."
+
+  - id: stripe-payment-links
+    status: completed
+    owner: claude-code
+    completed: 2026-03-22
+    notes: "5 products, 8 payment links active via Stripe API."
+
+  - id: landing-page
+    status: completed
+    owner: claude-code
+    completed: 2026-03-22
+    notes: "Workshop page at /workshops with registration form → GHL. QA tested."
+
+  - id: training-materials
+    status: completed
+    owner: claude-code
+    completed: 2026-03-21
+    notes: "Free session deck (28 slides), paid workshop deck (55 slides), speaker guides, workbook, upsell handout, reference card — all complete."
+
+  - id: video-ads
+    status: completed
+    owner: claude-code
+    completed: 2026-03-22
+    notes: "5 Meta video ads rendered via FFmpeg pipeline. All jitter-free."
 
 next_actions:
-  - "marlo: START NOW — draft landing page copy + promotion plan"
-  - "marlo: Draft webinar script outline"
-  - "marlo: Draft 5-email sequence"
-  - "cash: Build AI Starter Pack Stripe checkout ($497)"
-  - "sentinel: Research Zoom webinar setup"
-  - "elon: Set cron reminders for all deadlines"
+  - "claude-code: Build GHL workflows, Conversation AI, post-workshop survey, post-workshop systems"
+  - "brandon: Create FB account, link to Calloway Family portfolio → then Claude creates Meta ad campaign + pixel"
+  - "brandon: Confirm venue when hotel responds"
+  - "brandon: Review landing page once date confirmed (10 min)"

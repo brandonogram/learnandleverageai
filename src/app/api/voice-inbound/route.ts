@@ -21,66 +21,129 @@ interface ChatMessage {
   content: string;
 }
 
-// ---- System prompt ----
+// ---- GHL Contact Lookup ----
 
-const SYSTEM_PROMPT = `You are Brandon's AI Assistant answering the phone for Learn and Leverage AI. You handle inbound calls about AI workshops and training services in the Wilmington, Delaware area.
+const GHL_API_TOKEN = process.env.GHL_LLAI_API_KEY || process.env.GHL_API_KEY || '';
+const GHL_LOCATION_ID = process.env.GHL_LLAI_LOCATION_ID || process.env.GHL_LOCATION_ID || '';
+
+interface CallerInfo {
+  state: 'unknown' | 'lead' | 'registered' | 'confirmed' | 'attended' | 'no-show' | 'purchased';
+  name: string;
+  contactId: string | null;
+}
+
+async function lookupCaller(phone: string): Promise<CallerInfo> {
+  const empty: CallerInfo = { state: 'unknown', name: '', contactId: null };
+  if (!GHL_API_TOKEN || !GHL_LOCATION_ID || !phone) return empty;
+  try {
+    const res = await fetch(
+      `https://services.leadconnectorhq.com/contacts/search/duplicate?locationId=${GHL_LOCATION_ID}&number=${encodeURIComponent(phone)}`,
+      { headers: { Authorization: `Bearer ${GHL_API_TOKEN}`, Version: '2021-07-28' } }
+    );
+    if (!res.ok) return empty;
+    const data = await res.json();
+    const contact = data.contact;
+    if (!contact?.id) return empty;
+    const tags: string[] = contact.tags || [];
+    const name = contact.contactName || contact.firstName || '';
+    let state: CallerInfo['state'] = 'lead';
+    if (tags.includes('workshop-purchased')) state = 'purchased';
+    else if (tags.includes('workshop-attended')) state = 'attended';
+    else if (tags.includes('workshop-no-show')) state = 'no-show';
+    else if (tags.includes('workshop-confirmed')) state = 'confirmed';
+    else if (tags.includes('workshop-lead')) state = 'registered';
+    return { state, name, contactId: contact.id };
+  } catch {
+    return empty;
+  }
+}
+
+// ---- System prompt (state-aware) ----
+
+function buildVoiceSystemPrompt(caller: CallerInfo): string {
+  const stateInstructions: Record<CallerInfo['state'], string> = {
+    unknown: `CALLER STATE: Unknown caller — first time calling.
+- Welcome them warmly
+- Tell them about the free workshop
+- Guide them toward registering (online at learnandleverageai.com/workshops, or collect info over the phone)`,
+    lead: `CALLER STATE: This person has contacted us before but is NOT registered.
+- Their name: ${caller.name || 'unknown'}
+- Answer their questions
+- Encourage registration`,
+    registered: `CALLER STATE: This person is ALREADY REGISTERED for the workshop.
+- Their name: ${caller.name || 'a registered attendee'}
+- Greet them by name if possible
+- Do NOT pitch the workshop or ask them to register — they already did
+- Help them with whatever they're calling about (logistics, questions, etc.)`,
+    confirmed: `CALLER STATE: This person is REGISTERED and CONFIRMED for the workshop.
+- Their name: ${caller.name || 'a confirmed attendee'}
+- Do NOT pitch the workshop or registration
+- They are committed — answer questions enthusiastically`,
+    attended: `CALLER STATE: This person ATTENDED a previous workshop.
+- Their name: ${caller.name || 'a past attendee'}
+- Thank them for attending if it comes up
+- Do NOT pitch the free workshop — they already came
+- If relevant, mention paid offerings (AI Starter Pack $497, Advanced $997, Corporate Training, Consulting)`,
+    'no-show': `CALLER STATE: This person registered but DID NOT ATTEND.
+- Their name: ${caller.name || 'someone who missed the workshop'}
+- Be kind — don't guilt them
+- Let them know another session is being planned
+- Offer to keep them on the list`,
+    purchased: `CALLER STATE: This person is a PAYING CUSTOMER.
+- Their name: ${caller.name || 'a valued customer'}
+- VIP treatment
+- If they need Brandon directly, offer to have him call them back`,
+  };
+
+  return `You are Brandon's AI Assistant answering the phone for Learn and Leverage AI. You handle inbound calls about AI workshops and training services in the Wilmington, Delaware area.
 
 ## Your Identity
 - You are Brandon's AI assistant (NOT Brandon himself)
-- You are warm, friendly, helpful, and conversational
-- You speak in natural, conversational English — short sentences, no jargon
-- You sound like a knowledgeable friend, not a corporate robot
-- NEVER give out Brandon's personal phone number or personal email
-- The contact email is info@learnandleverageai.com
-- The phone they called is the right number: (302) 416-6285
+- Warm, friendly, helpful, conversational — short sentences, no jargon
+- Sound like a knowledgeable friend, not a corporate robot
+- NEVER give out Brandon's personal phone or email
+- Contact email: info@learnandleverageai.com
+- This phone number: (302) 416-6285
 
-## Current Workshop Details
-- What: Free AI Hands-On Workshop — "See What AI Can Actually Do For Your Job"
-- When: Thursday, April 2nd, 2026, from 6:00 PM to 8:00 PM
-- Where: Wilmington, Delaware area (New Castle County). Exact venue details sent after registration.
-- Cost: Completely FREE. No catch. Brandon runs it as a community event.
-- Capacity: Limited to 25 people to keep it hands-on and personal.
-- Format: Hands-on, in-person. Bring your laptop. Leave with 3 AI tools set up and working.
-- No tech experience needed. If you can use email and a web browser, you can do this.
-- What to bring: Laptop (fully charged), charger, and ideally a work task you want AI help with.
+${stateInstructions[caller.state]}
 
-## What They Will Learn (2 hours)
-1. What AI actually is — demystified, live demos, no buzzwords
-2. Prompt engineering — how to write prompts that get useful results for YOUR job
-3. AI agents and automation — live demos of real AI tools handling real work
-4. Build your toolkit — set up 3 AI tools on your laptop before you leave
+## Workshop Details
+- Free AI Hands-On Workshop — "See What AI Can Actually Do For Your Job"
+- Thursday, April 2, 2026, 6:00 PM to 8:00 PM
+- Hilton Wilmington/Christiana, 100 Continental Dr, Newark, DE 19713
+- Free on-site parking (400+ spaces)
+- Completely FREE. Limited to 25 people.
+- Hands-on, in-person. Bring a laptop. Leave with AI tools set up and working.
+- No tech experience needed. No guest speakers — just Brandon teaching.
+- We provide: printed workbook, coffee, snacks, Wi-Fi, power outlets. Complimentary water from the venue.
+
+## What They Learn (2 hours)
+1. What AI actually is — demystified, live demos
+2. How to talk to AI tools so they give useful results for YOUR job
+3. AI agents and automation — live demos of real tools handling real work
+4. Build your toolkit — set up AI tools on your laptop before you leave
 
 ## About Brandon
-Brandon Calloway runs 5+ businesses almost entirely on AI — including a voice agent company, a content creation platform, and multiple service businesses. He teaches from direct experience, not theory.
+Brandon Calloway runs 5+ businesses on AI — Call2Calendar (voice agent), Tri-State Aquatic Solutions (automated operations), 302 Photo Booth (AI booking). Practitioner, not professor.
 
-## Pricing and Offerings
-1. Free Workshop (Thursday April 2) — the introductory session, completely free
-2. AI Starter Pack ($497) — workshop replay, 50+ prompt library, 30-min 1-on-1 call with Brandon, 30 days email support, quick-start guides, private community
-3. Advanced Workshop ($997) — 2-day weekend intensive, capped at 10 people, build your own AI system, 60 days support, lunch included
-4. Corporate Team Training ($5,000-$10,000/day) — on-site at their office, custom curriculum
-5. AI Consulting ($4,997+) — done-for-you AI implementation: audit, roadmap, build, train staff, 90 days support
+## Paid Offerings (mention only if asked or if caller already attended free workshop)
+1. AI Starter Pack ($497) — replay, prompts, 1-on-1 call, 30 days support
+2. Advanced Workshop ($997) — 2-day intensive, 10 people max
+3. Corporate Training ($5K-$10K/day) — on-site, custom curriculum
+4. AI Consulting ($4,997+) — done-for-you implementation
 
 ## Registration
-- Direct them to learnandleverageai.com/workshops to register online (90 seconds)
-- OR offer to collect their info over the phone: full name, email, company, job title
-- After collecting info, confirm: "You're all set! You'll receive a confirmation email with all the details."
+- Online: learnandleverageai.com/workshops (15 seconds)
+- Or collect over the phone: name, email, phone
 
-## Objection Handling
-- "Not tech-savvy" → That's exactly who this is for. Half the room feels the same. Brandon assumes zero experience.
-- "No time" → 2 hours on a Thursday evening, 6-8 PM. If AI saves you 2 hours a week, you make it back in a week.
-- "Tried ChatGPT, wasn't useful" → Very common. The issue is how you use it. The prompt engineering section fixes that.
-- "Is this a sales pitch?" → No. Genuine education. Brandon briefly mentions services at the end, but the free session stands alone.
-- "Can my company pay?" → The workshop is free. For paid offerings ($497+), yes — professional development budgets usually cover it.
-
-## Important Rules
-1. Keep responses SHORT — 2-3 sentences max per turn. This is a phone call, not an essay.
-2. Be warm and conversational, not robotic.
-3. If they want to register, collect info naturally, one or two pieces at a time.
-4. NEVER give out Brandon's personal phone or email. Use info@learnandleverageai.com.
-5. If they ask about corporate training over $10K, C-suite consulting, or partnerships → say you'll have Brandon reach out personally.
-6. If they ask to speak to a human → "Absolutely, let me have Brandon reach out. He's usually very quick. What's the best way to reach you?"
-7. Be honest. If you don't know, say so and offer to have Brandon follow up.
-8. When they seem interested, gently guide them toward registering.`;
+## Rules
+1. Keep responses SHORT — 2-3 sentences max per turn
+2. Be warm and conversational
+3. NEVER give out Brandon's personal phone or email
+4. If they ask about corporate deals over $10K → have Brandon reach out
+5. If they want a human → "I'll have Brandon reach out. What's the best way to contact you?"
+6. Be honest about what you don't know`;
+}
 
 // ---- Helpers ----
 
@@ -276,16 +339,38 @@ export async function POST(request: NextRequest) {
 
     console.log(`[Voice] CallSid=${callSid} Phone=${phoneFromParam} Speech="${speechResult}" HistoryLen=${encodedHistory.length}`);
 
-    // FIRST CALL — no history, no speech → greeting
+    // FIRST CALL — no history, no speech → look up caller and greet
     if (!encodedHistory && !speechResult) {
-      const greeting = "Hi, thanks for calling Learn and Leverage AI! How can I help you today?";
+      const caller = await lookupCaller(phoneFromParam);
+      console.log(`[Voice] Caller lookup: state=${caller.state} name="${caller.name}" id=${caller.contactId}`);
+
+      let greeting: string;
+      if (caller.state === 'registered' || caller.state === 'confirmed') {
+        const firstName = caller.name ? caller.name.split(' ')[0] : '';
+        greeting = firstName
+          ? `Hi ${firstName}! Thanks for calling Learn and Leverage AI. I see you're registered for our upcoming workshop. How can I help you?`
+          : `Hi! Thanks for calling Learn and Leverage AI. I see you're registered for our upcoming workshop. How can I help you?`;
+      } else if (caller.state === 'attended') {
+        const firstName = caller.name ? caller.name.split(' ')[0] : '';
+        greeting = firstName
+          ? `Hi ${firstName}! Great to hear from you again. Thanks for calling Learn and Leverage AI. How can I help?`
+          : `Hi! Great to hear from you again. Thanks for calling Learn and Leverage AI. How can I help?`;
+      } else if (caller.state === 'purchased') {
+        const firstName = caller.name ? caller.name.split(' ')[0] : '';
+        greeting = `Hi ${firstName || 'there'}! Thanks for calling Learn and Leverage AI. Great to hear from you. How can I help?`;
+      } else {
+        greeting = "Hi, thanks for calling Learn and Leverage AI! How can I help you today?";
+      }
+
       const history: ChatMessage[] = [
         { role: 'assistant', content: greeting },
       ];
       const actionUrl = buildActionUrl(history, phoneFromParam);
 
-      // Also create a GHL contact just from the phone number (we know they called)
-      createGHLContact(phoneFromParam).catch(e => console.error('[Voice] Background GHL error:', e));
+      // Create GHL contact for unknown callers only
+      if (caller.state === 'unknown') {
+        createGHLContact(phoneFromParam).catch(e => console.error('[Voice] Background GHL error:', e));
+      }
 
       return new NextResponse(twimlGather(greeting, actionUrl), {
         headers: { 'Content-Type': 'text/xml' },
@@ -297,7 +382,7 @@ export async function POST(request: NextRequest) {
 
     if (!speechResult) {
       // No speech detected — reprompt
-      const reprompt = "I'm still here! You can ask about our free AI workshop on April 2nd, or I can help you register. What would you like to know?";
+      const reprompt = "I'm still here! You can ask about our free AI workshop, or I can help you register. What would you like to know?";
       history.push({ role: 'assistant', content: reprompt });
       const actionUrl = buildActionUrl(history, phoneFromParam);
       return new NextResponse(twimlGather(reprompt, actionUrl), {
@@ -317,9 +402,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Build full message array with system prompt + history
+    // Look up caller for state-aware system prompt
+    const caller = await lookupCaller(phoneFromParam);
+
+    // Build full message array with state-aware system prompt + history
     const messages: ChatMessage[] = [
-      { role: 'system', content: SYSTEM_PROMPT },
+      { role: 'system', content: buildVoiceSystemPrompt(caller) },
       ...history,
     ];
 

@@ -15,14 +15,6 @@ import {
 } from '@/lib/analytics';
 
 
-const AI_CHALLENGES = [
-  "Don't know where to start",
-  "Tried it, couldn't make it useful",
-  "My company wants me to but hasn't trained me",
-  "Worried about security/privacy",
-  "Want to use it to grow my business",
-];
-
 function ChevronDown({ className }: { className?: string }) {
   return (
     <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -44,10 +36,6 @@ export default function WorkshopsPage() {
     name: '',
     email: '',
     phone: '',
-    company: '',
-    jobTitle: '',
-    aiSkill: '1',
-    biggestChallenge: '',
   });
   const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -55,6 +43,26 @@ export default function WorkshopsPage() {
   const formStartedRef = useRef(false);
   const completedFieldsRef = useRef<Set<string>>(new Set());
   const scrollMilestonesRef = useRef<Set<number>>(new Set());
+
+  // ── Countdown timer ──────────────────────────────────────────────────
+  const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const target = new Date('2026-04-02T22:00:00Z').getTime(); // April 2, 6 PM EDT
+    const tick = () => {
+      const now = Date.now();
+      const diff = Math.max(0, target - now);
+      setCountdown({
+        days: Math.floor(diff / 86400000),
+        hours: Math.floor((diff % 86400000) / 3600000),
+        minutes: Math.floor((diff % 3600000) / 60000),
+        seconds: Math.floor((diff % 60000) / 1000),
+      });
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
 
   // ── UTM capture & scroll tracking ──────────────────────────────────
   useEffect(() => {
@@ -117,13 +125,8 @@ export default function WorkshopsPage() {
           full_name: formData.name,
           email: formData.email,
           phone: formData.phone,
-          company_name: formData.company,
-          job_title: formData.jobTitle,
-          ai_skill_level: formData.aiSkill,
-          biggest_challenge: formData.biggestChallenge,
           source: 'workshop-landing-page',
           registered_at: new Date().toISOString(),
-          // UTM parameters
           utm_source: utmParams.utm_source || '',
           utm_medium: utmParams.utm_medium || '',
           utm_campaign: utmParams.utm_campaign || '',
@@ -134,13 +137,7 @@ export default function WorkshopsPage() {
       if (!res.ok) throw new Error('Registration failed');
       setFormState('success');
 
-      // Fire all conversion tracking events (GA4, PostHog, Meta Pixel)
-      trackWorkshopRegistration({
-        company: formData.company,
-        job_title: formData.jobTitle,
-        ai_skill_level: formData.aiSkill,
-        challenge: formData.biggestChallenge,
-      });
+      trackWorkshopRegistration({});
     } catch {
       setFormState('error');
     }
@@ -213,39 +210,56 @@ export default function WorkshopsPage() {
           </div>
 
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.1] mb-5 animate-fade-up-delay-1">
-            Your Boss Said<br />
-            Learn AI.<br />
-            <span className="text-amber-400 relative inline-block line-draw">We&apos;ll Show You How.</span>
+            Most AI Workshops<br />
+            Teach You Theory.<br />
+            <span className="text-amber-400 relative inline-block line-draw">This One Gives You Tools.</span>
           </h1>
 
           <p className="font-body text-lg sm:text-xl text-gray-400 mb-4 max-w-xl mx-auto animate-fade-up-delay-2">
-            A hands-on evening workshop for professionals in the Wilmington, DE area.
-            Walk out with AI tools working for your actual job.
+            Free. Hands-on. 2 hours. Thursday, April 2.
+            Hilton Wilmington/Christiana, Newark, DE.
+            You bring your laptop — you leave with AI working for your actual job.
           </p>
 
           <p className="font-body text-base text-gray-500 mb-8 max-w-lg mx-auto animate-fade-up-delay-3">
             No tech experience needed. No jargon. No theory without practice.
           </p>
 
+          {/* CTA — scroll to learn more, then register */}
           <div className="animate-fade-up-delay-4">
             <a
               href="#register"
-              onClick={() => trackCtaClicked('Register for Free', 'hero')}
+              onClick={() => trackCtaClicked('Reserve My Free Spot', 'hero')}
               className="inline-block bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-xl font-body font-black text-lg transition-all shadow-lg shadow-amber-500/20 active:scale-95"
             >
-              Register for Free
+              Reserve My Free Spot
             </a>
-            <p className="font-body text-gray-600 text-sm mt-4">
-              25 seats only. Registration required.
+            <p className="font-body text-gray-600 text-xs mt-3">
+              25 seats only. Takes 15 seconds to register.
             </p>
           </div>
 
-          {/* Event quick details */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-10 max-w-lg mx-auto">
+          {/* Countdown timer */}
+          <div className="grid grid-cols-4 gap-2 mt-8 max-w-sm mx-auto">
             {[
-              { label: "When", value: "Thu, April 2" },
+              { label: "Days", value: countdown.days },
+              { label: "Hours", value: countdown.hours },
+              { label: "Min", value: countdown.minutes },
+              { label: "Sec", value: countdown.seconds },
+            ].map((item, i) => (
+              <div key={i} className="bg-white/5 border border-white/10 rounded-xl p-3 text-center">
+                <div className="font-display text-2xl font-black text-amber-400">{String(item.value).padStart(2, '0')}</div>
+                <div className="font-body text-[10px] text-gray-500 uppercase tracking-wider mt-0.5">{item.label}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Event quick details */}
+          <div className="grid grid-cols-4 gap-3 mt-4 max-w-md mx-auto">
+            {[
+              { label: "Date", value: "Apr 2" },
               { label: "Time", value: "6 - 8 PM" },
-              { label: "Where", value: "Wilmington, DE" },
+              { label: "Where", value: "Newark, DE" },
               { label: "Cost", value: "FREE", highlight: true },
             ].map((item, i) => (
               <div key={i} className="bg-white/5 border border-white/10 rounded-xl p-3 text-center">
@@ -306,7 +320,7 @@ export default function WorkshopsPage() {
             You&apos;re behind because no one showed you how.
           </p>
           <p className="font-body text-[#78716C] text-center mt-2">
-            That changes in one Thursday evening.
+            That changes in one evening.
           </p>
         </div>
       </section>
@@ -434,7 +448,9 @@ export default function WorkshopsPage() {
                 {[
                   { label: "Date", value: "Thursday, April 2, 2026" },
                   { label: "Time", value: "6:00 PM - 8:00 PM" },
-                  { label: "Location", value: "Wilmington, DE area (venue details sent upon registration)" },
+                  { label: "Location", value: "Hilton Wilmington/Christiana" },
+                  { label: "Address", value: "100 Continental Dr, Newark, DE 19713" },
+                  { label: "Parking", value: "Free on-site (400+ spaces)" },
                   { label: "Cost", value: "FREE", highlight: true },
                   { label: "Seats", value: "Limited to 25" },
                 ].map((item, i) => (
@@ -516,6 +532,47 @@ export default function WorkshopsPage() {
       </section>
 
       {/* ============================================================ */}
+      {/* VALUE STACK — What You Get (for free) */}
+      {/* ============================================================ */}
+      <section className="py-12 px-5 bg-white">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="font-display text-2xl sm:text-3xl font-black text-[#1C1917] text-center mb-2">
+            What You Walk Out With
+          </h2>
+          <p className="font-body text-[#78716C] text-center mb-8">
+            All of this. For free. In one evening.
+          </p>
+          <div className="space-y-3 max-w-lg mx-auto">
+            {[
+              '3 AI tools set up and working on YOUR laptop',
+              'Prompt templates you can use at work the next morning',
+              'Live demo: watch an AI agent answer a real phone call',
+              'Printed workbook with exercises and reference guides',
+              'A clear plan for which AI tools fit your specific role',
+              'Coffee, snacks, Wi-Fi, and free parking',
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-3">
+                <CheckIcon />
+                <span className="font-body text-[#44403C] text-sm font-medium">{item}</span>
+              </div>
+            ))}
+          </div>
+          <p className="font-body text-center text-[#78716C] text-sm mt-6">
+            Total value: <span className="font-bold text-[#1C1917]">$297+</span> — yours for <span className="font-bold text-green-600">$0</span>
+          </p>
+          <div className="text-center mt-6">
+            <a
+              href="#register"
+              onClick={() => trackCtaClicked('Reserve My Free Spot', 'value_stack')}
+              className="inline-block bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-xl font-body font-black text-lg transition-all shadow-lg shadow-amber-500/20 active:scale-95"
+            >
+              Reserve My Free Spot
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
       {/* REGISTRATION FORM */}
       {/* ============================================================ */}
       <section id="register" className="py-16 bg-[#1C1917] text-white scroll-mt-14">
@@ -525,34 +582,91 @@ export default function WorkshopsPage() {
               Register for the Free Workshop
             </h2>
             <p className="font-body text-gray-400 text-sm max-w-md mx-auto">
-              Thursday, April 2 from 6:00 PM - 8:00 PM in Wilmington, DE.
-              25 seats available. Takes 60 seconds to register.
+              Thursday, April 2 &middot; 6:00 - 8:00 PM &middot; Hilton Wilmington/Christiana, Newark, DE.
+              25 seats available. 3 fields. 15 seconds.
+            </p>
+            <p className="font-body text-red-400 text-sm font-bold mt-2">
+              Registration closes March 31
             </p>
           </div>
 
           <div className="bg-white rounded-2xl p-5 sm:p-8">
             {formState === 'success' ? (
-              <div className="text-center py-6">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
+              <div className="py-4">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h3 className="font-display text-xl text-[#1C1917] font-black mb-2">You&apos;re In!</h3>
+                  <p className="font-body text-sm text-[#57534E] max-w-sm mx-auto">
+                    Check your email and phone for confirmation details.
+                  </p>
                 </div>
-                <h3 className="font-display text-xl text-[#1C1917] font-black mb-2">You&apos;re Registered!</h3>
-                <p className="font-body text-sm text-[#57534E] max-w-sm mx-auto">
-                  You&apos;re registered! Check your email for details.
-                  We&apos;ll send reminders as the date approaches. See you April 2nd!
-                </p>
+
+                {/* Event details recap */}
+                <div className="bg-[#FFFBF5] rounded-xl p-4 mb-4">
+                  <div className="grid grid-cols-2 gap-3 text-sm">
+                    <div>
+                      <span className="font-body text-[#78716C] text-xs uppercase">When</span>
+                      <p className="font-body font-bold text-[#1C1917]">Thu, Apr 2 &middot; 6-8 PM</p>
+                    </div>
+                    <div>
+                      <span className="font-body text-[#78716C] text-xs uppercase">Where</span>
+                      <p className="font-body font-bold text-[#1C1917]">Hilton Wilmington/Christiana</p>
+                    </div>
+                  </div>
+                  <p className="font-body text-xs text-[#78716C] mt-2">100 Continental Dr, Newark, DE 19713 &middot; Free parking on-site</p>
+                </div>
+
+                {/* Add to Calendar */}
+                <div className="flex flex-col sm:flex-row gap-2 mb-4">
+                  <a
+                    href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=AI+Hands-On+Workshop&dates=20260402T220000Z/20260403T000000Z&details=Free+AI+workshop+with+Brandon+Calloway.+Bring+your+laptop+%26+charger.+100+Continental+Dr,+Newark+DE+19713.+Free+parking.&location=Hilton+Wilmington/Christiana,+100+Continental+Dr,+Newark,+DE+19713&sf=true"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 bg-white border border-gray-200 hover:border-amber-300 text-[#1C1917] font-body font-medium text-sm py-2.5 px-4 rounded-xl transition-colors"
+                  >
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></svg>
+                    Google Calendar
+                  </a>
+                  <a
+                    href={`data:text/calendar;charset=utf-8,${encodeURIComponent('BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:20260402T220000Z\nDTEND:20260403T000000Z\nSUMMARY:AI Hands-On Workshop\nDESCRIPTION:Free AI workshop with Brandon Calloway. Bring your laptop & charger.\nLOCATION:Hilton Wilmington/Christiana\\, 100 Continental Dr\\, Newark\\, DE 19713\nEND:VEVENT\nEND:VCALENDAR')}`}
+                    download="ai-workshop-april2.ics"
+                    className="flex-1 flex items-center justify-center gap-2 bg-white border border-gray-200 hover:border-amber-300 text-[#1C1917] font-body font-medium text-sm py-2.5 px-4 rounded-xl transition-colors"
+                  >
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" /></svg>
+                    Apple / Outlook (.ics)
+                  </a>
+                </div>
+
+                {/* What to bring */}
+                <div className="bg-amber-50 rounded-xl p-4">
+                  <h4 className="font-body text-sm font-bold text-[#1C1917] mb-2">What to bring:</h4>
+                  <ul className="space-y-1.5">
+                    {[
+                      'Your laptop (fully charged)',
+                      'A charger, just in case',
+                      'A work task you want AI help with',
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-center gap-2">
+                        <CheckIcon />
+                        <span className="font-body text-sm text-[#57534E]">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Name */}
                 <div>
-                  <label htmlFor="name" className="block font-body text-sm font-medium text-[#1C1917] mb-1.5">
+                  <label htmlFor="reg-name" className="block font-body text-sm font-medium text-[#1C1917] mb-1.5">
                     Full Name <span className="text-red-500">*</span>
                   </label>
                   <input
-                    id="name"
+                    id="reg-name"
                     type="text"
                     required
                     value={formData.name}
@@ -565,11 +679,11 @@ export default function WorkshopsPage() {
 
                 {/* Email */}
                 <div>
-                  <label htmlFor="email" className="block font-body text-sm font-medium text-[#1C1917] mb-1.5">
+                  <label htmlFor="reg-email" className="block font-body text-sm font-medium text-[#1C1917] mb-1.5">
                     Email Address <span className="text-red-500">*</span>
                   </label>
                   <input
-                    id="email"
+                    id="reg-email"
                     type="email"
                     required
                     value={formData.email}
@@ -581,98 +695,20 @@ export default function WorkshopsPage() {
 
                 {/* Phone */}
                 <div>
-                  <label htmlFor="phone" className="block font-body text-sm font-medium text-[#1C1917] mb-1.5">
+                  <label htmlFor="reg-phone" className="block font-body text-sm font-medium text-[#1C1917] mb-1.5">
                     Phone Number <span className="text-red-500">*</span>
-                    <span className="text-[#A8A29E] font-normal ml-1">(for SMS reminders)</span>
+                    <span className="text-[#A8A29E] font-normal ml-1">(for event updates)</span>
                   </label>
                   <input
-                    id="phone"
+                    id="reg-phone"
                     type="tel"
+                    inputMode="tel"
                     required
                     value={formData.phone}
                     onChange={(e) => handleChange('phone', e.target.value)}
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] text-base focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
                     placeholder="(302) 555-0100"
                   />
-                </div>
-
-                {/* Company + Job Title row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="company" className="block font-body text-sm font-medium text-[#1C1917] mb-1.5">
-                      Company <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      id="company"
-                      type="text"
-                      required
-                      value={formData.company}
-                      onChange={(e) => handleChange('company', e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] text-base focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
-                      placeholder="Acme Corp"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="jobTitle" className="block font-body text-sm font-medium text-[#1C1917] mb-1.5">
-                      Job Title <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      id="jobTitle"
-                      type="text"
-                      required
-                      value={formData.jobTitle}
-                      onChange={(e) => handleChange('jobTitle', e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] text-base focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
-                      placeholder="Marketing Manager"
-                    />
-                  </div>
-                </div>
-
-                {/* AI Skill Self-Assessment */}
-                <div>
-                  <label htmlFor="aiSkill" className="block font-body text-sm font-medium text-[#1C1917] mb-1.5">
-                    How would you rate your AI skills? <span className="text-red-500">*</span>
-                  </label>
-                  <div className="flex items-center gap-3">
-                    <span className="font-body text-xs text-[#A8A29E] whitespace-nowrap">Never used it</span>
-                    <input
-                      id="aiSkill"
-                      type="range"
-                      min="1"
-                      max="10"
-                      value={formData.aiSkill}
-                      onChange={(e) => handleChange('aiSkill', e.target.value)}
-                      className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-amber-500"
-                    />
-                    <span className="font-body text-xs text-[#A8A29E] whitespace-nowrap">Use it daily</span>
-                  </div>
-                  <div className="text-center mt-1">
-                    <span className="inline-block bg-amber-50 text-amber-700 font-body text-sm font-bold px-3 py-1 rounded-full">
-                      {formData.aiSkill} / 10
-                    </span>
-                  </div>
-                </div>
-
-                {/* Biggest Challenge Dropdown */}
-                <div>
-                  <label htmlFor="biggestChallenge" className="block font-body text-sm font-medium text-[#1C1917] mb-1.5">
-                    What&apos;s your biggest challenge with AI? <span className="text-red-500">*</span>
-                  </label>
-                  <div className="relative">
-                    <select
-                      id="biggestChallenge"
-                      required
-                      value={formData.biggestChallenge}
-                      onChange={(e) => handleChange('biggestChallenge', e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] text-base focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all appearance-none bg-white pr-10"
-                    >
-                      <option value="" disabled>Select your biggest challenge...</option>
-                      {AI_CHALLENGES.map((challenge, i) => (
-                        <option key={i} value={challenge}>{challenge}</option>
-                      ))}
-                    </select>
-                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
-                  </div>
                 </div>
 
                 {formState === 'error' && (
@@ -700,7 +736,7 @@ export default function WorkshopsPage() {
                 </button>
 
                 <p className="font-body text-center text-xs text-[#A8A29E] mt-1">
-                  We&apos;ll send a confirmation email and SMS reminders before the event.
+                  Takes 15 seconds. We&apos;ll email and text you a confirmation.
                   No spam. Unsubscribe anytime.
                 </p>
               </form>
@@ -715,7 +751,7 @@ export default function WorkshopsPage() {
       <section className="py-16 px-5 bg-[#FFFBF5] text-center">
         <div className="max-w-2xl mx-auto">
           <h2 className="font-display text-2xl sm:text-3xl font-black text-[#1C1917] mb-4">
-            One Thursday Evening.<br />
+            One Evening.<br />
             <span className="text-amber-600">A Career&apos;s Worth of AI Skills.</span>
           </h2>
           <p className="font-body text-[#78716C] mb-8 max-w-lg mx-auto">
@@ -730,7 +766,7 @@ export default function WorkshopsPage() {
             Register for Free
           </a>
           <p className="font-body text-[#A8A29E] text-sm mt-4">
-            Thursday, April 2 &middot; 6:00 PM - 8:00 PM &middot; Wilmington, DE &middot; 25 seats only
+            Thursday, April 2 &middot; 6:00 - 8:00 PM &middot; Hilton Wilmington/Christiana, Newark, DE &middot; 25 seats only
           </p>
         </div>
       </section>
@@ -743,6 +779,11 @@ export default function WorkshopsPage() {
           <p className="font-display text-base font-bold text-white mb-2">
             Learn & Leverage <span className="text-amber-400">AI</span>
           </p>
+          <div className="flex items-center justify-center gap-4 mb-3">
+            <a href="/terms" className="font-body text-xs text-gray-400 hover:text-amber-400 transition-colors">Terms of Service</a>
+            <span className="text-gray-600">|</span>
+            <a href="/privacy" className="font-body text-xs text-gray-400 hover:text-amber-400 transition-colors">Privacy Policy</a>
+          </div>
           <p className="font-body text-xs text-gray-600">
             &copy; {new Date().getFullYear()} Learn & Leverage AI. All rights reserved.
           </p>

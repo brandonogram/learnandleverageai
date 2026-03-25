@@ -459,6 +459,11 @@ function EventPageLegacy() {
 
       {/* Footer */}
       <footer className="py-6 bg-white border-t border-gray-100">
+        <div className="flex items-center justify-center gap-4 mb-2 px-5">
+          <a href="/terms" className="font-body text-xs text-[#A8A29E] hover:text-[#D97706] transition-colors">Terms of Service</a>
+          <span className="text-[#A8A29E]">|</span>
+          <a href="/privacy" className="font-body text-xs text-[#A8A29E] hover:text-[#D97706] transition-colors">Privacy Policy</a>
+        </div>
         <p className="font-body text-xs text-[#A8A29E] text-center px-5">
           © {new Date().getFullYear()} Learn & Leverage AI. Built by a contractor, for contractors.
         </p>

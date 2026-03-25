@@ -167,7 +167,7 @@ export default function SmsOptInPage() {
             {/* Footer Links */}
             <div className="text-center mt-8 pt-6 border-t border-gray-200">
               <a
-                href="/privacy-policy"
+                href="/privacy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 font-semibold hover:underline mx-3"
@@ -176,7 +176,7 @@ export default function SmsOptInPage() {
               </a>
               {' | '}
               <a
-                href="/terms-of-service"
+                href="/terms"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 font-semibold hover:underline mx-3"

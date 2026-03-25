@@ -809,11 +809,11 @@ export default function ConciergePage() {
           <div className="mt-8 text-center">
             <p className="font-body text-gray-500 text-sm mb-3">Prefer to reach out directly?</p>
             <div className="flex flex-wrap justify-center gap-6">
-              <a href="tel:+13024209576" className="inline-flex items-center gap-2 text-gray-400 hover:text-amber-400 transition-colors font-body font-medium">
+              <a href="tel:+13024166285" className="inline-flex items-center gap-2 text-gray-400 hover:text-amber-400 transition-colors font-body font-medium">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                (302) 420-9576
+                (302) 416-6285
               </a>
               <a href="mailto:brandon@learnandleverageai.com" className="inline-flex items-center gap-2 text-gray-400 hover:text-amber-400 transition-colors font-body font-medium">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -841,11 +841,11 @@ export default function ConciergePage() {
               <p className="font-body text-gray-500">I respond personally within 24 hours.</p>
             </div>
             <div className="flex flex-wrap items-center gap-6 font-body">
-              <a href="tel:+13024209576" className="flex items-center gap-2 text-gray-400 hover:text-amber-400 transition-colors">
+              <a href="tel:+13024166285" className="flex items-center gap-2 text-gray-400 hover:text-amber-400 transition-colors">
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                (302) 420-9576
+                (302) 416-6285
               </a>
               <a href="mailto:brandon@learnandleverageai.com" className="flex items-center gap-2 text-gray-400 hover:text-amber-400 transition-colors">
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -862,6 +862,11 @@ export default function ConciergePage() {
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-white/5 text-center">
+            <div className="flex items-center justify-center gap-4 mb-3">
+              <a href="/terms" className="font-body text-xs text-gray-400 hover:text-amber-400 transition-colors">Terms of Service</a>
+              <span className="text-gray-600">|</span>
+              <a href="/privacy" className="font-body text-xs text-gray-400 hover:text-amber-400 transition-colors">Privacy Policy</a>
+            </div>
             <p className="font-body text-sm text-gray-600">
               &copy; {new Date().getFullYear()} Learn &amp; Leverage AI. All rights reserved.
             </p>

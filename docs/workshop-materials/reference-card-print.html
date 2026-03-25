@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Tool Quick Reference Card — LearnAndLeverageAI</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  @page {
+    size: letter;
+    margin: 0.4in;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1a1a2e;
+    line-height: 1.35;
+    font-size: 9.5pt;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ========== PAGE 1: FRONT — Top 10 AI Tools ========== */
+  .page { page-break-after: always; padding: 0.1in 0; }
+  .page:last-child { page-break-after: avoid; }
+
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header h1 {
+    font-size: 16pt;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+  }
+
+  .header .subtitle {
+    font-size: 8.5pt;
+    opacity: 0.85;
+    text-align: right;
+  }
+
+  /* Tool table */
+  .tool-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 14px;
+  }
+
+  .tool-table th {
+    background: #f0f4ff;
+    color: #1a1a2e;
+    font-weight: 700;
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 5px 8px;
+    text-align: left;
+    border-bottom: 2px solid #1a1a2e;
+  }
+
+  .tool-table td {
+    padding: 5px 8px;
+    border-bottom: 1px solid #e8ecf0;
+    font-size: 8.5pt;
+    vertical-align: top;
+  }
+
+  .tool-table tr:nth-child(even) td {
+    background: #fafbfd;
+  }
+
+  .tool-table .tool-num {
+    font-weight: 800;
+    color: #4361ee;
+    width: 20px;
+    text-align: center;
+  }
+
+  .tool-table .tool-name {
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .tool-table .best-for {
+    font-style: italic;
+    color: #555;
+    font-size: 8pt;
+  }
+
+  .free-tag {
+    background: #10b981;
+    color: white;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 7pt;
+    font-weight: 700;
+  }
+
+  .price {
+    font-weight: 600;
+    font-size: 8pt;
+  }
+
+  /* Start here section */
+  .start-box {
+    background: #f0f4ff;
+    border: 2px solid #4361ee;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+  }
+
+  .start-box h3 {
+    font-size: 11pt;
+    color: #4361ee;
+    margin-bottom: 6px;
+  }
+
+  .start-box .step {
+    margin-bottom: 4px;
+    padding-left: 8px;
+  }
+
+  .start-box .step-num {
+    font-weight: 800;
+    color: #4361ee;
+  }
+
+  .start-box .step-url {
+    color: #4361ee;
+    font-weight: 600;
+  }
+
+  /* QR grid */
+  .qr-section h3 {
+    font-size: 10pt;
+    margin-bottom: 6px;
+    color: #1a1a2e;
+  }
+
+  .qr-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    text-align: center;
+  }
+
+  .qr-item {
+    border: 1px solid #e8ecf0;
+    border-radius: 6px;
+    padding: 4px;
+    font-size: 7pt;
+    font-weight: 600;
+  }
+
+  .qr-item .qr-placeholder {
+    width: 55px;
+    height: 55px;
+    background: #f5f5f5;
+    border: 1px dashed #ccc;
+    margin: 0 auto 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6pt;
+    color: #999;
+    border-radius: 4px;
+  }
+
+  /* ========== PAGE 2: BACK — Prompt Templates ========== */
+  .prompt-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 8px 10px;
+    margin-bottom: 8px;
+    page-break-inside: avoid;
+  }
+
+  .prompt-card h4 {
+    font-size: 10pt;
+    color: #1a1a2e;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .prompt-card h4 .num {
+    background: #4361ee;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9pt;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  .prompt-text {
+    background: #f8f9fb;
+    border-left: 3px solid #4361ee;
+    padding: 6px 10px;
+    margin: 4px 0;
+    font-size: 7.8pt;
+    line-height: 1.4;
+    color: #333;
+  }
+
+  .prompt-text em {
+    color: #4361ee;
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .use-for {
+    font-size: 7.5pt;
+    color: #666;
+    margin-top: 3px;
+  }
+
+  .use-for strong {
+    color: #1a1a2e;
+  }
+
+  /* Formula bar */
+  .formula-bar {
+    background: linear-gradient(135deg, #4361ee 0%, #3730a3 100%);
+    color: white;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .formula-bar .formula {
+    font-size: 12pt;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px;
+  }
+
+  .formula-bar .formula-desc {
+    font-size: 8pt;
+    opacity: 0.9;
+  }
+
+  /* Footer */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 8pt;
+    color: #666;
+  }
+
+  .footer .brand {
+    font-weight: 700;
+    color: #1a1a2e;
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== PAGE 1: FRONT ==================== -->
+<div class="page">
+  <div class="header">
+    <div>
+      <h1>Top 10 AI Tools for Professionals</h1>
+    </div>
+    <div class="subtitle">
+      LearnAndLeverageAI.com<br>
+      Quick Reference Card
+    </div>
+  </div>
+
+  <table class="tool-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Tool</th>
+        <th>What It Does</th>
+        <th>Free?</th>
+        <th>Paid</th>
+        <th>Best For</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="tool-num">1</td>
+        <td class="tool-name">ChatGPT</td>
+        <td>Write, analyze, brainstorm, answer questions</td>
+        <td><span class="free-tag">FREE</span></td>
+        <td class="price">$20/mo</td>
+        <td class="best-for">General daily tasks; best all-around starting point</td>
+      </tr>
+      <tr>
+        <td class="tool-num">2</td>
+        <td class="tool-name">Claude</td>
+        <td>Write, analyze long documents, careful reasoning</td>
+        <td><span class="free-tag">FREE</span></td>
+        <td class="price">$20/mo</td>
+        <td class="best-for">Long reports and documents; detailed analysis</td>
+      </tr>
+      <tr>
+        <td class="tool-num">3</td>
+        <td class="tool-name">Copilot</td>
+        <td>AI built into Word, Excel, Outlook, Teams</td>
+        <td><span class="free-tag">BASIC</span></td>
+        <td class="price">$30/mo</td>
+        <td class="best-for">If your company uses Microsoft 365</td>
+      </tr>
+      <tr>
+        <td class="tool-num">4</td>
+        <td class="tool-name">Gemini</td>
+        <td>AI built into Gmail, Docs, Sheets, Slides</td>
+        <td><span class="free-tag">BASIC</span></td>
+        <td class="price">$20/mo</td>
+        <td class="best-for">If your company uses Google Workspace</td>
+      </tr>
+      <tr>
+        <td class="tool-num">5</td>
+        <td class="tool-name">Grammarly</td>
+        <td>Fixes grammar, improves writing everywhere you type</td>
+        <td><span class="free-tag">FREE</span></td>
+        <td class="price">$12/mo</td>
+        <td class="best-for">Making every email and document polished</td>
+      </tr>
+      <tr>
+        <td class="tool-num">6</td>
+        <td class="tool-name">Perplexity</td>
+        <td>AI research &mdash; answers with sources, not links</td>
+        <td><span class="free-tag">FREE</span></td>
+        <td class="price">$20/mo</td>
+        <td class="best-for">Research, fact-checking, finding info fast</td>
+      </tr>
+      <tr>
+        <td class="tool-num">7</td>
+        <td class="tool-name">Otter.ai</td>
+        <td>Records and transcribes meetings; generates notes</td>
+        <td><span class="free-tag">FREE</span></td>
+        <td class="price">$17/mo</td>
+        <td class="best-for">Anyone in a lot of meetings</td>
+      </tr>
+      <tr>
+        <td class="tool-num">8</td>
+        <td class="tool-name">Zapier</td>
+        <td>Connects apps; automates repetitive tasks (no coding)</td>
+        <td><span class="free-tag">FREE</span></td>
+        <td class="price">$20/mo</td>
+        <td class="best-for">Simple automations between 2-3 apps</td>
+      </tr>
+      <tr>
+        <td class="tool-num">9</td>
+        <td class="tool-name">Gamma</td>
+        <td>Creates presentations from a text description</td>
+        <td><span class="free-tag">FREE</span></td>
+        <td class="price">$10/mo</td>
+        <td class="best-for">Making slides and one-pagers fast</td>
+      </tr>
+      <tr>
+        <td class="tool-num">10</td>
+        <td class="tool-name">Canva AI</td>
+        <td>Graphic design with AI &mdash; posts, flyers, videos</td>
+        <td><span class="free-tag">FREE</span></td>
+        <td class="price">$13/mo</td>
+        <td class="best-for">Professional visuals without a designer</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="start-box">
+    <h3>Where to Start (3 Steps, 5 Minutes)</h3>
+    <div class="step"><span class="step-num">Step 1:</span> Sign up for ChatGPT (<span class="step-url">chat.openai.com</span>) or Claude (<span class="step-url">claude.ai</span>) &mdash; free.</div>
+    <div class="step"><span class="step-num">Step 2:</span> Install Grammarly browser extension &mdash; free.</div>
+    <div class="step"><span class="step-num">Step 3:</span> Try Zapier for one automation &mdash; free.</div>
+  </div>
+
+  <div class="qr-section">
+    <h3>Scan to Visit Each Tool</h3>
+    <div class="qr-grid">
+      <div class="qr-item"><div class="qr-placeholder">QR</div>ChatGPT</div>
+      <div class="qr-item"><div class="qr-placeholder">QR</div>Claude</div>
+      <div class="qr-item"><div class="qr-placeholder">QR</div>Copilot</div>
+      <div class="qr-item"><div class="qr-placeholder">QR</div>Gemini</div>
+      <div class="qr-item"><div class="qr-placeholder">QR</div>Grammarly</div>
+    </div>
+    <div class="qr-grid" style="margin-top: 6px;">
+      <div class="qr-item"><div class="qr-placeholder">QR</div>Perplexity</div>
+      <div class="qr-item"><div class="qr-placeholder">QR</div>Otter.ai</div>
+      <div class="qr-item"><div class="qr-placeholder">QR</div>Zapier</div>
+      <div class="qr-item"><div class="qr-placeholder">QR</div>Gamma</div>
+      <div class="qr-item"><div class="qr-placeholder">QR</div>Canva</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 2: BACK ==================== -->
+<div class="page">
+  <div class="header">
+    <div>
+      <h1>Brandon's Top 5 Prompt Templates</h1>
+    </div>
+    <div class="subtitle">
+      Copy these exactly.<br>Replace [brackets] with your info.
+    </div>
+  </div>
+
+  <div class="prompt-card">
+    <h4><span class="num">1</span> The Email Writer</h4>
+    <div class="prompt-text">
+      You are a <em>[your job title]</em> at a <em>[your industry]</em> company. Write a professional email to <em>[recipient]</em> about <em>[topic]</em>. The tone should be <em>[friendly / formal / direct]</em>. Keep it under <em>[number]</em> words. Include <em>[action items, deadlines, next steps]</em>.
+    </div>
+    <div class="use-for"><strong>Use for:</strong> Client updates, team announcements, status reports, follow-ups.</div>
+  </div>
+
+  <div class="prompt-card">
+    <h4><span class="num">2</span> The Document Summarizer</h4>
+    <div class="prompt-text">
+      I'm pasting a <em>[report, email chain, article, policy doc]</em> below. Summarize it in <em>[number]</em> bullet points. Each bullet should be one clear sentence. Highlight any action items, deadlines, or decisions. Write it so a busy <em>[executive / manager]</em> can get the key points in 30 seconds.<br><br><em>[Paste your document here]</em>
+    </div>
+    <div class="use-for"><strong>Use for:</strong> Long emails, reports, meeting notes, policy documents, articles.</div>
+  </div>
+
+  <div class="prompt-card">
+    <h4><span class="num">3</span> The Data Analyzer</h4>
+    <div class="prompt-text">
+      You are a <em>[job title]</em> with expertise in <em>[field]</em>. I'm sharing <em>[sales numbers, survey results, budget figures]</em>. Analyze this data and give me: (1) The top 3 trends or patterns, (2) Anything unusual or concerning, (3) 2-3 recommended actions. Present as a brief executive summary (under 200 words) followed by a detail table.<br><br><em>[Paste your data here]</em>
+    </div>
+    <div class="use-for"><strong>Use for:</strong> Spreadsheet data, quarterly numbers, survey results, KPIs.</div>
+  </div>
+
+  <div class="prompt-card">
+    <h4><span class="num">4</span> The Meeting Prep</h4>
+    <div class="prompt-text">
+      I have a meeting with <em>[who]</em> on <em>[topic]</em> on <em>[date]</em>. My goal is <em>[what you want]</em>. The audience cares most about <em>[their priorities]</em>. Prepare: (1) 5 talking points addressing their priorities, (2) 3 potential tough questions with responses, (3) A one-paragraph opening statement. Keep everything concise and practical.
+    </div>
+    <div class="use-for"><strong>Use for:</strong> Presentations, client calls, vendor negotiations, performance reviews.</div>
+  </div>
+
+  <div class="prompt-card">
+    <h4><span class="num">5</span> The Weekly Planner</h4>
+    <div class="prompt-text">
+      You are my executive assistant. Priorities this week: <em>[list 3-5]</em>. Recurring commitments: <em>[list meetings/tasks]</em>. Create a Mon-Fri daily plan that: blocks focused time, groups similar tasks, leaves buffer for surprises, and identifies what I could delegate or use AI for. Present as a simple daily schedule.
+    </div>
+    <div class="use-for"><strong>Use for:</strong> Sunday evening or Monday morning planning. Whole week organized in 2 min.</div>
+  </div>
+
+  <div class="formula-bar">
+    <div class="formula">Role + Context + Task + Format = Great Results</div>
+    <div class="formula-desc">The secret to good AI results is good prompts. Use this formula every time.</div>
+  </div>
+
+  <div class="footer">
+    <div>
+      <span class="brand">LearnAndLeverageAI.com</span> &nbsp;|&nbsp;
+      info@learnandleverageai.com &nbsp;|&nbsp;
+      (302) 416-6285
+    </div>
+    <div>Keep learning: scan to join our free community &rarr; [QR]</div>
+  </div>
+</div>
+
+</body>
+</html>

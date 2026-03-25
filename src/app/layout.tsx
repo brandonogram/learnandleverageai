@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -53,7 +52,12 @@ export default function RootLayout({
           `}
         </Script>
         {children}
-        <Analytics />
+        <Script
+          src="https://widgets.leadconnectorhq.com/loader.js"
+          data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+          data-widget-id="69c2f2eedf59cd6cb0175896"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );

@@ -1,5 +1,5 @@
 # GSC Performance Report — LearnAndLeverageAI
-**Generated:** 2026-02-17
+**Generated:** 2026-03-12
 **Domain:** learnandleverageai.com
 **Period:** Last 28 days
 
@@ -27,3 +27,6 @@ _No CTR opportunities found. Either CTR is healthy or impressions are too low._
 
 ## Top Pages by Clicks
 
+| Page | Clicks | Impressions | CTR |
+|------|--------|-------------|-----|
+| / | 0 | 1 | 0.0% |

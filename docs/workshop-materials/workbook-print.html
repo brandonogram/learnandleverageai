@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Hands-On Workshop Workbook — LearnAndLeverageAI</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  @page {
+    size: letter;
+    margin: 0.6in;
+    @bottom-center {
+      content: counter(page);
+      font-family: 'Inter', sans-serif;
+      font-size: 9pt;
+      color: #78716C;
+    }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1C1917;
+    line-height: 1.55;
+    font-size: 11pt;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ==================== PAGE BREAKS ==================== */
+  .page-break {
+    page-break-after: always;
+    break-after: page;
+  }
+
+  /* ==================== COVER / HEADER ==================== */
+  .cover {
+    background: linear-gradient(145deg, #1C1917 0%, #292524 100%);
+    color: #FAFAF9;
+    padding: 48px 40px;
+    border-radius: 10px;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(245,158,11,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .cover h1 {
+    font-size: 28pt;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+    position: relative;
+  }
+
+  .cover .subtitle {
+    font-size: 14pt;
+    font-weight: 500;
+    color: #F59E0B;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .cover .brand {
+    font-size: 12pt;
+    font-weight: 700;
+    color: #F59E0B;
+    margin-bottom: 2px;
+    position: relative;
+  }
+
+  .cover .presenter {
+    font-size: 11pt;
+    color: #D6D3D1;
+    position: relative;
+  }
+
+  .cover-fields {
+    margin-top: 20px;
+    position: relative;
+  }
+
+  .cover-fields .field {
+    font-size: 11pt;
+    color: #D6D3D1;
+    margin-bottom: 6px;
+  }
+
+  .cover-fields .field-line {
+    display: inline-block;
+    width: 260px;
+    border-bottom: 1px solid #78716C;
+    margin-left: 4px;
+  }
+
+  /* ==================== QUOTE BLOCK ==================== */
+  .quote-block {
+    text-align: center;
+    padding: 16px 24px;
+    margin-bottom: 20px;
+    font-style: italic;
+    font-size: 12pt;
+    color: #57534E;
+    border-top: 2px solid #E7E5E4;
+    border-bottom: 2px solid #E7E5E4;
+  }
+
+  /* ==================== SECTION HEADERS ==================== */
+  h1.section-title {
+    font-size: 22pt;
+    font-weight: 900;
+    color: #1C1917;
+    margin-bottom: 4px;
+    padding-bottom: 6px;
+    border-bottom: 4px solid #F59E0B;
+    page-break-after: avoid;
+  }
+
+  .section-goal {
+    font-size: 11pt;
+    font-style: italic;
+    color: #57534E;
+    margin-bottom: 20px;
+    margin-top: 6px;
+  }
+
+  h2 {
+    font-size: 16pt;
+    font-weight: 800;
+    color: #1C1917;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    page-break-after: avoid;
+  }
+
+  h3 {
+    font-size: 13pt;
+    font-weight: 700;
+    color: #292524;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    page-break-after: avoid;
+  }
+
+  h4 {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #44403C;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    page-break-after: avoid;
+  }
+
+  /* ==================== BODY TEXT ==================== */
+  p {
+    margin-bottom: 10px;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  ul, ol {
+    margin-bottom: 10px;
+    padding-left: 22px;
+  }
+
+  li {
+    margin-bottom: 4px;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #E7E5E4;
+    margin: 18px 0;
+  }
+
+  /* ==================== TABLES ==================== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+    font-size: 10pt;
+    page-break-inside: avoid;
+  }
+
+  table th {
+    background: #F5F5F4;
+    color: #1C1917;
+    font-weight: 700;
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    padding: 7px 10px;
+    text-align: left;
+    border-bottom: 2px solid #1C1917;
+  }
+
+  table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #E7E5E4;
+    vertical-align: top;
+  }
+
+  table tr:nth-child(even) td {
+    background: #FAFAF9;
+  }
+
+  /* ==================== TOC TABLE ==================== */
+  .toc-table th {
+    background: #1C1917;
+    color: #FAFAF9;
+    font-size: 9pt;
+  }
+
+  .toc-table td.hour-label {
+    font-weight: 800;
+    color: #F59E0B;
+    background: #FFFBEB;
+  }
+
+  /* ==================== COMPARISON TABLE (wide) ==================== */
+  .comparison-table {
+    font-size: 9pt;
+  }
+
+  .comparison-table th:first-child {
+    width: 100px;
+  }
+
+  /* ==================== PROMPT / CODE BLOCKS ==================== */
+  .prompt-block {
+    background: #FFFBEB;
+    border-left: 4px solid #F59E0B;
+    padding: 12px 16px;
+    margin: 10px 0;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 9.5pt;
+    line-height: 1.5;
+    color: #292524;
+    border-radius: 0 6px 6px 0;
+    page-break-inside: avoid;
+  }
+
+  .prompt-block em {
+    color: #B45309;
+    font-style: italic;
+  }
+
+  /* ==================== EXERCISE BOXES ==================== */
+  .exercise-box {
+    background: #F5F5F4;
+    border: 2px solid #D6D3D1;
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin: 16px 0;
+    page-break-inside: avoid;
+  }
+
+  .exercise-box h3 {
+    margin-top: 0;
+    color: #1C1917;
+    font-size: 13pt;
+  }
+
+  .exercise-box h4 {
+    margin-top: 12px;
+    color: #44403C;
+  }
+
+  .exercise-header {
+    background: #1C1917;
+    color: #FAFAF9;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 11pt;
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .exercise-header .time-badge {
+    background: #F59E0B;
+    color: #1C1917;
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-size: 9pt;
+    font-weight: 700;
+  }
+
+  /* ==================== WRITE-IN LINES ==================== */
+  .write-line {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #A8A29E;
+    height: 28px;
+    margin-bottom: 4px;
+  }
+
+  .write-line-short {
+    display: inline-block;
+    width: 300px;
+    border-bottom: 1px solid #A8A29E;
+    height: 24px;
+    margin-left: 4px;
+  }
+
+  .write-line-medium {
+    display: inline-block;
+    width: 400px;
+    border-bottom: 1px solid #A8A29E;
+    height: 24px;
+    margin-left: 4px;
+  }
+
+  .field-label {
+    font-weight: 700;
+    font-size: 10.5pt;
+    color: #44403C;
+  }
+
+  /* ==================== RATING LINE ==================== */
+  .rating {
+    font-size: 10pt;
+    color: #57534E;
+    margin: 8px 0;
+  }
+
+  /* ==================== CALLOUT BOX ==================== */
+  .callout {
+    background: #FFFBEB;
+    border: 2px solid #F59E0B;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+    page-break-inside: avoid;
+  }
+
+  .callout h3 {
+    margin-top: 0;
+    color: #B45309;
+  }
+
+  .callout p {
+    margin-bottom: 6px;
+  }
+
+  /* ==================== TIP BOX ==================== */
+  .tip-box {
+    background: #F0FDF4;
+    border-left: 4px solid #22C55E;
+    padding: 10px 16px;
+    margin: 12px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 10pt;
+  }
+
+  .tip-box strong {
+    color: #15803D;
+  }
+
+  /* ==================== PATTERN TABLE ==================== */
+  .pattern-table td:first-child {
+    color: #DC2626;
+    font-weight: 600;
+  }
+
+  .pattern-table td:last-child {
+    color: #16A34A;
+    font-weight: 600;
+  }
+
+  /* ==================== FOOTER BRAND ==================== */
+  .page-footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 12px;
+    border-top: 2px solid #E7E5E4;
+    font-size: 10pt;
+    color: #78716C;
+  }
+
+  .page-footer .brand-name {
+    font-weight: 800;
+    color: #1C1917;
+    font-size: 11pt;
+  }
+
+  /* ==================== NOTES PAGE ==================== */
+  .notes-lines .write-line {
+    height: 32px;
+  }
+
+  /* ==================== CHECKBOX LIST ==================== */
+  .checkbox-list {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .checkbox-list li {
+    position: relative;
+    padding-left: 26px;
+    margin-bottom: 10px;
+  }
+
+  .checkbox-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 3px;
+    width: 14px;
+    height: 14px;
+    border: 2px solid #A8A29E;
+    border-radius: 3px;
+  }
+
+  /* ==================== ROI TABLE ==================== */
+  .roi-table td {
+    padding: 8px 10px;
+  }
+
+  .roi-table .fill-cell {
+    border-bottom: 1px dashed #A8A29E;
+    min-width: 80px;
+  }
+
+  /* ==================== WHAT TO BRING ==================== */
+  .bring-list {
+    font-size: 11pt;
+    margin-bottom: 16px;
+  }
+
+  .bring-list li {
+    margin-bottom: 6px;
+  }
+
+  /* ==================== RESOURCE TABLE ==================== */
+  .resource-table td {
+    font-size: 9.5pt;
+  }
+
+  .resource-table .tool-name {
+    font-weight: 700;
+  }
+
+  /* ==================== UTILITY ==================== */
+  .mt-0 { margin-top: 0; }
+  .mb-0 { margin-bottom: 0; }
+  .text-center { text-align: center; }
+  .text-amber { color: #F59E0B; }
+  .text-muted { color: #78716C; }
+  .font-bold { font-weight: 700; }
+  .avoid-break { page-break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<!-- =====================================================================
+     COVER PAGE
+     ===================================================================== -->
+<div class="cover">
+  <h1>AI Hands-On Workshop</h1>
+  <div class="subtitle">Your Guide to Getting Started with AI &mdash; Today</div>
+  <div class="brand">LearnAndLeverageAI</div>
+  <div class="presenter">Presented by Brandon Calloway</div>
+  <div class="cover-fields">
+    <div class="field"><strong>Date:</strong> <span class="field-line"></span></div>
+    <div class="field"><strong>Location:</strong> <span class="field-line"></span></div>
+  </div>
+</div>
+
+<div class="quote-block">
+  &ldquo;You don&rsquo;t need to be a tech expert to use AI. You just need someone to show you how.&rdquo;
+</div>
+
+<h2 class="mt-0">What to expect today:</h2>
+<p>In the next 2 hours, you will go from &ldquo;I&rsquo;ve heard of ChatGPT&rdquo; to &ldquo;I have AI tools working for my job.&rdquo; This is not a lecture. You will open your laptop, follow along, and build real skills you can use tomorrow morning.</p>
+
+<h3>What to bring:</h3>
+<ul class="bring-list">
+  <li>A laptop (charged) or tablet</li>
+  <li>Your work email (to sign up for tools)</li>
+  <li>An open mind</li>
+</ul>
+
+<div class="page-break"></div>
+
+<!-- =====================================================================
+     TABLE OF CONTENTS
+     ===================================================================== -->
+<h2 class="mt-0">Table of Contents</h2>
+
+<table class="toc-table">
+  <thead>
+    <tr>
+      <th>Section</th>
+      <th>Topic</th>
+      <th style="width:50px;">Page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="hour-label" rowspan="4"><strong>Hour 1</strong></td>
+      <td>What AI Actually Is</td><td>3</td>
+    </tr>
+    <tr><td>AI in Plain English</td><td>4</td></tr>
+    <tr><td>AI Tool Comparison Chart</td><td>5</td></tr>
+    <tr><td>Exercise: Your First AI Conversation</td><td>7</td></tr>
+    <tr>
+      <td class="hour-label" rowspan="5"><strong>Hour 2</strong></td>
+      <td>Prompt Engineering for Your Job</td><td>9</td>
+    </tr>
+    <tr><td>The Prompt Framework: Role + Context + Task + Format</td><td>10</td></tr>
+    <tr><td>Before &amp; After: Bad Prompts vs. Good Prompts</td><td>12</td></tr>
+    <tr><td>5 Try-It-Yourself Exercises</td><td>14</td></tr>
+    <tr><td>Write Your Own Prompts</td><td>19</td></tr>
+    <tr>
+      <td class="hour-label" rowspan="5"><strong>Hour 3</strong></td>
+      <td>AI Agents &amp; Automation</td><td>20</td>
+    </tr>
+    <tr><td>What Are AI Agents?</td><td>21</td></tr>
+    <tr><td>Real Examples from Real Businesses</td><td>22</td></tr>
+    <tr><td>Exercise: Find Your 3 Automatable Tasks</td><td>24</td></tr>
+    <tr><td>Automation Tools: Make &amp; Zapier</td><td>25</td></tr>
+    <tr>
+      <td class="hour-label" rowspan="5"><strong>Hour 4</strong></td>
+      <td>Build Your AI Toolkit</td><td>27</td>
+    </tr>
+    <tr><td>Step-by-Step: Set Up ChatGPT or Claude</td><td>28</td></tr>
+    <tr><td>Step-by-Step: Set Up an AI Writing Assistant</td><td>30</td></tr>
+    <tr><td>Step-by-Step: Create Your First Automation</td><td>31</td></tr>
+    <tr><td>ROI Calculator: How Much Time Will AI Save You?</td><td>33</td></tr>
+    <tr>
+      <td class="hour-label"><strong>Resources</strong></td>
+      <td>Tools, Links, and QR Codes</td><td>35</td>
+    </tr>
+    <tr>
+      <td class="hour-label"><strong>Notes</strong></td>
+      <td>Space for Your Notes</td><td>37</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<!-- =====================================================================
+     HOUR 1: WHAT AI ACTUALLY IS
+     ===================================================================== -->
+<h1 class="section-title">HOUR 1: What AI Actually Is</h1>
+<p class="section-goal">Goal: Understand what AI tools do, pick the right one for you, and have your first AI conversation.</p>
+
+<div class="page-break"></div>
+
+<!-- AI IN PLAIN ENGLISH -->
+<h2>AI in Plain English</h2>
+
+<h3>What AI is:</h3>
+<p>AI (Artificial Intelligence) is software that can read, write, analyze, and create &mdash; kind of like having a very fast assistant who never sleeps and has read millions of documents.</p>
+<p>When people say &ldquo;AI&rdquo; in 2026, they usually mean tools like ChatGPT, Claude, or Copilot. These are called <strong>large language models (LLMs)</strong>. Here is what you need to know:</p>
+
+<h3>What AI can do right now:</h3>
+<ul>
+  <li><strong>Write</strong> emails, reports, proposals, and summaries</li>
+  <li><strong>Read</strong> long documents and pull out the key points</li>
+  <li><strong>Analyze</strong> data, spreadsheets, and trends</li>
+  <li><strong>Answer questions</strong> about almost any topic</li>
+  <li><strong>Create</strong> presentations, project plans, and templates</li>
+  <li><strong>Translate</strong> between languages</li>
+  <li><strong>Brainstorm</strong> ideas for any project</li>
+</ul>
+
+<h3>What AI cannot do:</h3>
+<ul>
+  <li>Think for itself (it responds to what you tell it)</li>
+  <li>Access your company&rsquo;s private data (unless set up to do so)</li>
+  <li>Replace your judgment or expertise</li>
+  <li>Guarantee 100% accuracy (always check its work)</li>
+  <li>Feel emotions or have opinions</li>
+</ul>
+
+<h3>The big idea:</h3>
+<p><strong>AI is a tool, like email or Excel.</strong> Twenty years ago, people were nervous about email. Ten years ago, people didn&rsquo;t think they needed smartphones. AI is the same &mdash; once you use it, you&rsquo;ll wonder how you worked without it.</p>
+<p>You do not need to understand how AI works under the hood. You just need to learn how to talk to it. That is what we will do today.</p>
+
+<div class="page-break"></div>
+
+<!-- AI TOOL COMPARISON CHART -->
+<h2>AI Tool Comparison Chart</h2>
+<p>Here are the top 4 AI tools for professionals. Each has free and paid options.</p>
+
+<table class="comparison-table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>ChatGPT</th>
+      <th>Claude</th>
+      <th>Microsoft Copilot</th>
+      <th>Google Gemini</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Made by</strong></td>
+      <td>OpenAI</td>
+      <td>Anthropic</td>
+      <td>Microsoft</td>
+      <td>Google</td>
+    </tr>
+    <tr>
+      <td><strong>Best for</strong></td>
+      <td>General tasks, writing, brainstorming</td>
+      <td>Long documents, analysis, careful reasoning</td>
+      <td>If you use Microsoft 365 (Word, Excel, Outlook)</td>
+      <td>If you use Google Workspace (Gmail, Docs, Sheets)</td>
+    </tr>
+    <tr>
+      <td><strong>Free version?</strong></td>
+      <td>Yes (GPT-4o mini)</td>
+      <td>Yes (Claude 3.5 Sonnet)</td>
+      <td>Yes (basic)</td>
+      <td>Yes (basic)</td>
+    </tr>
+    <tr>
+      <td><strong>Paid price</strong></td>
+      <td>$20/month (Plus)</td>
+      <td>$20/month (Pro)</td>
+      <td>$30/month (part of Microsoft 365 Copilot)</td>
+      <td>$20/month (Advanced)</td>
+    </tr>
+    <tr>
+      <td><strong>Strengths</strong></td>
+      <td>Largest community, most plugins, image generation</td>
+      <td>Best at long, complex tasks; most careful and accurate</td>
+      <td>Built into Word, Excel, Outlook, Teams</td>
+      <td>Built into Gmail, Docs, Sheets</td>
+    </tr>
+    <tr>
+      <td><strong>Weaknesses</strong></td>
+      <td>Can be confidently wrong; inconsistent quality</td>
+      <td>Smaller plugin library; no image generation</td>
+      <td>Expensive; requires Microsoft 365</td>
+      <td>Newer; fewer features than ChatGPT</td>
+    </tr>
+    <tr>
+      <td><strong>Works on</strong></td>
+      <td>Web, phone app, desktop app</td>
+      <td>Web, phone app</td>
+      <td>Web, Microsoft 365 apps</td>
+      <td>Web, phone app</td>
+    </tr>
+    <tr>
+      <td><strong>Best starting point for you if...</strong></td>
+      <td>You want one tool that does everything</td>
+      <td>You work with long documents or need careful analysis</td>
+      <td>Your company already uses Microsoft 365</td>
+      <td>Your company already uses Google Workspace</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <h3>Brandon&rsquo;s recommendation:</h3>
+  <p><strong>Start with ChatGPT or Claude.</strong> Both have free versions. Try both for a week and see which one feels better for your work. There is no wrong answer &mdash; they all do 80% of the same things.</p>
+  <p>If your company uses Microsoft 365, also try <strong>Copilot</strong> &mdash; it works right inside the tools you already use.</p>
+</div>
+
+<div class="page-break"></div>
+
+<!-- EXERCISE: YOUR FIRST AI CONVERSATION -->
+<div class="exercise-box">
+  <div class="exercise-header">
+    <span>Exercise: Your First AI Conversation</span>
+    <span class="time-badge">15 minutes</span>
+  </div>
+
+  <p>Open ChatGPT (chat.openai.com) or Claude (claude.ai) on your laptop. Sign up for a free account if you haven&rsquo;t already.</p>
+  <p>Now try these 3 prompts. Type them exactly as written, then read the response.</p>
+
+  <hr>
+
+  <h3>Prompt 1: Get a simple answer</h3>
+  <p>Type this into ChatGPT or Claude:</p>
+  <div class="prompt-block">&ldquo;Explain what artificial intelligence is in 3 sentences. Use language a 10-year-old would understand.&rdquo;</div>
+
+  <p class="field-label">Write the response you got here:</p>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+
+  <hr>
+
+  <h3>Prompt 2: Get help with a work task</h3>
+  <p>Type this:</p>
+  <div class="prompt-block">&ldquo;I need to write a professional email to my team announcing that we are switching from [old tool] to [new tool] next month. The tone should be positive and helpful, not corporate jargon. Keep it under 150 words.&rdquo;</div>
+  <p><em>(Replace [old tool] and [new tool] with something relevant to your work &mdash; or make it up.)</em></p>
+
+  <p class="field-label">Write the response you got here:</p>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+
+  <hr>
+
+  <h3>Prompt 3: Summarize something</h3>
+  <p>Copy and paste any paragraph from a recent work document (or a news article), then type:</p>
+  <div class="prompt-block">&ldquo;Summarize this in 3 bullet points a busy executive could scan in 10 seconds:&rdquo;<br><br>[paste your text here]</div>
+
+  <p class="field-label">Write the response you got here:</p>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+
+  <hr>
+
+  <h3>What did you notice?</h3>
+  <p>Write down 1&ndash;2 observations about using AI for the first time:</p>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+</div>
+
+<div class="page-break"></div>
+
+<!-- =====================================================================
+     HOUR 2: PROMPT ENGINEERING FOR YOUR JOB
+     ===================================================================== -->
+<h1 class="section-title">HOUR 2: Prompt Engineering for Your Job</h1>
+<p class="section-goal">Goal: Learn how to talk to AI so it gives you exactly what you need &mdash; not vague, generic answers.</p>
+
+<div class="page-break"></div>
+
+<!-- THE PROMPT FRAMEWORK -->
+<h2>The Prompt Framework: Role + Context + Task + Format</h2>
+<p>The single biggest difference between people who think AI is &ldquo;meh&rdquo; and people who think AI is incredible? <strong>How they ask.</strong></p>
+<p>A bad prompt gets a bad answer. A good prompt gets an answer so good you&rsquo;ll want to forward it to your boss.</p>
+<p>Here is the framework:</p>
+
+<h3>The 4-Part Prompt Formula</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Part</th>
+      <th>What it means</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Role</strong></td>
+      <td>Tell AI who to pretend to be</td>
+      <td>&ldquo;You are a senior financial analyst at a Fortune 500 bank.&rdquo;</td>
+    </tr>
+    <tr>
+      <td><strong>Context</strong></td>
+      <td>Give background information</td>
+      <td>&ldquo;Our department is preparing for Q2 budget reviews. We need to cut 15% from operating costs.&rdquo;</td>
+    </tr>
+    <tr>
+      <td><strong>Task</strong></td>
+      <td>Tell it exactly what to do</td>
+      <td>&ldquo;Create a list of 10 areas where we could reduce costs, ranked by potential savings.&rdquo;</td>
+    </tr>
+    <tr>
+      <td><strong>Format</strong></td>
+      <td>Tell it how to present the answer</td>
+      <td>&ldquo;Use a numbered list. For each item, include the estimated savings range and level of effort (easy, medium, hard).&rdquo;</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Put it all together:</h3>
+<div class="prompt-block">&ldquo;You are a senior financial analyst at a Fortune 500 bank. Our department is preparing for Q2 budget reviews and we need to cut 15% from operating costs without affecting customer service. Create a list of 10 areas where we could reduce costs, ranked by potential savings. Use a numbered list. For each item, include the estimated savings range and the level of effort (easy, medium, hard).&rdquo;</div>
+<p>That single prompt replaces hours of brainstorming and research.</p>
+
+<div class="tip-box">
+  <p><strong>Quick tips:</strong></p>
+  <ul>
+    <li><strong>Be specific.</strong> &ldquo;Write me an email&rdquo; is bad. &ldquo;Write a 150-word email to my team about X in a friendly tone&rdquo; is good.</li>
+    <li><strong>Give examples.</strong> If you want a certain style, show AI an example of what you like.</li>
+    <li><strong>Say what you DON&rsquo;T want.</strong> &ldquo;Don&rsquo;t use corporate jargon&rdquo; or &ldquo;Don&rsquo;t use bullet points&rdquo; helps AI avoid mistakes.</li>
+    <li><strong>Iterate.</strong> If the first answer isn&rsquo;t perfect, tell AI what to fix. &ldquo;Make it shorter.&rdquo; &ldquo;More formal.&rdquo; &ldquo;Add numbers.&rdquo;</li>
+  </ul>
+</div>
+
+<div class="page-break"></div>
+
+<!-- BEFORE & AFTER: BAD PROMPTS VS GOOD PROMPTS -->
+<h2>Before &amp; After: Bad Prompts vs. Good Prompts</h2>
+
+<h3>Example 1: Writing an Email</h3>
+<p><strong>Bad prompt:</strong></p>
+<div class="prompt-block" style="border-left-color: #DC2626; background: #FEF2F2;">&ldquo;Write an email about the meeting.&rdquo;</div>
+<p><strong>What you get:</strong> A vague, generic email that could be about anything.</p>
+
+<p><strong>Good prompt:</strong></p>
+<div class="prompt-block">&ldquo;You are an operations manager. Write a 100-word email to your team of 12 people summarizing the key decisions from our budget meeting. The tone should be clear and direct. Include 3 action items with deadlines. End with an encouraging note about Q2.&rdquo;</div>
+<p><strong>What you get:</strong> A specific, ready-to-send email.</p>
+
+<hr>
+
+<h3>Example 2: Analyzing Data</h3>
+<p><strong>Bad prompt:</strong></p>
+<div class="prompt-block" style="border-left-color: #DC2626; background: #FEF2F2;">&ldquo;Look at this data.&rdquo;</div>
+<p><strong>What you get:</strong> A vague description of what the data contains.</p>
+
+<p><strong>Good prompt:</strong></p>
+<div class="prompt-block">&ldquo;You are a data analyst. I&rsquo;m pasting our monthly sales numbers for January through December. Identify the top 3 trends, flag any months where we dropped more than 10% from the previous month, and recommend 2 actions we should take based on the trends. Present this as a brief executive summary (under 200 words) followed by a table.&rdquo;</div>
+<p><strong>What you get:</strong> An actionable analysis your boss would love.</p>
+
+<hr>
+
+<h3>Example 3: Meeting Prep</h3>
+<p><strong>Bad prompt:</strong></p>
+<div class="prompt-block" style="border-left-color: #DC2626; background: #FEF2F2;">&ldquo;Help me prepare for a meeting.&rdquo;</div>
+<p><strong>What you get:</strong> Generic advice like &ldquo;know your audience&rdquo; and &ldquo;have an agenda.&rdquo;</p>
+
+<p><strong>Good prompt:</strong></p>
+<div class="prompt-block">&ldquo;I&rsquo;m presenting a proposal to my VP next week to hire 2 additional customer service reps. The VP cares most about ROI and customer satisfaction scores. Help me prepare: give me 5 talking points that focus on cost savings and customer retention, 3 potential objections the VP might raise with suggested responses, and a one-page summary I can leave behind after the meeting.&rdquo;</div>
+<p><strong>What you get:</strong> A complete meeting prep package.</p>
+
+<hr>
+
+<h3>The pattern:</h3>
+<table class="pattern-table">
+  <thead>
+    <tr>
+      <th>Bad prompts</th>
+      <th>Good prompts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Vague</td><td>Specific</td></tr>
+    <tr><td>No context</td><td>Rich context</td></tr>
+    <tr><td>No format requested</td><td>Clear format requested</td></tr>
+    <tr><td>One sentence</td><td>A short paragraph</td></tr>
+    <tr><td>&ldquo;Help me with X&rdquo;</td><td>&ldquo;You are [role]. Given [context], do [task] in [format].&rdquo;</td></tr>
+  </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<!-- 5 TRY-IT-YOURSELF EXERCISES -->
+<h2>5 Try-It-Yourself Exercises</h2>
+<p>Open ChatGPT or Claude and try each of these. Write down what you get.</p>
+
+<hr>
+
+<!-- Exercise 1 -->
+<div class="exercise-box">
+  <h3>Exercise 1: Write a Professional Email</h3>
+  <p>Copy this prompt and customize the parts in [brackets]:</p>
+  <div class="prompt-block">&ldquo;You are a <em>[your job title]</em> at a <em>[type of company]</em>. Write a professional email to <em>[recipient]</em> about <em>[topic]</em>. The tone should be <em>[friendly / formal / direct]</em>. Keep it under <em>[number]</em> words. Include <em>[any specific items: action items, dates, a question]</em>.&rdquo;</div>
+
+  <p class="field-label">Your customized prompt:</p>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+
+  <p class="rating"><strong>Rate the response (circle one):</strong> Usable as-is &nbsp;/&nbsp; Needs minor edits &nbsp;/&nbsp; Not great</p>
+
+  <p class="field-label">What would you change about your prompt to get a better answer?</p>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+</div>
+
+<hr>
+
+<!-- Exercise 2 -->
+<div class="exercise-box">
+  <h3>Exercise 2: Summarize a Document</h3>
+  <p>Find a long email, report, or article from your work (or use one Brandon provides). Paste it into the AI tool, then add:</p>
+  <div class="prompt-block">&ldquo;Summarize this document in 5 bullet points. Each bullet should be one sentence. Write it so a busy executive can understand the key points in 30 seconds. Highlight any action items or deadlines.&rdquo;</div>
+
+  <p class="rating"><strong>Rate the response (circle one):</strong> Usable as-is &nbsp;/&nbsp; Needs minor edits &nbsp;/&nbsp; Not great</p>
+
+  <p class="field-label">How much time would this save you compared to reading and summarizing it yourself?</p>
+  <span class="write-line"></span>
+</div>
+
+<hr>
+
+<!-- Exercise 3 -->
+<div class="exercise-box">
+  <h3>Exercise 3: Analyze Data or a Situation</h3>
+  <p>Use this prompt (customize the [brackets]):</p>
+  <div class="prompt-block">&ldquo;You are a <em>[your job title]</em>. I need to <em>[analyze/evaluate/assess]</em> <em>[describe the situation]</em>. Consider <em>[relevant factors]</em>. Give me your analysis in 3 sections: (1) What&rsquo;s going well, (2) What needs attention, (3) Recommended next steps. Keep each section to 2&ndash;3 bullet points.&rdquo;</div>
+
+  <p class="field-label">Your customized prompt:</p>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+
+  <p class="rating"><strong>Rate the response (circle one):</strong> Usable as-is &nbsp;/&nbsp; Needs minor edits &nbsp;/&nbsp; Not great</p>
+</div>
+
+<hr>
+
+<!-- Exercise 4 -->
+<div class="exercise-box">
+  <h3>Exercise 4: Create a Presentation Outline</h3>
+  <div class="prompt-block">&ldquo;You are a <em>[your job title]</em> preparing a presentation for <em>[audience]</em>. The topic is <em>[topic]</em>. Create an outline with 8&ndash;10 slides. For each slide, give me: the slide title, 3&ndash;4 bullet points of content, and a suggestion for what visual or chart to include. The presentation should take <em>[number]</em> minutes to deliver.&rdquo;</div>
+
+  <p class="field-label">Your customized prompt:</p>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+
+  <p class="rating"><strong>Rate the response (circle one):</strong> Usable as-is &nbsp;/&nbsp; Needs minor edits &nbsp;/&nbsp; Not great</p>
+</div>
+
+<hr>
+
+<!-- Exercise 5 -->
+<div class="exercise-box">
+  <h3>Exercise 5: Draft a Project Plan</h3>
+  <div class="prompt-block">&ldquo;You are a project manager. I need a plan for <em>[describe your project or initiative]</em>. The timeline is <em>[duration]</em>. The team is <em>[number]</em> people. Create a project plan with: phases, key milestones, deliverables, and who is responsible for what. Use a table format. Include a risk section with the top 3 risks and how to handle them.&rdquo;</div>
+
+  <p class="field-label">Your customized prompt:</p>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+
+  <p class="rating"><strong>Rate the response (circle one):</strong> Usable as-is &nbsp;/&nbsp; Needs minor edits &nbsp;/&nbsp; Not great</p>
+</div>
+
+<div class="page-break"></div>
+
+<!-- WRITE YOUR OWN PROMPTS -->
+<h2>Write Your Own Prompts</h2>
+<p>Now it is your turn. Think about your actual job. What tasks eat up your time? Write 3 prompts using the Role + Context + Task + Format framework.</p>
+
+<div class="exercise-box">
+  <h3>My Prompt 1:</h3>
+  <p><span class="field-label">What task is this for?</span> <span class="write-line-medium"></span></p>
+
+  <p class="field-label">My prompt:</p>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+
+  <p><span class="field-label">How did the AI response turn out?</span> <span class="write-line-medium"></span></p>
+</div>
+
+<hr>
+
+<div class="exercise-box">
+  <h3>My Prompt 2:</h3>
+  <p><span class="field-label">What task is this for?</span> <span class="write-line-medium"></span></p>
+
+  <p class="field-label">My prompt:</p>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+
+  <p><span class="field-label">How did the AI response turn out?</span> <span class="write-line-medium"></span></p>
+</div>
+
+<hr>
+
+<div class="exercise-box">
+  <h3>My Prompt 3:</h3>
+  <p><span class="field-label">What task is this for?</span> <span class="write-line-medium"></span></p>
+
+  <p class="field-label">My prompt:</p>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+
+  <p><span class="field-label">How did the AI response turn out?</span> <span class="write-line-medium"></span></p>
+</div>
+
+<div class="page-break"></div>
+
+<!-- =====================================================================
+     HOUR 3: AI AGENTS & AUTOMATION
+     ===================================================================== -->
+<h1 class="section-title">HOUR 3: AI Agents &amp; Automation</h1>
+<p class="section-goal">Goal: See how AI can handle repetitive tasks on autopilot &mdash; and identify which of YOUR tasks could be automated.</p>
+
+<div class="page-break"></div>
+
+<!-- WHAT ARE AI AGENTS? -->
+<h2>What Are AI Agents?</h2>
+<p>You have been using AI as a <strong>chat tool</strong> &mdash; you type, it responds.</p>
+<p>An <strong>AI agent</strong> is different. It is AI that takes action on its own, without you typing every time.</p>
+
+<h3>Chat AI vs. AI Agents</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Chat AI (what you&rsquo;ve been using)</th>
+      <th>AI Agents (the next level)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>You ask a question, it answers</td>
+      <td>It watches for a trigger and acts on its own</td>
+    </tr>
+    <tr>
+      <td>One conversation at a time</td>
+      <td>Runs 24/7 in the background</td>
+    </tr>
+    <tr>
+      <td>You copy-paste the result</td>
+      <td>It sends the email, updates the spreadsheet, books the meeting automatically</td>
+    </tr>
+    <tr>
+      <td>Example: &ldquo;Write me an email&rdquo;</td>
+      <td>Example: Every time a customer emails, the agent reads it, drafts a reply, and puts it in your inbox for a quick review</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Think of it this way:</h3>
+<ul>
+  <li><strong>Chat AI</strong> = a very smart assistant sitting next to you, waiting for instructions</li>
+  <li><strong>AI Agent</strong> = a very smart assistant who already knows the routine and does it without being asked</li>
+</ul>
+
+<h3>Common AI agents in the workplace:</h3>
+<ul>
+  <li><strong>Email sorter:</strong> Reads incoming emails, flags urgent ones, drafts responses for routine questions</li>
+  <li><strong>Meeting summarizer:</strong> Joins your Zoom calls, takes notes, emails you a summary with action items</li>
+  <li><strong>Data monitor:</strong> Watches a spreadsheet or dashboard, alerts you when something changes</li>
+  <li><strong>Customer responder:</strong> Answers common customer questions via chat or email</li>
+  <li><strong>Report generator:</strong> Pulls data every Monday morning and creates a weekly report</li>
+</ul>
+<p>You do not need to build these from scratch. Tools exist that let you set them up in minutes.</p>
+
+<div class="page-break"></div>
+
+<!-- REAL EXAMPLES FROM REAL BUSINESSES -->
+<h2>Real Examples from Real Businesses</h2>
+<p>These are not hypothetical. These are systems running right now in Brandon&rsquo;s businesses.</p>
+
+<hr>
+
+<div class="exercise-box" style="background: #FFFBEB; border-color: #F59E0B;">
+  <h3>Example 1: Call2Calendar &mdash; AI Answers the Phone</h3>
+  <p><strong>The business:</strong> A scheduling service for home service companies (plumbers, electricians, HVAC).</p>
+  <p><strong>The problem:</strong> Small business owners miss calls when they are on a job. Missed calls = lost revenue.</p>
+  <p><strong>The AI solution:</strong> An AI voice agent answers every phone call. It sounds natural, has a real conversation with the caller, and books the appointment directly on the calendar. No human needed.</p>
+
+  <p><strong>The result:</strong></p>
+  <ul>
+    <li>Zero missed calls</li>
+    <li>Appointments booked 24/7, even at midnight</li>
+    <li>Business owners stopped losing $3,000&ndash;$5,000/month in missed leads</li>
+  </ul>
+
+  <p><strong>What this means for you:</strong> If your job involves answering repetitive phone calls or scheduling meetings, AI can handle it.</p>
+</div>
+
+<hr>
+
+<div class="exercise-box" style="background: #FFFBEB; border-color: #F59E0B;">
+  <h3>Example 2: Tri-State Aquatic &mdash; Automated Operations</h3>
+  <p><strong>The business:</strong> A pool maintenance and aquatic services company.</p>
+  <p><strong>The problem:</strong> Scheduling technicians, sending customer reminders, tracking inventory, and following up on quotes was eating 20+ hours per week of admin time.</p>
+
+  <p><strong>The AI solution:</strong> A system of connected automations that:</p>
+  <ul>
+    <li>Sends appointment reminders to customers automatically</li>
+    <li>Notifies technicians of their daily schedule every morning</li>
+    <li>Follows up on open quotes after 3 days (no human follow-up needed)</li>
+    <li>Tracks chemical inventory and alerts when supplies are low</li>
+  </ul>
+
+  <p><strong>The result:</strong></p>
+  <ul>
+    <li>20+ hours per week saved on admin work</li>
+    <li>Customer no-shows dropped by 60%</li>
+    <li>Quote follow-up happens every time (not just when someone remembers)</li>
+  </ul>
+
+  <p><strong>What this means for you:</strong> If your job has tasks that happen on a schedule or follow a pattern, those tasks can likely be automated.</p>
+</div>
+
+<hr>
+
+<p class="text-center" style="font-size: 12pt; font-weight: 700; margin: 20px 0;"><strong>The question is not &ldquo;Can AI do this?&rdquo; The question is &ldquo;Which of my tasks should AI do first?&rdquo;</strong></p>
+
+<div class="page-break"></div>
+
+<!-- EXERCISE: FIND YOUR 3 AUTOMATABLE TASKS -->
+<div class="exercise-box">
+  <div class="exercise-header">
+    <span>Exercise: Find Your 3 Automatable Tasks</span>
+  </div>
+
+  <p>Think about a typical work week. Which tasks are:</p>
+  <ul>
+    <li><strong>Repetitive</strong> (you do the same thing over and over)</li>
+    <li><strong>Rule-based</strong> (if X happens, then do Y)</li>
+    <li><strong>Time-consuming</strong> (they eat up hours but do not require deep thinking)</li>
+  </ul>
+  <p><strong>These are your automation candidates.</strong></p>
+
+  <hr>
+
+  <h3>Task 1:</h3>
+  <p><span class="field-label">What is the task?</span> <span class="write-line-medium"></span></p>
+  <p><span class="field-label">How often do you do it?</span> <span class="write-line-medium"></span></p>
+  <p><span class="field-label">How long does it take each time?</span> <span class="write-line-short"></span></p>
+  <p class="field-label">What triggers it? (e.g., an email arrives, a date hits, a form is submitted)</p>
+  <span class="write-line"></span>
+  <p class="rating"><strong>Could AI handle it? (circle one):</strong> Yes &nbsp;/&nbsp; Probably &nbsp;/&nbsp; Not sure</p>
+
+  <hr>
+
+  <h3>Task 2:</h3>
+  <p><span class="field-label">What is the task?</span> <span class="write-line-medium"></span></p>
+  <p><span class="field-label">How often do you do it?</span> <span class="write-line-medium"></span></p>
+  <p><span class="field-label">How long does it take each time?</span> <span class="write-line-short"></span></p>
+  <p class="field-label">What triggers it?</p>
+  <span class="write-line"></span>
+  <p class="rating"><strong>Could AI handle it? (circle one):</strong> Yes &nbsp;/&nbsp; Probably &nbsp;/&nbsp; Not sure</p>
+
+  <hr>
+
+  <h3>Task 3:</h3>
+  <p><span class="field-label">What is the task?</span> <span class="write-line-medium"></span></p>
+  <p><span class="field-label">How often do you do it?</span> <span class="write-line-medium"></span></p>
+  <p><span class="field-label">How long does it take each time?</span> <span class="write-line-short"></span></p>
+  <p class="field-label">What triggers it?</p>
+  <span class="write-line"></span>
+  <p class="rating"><strong>Could AI handle it? (circle one):</strong> Yes &nbsp;/&nbsp; Probably &nbsp;/&nbsp; Not sure</p>
+
+  <hr>
+
+  <h3>Add up your potential time savings:</h3>
+  <p>Task 1: <span class="write-line-short" style="width:80px;"></span> minutes/week</p>
+  <p>Task 2: <span class="write-line-short" style="width:80px;"></span> minutes/week</p>
+  <p>Task 3: <span class="write-line-short" style="width:80px;"></span> minutes/week</p>
+  <p style="margin-top: 10px;"><strong>Total: <span class="write-line-short" style="width:80px;"></span> minutes/week = <span class="write-line-short" style="width:80px;"></span> hours/month you could get back</strong></p>
+</div>
+
+<div class="page-break"></div>
+
+<!-- AUTOMATION TOOLS: MAKE & ZAPIER -->
+<h2>Automation Tools: Make &amp; Zapier</h2>
+<p>You do not need to write code to automate tasks. These two tools let you connect your apps and build automations by clicking, not coding.</p>
+
+<h3>Zapier (zapier.com)</h3>
+<p><strong>What it is:</strong> A tool that connects over 6,000 apps. When something happens in App A, Zapier automatically does something in App B.</p>
+<p><strong>Example:</strong> When you receive an email with an attachment (Gmail), automatically save the attachment to a specific folder (Google Drive) and notify you in Slack.</p>
+<p><strong>Pricing:</strong></p>
+<ul>
+  <li>Free: 100 tasks/month (good for trying it out)</li>
+  <li>Starter: $20/month (750 tasks)</li>
+  <li>Professional: $50/month (2,000 tasks)</li>
+</ul>
+<p><strong>Best for:</strong> Simple automations connecting 2&ndash;3 apps. Easiest to learn.</p>
+
+<hr>
+
+<h3>Make (make.com, formerly Integromat)</h3>
+<p><strong>What it is:</strong> Similar to Zapier but more powerful and visual. You build automations using a drag-and-drop flowchart.</p>
+<p><strong>Example:</strong> When a new row is added to a Google Sheet, Make reads it, generates a summary using AI, sends the summary via email, and logs the action in another sheet.</p>
+<p><strong>Pricing:</strong></p>
+<ul>
+  <li>Free: 1,000 operations/month</li>
+  <li>Core: $9/month (10,000 operations)</li>
+  <li>Pro: $16/month (10,000 operations + advanced features)</li>
+</ul>
+<p><strong>Best for:</strong> More complex automations with multiple steps. More flexible than Zapier.</p>
+
+<hr>
+
+<h3>Which should I use?</h3>
+<table>
+  <thead>
+    <tr>
+      <th>If you want...</th>
+      <th>Use...</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>The easiest setup, simple automations</td>
+      <td><strong>Zapier</strong></td>
+    </tr>
+    <tr>
+      <td>More power, lower cost per automation</td>
+      <td><strong>Make</strong></td>
+    </tr>
+    <tr>
+      <td>To start today with zero experience</td>
+      <td><strong>Zapier</strong> (slightly easier learning curve)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Both have free plans. Try one today during Hour 4.</p>
+
+<div class="page-break"></div>
+
+<!-- =====================================================================
+     HOUR 4: BUILD YOUR AI TOOLKIT
+     ===================================================================== -->
+<h1 class="section-title">HOUR 4: Build Your AI Toolkit</h1>
+<p class="section-goal">Goal: Walk out of this room with 3 tools set up and working for YOUR job.</p>
+
+<div class="page-break"></div>
+
+<!-- STEP-BY-STEP: SET UP CHATGPT OR CLAUDE -->
+<h2>Step-by-Step: Set Up ChatGPT or Claude for Daily Use</h2>
+<p>Follow along on your laptop. We will do this together.</p>
+
+<h3>Option A: ChatGPT</h3>
+<ol>
+  <li>Go to <strong>chat.openai.com</strong></li>
+  <li>Click <strong>Sign Up</strong> (use your personal email &mdash; not your work email, unless your company approves it)</li>
+  <li>Verify your email</li>
+  <li>You are in. You now have access to GPT-4o mini for free.</li>
+  <li>Try a prompt from Hour 2 to confirm it works.</li>
+</ol>
+
+<div class="tip-box">
+  <p><strong>Make it a daily habit:</strong></p>
+  <ul>
+    <li>Bookmark it in your browser</li>
+    <li>Download the phone app (search &ldquo;ChatGPT&rdquo; in your app store)</li>
+    <li>Tomorrow morning, open it before you open email. Ask it: <em>&ldquo;What are the 3 most important things I should focus on today given that I work as a [your job title] and my current priorities are [list 2&ndash;3 priorities]?&rdquo;</em></li>
+  </ul>
+</div>
+
+<h3>Option B: Claude</h3>
+<ol>
+  <li>Go to <strong>claude.ai</strong></li>
+  <li>Click <strong>Sign Up</strong> (use your personal email)</li>
+  <li>Verify your email</li>
+  <li>You are in. You now have access to Claude 3.5 Sonnet for free.</li>
+  <li>Try a prompt from Hour 2 to confirm it works.</li>
+</ol>
+
+<div class="tip-box">
+  <p><strong>Make it a daily habit:</strong></p>
+  <ul>
+    <li>Same as above &mdash; bookmark, download the app, use it first thing tomorrow.</li>
+  </ul>
+</div>
+
+<h3>Pro Tips:</h3>
+<ul>
+  <li><strong>Start every new chat with context.</strong> Tell AI who you are and what you need before asking your question. Example: <em>&ldquo;I&rsquo;m an operations manager at a mid-size bank. Today I need help with...&rdquo;</em></li>
+  <li><strong>Use the conversation.</strong> AI remembers what you said earlier in the same chat. You can say &ldquo;make that shorter&rdquo; or &ldquo;now do the same thing for Q3&rdquo; without re-explaining.</li>
+  <li><strong>Create a &ldquo;prompt library.&rdquo;</strong> When you write a prompt that works well, save it in a note on your phone or a document. Reuse it.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<!-- STEP-BY-STEP: SET UP AN AI WRITING ASSISTANT -->
+<h2>Step-by-Step: Set Up an AI Writing Assistant</h2>
+<p>An AI writing assistant helps you write better emails, reports, and documents right where you work &mdash; no copy-pasting needed.</p>
+
+<h3>Option A: Grammarly (Free + AI features)</h3>
+<ol>
+  <li>Go to <strong>grammarly.com</strong></li>
+  <li>Sign up for a free account</li>
+  <li>Install the <strong>browser extension</strong> (works in Chrome, Edge, Firefox)</li>
+  <li>Now Grammarly checks your writing everywhere &mdash; Gmail, Google Docs, LinkedIn, even this workbook&rsquo;s exercises if you type them online</li>
+</ol>
+<p><strong>The AI part:</strong> Grammarly now includes AI writing suggestions. Highlight any text and click the Grammarly icon to ask it to rewrite, shorten, or adjust the tone.</p>
+<p><strong>Pricing:</strong> Free (basic corrections) / $12/month (Premium with AI rewriting)</p>
+
+<h3>Option B: Microsoft Copilot (if your company uses Microsoft 365)</h3>
+<ol>
+  <li>Check if your company has Microsoft 365 with Copilot (ask your IT department)</li>
+  <li>If yes, Copilot is already in your Word, Excel, Outlook, and Teams</li>
+  <li>In Word: Click the <strong>Copilot icon</strong> in the toolbar. Type what you want to write.</li>
+  <li>In Outlook: Click <strong>Draft with Copilot</strong> when composing an email.</li>
+  <li>In Excel: Click <strong>Copilot</strong> and ask it to analyze your data in plain English.</li>
+</ol>
+
+<h3>Option C: Google Gemini in Workspace (if your company uses Google)</h3>
+<ol>
+  <li>Check if your company has Google Workspace with Gemini add-on</li>
+  <li>If yes, look for the <strong>&ldquo;Help me write&rdquo;</strong> button in Gmail and Google Docs</li>
+  <li>Click it and describe what you want &mdash; Gemini drafts it for you</li>
+</ol>
+
+<div class="exercise-box">
+  <h3>Today&rsquo;s task:</h3>
+  <p><strong>Set up at least ONE of these before you leave.</strong> Which one are you setting up?</p>
+  <p><span class="field-label">My choice:</span> <span class="write-line-short"></span></p>
+  <p class="rating"><strong>Done? (check one):</strong> [ ] Yes, it is installed and working &nbsp;&nbsp;/&nbsp;&nbsp; [ ] Need help (raise your hand)</p>
+</div>
+
+<div class="page-break"></div>
+
+<!-- STEP-BY-STEP: CREATE YOUR FIRST AUTOMATION -->
+<h2>Step-by-Step: Create Your First Automation</h2>
+<p>Let us build one simple automation together. This will take about 10 minutes.</p>
+
+<h3>We will build: An automatic email summary</h3>
+<p><strong>What it does:</strong> Every day at 8 AM, this automation will send you an email with a summary of your calendar events for the day.</p>
+
+<h3>Using Zapier (easiest):</h3>
+<ol>
+  <li>Go to <strong>zapier.com</strong> and sign up for a free account</li>
+  <li>Click <strong>Create Zap</strong> (a &ldquo;Zap&rdquo; is Zapier&rsquo;s word for an automation)</li>
+  <li><strong>Trigger:</strong> Choose <strong>Schedule by Zapier</strong> &gt; set it to &ldquo;Every Day&rdquo; at 8:00 AM</li>
+  <li><strong>Action 1:</strong> Choose <strong>Google Calendar</strong> &gt; &ldquo;Find Events&rdquo; &gt; connect your calendar &gt; set date range to &ldquo;today&rdquo;</li>
+  <li><strong>Action 2:</strong> Choose <strong>Gmail</strong> (or Outlook) &gt; &ldquo;Send Email&rdquo; &gt; set recipient to yourself &gt; in the body, use the calendar data from Step 4</li>
+  <li>Click <strong>Publish</strong> to turn it on</li>
+</ol>
+<p>That is it. Tomorrow morning at 8 AM, you will get an email with your day&rsquo;s schedule &mdash; automatically.</p>
+
+<h3>Do not have time to build this right now?</h3>
+<p>That is okay. Here are 3 other beginner automations you can try this week:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Automation</th>
+      <th>What it does</th>
+      <th>Difficulty</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Email attachment saver</strong></td>
+      <td>Saves email attachments to Google Drive automatically</td>
+      <td>Easy</td>
+    </tr>
+    <tr>
+      <td><strong>Meeting notes sender</strong></td>
+      <td>After a calendar event ends, sends you a reminder to write up notes</td>
+      <td>Easy</td>
+    </tr>
+    <tr>
+      <td><strong>New lead notifier</strong></td>
+      <td>When someone fills out a form, sends you a Slack or text notification</td>
+      <td>Easy</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="exercise-box">
+  <h3>My first automation:</h3>
+  <p><span class="field-label">What I built (or plan to build):</span> <span class="write-line-medium"></span></p>
+  <p class="rating"><strong>Is it running? (check one):</strong> [ ] Yes &nbsp;&nbsp;/&nbsp;&nbsp; [ ] Will set it up this week</p>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ROI CALCULATOR -->
+<h2>ROI Calculator: How Much Time Will AI Save You?</h2>
+<p>Fill in this worksheet to estimate your personal return on investment from using AI.</p>
+
+<h3>Step 1: Identify your time-consuming tasks</h3>
+<p>List 5 tasks you do regularly that AI could help with (use your answers from Hour 2 and Hour 3):</p>
+
+<table class="roi-table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Task</th>
+      <th>How often?</th>
+      <th>Time per occurrence</th>
+      <th>AI could save...</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><span class="write-line-short" style="width:200px;"></span></td>
+      <td><span class="write-line-short" style="width:70px;"></span> x/week</td>
+      <td><span class="write-line-short" style="width:60px;"></span> min</td>
+      <td><span class="write-line-short" style="width:60px;"></span> min</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><span class="write-line-short" style="width:200px;"></span></td>
+      <td><span class="write-line-short" style="width:70px;"></span> x/week</td>
+      <td><span class="write-line-short" style="width:60px;"></span> min</td>
+      <td><span class="write-line-short" style="width:60px;"></span> min</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><span class="write-line-short" style="width:200px;"></span></td>
+      <td><span class="write-line-short" style="width:70px;"></span> x/week</td>
+      <td><span class="write-line-short" style="width:60px;"></span> min</td>
+      <td><span class="write-line-short" style="width:60px;"></span> min</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><span class="write-line-short" style="width:200px;"></span></td>
+      <td><span class="write-line-short" style="width:70px;"></span> x/week</td>
+      <td><span class="write-line-short" style="width:60px;"></span> min</td>
+      <td><span class="write-line-short" style="width:60px;"></span> min</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><span class="write-line-short" style="width:200px;"></span></td>
+      <td><span class="write-line-short" style="width:70px;"></span> x/week</td>
+      <td><span class="write-line-short" style="width:60px;"></span> min</td>
+      <td><span class="write-line-short" style="width:60px;"></span> min</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Step 2: Calculate your weekly savings</h3>
+<p>Add up the &ldquo;AI could save&rdquo; column: <strong><span class="write-line-short" style="width:80px;"></span> minutes per week</strong></p>
+<p>Convert to hours: <strong><span class="write-line-short" style="width:80px;"></span> hours per week</strong></p>
+
+<h3>Step 3: Calculate your monthly savings</h3>
+<p>Weekly hours saved x 4 = <strong><span class="write-line-short" style="width:80px;"></span> hours per month</strong></p>
+
+<h3>Step 4: Calculate the dollar value</h3>
+<p>Your approximate hourly rate (salary / 2,080 hours): $<span class="write-line-short" style="width:80px;"></span>/hour</p>
+<p>Hours saved per month x hourly rate = <strong>$<span class="write-line-short" style="width:80px;"></span>/month in recovered productivity</strong></p>
+<p>Annual value: Monthly savings x 12 = <strong>$<span class="write-line-short" style="width:80px;"></span>/year</strong></p>
+
+<h3>Step 5: Compare to cost</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Tool</th>
+      <th>Monthly cost</th>
+      <th>Your monthly savings</th>
+      <th>Net benefit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ChatGPT Plus</td>
+      <td>$20</td>
+      <td>$<span class="write-line-short" style="width:80px;"></span></td>
+      <td>$<span class="write-line-short" style="width:80px;"></span></td>
+    </tr>
+    <tr>
+      <td>Claude Pro</td>
+      <td>$20</td>
+      <td>$<span class="write-line-short" style="width:80px;"></span></td>
+      <td>$<span class="write-line-short" style="width:80px;"></span></td>
+    </tr>
+    <tr>
+      <td>Zapier Starter</td>
+      <td>$20</td>
+      <td>$<span class="write-line-short" style="width:80px;"></span></td>
+      <td>$<span class="write-line-short" style="width:80px;"></span></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <p><strong>Bottom line: For most professionals, AI tools pay for themselves in the first week.</strong></p>
+</div>
+
+<div class="page-break"></div>
+
+<!-- YOUR MONDAY MORNING ACTION PLAN -->
+<h2>Your Monday Morning Action Plan</h2>
+<p>Do not leave today without filling this out. This is your commitment to yourself.</p>
+
+<div class="exercise-box">
+  <h3>What I will do Monday morning:</h3>
+  <ul class="checkbox-list">
+    <li><strong>Open [ChatGPT / Claude] first thing</strong> and use it for: <span class="write-line-short" style="width:250px;"></span>
+      <span class="write-line"></span>
+    </li>
+    <li><strong>Use the prompt framework</strong> (Role + Context + Task + Format) on at least one real work task</li>
+    <li><strong>Save 30 minutes</strong> by using AI for: <span class="write-line-medium"></span>
+      <span class="write-line"></span>
+    </li>
+  </ul>
+
+  <h3>What I will do this week:</h3>
+  <ul class="checkbox-list">
+    <li><strong>Set up my AI writing assistant</strong> ([Grammarly / Copilot / Gemini])</li>
+    <li><strong>Try one automation</strong> using [Zapier / Make]: <span class="write-line-short" style="width:250px;"></span>
+      <span class="write-line"></span>
+    </li>
+    <li><strong>Show a coworker</strong> what I learned today</li>
+  </ul>
+
+  <h3>What I will do this month:</h3>
+  <ul class="checkbox-list">
+    <li><strong>Build the habit:</strong> Use AI every workday for at least one task</li>
+    <li><strong>Track my time savings</strong> using the ROI calculator above</li>
+    <li><strong>Explore one new AI tool</strong> from the Resource List</li>
+  </ul>
+
+  <hr>
+
+  <h3>My #1 takeaway from today:</h3>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+
+  <h3>The one thing that surprised me most:</h3>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+</div>
+
+<div class="page-break"></div>
+
+<!-- =====================================================================
+     RESOURCE LIST
+     ===================================================================== -->
+<h1 class="section-title">Resource List</h1>
+
+<h2>AI Chat Tools</h2>
+<table class="resource-table">
+  <thead>
+    <tr>
+      <th>Tool</th>
+      <th>URL</th>
+      <th>Free?</th>
+      <th>QR Code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="tool-name">ChatGPT</td>
+      <td>chat.openai.com</td>
+      <td>Yes (free tier)</td>
+      <td style="text-align:center;">[QR]</td>
+    </tr>
+    <tr>
+      <td class="tool-name">Claude</td>
+      <td>claude.ai</td>
+      <td>Yes (free tier)</td>
+      <td style="text-align:center;">[QR]</td>
+    </tr>
+    <tr>
+      <td class="tool-name">Microsoft Copilot</td>
+      <td>copilot.microsoft.com</td>
+      <td>Yes (basic)</td>
+      <td style="text-align:center;">[QR]</td>
+    </tr>
+    <tr>
+      <td class="tool-name">Google Gemini</td>
+      <td>gemini.google.com</td>
+      <td>Yes (basic)</td>
+      <td style="text-align:center;">[QR]</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>AI Writing Assistants</h2>
+<table class="resource-table">
+  <thead>
+    <tr>
+      <th>Tool</th>
+      <th>URL</th>
+      <th>Free?</th>
+      <th>QR Code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="tool-name">Grammarly</td>
+      <td>grammarly.com</td>
+      <td>Yes (basic)</td>
+      <td style="text-align:center;">[QR]</td>
+    </tr>
+    <tr>
+      <td class="tool-name">Microsoft Copilot in 365</td>
+      <td>microsoft.com/copilot</td>
+      <td>Requires M365 license</td>
+      <td style="text-align:center;">[QR]</td>
+    </tr>
+    <tr>
+      <td class="tool-name">Google Gemini in Workspace</td>
+      <td>workspace.google.com</td>
+      <td>Requires Workspace</td>
+      <td style="text-align:center;">[QR]</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Automation Tools</h2>
+<table class="resource-table">
+  <thead>
+    <tr>
+      <th>Tool</th>
+      <th>URL</th>
+      <th>Free?</th>
+      <th>QR Code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="tool-name">Zapier</td>
+      <td>zapier.com</td>
+      <td>Yes (100 tasks/month)</td>
+      <td style="text-align:center;">[QR]</td>
+    </tr>
+    <tr>
+      <td class="tool-name">Make</td>
+      <td>make.com</td>
+      <td>Yes (1,000 ops/month)</td>
+      <td style="text-align:center;">[QR]</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>AI for Specific Tasks</h2>
+<table class="resource-table">
+  <thead>
+    <tr>
+      <th>Tool</th>
+      <th>What it does</th>
+      <th>URL</th>
+      <th>QR Code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="tool-name">Otter.ai</td>
+      <td>Transcribes meetings and takes notes</td>
+      <td>otter.ai</td>
+      <td style="text-align:center;">[QR]</td>
+    </tr>
+    <tr>
+      <td class="tool-name">Beautiful.ai</td>
+      <td>Creates presentations with AI</td>
+      <td>beautiful.ai</td>
+      <td style="text-align:center;">[QR]</td>
+    </tr>
+    <tr>
+      <td class="tool-name">Gamma</td>
+      <td>Creates slides and documents from a prompt</td>
+      <td>gamma.app</td>
+      <td style="text-align:center;">[QR]</td>
+    </tr>
+    <tr>
+      <td class="tool-name">Perplexity</td>
+      <td>AI-powered research (like Google but with answers)</td>
+      <td>perplexity.ai</td>
+      <td style="text-align:center;">[QR]</td>
+    </tr>
+    <tr>
+      <td class="tool-name">Notion AI</td>
+      <td>Project management and writing with built-in AI</td>
+      <td>notion.so</td>
+      <td style="text-align:center;">[QR]</td>
+    </tr>
+    <tr>
+      <td class="tool-name">Canva AI</td>
+      <td>Graphic design with AI features</td>
+      <td>canva.com</td>
+      <td style="text-align:center;">[QR]</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Keep Learning</h2>
+<table class="resource-table">
+  <thead>
+    <tr>
+      <th>Resource</th>
+      <th>URL</th>
+      <th>QR Code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="tool-name">LearnAndLeverageAI</td>
+      <td>learnandleverageai.com</td>
+      <td style="text-align:center;">[QR]</td>
+    </tr>
+    <tr>
+      <td class="tool-name">Brandon&rsquo;s LinkedIn</td>
+      <td>linkedin.com/in/brandoncalloway</td>
+      <td style="text-align:center;">[QR]</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<!-- =====================================================================
+     NOTES PAGES
+     ===================================================================== -->
+<h1 class="section-title">Notes</h1>
+<p>Use these pages to capture ideas, prompts that work well, and tasks you want to automate.</p>
+
+<div class="notes-lines">
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+</div>
+
+<div class="page-break"></div>
+
+<div class="notes-lines">
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+  <span class="write-line"></span>
+</div>
+
+<hr>
+
+<div style="text-align: center; margin-top: 40px; padding: 20px;">
+  <p style="font-style: italic; font-size: 12pt; color: #57534E; margin-bottom: 16px;">Thank you for spending today with us. You are now ahead of 95% of professionals when it comes to AI. The only step left is to actually use it &mdash; starting Monday.</p>
+  <p style="font-size: 14pt; font-weight: 800; color: #1C1917; margin-bottom: 4px;">LearnAndLeverageAI.com</p>
+  <p style="font-size: 11pt; color: #57534E;">Questions after today? Email brandon@learnandleverageai.com</p>
+</div>
+
+</body>
+</html>

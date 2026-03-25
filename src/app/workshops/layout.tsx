@@ -3,21 +3,21 @@ import Script from "next/script";
 import { PostHogProvider } from "@/lib/posthog";
 
 export const metadata: Metadata = {
-  title: "Free AI Workshop for Professionals — Wilmington, DE | Learn & Leverage AI",
+  title: "Free AI Workshop — Thursday, April 2 | Hilton Wilmington/Christiana | Learn & Leverage AI",
   description:
-    "Free half-day, hands-on AI workshop for corporate professionals in New Castle County, DE. Walk out with 3 AI tools working for your job. No tech experience needed. Saturday, 9 AM - 1 PM.",
+    "Free 2-hour hands-on AI workshop for corporate professionals in Newark, DE. Thursday, April 2, 6-8 PM at Hilton Wilmington/Christiana. Walk out with 3 AI tools working for your job. No tech experience needed.",
   openGraph: {
-    title: "Free AI Workshop — Your Boss Said Learn AI. We'll Show You How.",
+    title: "Free AI Workshop — Thursday, April 2 at Hilton Wilmington/Christiana",
     description:
-      "Free half-day workshop for professionals in Wilmington, DE. Hands-on AI training — walk out with tools you can use Monday morning. No tech experience required.",
+      "Free 2-hour workshop for professionals in Newark, DE. Thursday, April 2, 6-8 PM. Hands-on AI training — walk out with tools you can use Monday morning. No tech experience required.",
     url: "https://learnandleverageai.com/workshops",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free AI Workshop for Professionals — Wilmington, DE",
+    title: "Free AI Workshop — Thursday, April 2 | Newark, DE",
     description:
-      "Your boss said learn AI. We'll show you how. Free hands-on workshop — walk out with 3 AI tools working for your job.",
+      "Your boss said learn AI. We'll show you how. Free hands-on workshop April 2 at Hilton Wilmington/Christiana — walk out with 3 AI tools working for your job.",
   },
 };
 
@@ -64,18 +64,20 @@ export default function WorkshopsLayout({
             name: "AI Hands-On: Walk Out With 3 Tools Working For Your Job",
             description:
               "Free half-day, in-person AI workshop for corporate professionals. Hands-on training with ChatGPT, Claude, and automation tools. No tech experience needed.",
-            startDate: "2026-04-05T09:00:00-04:00",
-            endDate: "2026-04-05T13:00:00-04:00",
+            startDate: "2026-04-02T22:00:00Z",
+            endDate: "2026-04-03T00:00:00Z",
             eventAttendanceMode:
               "https://schema.org/OfflineEventAttendanceMode",
             eventStatus: "https://schema.org/EventScheduled",
             location: {
               "@type": "Place",
-              name: "Wilmington, DE Area (Venue TBA)",
+              name: "Hilton Wilmington/Christiana",
               address: {
                 "@type": "PostalAddress",
-                addressLocality: "Wilmington",
+                streetAddress: "100 Continental Dr",
+                addressLocality: "Newark",
                 addressRegion: "DE",
+                postalCode: "19713",
                 addressCountry: "US",
               },
             },
