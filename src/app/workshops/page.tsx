@@ -11,6 +11,8 @@ import {
   trackCtaClicked,
   trackFaqExpanded,
   trackScrollDepth,
+  getABVariant,
+  trackABExposure,
   UTMParams,
 } from '@/lib/analytics';
 
@@ -44,6 +46,10 @@ export default function WorkshopsPage() {
   const completedFieldsRef = useRef<Set<string>>(new Set());
   const scrollMilestonesRef = useRef<Set<number>>(new Set());
 
+  // ── A/B Test: hero-form (inline form in hero vs scroll-to-form) ────
+  const [abVariant, setAbVariant] = useState<'control' | 'variant'>('control');
+  const abTrackedRef = useRef(false);
+
   // ── Countdown timer ──────────────────────────────────────────────────
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
@@ -64,12 +70,20 @@ export default function WorkshopsPage() {
     return () => clearInterval(id);
   }, []);
 
-  // ── UTM capture & scroll tracking ──────────────────────────────────
+  // ── UTM capture, A/B test, & scroll tracking ──────────────────────
   useEffect(() => {
     // Capture UTM params on mount
     const utm = captureUTMParams();
     setUtmParams(utm);
     setPostHogUTMProperties(utm);
+
+    // A/B test assignment
+    const variant = getABVariant('hero-form-v1');
+    setAbVariant(variant);
+    if (!abTrackedRef.current) {
+      abTrackedRef.current = true;
+      trackABExposure('hero-form-v1', variant);
+    }
 
     // Scroll depth tracking
     const handleScroll = () => {
@@ -88,6 +102,18 @@ export default function WorkshopsPage() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // ── Hide GHL chat widget on this page (it overlaps CTAs on mobile) ─
+  useEffect(() => {
+    const hideWidget = () => {
+      const widget = document.querySelector('[data-widget-id="69c2f2eedf59cd6cb0175896"]') as HTMLElement;
+      if (widget) widget.style.display = 'none';
+    };
+    hideWidget();
+    const observer = new MutationObserver(hideWidget);
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => observer.disconnect();
   }, []);
 
   // ── Form field tracking ────────────────────────────────────────────
@@ -223,18 +249,90 @@ export default function WorkshopsPage() {
             No tech experience needed. No jargon. No theory without practice.
           </p>
 
-          {/* CTA — scroll to learn more, then register */}
+          {/* CTA — A/B test: variant shows inline form, control shows scroll button */}
           <div className="animate-fade-up-delay-4">
-            <a
-              href="#register"
-              onClick={() => trackCtaClicked('Reserve My Free Spot', 'hero')}
-              className="inline-block bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-xl font-body font-black text-lg transition-all shadow-lg shadow-amber-500/20 active:scale-95"
-            >
-              Reserve My Free Spot
-            </a>
-            <p className="font-body text-gray-600 text-xs mt-3">
-              25 seats only. Takes 15 seconds to register.
-            </p>
+            {abVariant === 'variant' && formState !== 'success' ? (
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  setFormState('loading');
+                  try {
+                    const res = await fetch('/api/workshop-register', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        full_name: formData.name,
+                        email: formData.email,
+                        phone: '',
+                        source: 'hero-inline-form',
+                        registered_at: new Date().toISOString(),
+                        utm_source: utmParams.utm_source || '',
+                        utm_medium: utmParams.utm_medium || '',
+                        utm_campaign: utmParams.utm_campaign || '',
+                        utm_term: utmParams.utm_term || '',
+                        utm_content: utmParams.utm_content || '',
+                      }),
+                    });
+                    if (!res.ok) throw new Error('Registration failed');
+                    setFormState('success');
+                    trackWorkshopRegistration({});
+                  } catch {
+                    setFormState('error');
+                  }
+                }}
+                className="max-w-md mx-auto space-y-3"
+              >
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    required
+                    value={formData.name}
+                    onFocus={handleFormFocus}
+                    onChange={(e) => handleChange('name', e.target.value)}
+                    className="flex-1 px-4 py-3 rounded-xl border-0 font-body text-[#1C1917] text-base focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    placeholder="Your name"
+                  />
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => handleChange('email', e.target.value)}
+                    className="flex-1 px-4 py-3 rounded-xl border-0 font-body text-[#1C1917] text-base focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    placeholder="Work email"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={formState === 'loading'}
+                  className="w-full bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white px-8 py-4 rounded-xl font-body font-black text-lg transition-all shadow-lg shadow-amber-500/20 active:scale-95"
+                >
+                  {formState === 'loading' ? 'Registering...' : 'Reserve My Free Spot'}
+                </button>
+                {formState === 'error' && (
+                  <p className="font-body text-red-400 text-sm text-center">Something went wrong. Try again.</p>
+                )}
+                <p className="font-body text-gray-600 text-xs text-center">
+                  25 seats only. Takes 10 seconds. No spam.
+                </p>
+              </form>
+            ) : formState === 'success' ? (
+              <div className="bg-green-500/10 border border-green-400/30 rounded-xl p-4 max-w-md mx-auto">
+                <p className="font-body text-green-400 font-bold text-center">You&apos;re in! Check your email for details.</p>
+              </div>
+            ) : (
+              <>
+                <a
+                  href="#register"
+                  onClick={() => trackCtaClicked('Reserve My Free Spot', 'hero')}
+                  className="inline-block bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-xl font-body font-black text-lg transition-all shadow-lg shadow-amber-500/20 active:scale-95"
+                >
+                  Reserve My Free Spot
+                </a>
+                <p className="font-body text-gray-600 text-xs mt-3">
+                  25 seats only. Takes 15 seconds to register.
+                </p>
+              </>
+            )}
           </div>
 
           {/* Countdown timer */}
@@ -279,8 +377,11 @@ export default function WorkshopsPage() {
           <h2 className="font-display text-2xl sm:text-3xl font-black text-[#1C1917] text-center mb-3">
             Sound Familiar?
           </h2>
-          <p className="font-body text-[#78716C] text-center mb-10 max-w-lg mx-auto">
+          <p className="font-body text-[#78716C] text-center mb-4 max-w-lg mx-auto">
             If any of these describe you, this workshop was built for you.
+          </p>
+          <p className="font-body text-[#A8A29E] text-center text-sm mb-10 max-w-lg mx-auto">
+            Built for professionals at JPMorgan, Capital One, DuPont, AstraZeneca, and companies across New Castle County.
           </p>
 
           <div className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
@@ -320,6 +421,15 @@ export default function WorkshopsPage() {
           <p className="font-body text-[#78716C] text-center mt-2">
             That changes in one evening.
           </p>
+          <div className="text-center mt-8">
+            <a
+              href="#register"
+              onClick={() => trackCtaClicked('Register — It\'s Free', 'sound_familiar')}
+              className="inline-block bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-xl font-body font-black text-lg transition-all shadow-lg shadow-amber-500/20 active:scale-95"
+            >
+              Register — It&apos;s Free
+            </a>
+          </div>
         </div>
       </section>
 
@@ -585,7 +695,7 @@ export default function WorkshopsPage() {
             </p>
             <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-400/30 text-amber-400 px-4 py-2 rounded-full font-body text-sm font-medium mt-3">
               <span className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
-              2 of 25 spots claimed
+              Only 23 spots remaining
             </div>
             <p className="font-body text-red-400 text-sm font-bold mt-2">
               Registration closes March 31
@@ -698,14 +808,13 @@ export default function WorkshopsPage() {
                 {/* Phone */}
                 <div>
                   <label htmlFor="reg-phone" className="block font-body text-sm font-medium text-[#1C1917] mb-1.5">
-                    Phone Number <span className="text-red-500">*</span>
-                    <span className="text-[#A8A29E] font-normal ml-1">(we&apos;ll text you the address + a free AI tip)</span>
+                    Phone Number
+                    <span className="text-[#A8A29E] font-normal ml-1">(optional — we&apos;ll text you the address + a free AI tip)</span>
                   </label>
                   <input
                     id="reg-phone"
                     type="tel"
                     inputMode="tel"
-                    required
                     value={formData.phone}
                     onChange={(e) => handleChange('phone', e.target.value)}
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] text-base focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"

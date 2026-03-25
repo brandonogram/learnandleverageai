@@ -164,3 +164,45 @@ export function trackScrollDepth(percent: number) {
   ga4Event('scroll_depth', { percent, page: '/workshops' });
   phEvent('scroll_depth', { percent, page: '/workshops' });
 }
+
+// ─── A/B Test helpers ────────────────────────────────────────────────────
+
+/**
+ * Get or assign A/B test variant using PostHog.
+ * Stores variant in localStorage for consistency across page loads.
+ * Returns 'control' or 'variant' — 50/50 split.
+ */
+export function getABVariant(testName: string): 'control' | 'variant' {
+  if (typeof window === 'undefined') return 'control';
+
+  const storageKey = `llai_ab_${testName}`;
+
+  // Check if already assigned
+  try {
+    const stored = localStorage.getItem(storageKey);
+    if (stored === 'control' || stored === 'variant') return stored;
+  } catch {
+    // localStorage not available
+  }
+
+  // Assign randomly
+  const variant = Math.random() < 0.5 ? 'control' : 'variant';
+
+  try {
+    localStorage.setItem(storageKey, variant);
+  } catch {
+    // localStorage not available
+  }
+
+  return variant;
+}
+
+export function trackABExposure(testName: string, variant: string) {
+  phEvent('$experiment_started', {
+    experiment: testName,
+    variant,
+    '$feature_flag': testName,
+    '$feature_flag_response': variant,
+  });
+  ga4Event('experiment_exposure', { test_name: testName, variant });
+}
