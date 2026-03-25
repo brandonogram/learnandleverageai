@@ -386,7 +386,7 @@ export default function WorkshopsPage() {
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-8 max-w-2xl mx-auto">
             <div className="w-32 h-32 rounded-2xl overflow-hidden flex-shrink-0 border-2 border-amber-200">
               <Image
-                src="/images/brandon-calloway.jpg"
+                src="/images/brandon-headshot.jpg"
                 alt="Brandon Calloway"
                 width={128}
                 height={128}
