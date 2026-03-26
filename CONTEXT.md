@@ -79,7 +79,7 @@ LearnAndLeverageAI.com — Brandon's AI training and consulting brand. In-person
 | GHL Voice AI + phone assignment | ✅ LIVE | Custom voice agent at /api/voice-inbound — Twilio webhook configured, Groq LLM, full knowledge base, deployed on Vercel |
 | GHL Voice AI Agent (native) | ✅ Created via API | Agent ID: 69c08755d5cbc88fcd870d8c. Phone number NOT assigned — Twilio number +13024166285 not registered in GHL location (needs UI) |
 | GHL location phone update | Pending | Change from 302-420-9576 to 302-416-6285 in GHL UI |
-| GHL AI Employee add-on | BLOCKED by 2FA | Cannot access GHL UI — Tandem blocked ("encountered an issue"), Playwright gets past login but 2FA sends code to brandon@boothlaunchpad.com which has no MX records and is inaccessible |
+| GHL AI Employee add-on | BLOCKED by 2FA | Cannot access GHL UI — Tandem blocked ("encountered an issue"), Playwright gets past login but 2FA sends code to brandonbot67@gmail.com which has no MX records and is inaccessible |
 | GHL Conversation AI (SMS) | BLOCKED by 2FA | Conversation AI API not accessible via PIT token — needs UI setup or different API scope |
 
 ### Decision Log (Mar 21):
@@ -116,6 +116,21 @@ LearnAndLeverageAI.com — Brandon's AI training and consulting brand. In-person
 
 ### Recent Changes
 
+**Mar 25-26 — Claude Code (MAJOR MARKETING PUSH):**
+- **LinkedIn ads LIVE:** Company Page created, $25/day campaign targeting JPMorgan/Capital One/DuPont/AstraZeneca managers+ in NCC. Lead Gen Form → Zapier webhook → /api/linkedin-lead → GHL (auto). Ad image: venue photo + "Never Used AI? Start Here."
+- **LinkedIn Premium trial:** Started Mar 25, CANCEL BEFORE Apr 25 ($99.99/mo)
+- **CRO overhaul deployed:** Phone field now optional, A/B test (hero-form-v1: inline form vs scroll CTA), company mentions (JPMorgan etc.), CTA after "Sound Familiar?", chat widget hidden on /workshops, "Only 8 spots remaining"
+- **Capacity changed 25 → 10:** All touchpoints updated (website, SMS, voice, email, LinkedIn posts, confirmation email)
+- **Professional headshot:** Added to landing page + uploaded for Gamma
+- **Gamma deck V3:** Security slides, PCD/CLD/C2C businesses, simpler ROI math, beginner-focused
+- **Venue name fixed:** "Hilton Christiana" everywhere (was "Hilton Wilmington/Christiana")
+- **Parking mentions removed:** Per Brandon's request
+- **Venue texts sent:** Steven Tusio + Adam Bates via Twilio
+- **Venue photo saved:** public/images/venue/classroom.jpg
+- **Speaking opportunities researched:** 27 events/orgs in Delaware (docs/speaking-opportunities.md)
+- **Marketing assets created:** FB group posts, Rotary/Chamber outreach emails, printable flyer
+- **Campaign stats (Mar 25):** $156 spent, 13K impressions, 440 clicks, 357 LPV, 6.5% CTR, 2 registrations
+
 **Mar 24 — Claude Code (VENUE CONFIRMED — Full Update):**
 - **Venue CONFIRMED:** Hilton Wilmington/Christiana, 100 Continental Dr, Newark, DE 19713
 - **Contact:** Theresa Langan, tlangan@hiltonchristiana.com, (302) 631-1543
@@ -143,12 +158,12 @@ LearnAndLeverageAI.com — Brandon's AI training and consulting brand. In-person
 - **Conversation AI API not accessible** via PIT token — returns 404. May need different API scope or must be configured via UI
 - **GHL UI login BLOCKED:**
   - Tandem: Always gets "We encountered an issue while trying to log you in" (GHL detects Electron browser)
-  - Playwright: Login + account selection WORKS, but hits 2FA that sends code to brandon@boothlaunchpad.com
+  - Playwright: Login + account selection WORKS, but hits 2FA that sends code to brandonbot67@gmail.com
   - boothlaunchpad.com has NO MX records (DNS: Siteground), webmail.boothlaunchpad.com does not resolve
-  - Google Workspace MCP needs re-authorization for both brandonbot67@gmail.com and brandon@boothlaunchpad.com
+  - Google Workspace MCP needs re-authorization for both brandonbot67@gmail.com and brandonbot67@gmail.com
   - 2FA code is NOT forwarded to brandonbot67@gmail.com
 - **Screenshots saved:** Login page, account picker, 2FA code sent screen (uploaded to catbox)
-- **BRANDON ACTION REQUIRED:** (1) Log into GHL UI manually and complete AI Employee setup, (2) Import Twilio number +13024166285 into LLAI sub-account, (3) Fix brandon@boothlaunchpad.com email (add MX records or change GHL 2FA to a working email)
+- **BRANDON ACTION REQUIRED:** (1) Log into GHL UI manually and complete AI Employee setup, (2) Import Twilio number +13024166285 into LLAI sub-account, (3) Fix brandonbot67@gmail.com email (add MX records or change GHL 2FA to a working email)
 
 **Mar 22 — Claude Code (Meta Ad Campaign — Correct Account):**
 - **Created fresh campaign on LLAI ad account** (act_1298229182341198, VISA *9642) — previous campaign on Christmas Lights Dude account is PAUSED
