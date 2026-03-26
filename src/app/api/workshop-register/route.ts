@@ -141,10 +141,10 @@ export async function POST(request: NextRequest) {
   try {
     const body: RegistrationPayload = await request.json();
 
-    // Validate required fields
-    if (!body.full_name || !body.email || !body.phone) {
+    // Validate required fields (phone is optional — LinkedIn leads won't have it)
+    if (!body.full_name || !body.email) {
       return NextResponse.json(
-        { error: 'Name, email, and phone are required.' },
+        { error: 'Name and email are required.' },
         { status: 400 }
       );
     }
