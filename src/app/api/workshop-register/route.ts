@@ -42,7 +42,7 @@ function buildConfirmationEmailHtml(firstName: string): string {
 
   <p><strong>What to bring:</strong> Your laptop (charged), a charger, and a real work task you want to speed up with AI. That's it. We provide everything else — workbook, coffee, snacks, Wi-Fi.</p>
 
-  <p>Small group (25 max), so you'll get individual attention. If something comes up and you can't make it, just reply so I can open your seat.</p>
+  <p>Small group (10 max), so you'll get individual attention. If something comes up and you can't make it, just reply so I can open your seat.</p>
 
   <p>— Brandon</p>
 
