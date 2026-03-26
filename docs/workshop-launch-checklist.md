@@ -47,13 +47,14 @@ Last audited: 2026-03-25 by Claude Code
 - [x] Free parking (400+ spaces), complimentary water ✅
 - [x] $307.50 total ($250 + 23% event fee). Payment due March 30. ✅
 - [x] Contact: Theresa Langan, tlangan@hiltonchristiana.com, (302) 631-1543 ✅
-- [ ] **Pay Theresa by March 30** — credit card (3% fee = ~$316.73). **BRANDON.**
+- [x] **Hilton paid** ✅ (Mar 25)
 
 ## MARKETING
 
 - [x] FB/X posts live (Mar 21)
 - [x] Meta video ads (5 variants, 4 active) ✅ (Mar 22)
-- [x] Meta ad campaign LIVE — $50/day, $119.95 spent, 6.5% CTR ✅
+- [x] Meta ad campaign LIVE — $50/day, $156 spent, 6.5% CTR ✅
+- [x] LinkedIn ad campaign LIVE — $25/day, Lead Gen Form, targeting JPMorgan/Capital One/DuPont/AstraZeneca managers+ in NCC ✅ (Mar 25)
 - [x] LinkedIn posts written (5 posts) — `marketing/linkedin-posts-ready.md` ✅
 - [x] Nextdoor posts written (2 posts) ✅
 - [ ] **LinkedIn Post 1 POSTED** — Brandon edited copy, needs to paste and post. **BRANDON.** (30 sec)
@@ -114,7 +115,7 @@ Last audited: 2026-03-25 by Claude Code
 **Today:**
 1. [ ] **Post LinkedIn Post 1** (30 sec — copy ready at marketing/linkedin-posts-ready.md)
 2. [x] **Send venue texts to Steven + Adam** — SENT ✅ (Mar 25)
-3. [ ] **Pay Hilton by March 30** — contact Theresa at (302) 631-1543 or tlangan@hiltonchristiana.com
+3. [x] **Hilton paid** ✅
 
 **This week:**
 4. [ ] Upload FB profile pic from phone (30 sec)
