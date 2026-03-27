@@ -827,16 +827,15 @@ export default function WorkshopsPage() {
                   />
                 </div>
 
-                {/* SMS Consent Checkbox — required for A2P 10DLC compliance */}
+                {/* SMS Consent Checkbox — optional, for A2P 10DLC compliance */}
                 <div className="flex items-start gap-3 mt-1">
                   <input
                     type="checkbox"
                     id="sms-consent"
-                    required
                     className="mt-1 w-4 h-4 rounded border-gray-300 text-amber-500 focus:ring-amber-500"
                   />
                   <label htmlFor="sms-consent" className="font-body text-xs text-[#78716C] leading-relaxed">
-                    I agree to receive SMS event reminders and updates from Learn &amp; Leverage AI. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to unsubscribe.{' '}
+                    I agree to receive SMS text messages from Learn &amp; Leverage AI with event confirmations, reminders, and updates. Message frequency varies (typically 3-5 messages per event). Msg &amp; data rates may apply. Reply STOP to cancel. Reply HELP for help.{' '}
                     <a href="/privacy" className="underline">Privacy Policy</a> &amp;{' '}
                     <a href="/terms" className="underline">Terms</a>.
                   </label>
