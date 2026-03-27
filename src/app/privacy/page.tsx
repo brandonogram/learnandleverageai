@@ -94,6 +94,9 @@ export default function PrivacyPolicyPage() {
             <p className="mt-2">
               SMS messages are delivered through <strong className="text-white">Twilio</strong>. Carriers are not liable for delayed or undelivered messages. Your consent to receive SMS is not a condition of purchasing any service.
             </p>
+            <p className="mt-3">
+              <strong className="text-white">No sharing:</strong> We will never sell, rent, or share your phone number or SMS opt-in consent with any third parties for their marketing purposes. Your SMS opt-in information is used solely by Learn &amp; Leverage AI for the purposes described above.
+            </p>
           </section>
 
           <section>

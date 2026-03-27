@@ -36,9 +36,12 @@ export default function TermsOfServicePage() {
           </section>
 
           <section>
-            <h2 className="font-display text-xl font-semibold text-white mb-3">2. Agreement to Terms</h2>
+            <h2 className="font-display text-xl font-semibold text-white mb-3">2. Agreement to Terms &amp; Eligibility</h2>
             <p>
               By accessing our website, registering for a workshop, or using any of our services, you agree to be bound by these Terms of Service. If you do not agree, please do not use our website or services.
+            </p>
+            <p className="mt-2">
+              <strong className="text-white">Age requirement:</strong> You must be at least 18 years of age to use our services, register for workshops, or opt in to SMS communications. By using our services, you represent and warrant that you are at least 18 years old.
             </p>
           </section>
 
