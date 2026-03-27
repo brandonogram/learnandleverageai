@@ -314,6 +314,11 @@ export default function WorkshopsPage() {
                 <p className="font-body text-gray-600 text-xs text-center">
                   10 seats only. Takes 10 seconds. No spam.
                 </p>
+                <p className="font-body text-center text-[10px] text-gray-600 mt-1 max-w-sm mx-auto leading-relaxed">
+                  By registering, you consent to receive SMS event updates from Learn &amp; Leverage AI. Msg &amp; data rates may apply. Reply STOP to opt out.{' '}
+                  <a href="/privacy" className="underline text-gray-500">Privacy</a> |{' '}
+                  <a href="/terms" className="underline text-gray-500">Terms</a>
+                </p>
               </form>
             ) : formState === 'success' ? (
               <div className="bg-green-500/10 border border-green-400/30 rounded-xl p-4 max-w-md mx-auto">
@@ -847,8 +852,12 @@ export default function WorkshopsPage() {
                 </button>
 
                 <p className="font-body text-center text-xs text-[#A8A29E] mt-1">
-                  Takes 15 seconds. We&apos;ll email and text you a confirmation.
-                  No spam. Unsubscribe anytime.
+                  Takes 15 seconds. No spam.
+                </p>
+                <p className="font-body text-center text-[10px] text-[#78716C] mt-2 max-w-sm mx-auto leading-relaxed">
+                  By registering, you consent to receive SMS event reminders and updates from Learn &amp; Leverage AI at the phone number provided. Message frequency varies. Message &amp; data rates may apply. Reply STOP to unsubscribe. View our{' '}
+                  <a href="/privacy" className="underline">Privacy Policy</a> and{' '}
+                  <a href="/terms" className="underline">Terms of Service</a>.
                 </p>
               </form>
             )}
