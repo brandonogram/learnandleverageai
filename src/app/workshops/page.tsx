@@ -835,8 +835,8 @@ export default function WorkshopsPage() {
                     className="mt-1 w-4 h-4 rounded border-gray-300 text-amber-500 focus:ring-amber-500"
                   />
                   <label htmlFor="sms-consent" className="font-body text-xs text-[#78716C] leading-relaxed">
-                    I agree to receive SMS text messages from Learn &amp; Leverage AI with event confirmations, reminders, and updates. Message frequency varies (typically 3-5 messages per event). Msg &amp; data rates may apply. Reply STOP to cancel. Reply HELP for help.{' '}
-                    <a href="/privacy" className="underline">Privacy Policy</a> &amp;{' '}
+                    I agree to receive SMS text messages from <strong className="text-[#57534E]">Learn and Leverage AI</strong> (Dude Ventures Services LLC) with event confirmations, reminders, and updates. <strong className="text-[#57534E]">Message frequency: up to 5 messages per event.</strong> Msg and data rates may apply. Reply STOP to cancel. Reply HELP for help.{' '}
+                    <a href="/privacy" className="underline">Privacy Policy</a> and{' '}
                     <a href="/terms" className="underline">Terms</a>.
                   </label>
                 </div>
