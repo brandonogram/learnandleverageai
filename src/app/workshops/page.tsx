@@ -922,6 +922,9 @@ export default function WorkshopsPage() {
           <p className="font-body text-xs text-gray-600">
             &copy; {new Date().getFullYear()} Learn & Leverage AI. All rights reserved.
           </p>
+          <p className="font-body text-[10px] text-gray-700 mt-2">
+            Learn &amp; Leverage AI is a service of Dude Ventures Services LLC &middot; Dover, DE
+          </p>
         </div>
       </footer>
     </div>
