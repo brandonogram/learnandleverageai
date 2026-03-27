@@ -758,6 +758,28 @@ export default function WorkshopsPage() {
                   </a>
                 </div>
 
+                {/* Share with a colleague */}
+                <div className="bg-blue-50 rounded-xl p-4 mb-4">
+                  <h4 className="font-body text-sm font-bold text-[#1C1917] mb-2">Know someone who should come?</h4>
+                  <p className="font-body text-xs text-[#57534E] mb-3">Copy this and send it to a colleague:</p>
+                  <div className="bg-white rounded-lg p-3 border border-blue-100">
+                    <p className="font-body text-xs text-[#44403C] leading-relaxed italic">
+                      &ldquo;A local business owner is running a free AI workshop next Thursday at the Hilton Christiana in Newark. It&apos;s for people who haven&apos;t used AI at work yet — you bring your laptop, he shows you how to set it up for your job. 10 seats, no cost. learnandleverageai.com/workshops&rdquo;
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText("A local business owner is running a free AI workshop next Thursday at the Hilton Christiana in Newark. It's for people who haven't used AI at work yet — you bring your laptop, he shows you how to set it up for your job. 10 seats, no cost. learnandleverageai.com/workshops");
+                      const btn = document.getElementById('copy-share');
+                      if (btn) { btn.textContent = 'Copied!'; setTimeout(() => btn.textContent = 'Copy to clipboard', 2000); }
+                    }}
+                    id="copy-share"
+                    className="mt-2 font-body text-xs font-medium text-blue-600 hover:text-blue-800 underline"
+                  >
+                    Copy to clipboard
+                  </button>
+                </div>
+
                 {/* What to bring */}
                 <div className="bg-amber-50 rounded-xl p-4">
                   <h4 className="font-body text-sm font-bold text-[#1C1917] mb-2">What to bring:</h4>
