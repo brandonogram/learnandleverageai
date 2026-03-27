@@ -98,6 +98,10 @@ export default function WorkshopsLayout({
               url: "https://learnandleverageai.com/workshops",
             },
             isAccessibleForFree: true,
+            maximumAttendeeCapacity: 10,
+            remainingAttendeeCapacity: 8,
+            image: "https://learnandleverageai.com/images/linkedin-ad-workshop.png",
+            keywords: ["AI workshop", "artificial intelligence training", "free workshop", "Delaware", "Newark DE", "professional development", "beginner AI"],
           }),
         }}
       />
