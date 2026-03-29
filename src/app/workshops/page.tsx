@@ -454,8 +454,8 @@ export default function WorkshopsPage() {
             {[
               {
                 time: "6:00 PM",
-                title: "What AI Actually Is & Prompt Engineering",
-                desc: "A clear-eyed look at what AI can and can't do today. Live demos of ChatGPT and Claude, then hands-on exercises where you write prompts for YOUR actual work tasks. Learn the techniques that turn mediocre AI responses into genuinely useful ones.",
+                title: "What AI Actually Is & How to Use It",
+                desc: "A clear-eyed look at what AI can and can't do today. Live demos of ChatGPT and Claude, then hands-on exercises where you ask AI to do YOUR actual work tasks. Learn the techniques that turn mediocre AI responses into genuinely useful ones.",
               },
               {
                 time: "7:00 PM",
@@ -611,9 +611,43 @@ export default function WorkshopsPage() {
       </section>
 
       {/* ============================================================ */}
-      {/* VALUE STACK — What You Get (for free) */}
+      {/* VENUE PHOTO + SOCIAL PROOF */}
       {/* ============================================================ */}
       <section className="py-12 px-5 bg-white">
+        <div className="max-w-3xl mx-auto">
+          <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-sm mb-8">
+            <Image
+              src="/images/venue/classroom.jpg"
+              alt="Workshop room at Hilton Christiana — classroom setup with projector and screen"
+              width={800}
+              height={450}
+              className="w-full h-auto object-cover"
+            />
+            <div className="bg-[#FFFBF5] px-5 py-3 border-t border-amber-100">
+              <p className="font-body text-sm text-[#57534E]">
+                <strong className="text-[#1C1917]">Your workshop room</strong> — Hilton Christiana, Newark DE. Small group. Projector + screen. Everyone gets a seat with power.
+              </p>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <p className="font-body text-sm text-[#78716C] mb-3">Built for professionals at companies like:</p>
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+              {['JPMorgan Chase', 'Capital One', 'DuPont', 'AstraZeneca', 'Barclays', 'Bank of America'].map((company) => (
+                <span key={company} className="font-body text-sm font-semibold text-[#A8A29E]">{company}</span>
+              ))}
+            </div>
+            <p className="font-body text-xs text-[#D6D3D1] mt-3">
+              No corporate sponsorship — these are the companies where our target attendees work.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* VALUE STACK — What You Get (for free) */}
+      {/* ============================================================ */}
+      <section className="py-12 px-5 bg-[#FFFBF5]">
         <div className="max-w-2xl mx-auto">
           <h2 className="font-display text-2xl sm:text-3xl font-black text-[#1C1917] text-center mb-2">
             Everything You Get (for Free)
@@ -703,7 +737,7 @@ export default function WorkshopsPage() {
               Only 8 spots remaining
             </div>
             <p className="font-body text-red-400 text-sm font-bold mt-2">
-              Registration closes March 31
+              Registration closes April 1 at midnight
             </p>
           </div>
 
@@ -849,20 +883,6 @@ export default function WorkshopsPage() {
                   />
                 </div>
 
-                {/* SMS Consent Checkbox — optional, for A2P 10DLC compliance */}
-                <div className="flex items-start gap-3 mt-1">
-                  <input
-                    type="checkbox"
-                    id="sms-consent"
-                    className="mt-1 w-4 h-4 rounded border-gray-300 text-amber-500 focus:ring-amber-500"
-                  />
-                  <label htmlFor="sms-consent" className="font-body text-xs text-[#78716C] leading-relaxed">
-                    I agree to receive SMS text messages from <strong className="text-[#57534E]">LearnAndLeverageAI</strong> (Dude Ventures Services LLC, d/b/a Learn and Leverage AI) with event confirmations, reminders, and updates. <strong className="text-[#57534E]">Message frequency: up to 5 messages per event.</strong> Msg and data rates may apply. Reply STOP to cancel. Reply HELP for help.{' '}
-                    <a href="/privacy" className="underline">Privacy Policy</a> and{' '}
-                    <a href="/terms" className="underline">Terms</a>.
-                  </label>
-                </div>
-
                 {formState === 'error' && (
                   <p className="font-body text-red-600 text-sm text-center">
                     Something went wrong. Please try again.
@@ -888,12 +908,12 @@ export default function WorkshopsPage() {
                 </button>
 
                 <p className="font-body text-center text-xs text-[#A8A29E] mt-1">
-                  Takes 15 seconds. No spam.
+                  Takes 15 seconds. No spam. No credit card.
                 </p>
                 <p className="font-body text-center text-[10px] text-[#78716C] mt-2 max-w-sm mx-auto leading-relaxed">
-                  By registering, you consent to receive SMS event reminders and updates from Learn &amp; Leverage AI at the phone number provided. Message frequency varies. Message &amp; data rates may apply. Reply STOP to unsubscribe. View our{' '}
-                  <a href="/privacy" className="underline">Privacy Policy</a> and{' '}
-                  <a href="/terms" className="underline">Terms of Service</a>.
+                  By registering, you agree to receive event reminders via email and SMS. Reply STOP to opt out anytime.{' '}
+                  <a href="/privacy" className="underline">Privacy</a> &middot;{' '}
+                  <a href="/terms" className="underline">Terms</a>
                 </p>
               </form>
             )}
