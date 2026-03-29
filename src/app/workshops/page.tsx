@@ -883,6 +883,20 @@ export default function WorkshopsPage() {
                   />
                 </div>
 
+                {/* SMS Consent Checkbox — optional, for A2P 10DLC compliance */}
+                <div className="flex items-start gap-3 mt-1">
+                  <input
+                    type="checkbox"
+                    id="sms-consent"
+                    className="mt-1 w-4 h-4 rounded border-gray-300 text-amber-500 focus:ring-amber-500"
+                  />
+                  <label htmlFor="sms-consent" className="font-body text-xs text-[#78716C] leading-relaxed">
+                    I agree to receive SMS text messages from <strong className="text-[#57534E]">LearnAndLeverageAI</strong> (Dude Ventures Services LLC, d/b/a Learn and Leverage AI) with event confirmations, reminders, and updates. <strong className="text-[#57534E]">Message frequency: up to 5 messages per event.</strong> Msg and data rates may apply. Reply STOP to cancel. Reply HELP for help.{' '}
+                    <a href="/privacy" className="underline">Privacy Policy</a> and{' '}
+                    <a href="/terms" className="underline">Terms</a>.
+                  </label>
+                </div>
+
                 {formState === 'error' && (
                   <p className="font-body text-red-600 text-sm text-center">
                     Something went wrong. Please try again.
@@ -908,12 +922,12 @@ export default function WorkshopsPage() {
                 </button>
 
                 <p className="font-body text-center text-xs text-[#A8A29E] mt-1">
-                  Takes 15 seconds. No spam. No credit card.
+                  Takes 15 seconds. No spam.
                 </p>
                 <p className="font-body text-center text-[10px] text-[#78716C] mt-2 max-w-sm mx-auto leading-relaxed">
-                  By registering, you agree to receive event reminders via email and SMS. Reply STOP to opt out anytime.{' '}
-                  <a href="/privacy" className="underline">Privacy</a> &middot;{' '}
-                  <a href="/terms" className="underline">Terms</a>
+                  By registering, you consent to receive SMS event reminders and updates from Learn &amp; Leverage AI at the phone number provided. Message frequency varies. Message &amp; data rates may apply. Reply STOP to unsubscribe. View our{' '}
+                  <a href="/privacy" className="underline">Privacy Policy</a> and{' '}
+                  <a href="/terms" className="underline">Terms of Service</a>.
                 </p>
               </form>
             )}
