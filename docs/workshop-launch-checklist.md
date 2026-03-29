@@ -5,13 +5,11 @@
 **Venue:** Hilton Christiana, 100 Continental Dr, Newark, DE 19713
 **Goal:** 25 attendees → $25K+ in on-the-spot upsells
 
-Last audited: 2026-03-28 06:07 PM ET by Elon (cron ws-audit-0002-4a5b-9c0d-llaiauditjob)
+Last audited: 2026-03-29 08:00 AM ET by Claude Code (cron ws-audit)
 
-**AUDIT NOTES (Mar 28 6PM):** 5 days to workshop. 2 registrations. No change from prior audit. All remaining unchecked items require Brandon directly. No new automatable items. GHL workflows and Typeform survey remain the two highest-impact Brandon actions. No new ESCALATIONS needed.
+**AUDIT NOTES (Mar 29 8AM):** 4 days out. 2 registrations. $250.52 spent on Meta. Overnight session: deployed CRO fixes (venue photo, social proof bar, deadline extension to Apr 1, "Prompt Engineering" removed from agenda), created /ai-for-beginners SEO page, drafted 9 new outreach emails + 5 follow-ups + Craigslist/Reddit posts. 13 event calendar sites identified for submission. Git push access fixed (brandonbot67 invited as collaborator). All remaining unchecked items still need Brandon except event calendar submissions which Claude will do today.
 
-**AUDIT NOTES (Mar 28 6PM):** 5 days to workshop. 2 registrations. No new automatable items completable from this cron. All remaining unchecked items require Brandon directly (posts from personal profile, GHL UI workflows, Typeform survey, Eventbrite with reCAPTCHA). ESCALATIONS.md reviewed — venue resolved, no new escalations needed. LLAI priority remains correct: registrations + promotion are the only lever left.
-
-**STATUS: 2 registrations. $243 spent (Meta $15/day) + LinkedIn $25/day. 544 LPV. 5 days out. Organic outreach ACTIVE: 33 emails sent to orgs/media/alumni, 1 reply (DE SHRM — speaker app invited), Nextdoor post live, AI tips page deployed, Eventbrite draft created (needs phone verify). Personal posts (LinkedIn, FB) still need Brandon.**
+**STATUS: 2 registrations. $250.52 spent (Meta $15/day + LinkedIn $25/day). 558 LPV. 4 days out. CRO fixes deployed. Outreach emails + event calendar submissions ready for today. Brandon's personal posts remain the highest-leverage unpulled action.**
 
 ---
 
@@ -103,15 +101,16 @@ Last audited: 2026-03-28 06:07 PM ET by Elon (cron ws-audit-0002-4a5b-9c0d-llaia
 - [ ] GHL A2P registration — **RESUBMITTED** Mar 26 with checkbox, consent language, DBA, compliance fixes. Pending review.
 - [ ] GHL phone number — blocked by A2P
 
-## CAMPAIGN PERFORMANCE (as of Mar 27 10AM audit)
+## CAMPAIGN PERFORMANCE (as of Mar 29 8AM audit)
 
-**Meta Ads:**
-- Impressions: 17,800+ | Spend: $219
-- Link clicks: 620+ | Landing views: 501 | CPC: $0.18 | CTR: 6.6%
-- Video views: 5,800+
+**Meta Ads (all-time):**
+- Impressions: 20,272 | Reach: 11,535 | Spend: $250.52
+- Link clicks: 684 | Landing views: 558 | CPC: $0.19 | CTR: 6.5%
+- Video views: 6,701
 - **2 registrations** (Steven Tusio + Adam Bates)
-- Cost per registration: $109.50
-- Conversion rate: 0.4% (501 LPV → 2 registrations)
+- Cost per registration: $125.26
+- Conversion rate: 0.36% (558 LPV → 2 registrations)
+- Budget: reduced from $50/day to $15/day on Mar 27
 
 **LinkedIn Ads (started Mar 25):**
 - $25/day, targeting JPMorgan/Capital One/DuPont/AstraZeneca managers+ in NCC
@@ -119,27 +118,43 @@ Last audited: 2026-03-28 06:07 PM ET by Elon (cron ws-audit-0002-4a5b-9c0d-llaia
 - Pipeline tested and working
 - No real LinkedIn leads yet
 
-**CRO Changes (deployed Mar 25):**
-- Phone optional, A/B test (hero-form-v1), company mentions, SMS consent checkbox
-- 100+ new LPV since CRO deploy, 0 new conversions — CRO changes have NOT improved conversion rate
+**CRO Changes (deployed Mar 25 + Mar 29):**
+- Mar 25: Phone optional, A/B test (hero-form-v1), company mentions, SMS consent checkbox
+- Mar 29: Venue photo added, social proof bar (company names), registration deadline extended to Apr 1, "Prompt Engineering" removed from agenda, /ai-for-beginners SEO page deployed
+- 558 LPV total, 0 new conversions since CRO changes — page conversion remains the bottleneck
+
+**Organic Outreach (started Mar 27):**
+- 33+ emails sent to local orgs (Rotary, chambers, alumni, media, professional associations)
+- 1 real reply: DE SHRM — speaker application invited
+- 7 bounces logged (Delaware Today, Patch x2, FEWDE, 1313 Innovation, SCORE, DE SBC)
+- 1 auto-reply: Emerging Enterprise Center
+- 1 DO NOT CONTACT: Chris Glanden (barcodesecurity.com)
+- 9 new outreach emails drafted for today: PMI-DVC, DE State Chamber, Tech Council, etc.
+- 5 follow-up emails drafted for non-responders
+- Reddit, Craigslist posts drafted
+- 13 free event calendar sites identified for submission today
 
 ---
 
-## BRANDON ACTION ITEMS (6 days out — CRITICAL)
+## BRANDON ACTION ITEMS (4 days out — CRITICAL)
 
-**RIGHT NOW — these are the highest-impact actions and cost nothing:**
-1. [ ] **Post LinkedIn Post 1** (30 sec — copy at marketing/linkedin-posts-ready.md) — STILL NOT DONE
-2. [ ] **Post Nextdoor posts** (2 min — copy at marketing/linkedin-posts-ready.md)
+**TODAY (Saturday Mar 29) — highest-impact, no cost:**
+1. [ ] **Post LinkedIn Post 1** (30 sec — copy at marketing/brandon-personal-posts-draft.md) — STILL NOT DONE
+2. [ ] **Post Facebook casual invite** (30 sec — copy at marketing/brandon-personal-posts-draft.md)
 3. [ ] **Post in 2-3 Delaware FB groups** (2 min — copy at marketing/facebook-group-posts.md)
-4. [ ] **Send 5 outreach emails** to Rotary/Chamber (5 min — copy at marketing/outreach-emails-rotary-chamber.md)
-5. [ ] **Register for March 31 events** — Get Down to Business (Chase Center 8:30 AM) + DEBCC Workshop (11 AM). Print flyers at marketing/workshop-flyer.png.
+4. [ ] **Text 5-10 people you know** — "Hey, free AI workshop Thursday at the Hilton in Newark. Know anyone who'd benefit?"
+5. [ ] **Approve outreach emails** so Claude can send them mid-morning (drafts at marketing/final-push-outreach-mar28.md)
 
-**This week:**
-6. [ ] Upload FB profile pic from phone (30 sec)
-7. [ ] Set FB CTA button (1 min)
-8. [ ] Set IG website + display name via mobile (2 min)
-9. [ ] Record a Cap.so video for social (5 min)
+**Monday March 31 — face-to-face networking:**
+6. [ ] **Attend "Get Down to Business"** at Chase Center (8:30 AM) — hand out flyers
+7. [ ] **Attend DEBCC Workshop** (11 AM) — network and invite
+8. [ ] **Post in 2-3 more FB groups** with "2 days away" urgency
+
+**Quick wins (2 min each):**
+9. [ ] Upload FB profile pic from phone (30 sec)
+10. [ ] Set FB CTA button (1 min)
+11. [ ] Set IG website + display name via mobile (2 min)
 
 **When you have 45 min:**
-10. [ ] Build 7 GHL workflows — guide at docs/ghl-api-setup-results.md
-11. [ ] Create Typeform survey from spec at docs/typeform-survey.md (5 min)
+12. [ ] Build GHL pre-workshop reminder workflow (priority — need before Apr 2)
+13. [ ] Create Typeform survey from spec at docs/typeform-survey.md (5 min)
