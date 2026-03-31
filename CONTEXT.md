@@ -1,7 +1,7 @@
 # Learn and Leverage AI — Living Context
 
-**Last Updated:** 2026-03-24
-**Status:** ACTIVE — IN-PERSON WORKSHOP LAUNCH (April 2, 2026)
+**Last Updated:** 2026-03-31
+**Status:** CRITICAL — WORKSHOP IN 2 DAYS (April 2, 2026) — 2 registrations, all-hands push
 **Owner:** Claude Code (autonomous execution), Brandon (teaches only)
 
 ## What This Is
@@ -26,6 +26,7 @@ LearnAndLeverageAI.com — Brandon's AI training and consulting brand. In-person
   - AI Consulting ($4,997+) — done-for-you implementation
 - **Lead gen:** Brandon's FB/X posts (LIVE since Mar 21), Meta ads, LinkedIn, Nextdoor
 - **FB/X posts:** LIVE as of March 21, 2026
+- **Organic promotion research:** COMPLETED — 13-channel organic strategy at `docs/organic-promotion-channels.md`
 
 ### What's Built:
 | Asset | Status | Location |
@@ -60,6 +61,13 @@ LearnAndLeverageAI.com — Brandon's AI training and consulting brand. In-person
 | AI Voice Agent (inbound calls) | ✅ LIVE | `src/app/api/voice-inbound/route.ts` — Twilio webhook, Groq LLM, multi-turn stateless, full knowledge base |
 | GHL Voice AI Agent | ✅ Created | Agent ID: `69c08755d5cbc88fcd870d8c` — "Learn & Leverage AI Assistant", full workshop knowledge base, greeting configured, timezone EST |
 | GHL Custom Fields (7 total) | ✅ Created | Company, Job Title, Workshop Date, Purchased, AI Skill Before/After, Biggest AI Challenge (dropdown with 7 options) |
+
+### Recent Marketing Update (2026-03-27)
+- Marlo created a fresh workshop promo set for the final 7-day push using fallback planning inputs after the daily brief file was missing.
+- Deliverables: 2 LinkedIn concepts with A/B hook variants targeting Behind-the-Curve Brian and Send-My-Team Susan.
+- Best-performing draft: manager-risk / wasted-productivity angle (self-score 9.2/10) with direct "send your team" CTA.
+- Matching Gemini images generated and uploaded to Catbox for Chief review.
+- Draft package saved in `~/.openclaw/workspaces/marlo/memory/2026-03-27.md` and the best 9.2 draft was promoted into `~/shared-brain/content-examples.md`.
 
 ### What's Pending:
 | Task | Status | Blocker |
@@ -115,6 +123,11 @@ LearnAndLeverageAI.com — Brandon's AI training and consulting brand. In-person
 - `.vercel/project.json` — Vercel deployment config
 
 ### Recent Changes
+
+**Mar 26 — Elon (Workshop launch audit):**
+- Re-audited `docs/workshop-launch-checklist.md` and `docs/ESCALATIONS.md` at 6:00 AM ET.
+- Status remains 2 registrations with workshop 7 days out; main unblocked Brandon actions are LinkedIn post, Nextdoor posts, FB profile/CTA/IG touch-ups, Typeform survey, and the 7 GHL workflows.
+- No new automatable checklist items were safely completable from this cron; public posting, GHL UI-only workflow creation, and Typeform creation still require Brandon.
 
 **Mar 25-26 — Claude Code (MAJOR MARKETING PUSH):**
 - **LinkedIn ads LIVE:** Company Page created, $25/day campaign targeting JPMorgan/Capital One/DuPont/AstraZeneca managers+ in NCC. Lead Gen Form → Zapier webhook → /api/linkedin-lead → GHL (auto). Ad image: venue photo + "Never Used AI? Start Here."
@@ -271,4 +284,41 @@ LearnAndLeverageAI.com — Brandon's AI training and consulting brand. In-person
 6. **Marketing** — LinkedIn posts, Nextdoor posts, Facebook follow-up posts, Eventbrite listing
 7. **Print materials** — workbook + reference card formatted as print-ready PDFs
 8. ~~**Landing page**~~ — ✅ Updated with venue, date, countdown timer, registration deadline
+
+## 2026-03-31 — Claude Code + Codex OVERNIGHT SESSION (Major)
+
+**3 rounds of Claude-Codex adversarial review produced the final 48-hour fill strategy.**
+
+**Strategy (agreed by both AIs):**
+- Reframe as "closed-door AI working session" — not "free workshop"
+- Brandon's personal outreach (calls > voice notes > texts) is the only reliable channel
+- "Results in Advance" approach: give free AI tip first, then invite
+- "Reply YES" frictionless registration — no website visit needed
+- Target HR/L&D managers for cluster recruiting (one yes = 3-5 seats)
+- Realistic revenue: $1-4K immediate + $5-15K pipeline (not $20K same-night)
+- Pivot threshold: if <8 confirmed by Wed noon, reframe as invite-only pilot
+
+**Assets built (14 files, 2,300+ lines):**
+- Zero-budget fill plan, Hormozi tactics, 40+ text blitz templates, DEBCC forwarding package, Reddit/CL posts, flyer, Eventbrite listing, follow-up emails, Brandon morning briefing, Monday morning prompts handout, Codex insights (3 rounds)
+
+**Code deployed:**
+- Landing page CRO fix: A/B test killed, inline hero form always shown
+- Seat count inconsistency fixed in SMS handler
+- Training plan + speaker guide: times updated (6-8 PM), forbidden phrases removed
+
+**Training content changes recommended (before Thursday):**
+- Replace Call2Calendar demo with corporate "AI Chief of Staff" demo
+- Add role-based exercises (finance, ops, HR tracks)
+- Simplify close from 5 offers to 2 paths + enterprise conversations
+- Add 5-min break, expand governance, replace fear-based lines with advantage-based
+
+**Key files:** `marketing/BRANDON-MORNING-BRIEFING.md`, `marketing/ZERO-BUDGET-FILL-PLAN.md`, `marketing/HORMOZI-TACTICS.md`, `marketing/CODEX-TRAINING-REVIEW.md`
+
+## 2026-03-30 — Marlo content update
+- Created a second same-day refinement package for Chief review so the Mar 30 content queue contains fresh A/B workshop options instead of only one repeated urgency post.
+- New LinkedIn variants target Behind-the-Curve Brian with statement-vs-question hooks.
+- Winning angle from the refinement run: status pressure relieved by practical usefulness, not hype.
+- Scores: 9.2 and 9.1.
+- Review package saved in `~/.openclaw/workspaces/marlo/memory/2026-03-30.md` with Catbox media link.
+- Top-scoring draft also promoted into `~/shared-brain/content-examples.md` for future LLAI calibration.
 
