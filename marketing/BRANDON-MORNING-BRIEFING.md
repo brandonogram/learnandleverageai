@@ -3,7 +3,9 @@
 **Date:** Tuesday, March 31, 2026
 **Workshop:** This Thursday, April 2, 6-8 PM, Hilton Christiana
 **Current registrations:** 2 (Steven Tusio + Adam Bates)
-**What happened overnight:** Claude + Codex worked all night. Landing page fixed. All marketing materials created. Everything below is ready for you.
+**What happened overnight:** Claude + Codex ran 3 adversarial review rounds. Landing page CRO fix deployed. 11 marketing assets created. Training content updated. Hormozi frameworks applied. Everything below is the FINAL agreed strategy.
+
+**THE BIG REFRAME (Claude + Codex agreed):** Stop calling it a "free workshop." Start calling it a **"closed-door AI working session."** This is an invitation, not an ad. You're curating a small group of serious professionals. That's how you fill the room with people who'll buy.
 
 ---
 

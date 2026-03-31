@@ -25,6 +25,12 @@
 
 **Instead of just inviting people, GIVE THEM A FREE AI TIP FIRST.** This proves the workshop is worth attending before you even ask.
 
+### Codex-Approved Killer Copy (Use in Posts + DMs):
+- "If you're still doing first drafts, meeting summaries, and slide outlines manually in April 2026, you're choosing to stay slower than people around you."
+- "If you manage people and still haven't seen AI used on a real work task, you're leading blind."
+- "Send me the task you want AI to handle. I'll build it into Thursday's session."
+- "Text me SEAT to lock yours in."
+
 ### Step 1 — Send this text (no ask, just value):
 > Hey [name], quick AI tip: open ChatGPT and paste in your last long email. Type "Summarize in 3 bullet points with action items for me." Try it right now — takes 10 seconds.
 

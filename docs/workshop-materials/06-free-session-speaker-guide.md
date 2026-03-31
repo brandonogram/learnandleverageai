@@ -28,11 +28,11 @@
 |---------|-----------|----------|
 | Opening | 6:00 - 6:10 | 10 min |
 | Block 1: What AI Actually Is | 6:10 - 6:40 | 30 min |
-| Block 2: Prompt Engineering | 6:40 - 7:05 | 25 min |
+| Block 2: How to Talk to AI | 6:40 - 7:05 | 25 min |
 | Block 3: AI Agents | 7:05 - 7:20 | 15 min |
 | Block 4: What's Possible | 7:20 - 7:30 | 10 min |
 | Closing + Upsell | 7:30 - 7:45 | 15 min |
-| Stay-After Conversations | 10:45 - 11:15 | 30 min |
+| Stay-After Conversations | 7:45 - 8:15 | 30 min |
 
 ---
 
