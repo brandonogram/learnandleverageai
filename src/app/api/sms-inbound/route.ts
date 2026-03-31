@@ -232,7 +232,7 @@ function getTemplateResponse(message: string, contact: ContactInfo): string {
     return 'Register here: learnandleverageai.com/workshops — takes 15 seconds (just name, email, phone). See you there!';
   }
   if (lower.includes('thank') || lower.includes('awesome') || lower.includes('great')) {
-    return "You're welcome! Register at learnandleverageai.com/workshops if you haven't yet — spots are limited to 25.";
+    return "You're welcome! Register at learnandleverageai.com/workshops if you haven't yet — only a few spots left.";
   }
 
   return "Great question! Reply here and I'll help, or check out all the details at learnandleverageai.com/workshops.";

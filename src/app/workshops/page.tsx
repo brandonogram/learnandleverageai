@@ -249,9 +249,13 @@ export default function WorkshopsPage() {
             No tech experience needed. No jargon. No theory without practice.
           </p>
 
-          {/* CTA — A/B test: variant shows inline form, control shows scroll button */}
+          {/* CTA — Always show inline form in hero (A/B test removed — inline form wins) */}
           <div className="animate-fade-up-delay-4">
-            {abVariant === 'variant' && formState !== 'success' ? (
+            {formState === 'success' ? (
+              <div className="bg-green-500/10 border border-green-400/30 rounded-xl p-4 max-w-md mx-auto">
+                <p className="font-body text-green-400 font-bold text-center">You&apos;re in! Check your email for details.</p>
+              </div>
+            ) : (
               <form
                 onSubmit={async (e) => {
                   e.preventDefault();
@@ -306,37 +310,20 @@ export default function WorkshopsPage() {
                   disabled={formState === 'loading'}
                   className="w-full bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white px-8 py-4 rounded-xl font-body font-black text-lg transition-all shadow-lg shadow-amber-500/20 active:scale-95"
                 >
-                  {formState === 'loading' ? 'Registering...' : 'Reserve My Free Spot'}
+                  {formState === 'loading' ? 'Registering...' : 'Reserve My Free Spot — This Thursday'}
                 </button>
                 {formState === 'error' && (
                   <p className="font-body text-red-400 text-sm text-center">Something went wrong. Try again.</p>
                 )}
-                <p className="font-body text-gray-600 text-xs text-center">
-                  10 seats only. Takes 10 seconds. No spam.
+                <p className="font-body text-amber-400/80 text-xs text-center font-medium">
+                  Only a few seats left. Name + email is all we need.
                 </p>
                 <p className="font-body text-center text-[10px] text-gray-600 mt-1 max-w-sm mx-auto leading-relaxed">
-                  By registering, you consent to receive SMS event updates from Learn &amp; Leverage AI. Msg &amp; data rates may apply. Reply STOP to opt out.{' '}
+                  By registering, you consent to receive event updates from Learn &amp; Leverage AI. No spam.{' '}
                   <a href="/privacy" className="underline text-gray-500">Privacy</a> |{' '}
                   <a href="/terms" className="underline text-gray-500">Terms</a>
                 </p>
               </form>
-            ) : formState === 'success' ? (
-              <div className="bg-green-500/10 border border-green-400/30 rounded-xl p-4 max-w-md mx-auto">
-                <p className="font-body text-green-400 font-bold text-center">You&apos;re in! Check your email for details.</p>
-              </div>
-            ) : (
-              <>
-                <a
-                  href="#register"
-                  onClick={() => trackCtaClicked('Reserve My Free Spot', 'hero')}
-                  className="inline-block bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-xl font-body font-black text-lg transition-all shadow-lg shadow-amber-500/20 active:scale-95"
-                >
-                  Reserve My Free Spot
-                </a>
-                <p className="font-body text-gray-600 text-xs mt-3">
-                  10 seats only. Takes 15 seconds to register.
-                </p>
-              </>
             )}
           </div>
 
@@ -732,13 +719,10 @@ export default function WorkshopsPage() {
               Thursday, April 2 &middot; 6:00 - 8:00 PM &middot; Hilton Christiana, Newark, DE.
               3 fields. 15 seconds.
             </p>
-            <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-400/30 text-amber-400 px-4 py-2 rounded-full font-body text-sm font-medium mt-3">
-              <span className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
-              Only 8 spots remaining
+            <div className="inline-flex items-center gap-2 bg-red-500/10 border border-red-400/30 text-red-400 px-4 py-2 rounded-full font-body text-sm font-medium mt-3">
+              <span className="w-2 h-2 bg-red-400 rounded-full animate-pulse" />
+              This Thursday — only a few seats left
             </div>
-            <p className="font-body text-red-400 text-sm font-bold mt-2">
-              Registration closes April 1 at midnight
-            </p>
           </div>
 
           <div className="bg-white rounded-2xl p-5 sm:p-8">
