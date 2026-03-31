@@ -1,9 +1,9 @@
 # Training Plan: AI Hands-On Workshop
 
 **Workshop:** AI Hands-On: See What AI Can Actually Do For Your Job
-**Duration:** 2 hours (Saturday, 9:00 AM - 11:00 AM) + 30 min stay-after
+**Duration:** 2 hours (Thursday, 6:00 PM - 8:00 PM) + 30 min stay-after
 **Level:** Beginner (no AI experience required)
-**Capacity:** 25-30 attendees
+**Capacity:** 10-25 attendees (small group, hands-on)
 **Pricing:** FREE (upsells close $25K+ on the spot)
 **Instructor:** Brandon Calloway
 **Location:** Wilmington, DE area (New Castle County)
@@ -69,13 +69,13 @@ By the end of this workshop, attendees will be able to:
 
 | Time | Block | Minutes |
 |------|-------|---------|
-| 9:00 | Opening — who Brandon is, the promise, show of hands | 10 |
-| 9:10 | "What AI Is" — live demos, first hands-on exercise | 30 |
-| 9:40 | "Prompt Engineering" — RACE intro, one powerful exercise | 25 |
-| 10:05 | "AI Agents" — Call2Calendar live demo (jaw-drop moment) | 15 |
-| 10:20 | "What's Possible" — time-saved math, quick toolkit preview | 10 |
-| 10:30 | Closing + upsell — recap, present offers, QR codes, 10% today-only | 15 |
-| 10:45 | Stay-after conversations (where $5K+ deals close) | 30 |
+| 6:00 | Opening — who Brandon is, the promise, show of hands | 10 |
+| 6:10 | "What AI Is" — live demos, first hands-on exercise | 30 |
+| 6:40 | "How to Talk to AI" — RACE intro, one powerful exercise | 25 |
+| 7:05 | "AI Agents" — Call2Calendar live demo (jaw-drop moment) | 15 |
+| 7:20 | "What's Possible" — time-saved math, quick toolkit preview | 10 |
+| 7:30 | Closing + upsell — recap, present offers, QR codes, today-only bonus | 15 |
+| 7:45 | Stay-after conversations (where $5K+ deals close) | 30 |
 
 No break. 2 hours flies by. Keeping them in seats the whole time ensures 100% of the room is there for the close.
 
@@ -89,7 +89,7 @@ The full deep dive: complete RACE mastery, advanced prompting, AI agents deep di
 
 ## 4. DETAILED SESSION PLAN
 
-### OPENING (10 min) | 9:00 - 9:10
+### OPENING (10 min) | 6:00 - 6:10
 
 **Purpose:** Set the tone, establish trust, remove anxiety
 
@@ -101,7 +101,7 @@ The full deep dive: complete RACE mastery, advanced prompting, AI agents deep di
 
 ---
 
-### BLOCK 1: "What AI Actually Is" (30 min) | 9:10 - 9:40
+### BLOCK 1: "What AI Actually Is" (30 min) | 6:10 - 6:40
 
 **Learning objective:** EXPLAIN what AI is; USE an AI tool successfully for the first time
 
@@ -127,13 +127,13 @@ The full deep dive: complete RACE mastery, advanced prompting, AI agents deep di
 **Quick debrief (5 min):**
 - "Who got something useful?" — 2-3 people share
 - Privacy basics in 60 seconds: don't paste confidential data, use "don't train" setting
-- "AI works. You just proved it. Now let me show you how to make it 10x better."
+- "AI works. You just proved it. Now let me show you how to make it dramatically better."
 
 **Expected outcome:** Every attendee has used AI successfully. Anxiety replaced with curiosity. They want more.
 
 ---
 
-### BLOCK 2: "Prompt Engineering" (25 min) | 9:40 - 10:05
+### BLOCK 2: "How to Talk to AI" (25 min) | 6:40 - 7:05
 
 **Learning objective:** COMPOSE an effective prompt using the RACE framework
 
@@ -160,7 +160,7 @@ The full deep dive: complete RACE mastery, advanced prompting, AI agents deep di
 
 ---
 
-### BLOCK 3: "AI Agents — The Jaw-Drop Moment" (15 min) | 10:05 - 10:20
+### BLOCK 3: "AI Agents — The Jaw-Drop Moment" (15 min) | 7:05 - 7:20
 
 **Learning objective:** EXPLAIN what AI agents are; see one working LIVE
 
@@ -184,7 +184,7 @@ The full deep dive: complete RACE mastery, advanced prompting, AI agents deep di
 
 ---
 
-### BLOCK 4: "What's Possible" (10 min) | 10:20 - 10:30
+### BLOCK 4: "What's Possible" (10 min) | 7:20 - 7:30
 
 **Learning objective:** IDENTIFY where AI fits in their work; see the ROI math
 
@@ -202,13 +202,13 @@ The full deep dive: complete RACE mastery, advanced prompting, AI agents deep di
 
 ---
 
-### CLOSING + UPSELL (15 min) | 10:30 - 10:45
+### CLOSING + UPSELL (15 min) | 7:30 - 7:45
 
 **This is where the $25K gets closed. Do NOT rush this section.**
 
 **Recap (3 min):**
 - "In the last 2 hours, you used AI for the first time, learned the RACE framework for getting great results, saw a live AI agent answer a phone call, and calculated what AI is worth to your career."
-- "Show of hands — how many of you feel more confident about AI right now than you did at 9 AM?" (Everyone raises their hand. Emotional peak.)
+- "Show of hands — how many of you feel more confident about AI right now than you did at 6 PM?" (Everyone raises their hand. Emotional peak.)
 
 **Upsell presentation (7 min):**
 - "Today was the appetizer. Here's the full meal."
@@ -234,7 +234,7 @@ The full deep dive: complete RACE mastery, advanced prompting, AI agents deep di
 - QR codes on screen, large and scannable
 - "I'm here for the next 30 minutes. Grab me if you want to talk about any of these."
 
-**Post-close stay-after (30 min) | 10:45 - 11:15:**
+**Post-close stay-after (30 min) | 7:45 - 8:15:**
 - Brandon stays. Available for 1-on-1 conversations.
 - This is where corporate training ($5K-$10K) and consulting ($4,997+) deals happen — through personal conversation, not QR codes.
 - Have Stripe payment links ready on phone.
