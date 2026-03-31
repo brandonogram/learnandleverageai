@@ -2,8 +2,10 @@
 
 **AI Hands-On Workshop: See What AI Can Actually Do for Your Job**
 **Presenter:** Brandon Calloway | Learn & Leverage AI
-**Duration:** 2 hours (9:00 AM - 10:45 AM) + 30 min stay-after
-**Audience:** 25-30 corporate professionals, ages 45-60, Delaware
+**Duration:** 2 hours (6:00 PM - 7:45 PM) + 30 min stay-after
+**Date:** Thursday, April 2, 2026
+**Venue:** Hilton Christiana, 100 Continental Dr, Newark, DE 19713
+**Audience:** 10-25 corporate professionals, ages 45-60, New Castle County, DE
 **Purpose:** Create demand. Close $25K in upsells on the spot.
 
 ---
@@ -13,7 +15,7 @@
 - Each section matches one projected slide
 - **SAY:** is your word-for-word script (read it or riff off it — written in your conversational voice)
 - **DO:** is any action you need to take (demos, polls, walkthroughs)
-- **TIMING:** is your clock-time target (based on 9:00 AM start)
+- **TIMING:** is your clock-time target (based on 6:00 PM start)
 - **TRANSITION:** bridges you to the next slide
 - No breaks. 2 hours flies by. Keeping them in seats ensures 100% of the room is there for the close.
 - If you are running long, shorten exercises. NEVER cut the closing.
@@ -24,26 +26,26 @@
 
 | Section | Clock Time | Duration |
 |---------|-----------|----------|
-| Opening | 9:00 - 9:10 | 10 min |
-| Block 1: What AI Actually Is | 9:10 - 9:40 | 30 min |
-| Block 2: Prompt Engineering | 9:40 - 10:05 | 25 min |
-| Block 3: AI Agents | 10:05 - 10:20 | 15 min |
-| Block 4: What's Possible | 10:20 - 10:30 | 10 min |
-| Closing + Upsell | 10:30 - 10:45 | 15 min |
+| Opening | 6:00 - 6:10 | 10 min |
+| Block 1: What AI Actually Is | 6:10 - 6:40 | 30 min |
+| Block 2: Prompt Engineering | 6:40 - 7:05 | 25 min |
+| Block 3: AI Agents | 7:05 - 7:20 | 15 min |
+| Block 4: What's Possible | 7:20 - 7:30 | 10 min |
+| Closing + Upsell | 7:30 - 7:45 | 15 min |
 | Stay-After Conversations | 10:45 - 11:15 | 30 min |
 
 ---
 
-## OPENING (Slides 1-3) | 9:00 - 9:10
+## OPENING (Slides 1-3) | 6:00 - 6:10
 
 ---
 
 ### Slide 1 — AI Hands-On Workshop
 
-**TIMING:** 9:00 AM (start here)
+**TIMING:** 6:00 PM (start here)
 
 **SAY:**
-Good morning, everyone. Welcome. I'm Brandon Calloway, and the fact that you're here tells me everything I need to know about you. You take your career seriously. You know AI matters. And you want to actually learn it — not just hear about it.
+Good evening, everyone. Welcome. I'm Brandon Calloway, and the fact that you're here tells me everything I need to know about you. You take your career seriously. You know AI matters. And you want to actually learn it — not just hear about it.
 
 Here's what we're doing in the next 2 hours. I'm going to show you what AI can actually do for YOUR job. Not theory. Not a lecture. You're going to open AI tools, use them, and see results in real time. By the time you walk out that door, you'll be a different person than the one who walked in.
 
@@ -57,7 +59,7 @@ Quick show of hands — who has used ChatGPT before? Even once? Okay. Who uses i
 
 ### Slide 2 — Your Instructor: Brandon Calloway
 
-**TIMING:** 9:03
+**TIMING:** 6:03
 
 **SAY:**
 Quick about me. I'm not a professor. I'm not a researcher. I'm not a Silicon Valley tech guy. I'm a business operator who runs five businesses — and every single one of them runs on AI.
@@ -74,10 +76,10 @@ I built this workshop because I kept meeting people just like you — smart prof
 
 ### Slide 3 — The Promise
 
-**TIMING:** 9:06
+**TIMING:** 6:06
 
 **SAY:**
-Here's what I promise you. In the next 2 hours, you're going to see AI work — live, right here. You're going to use it yourself for something from your actual job. I'm going to teach you the one framework that makes AI 10 times more useful. I'm going to call an AI agent on speakerphone and you're going to hear it have a real conversation. And you're going to calculate what AI is actually worth to your career in dollars.
+Here's what I promise you. In the next 2 hours, you're going to see AI work — live, right here. You're going to use it yourself for something from your actual job. I'm going to teach you the one framework that makes AI dramatically more useful. I'm going to call an AI agent on speakerphone and you're going to hear it have a real conversation. And you're going to calculate what AI is actually worth to your career in dollars.
 
 That's not a sales pitch. That's what's happening in the next 2 hours. Ready? Let's go.
 
@@ -87,13 +89,13 @@ That's not a sales pitch. That's what's happening in the next 2 hours. Ready? Le
 
 ---
 
-## BLOCK 1: "What AI Actually Is" (Slides 4-10) | 9:10 - 9:40
+## BLOCK 1: "What AI Actually Is" (Slides 4-10) | 6:10 - 6:40
 
 ---
 
 ### Slide 4 — Block 1: What AI Actually Is (Section Title)
 
-**TIMING:** 9:10
+**TIMING:** 6:10
 
 **SAY:**
 Block 1. Let's talk about what AI actually is. Not what the news says. Not what LinkedIn influencers say. What it actually is and what it can actually do for you.
@@ -106,7 +108,7 @@ Block 1. Let's talk about what AI actually is. Not what the news says. Not what 
 
 ### Slide 5 — AI Is a Prediction Machine
 
-**TIMING:** 9:11
+**TIMING:** 6:11
 
 **SAY:**
 AI is a prediction machine. That's it. Not magic. Not sentient. Not going to take over the world. It reads your input — plain English — and it predicts the most useful response.
@@ -123,7 +125,7 @@ I know that sounds too simple. That's because it IS that simple. The problem isn
 
 ### Slide 6 — The Big 4 AI Tools
 
-**TIMING:** 9:14
+**TIMING:** 6:14
 
 **SAY:**
 There are really only 4 AI tools you need to know about right now. ChatGPT — you've probably heard of this one, it's the most popular. Claude — this is actually my personal favorite, it's incredible at writing and nuance. Microsoft Copilot — if your company uses Office 365, you might already have access. And Google Gemini — same deal if you're a Google Workspace shop.
@@ -140,7 +142,7 @@ Don't overthink the tool choice. Pick one and start using it. That's what matter
 
 ### Slide 7 — Live Demo: Watch This
 
-**TIMING:** 9:17
+**TIMING:** 6:17
 
 **SAY:**
 Alright, watch this. I'm going to show you three things AI can do in under 60 seconds each.
@@ -161,7 +163,7 @@ No coding. No software install. Just English.
 
 ### Slide 8 — Your First AI Conversation
 
-**TIMING:** 9:22
+**TIMING:** 6:22
 
 **SAY:**
 Alright, your turn. I want everybody to pull out their laptop or phone right now. Go to ChatGPT.com or Claude.ai. If you don't have an account, sign in with Google — takes 90 seconds.
@@ -180,7 +182,7 @@ Pick one. Type it in. See what happens. I'm going to walk around the room. Raise
 
 ### Slide 9 — Quick Privacy Note
 
-**TIMING:** 9:33
+**TIMING:** 6:33
 
 **SAY:**
 Real quick — one rule before we go further. Don't paste confidential company data into free AI tools. No SSNs. No proprietary financials. No trade secrets. Most AI tools have a setting that says "don't train on my data" — turn that on.
@@ -195,7 +197,7 @@ For sensitive work, use whatever AI tools your company has approved. For everyth
 
 ### Slide 10 — You Just Used AI
 
-**TIMING:** 9:35
+**TIMING:** 6:35
 
 **SAY:**
 Show of hands — how many of you got something useful in the last 10 minutes? Look at that. Almost every hand.
@@ -210,13 +212,13 @@ But here's the thing — what you just did? That was AI with training wheels. Wh
 
 ---
 
-## BLOCK 2: "Prompt Engineering" (Slides 11-16) | 9:40 - 10:05
+## BLOCK 2: "Prompt Engineering" (Slides 11-16) | 6:40 - 7:05
 
 ---
 
 ### Slide 11 — Block 2: Prompt Engineering (Section Title)
 
-**TIMING:** 9:40
+**TIMING:** 6:40
 
 **SAY:**
 Block 2 — Prompt Engineering. Don't let the fancy name scare you. All this means is: how you talk to AI determines what you get back. Right now you're throwing vague questions at it. I'm about to show you how the pros do it.
@@ -229,7 +231,7 @@ Block 2 — Prompt Engineering. Don't let the fancy name scare you. All this mea
 
 ### Slide 12 — The RACE Framework
 
-**TIMING:** 9:41
+**TIMING:** 6:41
 
 **SAY:**
 RACE. Four letters that change everything.
@@ -252,7 +254,7 @@ You use RACE, and AI goes from a mediocre intern to a senior colleague. I'm abou
 
 ### Slide 13 — Bad Prompt vs. RACE Prompt
 
-**TIMING:** 9:45
+**TIMING:** 6:45
 
 **SAY:**
 Watch this. I type "write me an email." That's what most people do. And look at what you get — generic, boring, sounds like a robot wrote it. Because you gave AI nothing to work with.
@@ -269,7 +271,7 @@ Look at that result. That's exactly what you'd need. That's ready to send. Same 
 
 ### Slide 14 — The Power of Iteration
 
-**TIMING:** 9:50
+**TIMING:** 6:50
 
 **SAY:**
 Here's what most people don't realize — AI is not one-and-done. You don't type one prompt and accept whatever it gives you. You talk to it like a colleague.
@@ -288,7 +290,7 @@ This is the secret. You iterate. You refine. You have a conversation with AI unt
 
 ### Slide 15 — Exercise: Write a RACE Prompt for YOUR Job
 
-**TIMING:** 9:55
+**TIMING:** 6:55
 
 **SAY:**
 Your turn. I want you to pick ONE real task from your job — something you actually need to do this week. Maybe it's an email, maybe it's a report summary, maybe it's explaining something to your boss.
@@ -299,7 +301,7 @@ Write it out, type it in, and see the difference versus what you did in the firs
 
 **DO:** Walk the room again. This is the second hands-on moment. Help people build their RACE prompts. When you see a good one, ask if you can share it. "Hey, can I show the room what you did?" This creates social proof and energy. Give it a full 8 minutes.
 
-**TIMING NOTE:** You need to be wrapping this exercise by 10:03 to stay on schedule.
+**TIMING NOTE:** You need to be wrapping this exercise by 7:03 to stay on schedule.
 
 **TRANSITION:** (After 8 minutes) Let's come back. Who got a dramatically better result this time?
 
@@ -307,7 +309,7 @@ Write it out, type it in, and see the difference versus what you did in the firs
 
 ### Slide 16 — People Who Use AI Replace People Who Do Not
 
-**TIMING:** 10:03
+**TIMING:** 7:03
 
 **SAY:**
 Before we move on, I want you to hear this. AI does not replace people. Let me say that again. AI does not replace people.
@@ -324,13 +326,13 @@ Now let me show you something that's going to blow your mind.
 
 ---
 
-## BLOCK 3: "AI Agents" (Slides 17-21) | 10:05 - 10:20
+## BLOCK 3: "AI Agents" (Slides 17-21) | 7:05 - 7:20
 
 ---
 
 ### Slide 17 — Block 3: AI Agents (Section Title)
 
-**TIMING:** 10:05
+**TIMING:** 7:05
 
 **SAY:**
 Block 3. AI Agents. Everything we've done so far — ChatGPT, Claude, RACE — that's AI that writes. It's a powerful writing assistant. But what I'm about to show you is AI that doesn't just write. It acts. It works. It does things in the real world.
@@ -343,7 +345,7 @@ Block 3. AI Agents. Everything we've done so far — ChatGPT, Claude, RACE — t
 
 ### Slide 18 — What Is an AI Agent?
 
-**TIMING:** 10:06
+**TIMING:** 7:06
 
 **SAY:**
 An AI agent is a digital coworker. Not a chatbot. Not a search engine. A coworker. It answers phone calls. It books appointments. It sends follow-up messages. It processes requests. And it does all of this 24/7. It never calls in sick. It never has a bad day. It never forgets to follow up.
@@ -360,7 +362,7 @@ That's an AI agent.
 
 ### Slide 19 — Live Demo: Call2Calendar
 
-**TIMING:** 10:08
+**TIMING:** 7:08
 
 **SAY:**
 Alright. I'm about to call one of my AI agents. Right now. On speakerphone. In front of all of you.
@@ -383,7 +385,7 @@ That wasn't a recording. That wasn't staged. That was a live AI agent that I bui
 
 ### Slide 20 — My Businesses Run on AI
 
-**TIMING:** 10:14
+**TIMING:** 7:14
 
 **SAY:**
 Call2Calendar is my AI voice agent company. But I use the same thinking across everything I do.
@@ -402,7 +404,7 @@ Three businesses. AI runs the front office of all of them. That's not some futur
 
 ### Slide 21 — This Is What I Actually Build and Run
 
-**TIMING:** 10:17
+**TIMING:** 7:17
 
 **SAY:**
 I'm not teaching from a textbook. I'm not showing you research slides from McKinsey. I'm showing you what I do. Every single day.
@@ -419,13 +421,13 @@ Hold that thought. Because we're about to put some real numbers to it.
 
 ---
 
-## BLOCK 4: "What's Possible" (Slides 22-25) | 10:20 - 10:30
+## BLOCK 4: "What's Possible" (Slides 22-25) | 7:20 - 7:30
 
 ---
 
 ### Slide 22 — Block 4: What Is Possible (Section Title)
 
-**TIMING:** 10:20
+**TIMING:** 7:20
 
 **SAY:**
 Last block before we wrap up. I want you to see the numbers — what AI is actually worth — and I want to show you a quick peek at everything we didn't have time to cover today.
@@ -438,7 +440,7 @@ Last block before we wrap up. I want you to see the numbers — what AI is actua
 
 ### Slide 23 — The Math: What AI Is Worth to YOU
 
-**TIMING:** 10:21
+**TIMING:** 7:21
 
 **SAY:**
 Do this math with me right now. Think of ONE task you do every day that takes 30 minutes. Writing emails. Summarizing reports. Updating spreadsheets. Whatever it is.
@@ -457,7 +459,7 @@ This isn't hypothetical. You did it today. You just saved 20 minutes on that ema
 
 ### Slide 24 — Quick Toolkit Preview
 
-**TIMING:** 10:25
+**TIMING:** 7:25
 
 **SAY:**
 What we covered today is the tip of the iceberg. Here's what you haven't seen yet.
@@ -482,7 +484,7 @@ That's what the full 4-hour workshop covers. Today was the taste. That's the ful
 
 ### Slide 25 — Today Was the Appetizer
 
-**TIMING:** 10:28
+**TIMING:** 7:28
 
 **SAY:**
 Today was the appetizer. You now know what AI is and how it works. You know the RACE framework. You've seen AI agents in action. You've calculated what AI is worth to your career.
@@ -497,7 +499,7 @@ The full meal is ready. The question is whether you're hungry enough to come bac
 
 ---
 
-## CLOSING + UPSELL (Slides 26-28) | 10:30 - 10:45
+## CLOSING + UPSELL (Slides 26-28) | 7:30 - 7:45
 
 **THIS IS WHERE THE $25K GETS CLOSED. DO NOT RUSH THIS SECTION.**
 
@@ -505,14 +507,14 @@ The full meal is ready. The question is whether you're hungry enough to come bac
 
 ### Slide 26 — What We Covered Today
 
-**TIMING:** 10:30
+**TIMING:** 7:30
 
 **SAY:**
 Let's recap. In 2 hours, you used AI for the first time — or you got dramatically better at it. You learned the RACE framework for getting consistently great results. You saw a live AI agent answer a phone call and book an appointment. And you calculated what AI is worth to your career in real dollars.
 
-Show of hands — how many of you feel more confident about AI right now than you did when you walked in at 9 AM?
+Show of hands — how many of you feel more confident about AI right now than you did when you walked in at 6 PM?
 
-Look at that. Every hand. That's what this morning was about.
+Look at that. Every hand. That's what this evening was about.
 
 **DO:** Do the show of hands. Let the moment breathe. This is the emotional peak. They feel good. They feel accomplished. Now you channel that energy into the close.
 
@@ -522,7 +524,7 @@ Look at that. Every hand. That's what this morning was about.
 
 ### Slide 27 — Ready to Go Deeper? (ALL 5 OFFERS)
 
-**TIMING:** 10:33
+**TIMING:** 7:33
 
 **SAY:**
 Today was the appetizer. Here's the full meal. I've got five options depending on how deep you want to go.
@@ -550,7 +552,7 @@ Maybe you don't want to learn it. Maybe you want someone to just DO it. That's m
 
 ### Slide 28 — Today Only: 10% Off Everything
 
-**TIMING:** 10:40
+**TIMING:** 7:40
 
 **SAY:**
 Here's the deal. 10% off anything — but only if you scan that QR code before you leave this room. Not tomorrow. Not next week. Before you leave this room.
