@@ -38,8 +38,10 @@ export default function WorkshopsPage() {
     name: '',
     email: '',
     phone: '',
+    smsConsent: false,
   });
   const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [consentError, setConsentError] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [utmParams, setUtmParams] = useState<UTMParams>({});
   const formStartedRef = useRef(false);
@@ -142,6 +144,12 @@ export default function WorkshopsPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Require SMS consent when phone is provided
+    if (formData.phone && !formData.smsConsent) {
+      setConsentError(true);
+      return;
+    }
+    setConsentError(false);
     setFormState('loading');
     try {
       const res = await fetch('/api/workshop-register', {
@@ -867,19 +875,27 @@ export default function WorkshopsPage() {
                   />
                 </div>
 
-                {/* SMS Consent Checkbox — optional, for A2P 10DLC compliance */}
-                <div className="flex items-start gap-3 mt-1">
+                {/* SMS Consent Checkbox — REQUIRED for A2P 10DLC compliance */}
+                <div className={`flex items-start gap-3 mt-1 p-3 rounded-lg border ${consentError ? 'border-red-400 bg-red-50' : 'border-transparent'}`}>
                   <input
                     type="checkbox"
                     id="sms-consent"
+                    checked={formData.smsConsent}
+                    onChange={(e) => {
+                      setFormData((prev) => ({ ...prev, smsConsent: e.target.checked }));
+                      if (e.target.checked) setConsentError(false);
+                    }}
                     className="mt-1 w-4 h-4 rounded border-gray-300 text-amber-500 focus:ring-amber-500"
                   />
                   <label htmlFor="sms-consent" className="font-body text-xs text-[#78716C] leading-relaxed">
-                    I agree to receive SMS text messages from <strong className="text-[#57534E]">LearnAndLeverageAI</strong> (Dude Ventures Services LLC, d/b/a Learn and Leverage AI) with event confirmations, reminders, and updates. <strong className="text-[#57534E]">Message frequency: up to 5 messages per event.</strong> Msg and data rates may apply. Reply STOP to cancel. Reply HELP for help.{' '}
-                    <a href="/privacy" className="underline">Privacy Policy</a> and{' '}
-                    <a href="/terms" className="underline">Terms</a>.
+                    I agree to receive SMS text messages from <strong className="text-[#57534E]">Learn &amp; Leverage AI</strong> (Dude Ventures Services LLC, d/b/a Learn and Leverage AI) at the phone number provided. Messages include event confirmations, reminders, and updates. <strong className="text-[#57534E]">Message frequency: up to 5 messages per event.</strong> Message and data rates may apply. Reply STOP to cancel at any time. Reply HELP for help. Consent is not a condition of purchase. We do not share your opt-in consent or phone number with third parties for marketing purposes.{' '}
+                    <a href="/privacy" className="underline text-amber-600">Privacy Policy</a> &amp;{' '}
+                    <a href="/terms" className="underline text-amber-600">Terms of Service</a>.
                   </label>
                 </div>
+                {consentError && (
+                  <p className="font-body text-red-600 text-xs mt-1 ml-1">Please check the box above to consent to SMS messages.</p>
+                )}
 
                 {formState === 'error' && (
                   <p className="font-body text-red-600 text-sm text-center">
@@ -909,8 +925,8 @@ export default function WorkshopsPage() {
                   Takes 15 seconds. No spam.
                 </p>
                 <p className="font-body text-center text-[10px] text-[#78716C] mt-2 max-w-sm mx-auto leading-relaxed">
-                  By registering, you consent to receive SMS event reminders and updates from Learn &amp; Leverage AI at the phone number provided. Message frequency varies. Message &amp; data rates may apply. Reply STOP to unsubscribe. View our{' '}
-                  <a href="/privacy" className="underline">Privacy Policy</a> and{' '}
+                  By registering and checking the SMS consent box above, you agree to receive SMS event reminders and updates from Learn &amp; Leverage AI (Dude Ventures Services LLC) at the phone number provided. Message frequency varies (up to 5 per event). Message &amp; data rates may apply. Reply STOP to unsubscribe. Reply HELP for help. Consent is not required to make a purchase. Your opt-in is not shared with third parties.{' '}
+                  <a href="/privacy" className="underline">Privacy Policy</a> &amp;{' '}
                   <a href="/terms" className="underline">Terms of Service</a>.
                 </p>
               </form>
@@ -953,6 +969,11 @@ export default function WorkshopsPage() {
           <p className="font-display text-base font-bold text-white mb-2">
             Learn & Leverage <span className="text-amber-400">AI</span>
           </p>
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <a href="tel:+13024166285" className="font-body text-xs text-gray-400 hover:text-amber-400 transition-colors">(302) 416-6285</a>
+            <span className="text-gray-600">|</span>
+            <a href="mailto:info@learnandleverageai.com" className="font-body text-xs text-gray-400 hover:text-amber-400 transition-colors">info@learnandleverageai.com</a>
+          </div>
           <div className="flex items-center justify-center gap-4 mb-3">
             <a href="/terms" className="font-body text-xs text-gray-400 hover:text-amber-400 transition-colors">Terms of Service</a>
             <span className="text-gray-600">|</span>
