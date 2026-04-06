@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The AI Landscape — What Actually Matters Right Now</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap');
+
+  @page { size: letter; margin: 0.6in 0.65in; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', -apple-system, sans-serif;
+    font-size: 10.5pt;
+    color: #1C1917;
+    line-height: 1.45;
+    background: #fff;
+    max-width: 7.5in;
+    margin: 0 auto;
+    padding: 0.5in;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 3px solid #D97706;
+  }
+  .header h1 {
+    font-size: 20pt;
+    font-weight: 700;
+    color: #1C1917;
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+  }
+  .header .subtitle {
+    font-size: 10pt;
+    color: #78716C;
+  }
+  .header .brand {
+    font-size: 9pt;
+    color: #D97706;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  /* Big picture */
+  .big-picture {
+    background: #FFFBF5;
+    border: 1px solid #FDE68A;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    text-align: center;
+    font-size: 10pt;
+    color: #57534E;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 16px;
+    page-break-inside: avoid;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .section-number {
+    background: #D97706;
+    color: #fff;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11pt;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-size: 13pt;
+    font-weight: 700;
+    color: #1C1917;
+  }
+  .section-desc {
+    font-size: 9.5pt;
+    color: #57534E;
+    margin-bottom: 8px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 8px;
+    font-size: 9.5pt;
+  }
+  th {
+    background: #1C1917;
+    color: #fff;
+    text-align: left;
+    padding: 5px 8px;
+    font-weight: 600;
+    font-size: 9pt;
+  }
+  th:first-child { border-radius: 4px 0 0 0; }
+  th:last-child { border-radius: 0 4px 0 0; }
+  td {
+    padding: 5px 8px;
+    border-bottom: 1px solid #E7E5E4;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: #FAFAF9; }
+  td strong { color: #1C1917; }
+
+  /* Brandon's take */
+  .take {
+    background: #FFFBF5;
+    border-left: 3px solid #D97706;
+    padding: 6px 10px;
+    font-size: 9pt;
+    color: #44403C;
+    margin-bottom: 4px;
+  }
+  .take strong { color: #D97706; }
+
+  /* Start here */
+  .start-here {
+    background: #1C1917;
+    color: #fff;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    page-break-inside: avoid;
+  }
+  .start-here h2 {
+    font-size: 13pt;
+    color: #F59E0B;
+    margin-bottom: 8px;
+  }
+  .start-here ol {
+    padding-left: 18px;
+    font-size: 9.5pt;
+    color: #D6D3D1;
+  }
+  .start-here ol li {
+    margin-bottom: 4px;
+  }
+  .start-here ol li strong { color: #fff; }
+
+  /* Honest truth */
+  .truth {
+    margin-bottom: 14px;
+  }
+  .truth h2 {
+    font-size: 12pt;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .truth ul {
+    list-style: none;
+    padding: 0;
+    font-size: 9.5pt;
+    color: #44403C;
+  }
+  .truth ul li {
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 3px;
+  }
+  .truth ul li::before {
+    content: "\2713";
+    position: absolute;
+    left: 0;
+    color: #D97706;
+    font-weight: 700;
+  }
+
+  /* Footer */
+  .footer {
+    border-top: 2px solid #D97706;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 8.5pt;
+    color: #78716C;
+  }
+  .footer .cta {
+    background: #D97706;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 9pt;
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>The AI Landscape</h1>
+  <div class="subtitle">What Actually Matters Right Now &mdash; A Plain-English Guide</div>
+  <div class="brand">Learn &amp; Leverage AI</div>
+</div>
+
+<div class="big-picture">
+  AI in 2026 fits into <strong>four categories</strong>. You don't need to learn all of them &mdash; but you should know what exists so you can pick what's useful for <em>your</em> work.
+</div>
+
+<!-- Section 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">1</div>
+    <div class="section-title">AI Assistants &mdash; Your New Thinking Partner</div>
+  </div>
+  <div class="section-desc">You type a question or paste in text, and they give you a useful answer. Think of them as a smart colleague who's read everything on the internet.</div>
+  <table>
+    <tr><th>Tool</th><th>Best For</th><th>Cost</th><th>Start Here?</th></tr>
+    <tr><td><strong>ChatGPT</strong><br><span style="color:#78716C;font-size:8pt">by OpenAI</span></td><td>All-around tasks, writing, brainstorming, analyzing data, creating images</td><td>Free tier. Plus: $20/mo</td><td>Yes &mdash; most popular</td></tr>
+    <tr><td><strong>Claude</strong><br><span style="color:#78716C;font-size:8pt">by Anthropic</span></td><td>Long documents, careful analysis, writing that sounds human</td><td>Free tier. Pro: $20/mo</td><td>Yes &mdash; try alongside ChatGPT</td></tr>
+    <tr><td><strong>Gemini</strong><br><span style="color:#78716C;font-size:8pt">by Google</span></td><td>Gmail, Docs, Calendar integration. Summarizing YouTube videos.</td><td>Free with Google. Advanced: $20/mo</td><td>If you use Google Workspace</td></tr>
+    <tr><td><strong>Copilot</strong><br><span style="color:#78716C;font-size:8pt">by Microsoft</span></td><td>Word, Excel, Outlook, Teams, PowerPoint</td><td>Included with some M365 plans</td><td>If your company uses Microsoft</td></tr>
+  </table>
+  <div class="take"><strong>Brandon's take:</strong> Start with ChatGPT or Claude. Most professionals end up using both &mdash; Claude for writing and analysis, ChatGPT for quick tasks and image creation.</div>
+</div>
+
+<!-- Section 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">2</div>
+    <div class="section-title">AI Search &mdash; Better Answers Than Google</div>
+  </div>
+  <div class="section-desc">Traditional search gives you links. AI search reads those links for you and gives you the answer directly, with sources.</div>
+  <table>
+    <tr><th>Tool</th><th>What It Does</th><th>Cost</th></tr>
+    <tr><td><strong>Perplexity</strong></td><td>Ask any question, get a sourced answer with citations. Like a research assistant.</td><td>Free tier. Pro: $20/mo</td></tr>
+    <tr><td><strong>ChatGPT Search</strong></td><td>Google-quality search built into ChatGPT. Real-time web data.</td><td>Included with ChatGPT</td></tr>
+    <tr><td><strong>Google AI Overviews</strong></td><td>AI answers at the top of your Google searches. Already live.</td><td>Free (it's just Google)</td></tr>
+  </table>
+  <div class="take"><strong>Brandon's take:</strong> Try Perplexity for your next research question. You get an answer, not 10 blue links to click through.</div>
+</div>
+
+<!-- Section 3 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">3</div>
+    <div class="section-title">AI Automation &mdash; Work That Happens Without You</div>
+  </div>
+  <div class="section-desc">This is where AI goes from "helpful tool" to "it does the work for me." These tools connect your apps and run tasks automatically.</div>
+  <table>
+    <tr><th>Tool</th><th>What It Does</th><th>Cost</th><th>Example</th></tr>
+    <tr><td><strong>Zapier</strong></td><td>Connects 7,000+ apps. "When X happens, do Y."</td><td>Free tier. From $20/mo</td><td>New client email &rarr; auto-create task</td></tr>
+    <tr><td><strong>Make</strong></td><td>Visual workflow builder. More powerful for complex automations.</td><td>Free tier. From $9/mo</td><td>Form submission &rarr; CRM + email + Slack</td></tr>
+    <tr><td><strong>AI Voice Agents</strong></td><td>Answers your phone, books appointments, handles common questions 24/7.</td><td>$50-200/mo</td><td>Customer calls 9 PM &rarr; AI books Tuesday</td></tr>
+    <tr><td><strong>AI Email Assistants</strong></td><td>Reads your inbox, drafts replies in your style, queues for your approval.</td><td>$50-100/mo</td><td>30 overnight emails &rarr; review in 10 min</td></tr>
+  </table>
+  <div class="take"><strong>Brandon's take:</strong> I run a voice agent for my pool company that answers every call. My competitors miss half of theirs. Start with Zapier if you want to dip your toe in.</div>
+</div>
+
+<!-- Section 4 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">4</div>
+    <div class="section-title">AI Content Creation &mdash; Making Things</div>
+  </div>
+  <div class="section-desc">AI can create images, write drafts, edit video, and build presentations. Good enough for most business uses.</div>
+  <table>
+    <tr><th>Tool</th><th>What It Creates</th><th>Cost</th></tr>
+    <tr><td><strong>ChatGPT / DALL-E</strong></td><td>Images from text descriptions</td><td>Included with Plus</td></tr>
+    <tr><td><strong>Canva AI</strong></td><td>Presentations, social media graphics, marketing materials</td><td>Free tier. Pro: $13/mo</td></tr>
+    <tr><td><strong>Gamma</strong></td><td>Slide decks from a text outline &mdash; describe it, it builds the deck</td><td>Free tier. Plus: $10/mo</td></tr>
+    <tr><td><strong>NotebookLM</strong> <span style="color:#78716C;font-size:8pt">(Google)</span></td><td>Turns documents into study guides, FAQs, or podcast-style audio</td><td>Free</td></tr>
+    <tr><td><strong>Descript / CapCut</strong></td><td>Video editing &mdash; auto-captions, remove filler words, edit by editing text</td><td>Free tiers available</td></tr>
+  </table>
+  <div class="take"><strong>Brandon's take:</strong> Canva + ChatGPT image generation handles 90% of what most professionals need. Pick two tools and get good at them.</div>
+</div>
+
+<!-- Start Here -->
+<div class="start-here">
+  <h2>Where to Start (This Week)</h2>
+  <ol>
+    <li><strong>Create a free ChatGPT account</strong> at chatgpt.com</li>
+    <li><strong>Set up Custom Instructions</strong> &mdash; tell it your role, industry, and how you like responses</li>
+    <li><strong>Use it for your next 5 tasks</strong> instead of Google or doing it manually</li>
+    <li><strong>Try Perplexity</strong> (perplexity.ai) for your next research question</li>
+    <li><strong>Pick one repetitive task</strong> you do weekly and ask ChatGPT: "How would I automate this?"</li>
+  </ol>
+</div>
+
+<!-- Honest Truth -->
+<div class="truth">
+  <h2>The Honest Truth</h2>
+  <ul>
+    <li><strong>You don't need all of these tools.</strong> Most people need 2-3, tops.</li>
+    <li><strong>AI won't replace you.</strong> But someone who uses AI will work faster than someone who doesn't.</li>
+    <li><strong>The tools change every few months.</strong> What matters is learning how to work with AI, not memorizing buttons.</li>
+    <li><strong>Start small.</strong> One tool, one task, this week.</li>
+  </ul>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div>
+    <strong>Learn &amp; Leverage AI</strong> &nbsp;|&nbsp; learnandleverageai.com &nbsp;|&nbsp; (302) 416-6285
+  </div>
+  <a href="https://learnandleverageai.com/workshops" class="cta">Join the Free Workshop Waitlist</a>
+</div>
+
+</body>
+</html>

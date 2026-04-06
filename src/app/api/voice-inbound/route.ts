@@ -64,21 +64,24 @@ function buildVoiceSystemPrompt(caller: CallerInfo): string {
   const stateInstructions: Record<CallerInfo['state'], string> = {
     unknown: `CALLER STATE: Unknown caller — first time calling.
 - Welcome them warmly
-- Tell them about the free workshop
-- Guide them toward registering (online at learnandleverageai.com/workshops, or collect info over the phone)`,
+- Tell them about the free AI workshops (next session date and location TBA)
+- Guide them toward joining the waitlist (online at learnandleverageai.com/workshops, or collect info over the phone)`,
     lead: `CALLER STATE: This person has contacted us before but is NOT registered.
 - Their name: ${caller.name || 'unknown'}
 - Answer their questions
-- Encourage registration`,
-    registered: `CALLER STATE: This person is ALREADY REGISTERED for the workshop.
-- Their name: ${caller.name || 'a registered attendee'}
-- Greet them by name if possible
-- Do NOT pitch the workshop or ask them to register — they already did
-- Help them with whatever they're calling about (logistics, questions, etc.)`,
-    confirmed: `CALLER STATE: This person is REGISTERED and CONFIRMED for the workshop.
-- Their name: ${caller.name || 'a confirmed attendee'}
-- Do NOT pitch the workshop or registration
-- They are committed — answer questions enthusiastically`,
+- Next session date and location are TBA — encourage them to join the waitlist at learnandleverageai.com/workshops`,
+    registered: `CALLER STATE: This person previously registered for a workshop.
+- Their name: ${caller.name || 'a past registrant'}
+- The previous workshop has already happened. There is no confirmed next date or venue yet.
+- Let them know the next session date and location are TBA
+- Encourage them to stay on the waitlist at learnandleverageai.com/workshops for first access
+- Help them with whatever they're calling about`,
+    confirmed: `CALLER STATE: This person previously confirmed for a workshop.
+- Their name: ${caller.name || 'a past confirmed attendee'}
+- The previous workshop has already happened. There is no confirmed next date or venue yet.
+- Let them know the next session date and location are TBA
+- Encourage them to stay on the waitlist at learnandleverageai.com/workshops for first access
+- Answer questions enthusiastically`,
     attended: `CALLER STATE: This person ATTENDED a previous workshop.
 - Their name: ${caller.name || 'a past attendee'}
 - Thank them for attending if it comes up
@@ -87,8 +90,8 @@ function buildVoiceSystemPrompt(caller: CallerInfo): string {
     'no-show': `CALLER STATE: This person registered but DID NOT ATTEND.
 - Their name: ${caller.name || 'someone who missed the workshop'}
 - Be kind — don't guilt them
-- Let them know another session is being planned
-- Offer to keep them on the list`,
+- Let them know another session is being planned — next date and venue TBA
+- Offer to keep them on the waitlist at learnandleverageai.com/workshops`,
     purchased: `CALLER STATE: This person is a PAYING CUSTOMER.
 - Their name: ${caller.name || 'a valued customer'}
 - VIP treatment
@@ -109,14 +112,14 @@ ${stateInstructions[caller.state]}
 
 ## Workshop Details
 - Free AI Hands-On Workshop — "See What AI Can Actually Do For Your Job"
-- Thursday, April 2, 2026, 6:00 PM to 8:00 PM
-- Hilton Christiana, 100 Continental Dr, Newark, DE 19713
-- Completely FREE. Limited to 10 people.
-- Hands-on, in-person. Bring a laptop. Leave with AI tools set up and working.
+- Next session date and location TBA — no confirmed date or venue yet
+- Workshops are in the Delaware and Greater Philadelphia area, small group (10-15 people), in-person
+- Completely FREE. Hands-on. Bring a laptop. Leave with AI tools set up and working.
 - No tech experience needed. No guest speakers — just Brandon teaching.
-- We provide: printed workbook, coffee, snacks, Wi-Fi, power outlets. Complimentary water from the venue.
+- We provide: printed workbook, coffee, snacks, Wi-Fi, power outlets
+- Join the waitlist at learnandleverageai.com/workshops to be notified when the next session is announced
 
-## What They Learn (2 hours)
+## What They Learn (typically 2 hours)
 1. What AI actually is — demystified, live demos
 2. How to talk to AI tools so they give useful results for YOUR job
 3. AI agents and automation — live demos of real tools handling real work
@@ -131,9 +134,9 @@ Brandon Calloway runs 5+ businesses on AI — Call2Calendar (voice agent), Tri-S
 3. Corporate Training ($5K-$10K/day) — on-site, custom curriculum
 4. AI Consulting ($4,997+) — done-for-you implementation
 
-## Registration
-- Online: learnandleverageai.com/workshops (15 seconds)
-- Or collect over the phone: name, email, phone
+## Waitlist / Registration
+- Online: learnandleverageai.com/workshops (15 seconds to join the waitlist)
+- Or collect over the phone: name, email, phone — we'll add them to the waitlist
 
 ## Rules
 1. Keep responses SHORT — 2-3 sentences max per turn
@@ -191,9 +194,9 @@ function twimlGather(sayText: string, actionUrl: string): string {
     <Say voice="${voice}">${escapeXml(sayText)}</Say>
   </Gather>
   <Gather input="speech" timeout="10" speechTimeout="auto" action="${escapeXml(actionUrl)}" method="POST">
-    <Say voice="${voice}">Are you still there? Feel free to ask me anything about our AI workshop, or I can help you register.</Say>
+    <Say voice="${voice}">Are you still there? Feel free to ask me anything about our AI workshops, or I can add you to the waitlist for the next session.</Say>
   </Gather>
-  <Say voice="${voice}">It sounds like you may have stepped away. Feel free to call back anytime, or visit learn and leverage AI dot com to register. Goodbye!</Say>
+  <Say voice="${voice}">It sounds like you may have stepped away. Feel free to call back anytime, or visit learn and leverage AI dot com to join the waitlist. Goodbye!</Say>
 </Response>`;
 }
 
@@ -232,7 +235,7 @@ const LLM_PROVIDERS: LLMProvider[] = [
 ];
 
 async function getAIResponse(messages: ChatMessage[]): Promise<string> {
-  const fallbackMsg = "I'm having a brief technical issue. You can register at learnandleverageai.com slash workshops, or call back in a moment.";
+  const fallbackMsg = "I'm having a brief technical issue. You can join the waitlist at learnandleverageai.com slash workshops, or call back in a moment.";
 
   for (const provider of LLM_PROVIDERS) {
     const apiKey = process.env[provider.keyEnvVar];
@@ -347,8 +350,8 @@ export async function POST(request: NextRequest) {
       if (caller.state === 'registered' || caller.state === 'confirmed') {
         const firstName = caller.name ? caller.name.split(' ')[0] : '';
         greeting = firstName
-          ? `Hi ${firstName}! Thanks for calling Learn and Leverage AI. I see you're registered for our upcoming workshop. How can I help you?`
-          : `Hi! Thanks for calling Learn and Leverage AI. I see you're registered for our upcoming workshop. How can I help you?`;
+          ? `Hi ${firstName}! Thanks for calling Learn and Leverage AI. Good to hear from you! How can I help you?`
+          : `Hi! Thanks for calling Learn and Leverage AI. Good to hear from you! How can I help you?`;
       } else if (caller.state === 'attended') {
         const firstName = caller.name ? caller.name.split(' ')[0] : '';
         greeting = firstName
@@ -381,7 +384,7 @@ export async function POST(request: NextRequest) {
 
     if (!speechResult) {
       // No speech detected — reprompt
-      const reprompt = "I'm still here! You can ask about our free AI workshop, or I can help you register. What would you like to know?";
+      const reprompt = "I'm still here! You can ask about our free AI workshops, or I can add you to the waitlist for the next session. What would you like to know?";
       history.push({ role: 'assistant', content: reprompt });
       const actionUrl = buildActionUrl(history, phoneFromParam);
       return new NextResponse(twimlGather(reprompt, actionUrl), {
@@ -396,7 +399,7 @@ export async function POST(request: NextRequest) {
     const lower = speechResult.toLowerCase();
     if (/\b(goodbye|bye|hang up|that'?s all|that'?s it|no thanks|nothing else)\b/.test(lower)) {
       return new NextResponse(
-        twimlFinal("It was great talking with you! Remember, you can register at learnandleverageai.com slash workshops anytime. Have a wonderful day!"),
+        twimlFinal("It was great talking with you! Remember, you can join the waitlist at learnandleverageai.com slash workshops to hear about our next session. Have a wonderful day!"),
         { headers: { 'Content-Type': 'text/xml' } },
       );
     }

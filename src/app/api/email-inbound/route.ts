@@ -51,15 +51,14 @@ async function generateReply(senderEmail: string, senderName: string, subject: s
   const lowerSubject = (subject || '').toLowerCase();
   const lowerBody = (body || '').toLowerCase();
 
-  // Check if this is a venue reply (high priority — flag it)
+  // Check if this is a venue reply (high priority — flag it, don't auto-reply)
   const isVenueReply = lowerFrom.includes('hilton') || lowerFrom.includes('doubletree') || lowerFrom.includes('embassy') ||
-    lowerFrom.includes('hotel') || lowerFrom.includes('marriott') || lowerSubject.includes('meeting room') ||
-    lowerSubject.includes('venue') || lowerSubject.includes('event space');
+    lowerFrom.includes('hotel') || lowerFrom.includes('marriott') || lowerFrom.includes('venue') ||
+    lowerSubject.includes('meeting room') || lowerSubject.includes('venue') || lowerSubject.includes('event space');
 
   if (isVenueReply) {
     console.log(`[Email] VENUE REPLY DETECTED from ${senderEmail}: ${subject}`);
     // Don't auto-reply to venues — just log it for attention
-    // TODO: Send notification to Brandon
     return null;
   }
 
@@ -86,14 +85,14 @@ function wrapEmail(body: string, cta: { text: string; url: string } | null): str
 function getCTA(state: string): { text: string; url: string } | null {
   switch (state) {
     case 'unknown':
-      return { text: 'Register for the Free Workshop', url: 'https://learnandleverageai.com/workshops' };
+      return { text: 'Join the Waitlist — Free Workshop', url: 'https://learnandleverageai.com/workshops' };
     case 'registered':
     case 'confirmed':
       return { text: 'Know someone who should come? Share this', url: 'https://learnandleverageai.com/workshops' };
     case 'attended':
       return { text: 'Go deeper — AI Starter Pack ($497)', url: 'https://buy.stripe.com/aFa4gs97W9neg3Ycwv87K01' };
     case 'no-show':
-      return { text: 'Register for the next session', url: 'https://learnandleverageai.com/workshops' };
+      return { text: 'Join the waitlist for the next session', url: 'https://learnandleverageai.com/workshops' };
     case 'purchased':
       return null; // VIP — no upsell needed
     default:
@@ -104,7 +103,7 @@ function getCTA(state: string): { text: string; url: string } | null {
 // Short template replies (fallback when AI is unavailable)
 function getTemplateReply(firstName: string, subject: string, body: string, state: string): string {
   if (state === 'registered' || state === 'confirmed') {
-    return `<p>Hi ${firstName},</p><p>Got your email. You're registered for Thursday, April 2, 6-8 PM at Hilton Christiana, 100 Continental Dr, Newark, DE 19713.</p>`;
+    return `<p>Hi ${firstName},</p><p>Got your email. The next workshop date and location are TBA — we'll reach out as soon as the next session is confirmed. You're on the waitlist!</p>`;
   }
   if (state === 'attended') {
     return `<p>Hi ${firstName},</p><p>Great to hear from you! If you have questions about the AI tools from the workshop, just reply here.</p>`;
@@ -113,20 +112,20 @@ function getTemplateReply(firstName: string, subject: string, body: string, stat
     return `<p>Hi ${firstName},</p><p>Got your message — I've flagged it for Brandon. He'll get back to you directly.</p>`;
   }
   if (state === 'no-show') {
-    return `<p>Hi ${firstName},</p><p>We missed you! Another session is being planned — register to get first access.</p>`;
+    return `<p>Hi ${firstName},</p><p>We missed you! Another session is being planned — next date and venue TBA. Stay on the waitlist and you'll be first to know.</p>`;
   }
   // Unknown
-  return `<p>Hi ${firstName},</p><p>Thanks for reaching out! We're running a free hands-on AI workshop on Thursday, April 2, 6-8 PM at Hilton Christiana in Newark, DE. Bring your laptop, leave with tools working for your job. No tech experience needed.</p>`;
+  return `<p>Hi ${firstName},</p><p>Thanks for reaching out! We run free hands-on AI workshops in the Delaware and Greater Philadelphia area — small group, in-person. Next session date and location TBA. Join the waitlist at learnandleverageai.com/workshops to be first to know!</p>`;
 }
 
 async function getAIEmailReply(firstName: string, subject: string, body: string, state: string): Promise<string | null> {
   if (!GROQ_API_KEY) return null;
   try {
     const stateContext = state === 'registered'
-      ? `This person is REGISTERED for the workshop. Do NOT tell them to register. Answer their question helpfully.`
+      ? `This person previously registered for a workshop. The workshop already happened. There is no confirmed next date or venue yet. Let them know the next session is TBA and they're on the waitlist. Answer their question helpfully.`
       : state === 'attended'
         ? `This person ATTENDED a previous workshop. Thank them, answer their question, and if relevant mention paid offerings.`
-        : `This person has NOT registered. Answer their question and encourage them to register at learnandleverageai.com/workshops.`;
+        : `This person has NOT registered. Answer their question and encourage them to join the waitlist at learnandleverageai.com/workshops. The next session date and location are TBA.`;
 
     const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
@@ -139,16 +138,14 @@ async function getAIEmailReply(firstName: string, subject: string, body: string,
             content: `You write short, friendly email replies for Learn & Leverage AI. ${stateContext}
 
 FACTS YOU KNOW (only use these — do NOT invent anything else):
-- Free hands-on AI workshop, Thursday, April 2, 2026, 6-8 PM
-- Venue: Hilton Christiana, 100 Continental Dr, Newark, DE 19713
-- The venue has Wi-Fi, LCD projector, screen, and power outlets. Complimentary water provided.
-- Limited to 10 seats
+- Free hands-on AI workshops, small group (10-15 people), in-person in the Delaware and Greater Philadelphia area
+- The next session date and location are TBA — no confirmed date or venue yet
+- Join the waitlist at learnandleverageai.com/workshops to be notified when the next session is announced
 - No tech experience needed — bring a laptop and charger
 - Instructor: Brandon Calloway — runs 5+ businesses on AI (pool company, photo booth company, voice agent company). Practitioner, not professor.
 - No guest speakers — it's just Brandon teaching
-- 2 hours: first hour is AI basics + how to talk to AI tools for your job; second hour is automation demos + you set up AI tools on your laptop
+- Workshops are typically 2 hours: first hour is AI basics + how to talk to AI tools for your job; second hour is automation demos + you set up AI tools on your laptop
 - What we provide: printed workbook, coffee, snacks
-- Register at learnandleverageai.com/workshops
 - Paid offerings exist (mention only if asked): AI Starter Pack ($497), Advanced Workshop ($997), Corporate Training ($5K-$10K/day), Consulting ($4,997+)
 
 CRITICAL RULES:

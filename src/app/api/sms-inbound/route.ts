@@ -53,28 +53,29 @@ function buildSystemPrompt(contact: ContactInfo): string {
   const stateContext = {
     unknown: `CONTACT STATE: This is a NEW person — they have never contacted us before.
 - Welcome them warmly
-- Tell them about the free workshop
-- Encourage them to register at learnandleverageai.com/workshops`,
+- Tell them about the free AI workshops (next date and venue TBA)
+- Encourage them to join the waitlist at learnandleverageai.com/workshops to be first to know when the next session is announced`,
 
-    'sms-lead': `CONTACT STATE: This person has contacted us before but has NOT registered for the workshop yet.
+    'sms-lead': `CONTACT STATE: This person has contacted us before but has NOT registered for a workshop yet.
 - Their name: ${contact.name || 'unknown'}
 - Answer their question directly
-- Gently encourage registration if relevant: learnandleverageai.com/workshops`,
+- The next workshop date and venue are TBA — encourage them to join the waitlist at learnandleverageai.com/workshops`,
 
-    registered: `CONTACT STATE: This person is ALREADY REGISTERED for the workshop.
-- Their name: ${contact.name || 'a registered attendee'}
-- Do NOT tell them to register — they already did!
-- Answer their question helpfully and directly
-- Workshop is Thursday, April 2, 6-8 PM at Hilton Christiana, 100 Continental Dr, Newark, DE 19713
-- If they ask logistics (what to bring, etc.), answer directly without unnecessary sign-offs`,
+    registered: `CONTACT STATE: This person previously registered for a workshop.
+- Their name: ${contact.name || 'a past registrant'}
+- The previous workshop has already happened. There is no confirmed next date or venue yet.
+- Let them know the next session date and location are TBA
+- Encourage them to stay on the waitlist at learnandleverageai.com/workshops for first access
+- Answer their question helpfully and directly`,
 
-    confirmed: `CONTACT STATE: This person is REGISTERED and CONFIRMED for the workshop.
-- Their name: ${contact.name || 'a confirmed attendee'}
-- Do NOT tell them to register — they are confirmed!
-- Answer their question helpfully and directly
-- Workshop is Thursday, April 2, 6-8 PM at Hilton Christiana, 100 Continental Dr, Newark, DE 19713`,
+    confirmed: `CONTACT STATE: This person previously confirmed for a workshop.
+- Their name: ${contact.name || 'a past confirmed attendee'}
+- The previous workshop has already happened. There is no confirmed next date or venue yet.
+- Let them know the next session date and location are TBA
+- Encourage them to stay on the waitlist at learnandleverageai.com/workshops for first access
+- Answer their question helpfully and directly`,
 
-    attended: `CONTACT STATE: This person ATTENDED the workshop already.
+    attended: `CONTACT STATE: This person ATTENDED a previous workshop.
 - Their name: ${contact.name || 'a past attendee'}
 - Do NOT mention the free workshop — they already came!
 - Thank them for attending if it comes up naturally
@@ -86,7 +87,7 @@ function buildSystemPrompt(contact: ContactInfo): string {
 - Their name: ${contact.name || 'someone who missed the workshop'}
 - Don't guilt them — life happens
 - Let them know we missed them and a future session is being planned
-- Offer to keep them on the list for the next one`,
+- Next date and venue are TBA — encourage them to stay on the waitlist at learnandleverageai.com/workshops`,
 
     purchased: `CONTACT STATE: This person is a PAYING CUSTOMER.
 - Their name: ${contact.name || 'a valued customer'}
@@ -101,17 +102,13 @@ function buildSystemPrompt(contact: ContactInfo): string {
 ${stateContext[contact.state]}
 
 FACTS YOU KNOW (only use these — do NOT invent anything else):
-- FREE hands-on AI workshop for corporate professionals
-- Thursday, April 2, 2026, 6:00-8:00 PM
-- Venue: Hilton Christiana, 100 Continental Dr, Newark, DE 19713
-- The venue has Wi-Fi, LCD projector, screen, and power outlets
-- Complimentary water provided by the venue
-- 2 hours: first hour = AI basics + how to talk to AI for your job; second hour = automation demos + set up tools on your laptop
+- FREE hands-on AI workshops, small group (10-15 people), in-person in the Delaware and Greater Philadelphia area
+- The next session date and location are TBA — no confirmed date or venue yet
+- Join the waitlist at learnandleverageai.com/workshops to be notified when the next session is announced
+- Workshops are typically 2 hours: first hour = AI basics + how to talk to AI for your job; second hour = automation demos + set up tools on your laptop
 - Bring a laptop and charger. No tech experience needed.
-- Limited to 10 seats
 - No guest speakers — it's just Brandon teaching
 - We provide: printed workbook, coffee, and snacks
-- Register at learnandleverageai.com/workshops
 - Brandon Calloway runs 5+ businesses on AI (pool company, photo booth company, voice agent company). Practitioner, not professor.
 - Contact email: info@learnandleverageai.com | Phone: (302) 416-6285
 - Paid offerings (mention only if asked or if they already attended): AI Starter Pack $497, Advanced Workshop $997, Corporate Training $5K-$10K/day, Consulting $4,997+
@@ -173,7 +170,7 @@ function getTemplateResponse(message: string, contact: ContactInfo): string {
 
   // First-time unknown contact
   if (contact.state === 'unknown') {
-    return "Hey! Thanks for reaching out. We're hosting a FREE hands-on AI workshop on Thursday, April 2, 6-8 PM at Hilton Christiana in Newark, DE. No tech experience needed. Register at learnandleverageai.com/workshops. Got any questions?";
+    return "Hey! Thanks for reaching out. We run FREE hands-on AI workshops in the Delaware and Greater Philadelphia area — small group, in-person. Next session date and location TBA. Join the waitlist at learnandleverageai.com/workshops and you'll be first to know!";
   }
 
   // Post-workshop attendee
@@ -186,7 +183,7 @@ function getTemplateResponse(message: string, contact: ContactInfo): string {
 
   // No-show
   if (contact.state === 'no-show') {
-    return `Hey${name}! We missed you at the workshop. No worries — life happens. We're planning another session soon. Want me to keep you on the list?`;
+    return `Hey${name}! We missed you at the last workshop. No worries — life happens. Next session date and location TBA. Stay on the waitlist at learnandleverageai.com/workshops and you'll be first to know!`;
   }
 
   // Purchased customer
@@ -194,48 +191,48 @@ function getTemplateResponse(message: string, contact: ContactInfo): string {
     return `Hey${name}! Thanks for being part of the program. How can I help? If you need anything from Brandon directly, I'll have him reach out.`;
   }
 
-  // Registered person — context-aware responses
+  // Previously registered person — context-aware responses
   if (isRegistered) {
     if (lower.includes('when') || lower.includes('date') || lower.includes('time')) {
-      return `The workshop is Thursday, April 2, 6-8 PM at Hilton Christiana in Newark, DE. You're all set${name}!`;
+      return `The next workshop date and location are TBA${name}. Join the waitlist at learnandleverageai.com/workshops and we'll let you know as soon as it's set!`;
     }
     if (lower.includes('where') || lower.includes('location') || lower.includes('address')) {
-      return `Hilton Christiana, 100 Continental Dr, Newark, DE 19713.`;
+      return `The next workshop venue hasn't been confirmed yet. Stay on the waitlist at learnandleverageai.com/workshops for updates!`;
     }
     if (lower.includes('bring') || lower.includes('laptop') || lower.includes('need') || lower.includes('prepare')) {
       return 'Bring your laptop (fully charged), a charger, and ideally a real work task you want to speed up. We provide everything else — workbook, coffee, snacks, Wi-Fi.';
     }
     if (lower.includes('cancel') || lower.includes('can\'t make') || lower.includes('won\'t be able')) {
-      return `No problem${name}. Just let us know and we'll open your seat for someone on the waitlist. You can always register for the next one. Thanks for letting us know!`;
+      return `No problem${name}. We'll keep you on the waitlist for the next session. Thanks for letting us know!`;
     }
     if (lower.includes('thank') || lower.includes('awesome') || lower.includes('great') || lower.includes('perfect')) {
-      return `You're welcome${name}! See you April 2 at the Hilton Christiana.`;
+      return `You're welcome${name}! We'll let you know when the next session is confirmed.`;
     }
     if (lower.includes('register') || lower.includes('sign up') || lower.includes('rsvp')) {
-      return `You're already registered${name}! Thursday, April 2, 6-8 PM at Hilton Christiana, 100 Continental Dr, Newark, DE 19713. See you there!`;
+      return `You're on the list${name}! Next session date and location TBA. We'll reach out as soon as it's confirmed.`;
     }
     // Default for registered person
-    return `Hey${name}! You're registered for the workshop on April 2. How can I help? Feel free to ask about what to bring, what we'll cover, or anything else.`;
+    return `Hey${name}! The next workshop date and location are TBA. You're on the waitlist — we'll let you know as soon as the next session is set. Anything else I can help with?`;
   }
 
   // Known but not registered (sms-lead)
   if (lower.includes('when') || lower.includes('date') || lower.includes('time')) {
-    return 'Thursday, April 2, 6:00-8:00 PM at Hilton Christiana, Newark, DE. Register at learnandleverageai.com/workshops!';
+    return 'Next session date and location TBA. Join the waitlist at learnandleverageai.com/workshops and you\'ll be first to know!';
   }
   if (lower.includes('where') || lower.includes('location') || lower.includes('address')) {
-    return "Hilton Christiana, 100 Continental Dr, Newark, DE 19713. Register at learnandleverageai.com/workshops!";
+    return "Next venue hasn't been confirmed yet — workshops are in the Delaware and Greater Philadelphia area. Join the waitlist at learnandleverageai.com/workshops for updates!";
   }
   if (lower.includes('cost') || lower.includes('price') || lower.includes('free') || lower.includes('how much')) {
     return "Completely FREE. No catch. Brandon runs it to show people what AI can do. Optional paid programs start at $297 if you want to go deeper, but the workshop is free.";
   }
   if (lower.includes('register') || lower.includes('sign up') || lower.includes('rsvp') || lower.includes('spot')) {
-    return 'Register here: learnandleverageai.com/workshops — takes 15 seconds (just name, email, phone). See you there!';
+    return 'Join the waitlist here: learnandleverageai.com/workshops — takes 15 seconds (just name, email, phone). We\'ll let you know when the next session is set!';
   }
   if (lower.includes('thank') || lower.includes('awesome') || lower.includes('great')) {
-    return "You're welcome! Register at learnandleverageai.com/workshops if you haven't yet — only a few spots left.";
+    return "You're welcome! Join the waitlist at learnandleverageai.com/workshops if you haven't yet — you'll be first to know when the next session drops.";
   }
 
-  return "Great question! Reply here and I'll help, or check out all the details at learnandleverageai.com/workshops.";
+  return "Great question! Reply here and I'll help, or join the waitlist at learnandleverageai.com/workshops to get notified about our next session.";
 }
 
 // ── Main handler ───────────────────────────────────────────────────────

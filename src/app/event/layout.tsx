@@ -1,26 +1,28 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Free Webinar: AI for Contractors — Stop Losing Money to Missed Calls",
-  description: "Free live training Feb 27 at 2pm EST. See how contractors use AI to answer every call, book more jobs, and stop wasting nights on paperwork. No tech skills needed.",
+  title: "Free AI Workshop — Learn & Leverage AI",
+  description: "Free hands-on AI workshops for professionals in Delaware and Greater Philadelphia. Small group, in-person. Next session date and location TBA — join the waitlist.",
   openGraph: {
-    title: "Free Webinar: AI for Contractors — Stop Losing Money to Missed Calls",
-    description: "Free live training Feb 27 at 2pm EST. See how contractors use AI to answer every call, book more jobs, and stop wasting nights on paperwork.",
-    url: "https://learnandleverageai.com/event",
+    title: "Free AI Workshop — Learn & Leverage AI",
+    description: "Free hands-on AI workshops for professionals in Delaware and Greater Philadelphia. Small group, in-person. Next session TBA — join the waitlist.",
+    url: "https://learnandleverageai.com/workshops",
   },
   other: {
     "script:structured-data": JSON.stringify({
       "@context": "https://schema.org",
       "@type": "EducationEvent",
-      "name": "AI for Contractors: Stop Losing Money to Missed Calls & Manual Work",
-      "description": "Free 45-minute live training with demos. See how contractors use AI to answer every call, generate social media content, and save 10+ hours per week.",
-      "startDate": "2026-02-27T14:00:00-05:00",
-      "endDate": "2026-02-27T15:00:00-05:00",
-      "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
-      "eventStatus": "https://schema.org/EventScheduled",
+      "name": "Free AI Hands-On Workshop — See What AI Can Actually Do For Your Job",
+      "description": "Free hands-on AI workshop for professionals. Small group (10-15), in-person in Delaware and Greater Philadelphia. Bring your laptop, leave with AI tools working for your job.",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "eventStatus": "https://schema.org/EventPostponed",
       "location": {
-        "@type": "VirtualLocation",
-        "url": "https://learnandleverageai.com/event"
+        "@type": "Place",
+        "name": "TBA — Delaware & Greater Philadelphia area",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "DE"
+        }
       },
       "organizer": {
         "@type": "Organization",
@@ -35,8 +37,8 @@ export const metadata: Metadata = {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD",
-        "availability": "https://schema.org/InStock",
-        "url": "https://learnandleverageai.com/event"
+        "availability": "https://schema.org/PreOrder",
+        "url": "https://learnandleverageai.com/workshops"
       },
       "isAccessibleForFree": true
     }),
@@ -56,15 +58,17 @@ export default function EventLayout({
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "EducationEvent",
-            "name": "AI for Contractors: Stop Losing Money to Missed Calls & Manual Work",
-            "description": "Free 45-minute live training with demos for contractors and home service businesses.",
-            "startDate": "2026-02-27T14:00:00-05:00",
-            "endDate": "2026-02-27T15:00:00-05:00",
-            "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
-            "eventStatus": "https://schema.org/EventScheduled",
+            "name": "Free AI Hands-On Workshop — See What AI Can Actually Do For Your Job",
+            "description": "Free hands-on AI workshop for professionals. Small group (10-15), in-person in Delaware and Greater Philadelphia. Bring your laptop, leave with AI tools working for your job.",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "eventStatus": "https://schema.org/EventPostponed",
             "location": {
-              "@type": "VirtualLocation",
-              "url": "https://learnandleverageai.com/event"
+              "@type": "Place",
+              "name": "TBA — Delaware & Greater Philadelphia area",
+              "address": {
+                "@type": "PostalAddress",
+                "addressRegion": "DE"
+              }
             },
             "organizer": {
               "@type": "Organization",
@@ -79,8 +83,8 @@ export default function EventLayout({
               "@type": "Offer",
               "price": "0",
               "priceCurrency": "USD",
-              "availability": "https://schema.org/InStock",
-              "url": "https://learnandleverageai.com/event"
+              "availability": "https://schema.org/PreOrder",
+              "url": "https://learnandleverageai.com/workshops"
             },
             "isAccessibleForFree": true
           }),
