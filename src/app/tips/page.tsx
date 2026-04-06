@@ -93,13 +93,13 @@ export default function TipsPage() {
               These 3 tips are just the beginning. At the free workshop, we cover the full framework — the 4-step approach that makes AI consistently useful for your specific job. You&apos;ll leave with tools set up and working on your laptop.
             </p>
             <p className="text-gray-400 mb-6 text-sm">
-              <strong className="text-white">Thursday, April 2 · 6-8 PM · Hilton Christiana, Newark DE · 10 seats · Free</strong>
+              <strong className="text-white">Free · In-person · Small group (10-15 people) · Delaware &amp; Greater Philadelphia area</strong>
             </p>
             <Link
               href="/workshops"
               className="inline-block bg-amber-500 hover:bg-amber-600 text-white font-bold px-6 py-3 rounded-xl transition-colors"
             >
-              Register for the Free Workshop
+              Join the Waitlist
             </Link>
           </div>
         </div>

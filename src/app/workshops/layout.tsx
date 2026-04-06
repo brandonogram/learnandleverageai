@@ -3,21 +3,21 @@ import Script from "next/script";
 import { PostHogProvider } from "@/lib/posthog";
 
 export const metadata: Metadata = {
-  title: "Free AI Workshop — Thursday, April 2 | Hilton Christiana | Learn & Leverage AI",
+  title: "Free AI Workshop — Hands-On Training | Learn & Leverage AI",
   description:
-    "Free 2-hour hands-on AI workshop for corporate professionals in Newark, DE. Thursday, April 2, 6-8 PM at Hilton Christiana. Walk out with 3 AI tools working for your job. No tech experience needed.",
+    "Free 2-hour hands-on AI workshop for corporate professionals in Delaware and Greater Philadelphia. Walk out with 3 AI tools working for your job. No tech experience needed. Join the waitlist.",
   openGraph: {
-    title: "Free AI Workshop — Thursday, April 2 at Hilton Christiana",
+    title: "Free AI Workshop — Hands-On Training for Professionals",
     description:
-      "Free 2-hour workshop for professionals in Newark, DE. Thursday, April 2, 6-8 PM. Hands-on AI training — walk out with tools you can use Monday morning. No tech experience required.",
+      "Free 2-hour workshop for professionals. Hands-on AI training — walk out with tools you can use Monday morning. No tech experience required. Join the waitlist.",
     url: "https://learnandleverageai.com/workshops",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free AI Workshop — Thursday, April 2 | Newark, DE",
+    title: "Free AI Workshop — Hands-On Training | Learn & Leverage AI",
     description:
-      "Your boss said learn AI. We'll show you how. Free hands-on workshop April 2 at Hilton Christiana — walk out with 3 AI tools working for your job.",
+      "Your boss said learn AI. We'll show you how. Free hands-on workshop — walk out with 3 AI tools working for your job. Join the waitlist.",
   },
 };
 
@@ -54,54 +54,37 @@ export default function WorkshopsLayout({
         />
       </noscript>
 
-      {/* Structured Data */}
+      {/* Structured Data — Organization (not event-specific until next date is set) */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "EducationEvent",
-            name: "AI Hands-On: Walk Out With 3 Tools Working For Your Job",
+            "@type": "Organization",
+            name: "Learn & Leverage AI",
+            url: "https://learnandleverageai.com",
             description:
-              "Free half-day, in-person AI workshop for corporate professionals. Hands-on training with ChatGPT, Claude, and automation tools. No tech experience needed.",
-            startDate: "2026-04-02T22:00:00Z",
-            endDate: "2026-04-03T00:00:00Z",
-            eventAttendanceMode:
-              "https://schema.org/OfflineEventAttendanceMode",
-            eventStatus: "https://schema.org/EventScheduled",
-            location: {
-              "@type": "Place",
-              name: "Hilton Christiana",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "100 Continental Dr",
-                addressLocality: "Newark",
-                addressRegion: "DE",
-                postalCode: "19713",
-                addressCountry: "US",
-              },
-            },
-            organizer: {
-              "@type": "Organization",
-              name: "Learn & Leverage AI",
-              url: "https://learnandleverageai.com",
-            },
-            performer: {
+              "Free hands-on AI workshops for corporate professionals in Delaware and Greater Philadelphia. No tech experience needed.",
+            founder: {
               "@type": "Person",
               name: "Brandon Calloway",
             },
-            offers: {
-              "@type": "Offer",
-              price: "0",
-              priceCurrency: "USD",
-              availability: "https://schema.org/InStock",
-              url: "https://learnandleverageai.com/workshops",
-            },
-            isAccessibleForFree: true,
-            maximumAttendeeCapacity: 10,
-            remainingAttendeeCapacity: 8,
+            areaServed: [
+              {
+                "@type": "State",
+                name: "Delaware",
+              },
+              {
+                "@type": "City",
+                name: "Philadelphia",
+                containedInPlace: {
+                  "@type": "State",
+                  name: "Pennsylvania",
+                },
+              },
+            ],
             image: "https://learnandleverageai.com/images/linkedin-ad-workshop.png",
-            keywords: ["AI workshop", "artificial intelligence training", "free workshop", "Delaware", "Newark DE", "professional development", "beginner AI"],
+            keywords: ["AI workshop", "artificial intelligence training", "free workshop", "Delaware", "Philadelphia", "professional development", "beginner AI"],
           }),
         }}
       />

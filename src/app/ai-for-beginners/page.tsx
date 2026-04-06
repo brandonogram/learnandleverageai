@@ -144,13 +144,13 @@ export default function AIForBeginnersPage() {
               Reading about AI is one thing. Setting it up for your specific job is another. At the free workshop, we skip the theory and go straight to doing — you open your laptop, and we walk you through everything step by step.
             </p>
             <p className="text-gray-400 mb-6 text-sm">
-              <strong className="text-white">Thursday, April 2 · 6-8 PM · Hilton Christiana, Newark DE · 8 seats left · Free</strong>
+              <strong className="text-white">Free · In-person · Small group (10-15 people) · Delaware &amp; Greater Philadelphia area</strong>
             </p>
             <Link
               href="/workshops"
               className="inline-block bg-amber-500 hover:bg-amber-600 text-white font-bold px-6 py-3 rounded-xl transition-colors"
             >
-              Register for the Free Workshop
+              Join the Waitlist
             </Link>
           </div>
         </div>

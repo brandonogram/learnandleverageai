@@ -5,14 +5,11 @@ import Image from 'next/image';
 import {
   captureUTMParams,
   setPostHogUTMProperties,
-  trackWorkshopRegistration,
   trackFormStarted,
   trackFormFieldCompleted,
   trackCtaClicked,
   trackFaqExpanded,
   trackScrollDepth,
-  getABVariant,
-  trackABExposure,
   UTMParams,
 } from '@/lib/analytics';
 
@@ -37,57 +34,21 @@ export default function WorkshopsPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
-    smsConsent: false,
+    location: '',
   });
   const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [consentError, setConsentError] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [utmParams, setUtmParams] = useState<UTMParams>({});
   const formStartedRef = useRef(false);
   const completedFieldsRef = useRef<Set<string>>(new Set());
   const scrollMilestonesRef = useRef<Set<number>>(new Set());
 
-  // ── A/B Test: hero-form (inline form in hero vs scroll-to-form) ────
-  const [abVariant, setAbVariant] = useState<'control' | 'variant'>('control');
-  const abTrackedRef = useRef(false);
-
-  // ── Countdown timer ──────────────────────────────────────────────────
-  const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-
+  // ── UTM capture & scroll tracking ──────────────────────────────────
   useEffect(() => {
-    const target = new Date('2026-04-02T22:00:00Z').getTime(); // April 2, 6 PM EDT
-    const tick = () => {
-      const now = Date.now();
-      const diff = Math.max(0, target - now);
-      setCountdown({
-        days: Math.floor(diff / 86400000),
-        hours: Math.floor((diff % 86400000) / 3600000),
-        minutes: Math.floor((diff % 3600000) / 60000),
-        seconds: Math.floor((diff % 60000) / 1000),
-      });
-    };
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, []);
-
-  // ── UTM capture, A/B test, & scroll tracking ──────────────────────
-  useEffect(() => {
-    // Capture UTM params on mount
     const utm = captureUTMParams();
     setUtmParams(utm);
     setPostHogUTMProperties(utm);
 
-    // A/B test assignment
-    const variant = getABVariant('hero-form-v1');
-    setAbVariant(variant);
-    if (!abTrackedRef.current) {
-      abTrackedRef.current = true;
-      trackABExposure('hero-form-v1', variant);
-    }
-
-    // Scroll depth tracking
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -129,13 +90,11 @@ export default function WorkshopsPage() {
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
 
-    // Track form_started on first interaction
     if (!formStartedRef.current) {
       formStartedRef.current = true;
       trackFormStarted();
     }
 
-    // Track field completion (only once per field)
     if (value.trim() && !completedFieldsRef.current.has(field)) {
       completedFieldsRef.current.add(field);
       trackFormFieldCompleted(field);
@@ -144,34 +103,22 @@ export default function WorkshopsPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Require SMS consent when phone is provided
-    if (formData.phone && !formData.smsConsent) {
-      setConsentError(true);
-      return;
-    }
-    setConsentError(false);
     setFormState('loading');
     try {
-      const res = await fetch('/api/workshop-register', {
+      const res = await fetch('/api/waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           full_name: formData.name,
           email: formData.email,
-          phone: formData.phone,
-          source: 'workshop-landing-page',
-          registered_at: new Date().toISOString(),
+          location_preference: formData.location,
           utm_source: utmParams.utm_source || '',
           utm_medium: utmParams.utm_medium || '',
           utm_campaign: utmParams.utm_campaign || '',
-          utm_term: utmParams.utm_term || '',
-          utm_content: utmParams.utm_content || '',
         }),
       });
-      if (!res.ok) throw new Error('Registration failed');
+      if (!res.ok) throw new Error('Waitlist signup failed');
       setFormState('success');
-
-      trackWorkshopRegistration({});
     } catch {
       setFormState('error');
     }
@@ -203,8 +150,8 @@ export default function WorkshopsPage() {
       a: "No. You'll get focused hands-on training and a brief mention of what's available next for people who want to continue. That's it. The workshop stands on its own.",
     },
     {
-      q: "What if I have to cancel?",
-      a: "No problem — just let us know so we can give your seat to someone on the waitlist. Seats are limited to 10 people so everyone gets personal attention.",
+      q: "Where are the workshops held?",
+      a: "We run small in-person sessions in the Delaware and Greater Philadelphia area. When you join the waitlist, you can tell us which location works best — we use that to plan where to host next.",
     },
   ];
 
@@ -217,11 +164,11 @@ export default function WorkshopsPage() {
             Learn & Leverage <span className="text-amber-400">AI</span>
           </span>
           <a
-            href="#register"
-            onClick={() => trackCtaClicked('Register Free', 'sticky_nav')}
+            href="#waitlist"
+            onClick={() => trackCtaClicked('Join Waitlist', 'sticky_nav')}
             className="bg-amber-500 hover:bg-amber-600 text-white font-body font-bold text-sm px-4 py-2 rounded-lg transition-colors"
           >
-            Register Free
+            Join the Waitlist
           </a>
         </div>
       </nav>
@@ -232,15 +179,14 @@ export default function WorkshopsPage() {
       <section className="relative pt-14 min-h-[90vh] flex flex-col justify-center bg-[#1C1917]">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-[#1C1917] via-[#292524] to-[#1C1917]" />
-          {/* Subtle decorative elements */}
           <div className="absolute top-20 right-10 w-72 h-72 bg-amber-500/5 rounded-full blur-3xl" />
           <div className="absolute bottom-20 left-10 w-96 h-96 bg-amber-500/3 rounded-full blur-3xl" />
         </div>
 
         <div className="relative z-10 px-5 py-12 max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-green-500/10 border border-green-400/30 text-green-400 px-4 py-2 rounded-full font-body text-sm font-medium mb-6 animate-fade-up">
-            <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-            FREE In-Person Workshop — Thursday, April 2
+          <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-400/30 text-amber-400 px-4 py-2 rounded-full font-body text-sm font-medium mb-6 animate-fade-up">
+            <span className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
+            Next Workshop Coming Soon — Join the Waitlist
           </div>
 
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.1] mb-5 animate-fade-up-delay-1">
@@ -254,44 +200,18 @@ export default function WorkshopsPage() {
           </p>
 
           <p className="font-body text-base text-gray-500 mb-8 max-w-lg mx-auto animate-fade-up-delay-3">
-            No tech experience needed. No jargon. No theory without practice.
+            Small groups only (10-15 people). Waitlist gets first access when we announce the next date.
           </p>
 
-          {/* CTA — Always show inline form in hero (A/B test removed — inline form wins) */}
+          {/* Hero inline form */}
           <div className="animate-fade-up-delay-4">
             {formState === 'success' ? (
               <div className="bg-green-500/10 border border-green-400/30 rounded-xl p-4 max-w-md mx-auto">
-                <p className="font-body text-green-400 font-bold text-center">You&apos;re in! Check your email for details.</p>
+                <p className="font-body text-green-400 font-bold text-center">You&apos;re on the list! We&apos;ll email you when the next session is announced.</p>
               </div>
             ) : (
               <form
-                onSubmit={async (e) => {
-                  e.preventDefault();
-                  setFormState('loading');
-                  try {
-                    const res = await fetch('/api/workshop-register', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({
-                        full_name: formData.name,
-                        email: formData.email,
-                        phone: '',
-                        source: 'hero-inline-form',
-                        registered_at: new Date().toISOString(),
-                        utm_source: utmParams.utm_source || '',
-                        utm_medium: utmParams.utm_medium || '',
-                        utm_campaign: utmParams.utm_campaign || '',
-                        utm_term: utmParams.utm_term || '',
-                        utm_content: utmParams.utm_content || '',
-                      }),
-                    });
-                    if (!res.ok) throw new Error('Registration failed');
-                    setFormState('success');
-                    trackWorkshopRegistration({});
-                  } catch {
-                    setFormState('error');
-                  }
-                }}
+                onSubmit={handleSubmit}
                 className="max-w-md mx-auto space-y-3"
               >
                 <div className="flex gap-2">
@@ -318,16 +238,16 @@ export default function WorkshopsPage() {
                   disabled={formState === 'loading'}
                   className="w-full bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white px-8 py-4 rounded-xl font-body font-black text-lg transition-all shadow-lg shadow-amber-500/20 active:scale-95"
                 >
-                  {formState === 'loading' ? 'Registering...' : 'Reserve My Free Spot — This Thursday'}
+                  {formState === 'loading' ? 'Joining...' : 'Join the Waitlist — Get First Access'}
                 </button>
                 {formState === 'error' && (
                   <p className="font-body text-red-400 text-sm text-center">Something went wrong. Try again.</p>
                 )}
                 <p className="font-body text-amber-400/80 text-xs text-center font-medium">
-                  Only a few seats left. Name + email is all we need.
+                  Free workshop. Waitlist gets priority seats.
                 </p>
                 <p className="font-body text-center text-[10px] text-gray-600 mt-1 max-w-sm mx-auto leading-relaxed">
-                  By registering, you consent to receive event updates from Learn &amp; Leverage AI. No spam.{' '}
+                  We&apos;ll only email you about upcoming workshops. No spam.{' '}
                   <a href="/privacy" className="underline text-gray-500">Privacy</a> |{' '}
                   <a href="/terms" className="underline text-gray-500">Terms</a>
                 </p>
@@ -335,27 +255,11 @@ export default function WorkshopsPage() {
             )}
           </div>
 
-          {/* Countdown timer */}
-          <div className="grid grid-cols-4 gap-2 mt-8 max-w-sm mx-auto">
+          {/* Location + format quick details */}
+          <div className="grid grid-cols-3 gap-3 mt-8 max-w-md mx-auto">
             {[
-              { label: "Days", value: countdown.days },
-              { label: "Hours", value: countdown.hours },
-              { label: "Min", value: countdown.minutes },
-              { label: "Sec", value: countdown.seconds },
-            ].map((item, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 rounded-xl p-3 text-center">
-                <div className="font-display text-2xl font-black text-amber-400">{String(item.value).padStart(2, '0')}</div>
-                <div className="font-body text-[10px] text-gray-500 uppercase tracking-wider mt-0.5">{item.label}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* Event quick details */}
-          <div className="grid grid-cols-4 gap-3 mt-4 max-w-md mx-auto">
-            {[
-              { label: "Date", value: "Apr 2" },
-              { label: "Time", value: "6 - 8 PM" },
-              { label: "Where", value: "Newark, DE" },
+              { label: "Format", value: "In-Person" },
+              { label: "Duration", value: "2 Hours" },
               { label: "Cost", value: "FREE", highlight: true },
             ].map((item, i) => (
               <div key={i} className="bg-white/5 border border-white/10 rounded-xl p-3 text-center">
@@ -381,7 +285,7 @@ export default function WorkshopsPage() {
             If any of these describe you, this workshop was built for you.
           </p>
           <p className="font-body text-[#A8A29E] text-center text-sm mb-10 max-w-lg mx-auto">
-            Built for professionals at JPMorgan, Capital One, DuPont, AstraZeneca, and companies across New Castle County.
+            Built for professionals at JPMorgan, Capital One, DuPont, AstraZeneca, and companies across Delaware and the Greater Philadelphia area.
           </p>
 
           <div className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
@@ -423,11 +327,11 @@ export default function WorkshopsPage() {
           </p>
           <div className="text-center mt-8">
             <a
-              href="#register"
-              onClick={() => trackCtaClicked('Register — It\'s Free', 'sound_familiar')}
+              href="#waitlist"
+              onClick={() => trackCtaClicked('Get on the Waitlist', 'sound_familiar')}
               className="inline-block bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-xl font-body font-black text-lg transition-all shadow-lg shadow-amber-500/20 active:scale-95"
             >
-              Register — It&apos;s Free
+              Get on the Waitlist
             </a>
           </div>
         </div>
@@ -448,12 +352,12 @@ export default function WorkshopsPage() {
           <div className="space-y-6 max-w-2xl mx-auto">
             {[
               {
-                time: "6:00 PM",
+                time: "Hour 1",
                 title: "What AI Actually Is & How to Use It",
                 desc: "A clear-eyed look at what AI can and can't do today. Live demos of ChatGPT and Claude, then hands-on exercises where you ask AI to do YOUR actual work tasks. Learn the techniques that turn mediocre AI responses into genuinely useful ones.",
               },
               {
-                time: "7:00 PM",
+                time: "Hour 2",
                 title: "AI Agents, Automation & Your Toolkit",
                 desc: "See how AI can handle repetitive work without you. Live demo of a voice agent that answers phone calls and books appointments. Then set up AI tools on your laptop before you leave. You leave with tools working, not just notes.",
               },
@@ -474,11 +378,11 @@ export default function WorkshopsPage() {
 
           <div className="text-center mt-10">
             <a
-              href="#register"
-              onClick={() => trackCtaClicked('Save My Seat', 'what_youll_learn')}
+              href="#waitlist"
+              onClick={() => trackCtaClicked('Join the Waitlist', 'what_youll_learn')}
               className="inline-block bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-xl font-body font-black text-lg transition-all shadow-lg shadow-amber-500/20 active:scale-95"
             >
-              Save My Seat
+              Join the Waitlist
             </a>
           </div>
         </div>
@@ -554,13 +458,11 @@ export default function WorkshopsPage() {
               <h3 className="font-display text-base font-bold text-[#1C1917] mb-4">The Basics</h3>
               <ul className="space-y-3">
                 {[
-                  { label: "Date", value: "Thursday, April 2, 2026" },
-                  { label: "Time", value: "6:00 PM - 8:00 PM" },
-                  { label: "Location", value: "Hilton Christiana" },
-                  { label: "Address", value: "100 Continental Dr, Newark, DE 19713" },
-
+                  { label: "Date", value: "Next date announced soon" },
+                  { label: "Time", value: "Weeknight evening, 2 hours" },
+                  { label: "Where", value: "Delaware & Greater Philadelphia area" },
                   { label: "Cost", value: "FREE", highlight: true },
-                  { label: "Seats", value: "Limited to 10" },
+                  { label: "Seats", value: "Limited to 10-15" },
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="font-body text-[#78716C] text-sm w-16 flex-shrink-0">{item.label}</span>
@@ -595,36 +497,21 @@ export default function WorkshopsPage() {
 
           <div className="text-center mt-8">
             <a
-              href="#register"
-              onClick={() => trackCtaClicked('Register for Free', 'workshop_details')}
+              href="#waitlist"
+              onClick={() => trackCtaClicked('Join the Waitlist', 'workshop_details')}
               className="inline-block bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-xl font-body font-black text-lg transition-all shadow-lg shadow-amber-500/20 active:scale-95"
             >
-              Register for Free
+              Join the Waitlist
             </a>
           </div>
         </div>
       </section>
 
       {/* ============================================================ */}
-      {/* VENUE PHOTO + SOCIAL PROOF */}
+      {/* SOCIAL PROOF */}
       {/* ============================================================ */}
       <section className="py-12 px-5 bg-white">
         <div className="max-w-3xl mx-auto">
-          <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-sm mb-8">
-            <Image
-              src="/images/venue/classroom.jpg"
-              alt="Workshop room at Hilton Christiana — classroom setup with projector and screen"
-              width={800}
-              height={450}
-              className="w-full h-auto object-cover"
-            />
-            <div className="bg-[#FFFBF5] px-5 py-3 border-t border-amber-100">
-              <p className="font-body text-sm text-[#57534E]">
-                <strong className="text-[#1C1917]">Your workshop room</strong> — Hilton Christiana, Newark DE. Small group. Projector + screen. Everyone gets a seat with power.
-              </p>
-            </div>
-          </div>
-
           <div className="text-center">
             <p className="font-body text-sm text-[#78716C] mb-3">Built for professionals at companies like:</p>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
@@ -670,11 +557,11 @@ export default function WorkshopsPage() {
           </p>
           <div className="text-center mt-6">
             <a
-              href="#register"
-              onClick={() => trackCtaClicked('Reserve My Free Spot', 'value_stack')}
+              href="#waitlist"
+              onClick={() => trackCtaClicked('Get First Access', 'value_stack')}
               className="inline-block bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-xl font-body font-black text-lg transition-all shadow-lg shadow-amber-500/20 active:scale-95"
             >
-              Reserve My Free Spot
+              Get First Access
             </a>
           </div>
         </div>
@@ -715,22 +602,18 @@ export default function WorkshopsPage() {
       </section>
 
       {/* ============================================================ */}
-      {/* REGISTRATION FORM */}
+      {/* WAITLIST FORM */}
       {/* ============================================================ */}
-      <section id="register" className="py-16 bg-[#1C1917] text-white scroll-mt-14">
+      <section id="waitlist" className="py-16 bg-[#1C1917] text-white scroll-mt-14">
         <div className="px-5 max-w-xl mx-auto">
           <div className="text-center mb-8">
             <h2 className="font-display text-2xl sm:text-3xl font-black mb-3">
-              Register for the Free Workshop
+              Join the Waitlist
             </h2>
             <p className="font-body text-gray-400 text-sm max-w-md mx-auto">
-              Thursday, April 2 &middot; 6:00 - 8:00 PM &middot; Hilton Christiana, Newark, DE.
-              3 fields. 15 seconds.
+              Small groups, free, in-person. We&apos;ll email you when the next session is announced.
+              Waitlist gets priority seats.
             </p>
-            <div className="inline-flex items-center gap-2 bg-red-500/10 border border-red-400/30 text-red-400 px-4 py-2 rounded-full font-body text-sm font-medium mt-3">
-              <span className="w-2 h-2 bg-red-400 rounded-full animate-pulse" />
-              This Thursday — only a few seats left
-            </div>
           </div>
 
           <div className="bg-white rounded-2xl p-5 sm:p-8">
@@ -742,46 +625,10 @@ export default function WorkshopsPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h3 className="font-display text-xl text-[#1C1917] font-black mb-2">You&apos;re In!</h3>
+                  <h3 className="font-display text-xl text-[#1C1917] font-black mb-2">You&apos;re on the List!</h3>
                   <p className="font-body text-sm text-[#57534E] max-w-sm mx-auto">
-                    Check your email and phone for confirmation details.
+                    Check your email for a confirmation. We&apos;ll reach out as soon as the next session date is set.
                   </p>
-                </div>
-
-                {/* Event details recap */}
-                <div className="bg-[#FFFBF5] rounded-xl p-4 mb-4">
-                  <div className="grid grid-cols-2 gap-3 text-sm">
-                    <div>
-                      <span className="font-body text-[#78716C] text-xs uppercase">When</span>
-                      <p className="font-body font-bold text-[#1C1917]">Thu, Apr 2 &middot; 6-8 PM</p>
-                    </div>
-                    <div>
-                      <span className="font-body text-[#78716C] text-xs uppercase">Where</span>
-                      <p className="font-body font-bold text-[#1C1917]">Hilton Christiana</p>
-                    </div>
-                  </div>
-                  <p className="font-body text-xs text-[#78716C] mt-2">100 Continental Dr, Newark, DE 19713</p>
-                </div>
-
-                {/* Add to Calendar */}
-                <div className="flex flex-col sm:flex-row gap-2 mb-4">
-                  <a
-                    href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=AI+Hands-On+Workshop&dates=20260402T220000Z/20260403T000000Z&details=Free+AI+workshop+with+Brandon+Calloway.+Bring+your+laptop+%26+charger.+100+Continental+Dr,+Newark+DE+19713.&location=Hilton+Christiana,+100+Continental+Dr,+Newark,+DE+19713&sf=true"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 bg-white border border-gray-200 hover:border-amber-300 text-[#1C1917] font-body font-medium text-sm py-2.5 px-4 rounded-xl transition-colors"
-                  >
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></svg>
-                    Google Calendar
-                  </a>
-                  <a
-                    href={`data:text/calendar;charset=utf-8,${encodeURIComponent('BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:20260402T220000Z\nDTEND:20260403T000000Z\nSUMMARY:AI Hands-On Workshop\nDESCRIPTION:Free AI workshop with Brandon Calloway. Bring your laptop & charger.\nLOCATION:Hilton Christiana\\, 100 Continental Dr\\, Newark\\, DE 19713\nEND:VEVENT\nEND:VCALENDAR')}`}
-                    download="ai-workshop-april2.ics"
-                    className="flex-1 flex items-center justify-center gap-2 bg-white border border-gray-200 hover:border-amber-300 text-[#1C1917] font-body font-medium text-sm py-2.5 px-4 rounded-xl transition-colors"
-                  >
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" /></svg>
-                    Apple / Outlook (.ics)
-                  </a>
                 </div>
 
                 {/* Share with a colleague */}
@@ -790,12 +637,12 @@ export default function WorkshopsPage() {
                   <p className="font-body text-xs text-[#57534E] mb-3">Copy this and send it to a colleague:</p>
                   <div className="bg-white rounded-lg p-3 border border-blue-100">
                     <p className="font-body text-xs text-[#44403C] leading-relaxed italic">
-                      &ldquo;A local business owner is running a free AI workshop next Thursday at the Hilton Christiana in Newark. It&apos;s for people who haven&apos;t used AI at work yet — you bring your laptop, he shows you how to set it up for your job. 10 seats, no cost. learnandleverageai.com/workshops&rdquo;
+                      &ldquo;A local business owner runs free hands-on AI workshops for professionals who haven&apos;t used AI at work yet. Small group, you bring your laptop, he shows you how to set it up for your actual job. Next one is coming soon — get on the waitlist: learnandleverageai.com/workshops&rdquo;
                     </p>
                   </div>
                   <button
                     onClick={() => {
-                      navigator.clipboard.writeText("A local business owner is running a free AI workshop next Thursday at the Hilton Christiana in Newark. It's for people who haven't used AI at work yet — you bring your laptop, he shows you how to set it up for your job. 10 seats, no cost. learnandleverageai.com/workshops");
+                      navigator.clipboard.writeText("A local business owner runs free hands-on AI workshops for professionals who haven't used AI at work yet. Small group, you bring your laptop, he shows you how to set it up for your actual job. Next one is coming soon — get on the waitlist: learnandleverageai.com/workshops");
                       const btn = document.getElementById('copy-share');
                       if (btn) { btn.textContent = 'Copied!'; setTimeout(() => btn.textContent = 'Copy to clipboard', 2000); }
                     }}
@@ -806,14 +653,14 @@ export default function WorkshopsPage() {
                   </button>
                 </div>
 
-                {/* What to bring */}
+                {/* What to expect */}
                 <div className="bg-amber-50 rounded-xl p-4">
-                  <h4 className="font-body text-sm font-bold text-[#1C1917] mb-2">What to bring:</h4>
+                  <h4 className="font-body text-sm font-bold text-[#1C1917] mb-2">What to expect:</h4>
                   <ul className="space-y-1.5">
                     {[
-                      'Your laptop (fully charged)',
-                      'A charger, just in case',
-                      'A work task you want AI help with',
+                      "We'll email you when the next date is set",
+                      "Waitlist gets first access before public announcement",
+                      "Bring a laptop — you'll build something real before you leave",
                     ].map((item, i) => (
                       <li key={i} className="flex items-center gap-2">
                         <CheckIcon />
@@ -858,44 +705,24 @@ export default function WorkshopsPage() {
                   />
                 </div>
 
-                {/* Phone */}
+                {/* Location Preference */}
                 <div>
-                  <label htmlFor="reg-phone" className="block font-body text-sm font-medium text-[#1C1917] mb-1.5">
-                    Phone Number
-                    <span className="text-[#A8A29E] font-normal ml-1">(optional — we&apos;ll text you the address + a free AI tip)</span>
+                  <label htmlFor="reg-location" className="block font-body text-sm font-medium text-[#1C1917] mb-1.5">
+                    Preferred Location
+                    <span className="text-[#A8A29E] font-normal ml-1">(helps us plan)</span>
                   </label>
-                  <input
-                    id="reg-phone"
-                    type="tel"
-                    inputMode="tel"
-                    value={formData.phone}
-                    onChange={(e) => handleChange('phone', e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] text-base focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
-                    placeholder="(302) 555-0100"
-                  />
+                  <select
+                    id="reg-location"
+                    value={formData.location}
+                    onChange={(e) => handleChange('location', e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 font-body text-[#1C1917] text-base focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all bg-white"
+                  >
+                    <option value="">Select a location...</option>
+                    <option value="newark-de">Newark / Wilmington, DE area</option>
+                    <option value="villanova-pa">Villanova / Main Line, PA area</option>
+                    <option value="either">Either works for me</option>
+                  </select>
                 </div>
-
-                {/* SMS Consent Checkbox — REQUIRED for A2P 10DLC compliance */}
-                <div className={`flex items-start gap-3 mt-1 p-3 rounded-lg border ${consentError ? 'border-red-400 bg-red-50' : 'border-transparent'}`}>
-                  <input
-                    type="checkbox"
-                    id="sms-consent"
-                    checked={formData.smsConsent}
-                    onChange={(e) => {
-                      setFormData((prev) => ({ ...prev, smsConsent: e.target.checked }));
-                      if (e.target.checked) setConsentError(false);
-                    }}
-                    className="mt-1 w-4 h-4 rounded border-gray-300 text-amber-500 focus:ring-amber-500"
-                  />
-                  <label htmlFor="sms-consent" className="font-body text-xs text-[#78716C] leading-relaxed">
-                    I agree to receive SMS text messages from <strong className="text-[#57534E]">Learn &amp; Leverage AI</strong> (Dude Ventures Services LLC, d/b/a Learn and Leverage AI) at the phone number provided. Messages include event confirmations, reminders, and updates. <strong className="text-[#57534E]">Message frequency: up to 5 messages per event.</strong> Message and data rates may apply. Reply STOP to cancel at any time. Reply HELP for help. Consent is not a condition of purchase. We do not share your opt-in consent or phone number with third parties for marketing purposes.{' '}
-                    <a href="/privacy" className="underline text-amber-600">Privacy Policy</a> &amp;{' '}
-                    <a href="/terms" className="underline text-amber-600">Terms of Service</a>.
-                  </label>
-                </div>
-                {consentError && (
-                  <p className="font-body text-red-600 text-xs mt-1 ml-1">Please check the box above to consent to SMS messages.</p>
-                )}
 
                 {formState === 'error' && (
                   <p className="font-body text-red-600 text-sm text-center">
@@ -914,18 +741,18 @@ export default function WorkshopsPage() {
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                       </svg>
-                      Registering...
+                      Joining...
                     </span>
                   ) : (
-                    'Register Now — It\'s Free'
+                    'Join the Waitlist — It\'s Free'
                   )}
                 </button>
 
                 <p className="font-body text-center text-xs text-[#A8A29E] mt-1">
-                  Takes 15 seconds. No spam.
+                  We&apos;ll only email you about upcoming workshops. No spam.
                 </p>
                 <p className="font-body text-center text-[10px] text-[#78716C] mt-2 max-w-sm mx-auto leading-relaxed">
-                  By registering and checking the SMS consent box above, you agree to receive SMS event reminders and updates from Learn &amp; Leverage AI (Dude Ventures Services LLC) at the phone number provided. Message frequency varies (up to 5 per event). Message &amp; data rates may apply. Reply STOP to unsubscribe. Reply HELP for help. Consent is not required to make a purchase. Your opt-in is not shared with third parties.{' '}
+                  By joining, you agree to receive workshop announcements from Learn &amp; Leverage AI.{' '}
                   <a href="/privacy" className="underline">Privacy Policy</a> &amp;{' '}
                   <a href="/terms" className="underline">Terms of Service</a>.
                 </p>
@@ -949,14 +776,14 @@ export default function WorkshopsPage() {
             Don&apos;t wait until it&apos;s mandatory — get ahead now, for free.
           </p>
           <a
-            href="#register"
-            onClick={() => trackCtaClicked('Register for Free', 'final_cta')}
+            href="#waitlist"
+            onClick={() => trackCtaClicked('Join the Waitlist', 'final_cta')}
             className="inline-block bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-xl font-body font-black text-lg transition-all shadow-lg shadow-amber-500/20 active:scale-95"
           >
-            Register for Free
+            Join the Waitlist
           </a>
           <p className="font-body text-[#A8A29E] text-sm mt-4">
-            Thursday, April 2 &middot; 6:00 - 8:00 PM &middot; Hilton Christiana, Newark, DE &middot; 10 seats only
+            Free in-person workshop &middot; Small groups only &middot; Delaware &amp; Greater Philadelphia area
           </p>
         </div>
       </section>
