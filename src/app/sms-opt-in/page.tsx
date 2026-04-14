@@ -10,8 +10,7 @@ export default function SmsOptInPage() {
     consentNonMarketing: false,
     consentMarketing: false,
   });
-  const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [consentError, setConsentError] = useState(false);
+  const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error' | 'no-consent'>('idle');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,11 +18,10 @@ export default function SmsOptInPage() {
       alert('Please enter your phone number.');
       return;
     }
-    if (!formData.consentNonMarketing) {
-      setConsentError(true);
+    if (!formData.consentNonMarketing && !formData.consentMarketing) {
+      setFormState('no-consent');
       return;
     }
-    setConsentError(false);
     setFormState('loading');
     try {
       const res = await fetch('/api/workshop-register', {
@@ -35,7 +33,7 @@ export default function SmsOptInPage() {
           phone: formData.phone,
           source: 'sms-opt-in-page',
           registered_at: new Date().toISOString(),
-          sms_consent: true,
+          sms_consent: formData.consentNonMarketing,
           sms_marketing_consent: formData.consentMarketing,
         }),
       });
@@ -52,7 +50,7 @@ export default function SmsOptInPage() {
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
     }));
-    if (name === 'consentNonMarketing' && checked) setConsentError(false);
+    if (formState === 'no-consent') setFormState('idle');
   };
 
   if (formState === 'success') {
@@ -129,9 +127,9 @@ export default function SmsOptInPage() {
             </div>
 
             {/* Consent Checkboxes */}
-            <div className={`p-5 rounded-xl border ${consentError ? 'border-red-500 bg-red-500/5' : 'border-[#292524] bg-[#0C0A09]'}`}>
+            <div className={`p-5 rounded-xl border ${formState === 'no-consent' ? 'border-amber-500 bg-amber-500/5' : 'border-[#292524] bg-[#0C0A09]'}`}>
               <h3 className="font-body text-sm font-semibold text-white mb-4">
-                SMS Consent <span className="text-red-400">*</span>
+                SMS Consent <span className="text-gray-500 font-normal">(optional)</span>
               </h3>
 
               {/* Non-Marketing Checkbox (Required) */}
@@ -163,13 +161,13 @@ export default function SmsOptInPage() {
                     className="mt-1 h-4 w-4 text-amber-500 focus:ring-amber-500 border-gray-600 rounded cursor-pointer"
                   />
                   <label htmlFor="consentMarketing" className="font-body text-sm text-gray-300 cursor-pointer leading-relaxed">
-                    I also consent to receive marketing text messages from <strong className="text-white">Learn &amp; Leverage AI</strong> about special offers, new workshop announcements, and AI tips. <span className="text-gray-500">(Optional)</span>
+                    I also consent to receive marketing text messages from <strong className="text-white">Learn &amp; Leverage AI</strong> (Dude Ventures Services LLC, d/b/a Learn and Leverage AI) about special offers, new workshop announcements, and AI tips. <strong className="text-gray-200">Message frequency: up to 4 messages per month.</strong> Message and data rates may apply. Reply STOP to opt out at any time. Reply HELP for assistance. <span className="text-gray-500">(Optional)</span>
                   </label>
                 </div>
               </div>
 
-              {consentError && (
-                <p className="font-body text-red-400 text-sm mt-3">Please check the required SMS consent box above to continue.</p>
+              {formState === 'no-consent' && (
+                <p className="font-body text-amber-400 text-sm mt-3">Please select at least one SMS consent option above to sign up for text messages.</p>
               )}
             </div>
 
