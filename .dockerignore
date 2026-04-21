@@ -1,0 +1,35 @@
+.git
+.gitignore
+node_modules
+.next
+.vercel
+.env
+.env.*
+!.env.example
+npm-debug.log
+README.md
+Dockerfile
+.dockerignore
+.vscode
+.idea
+.DS_Store
+coverage
+.turbo
+*.log
+
+# Ship-ready artifacts not needed in container
+docs/
+marketing/
+a2p/
+video-ads/
+scripts/
+.claude/
+.openclaw/
+
+# Session + CI noise
+STATE.yaml
+CONTEXT.md
+DESIGN.md
+PROJECT-PLAN.md
+CLAUDE.md
+AGENTS.md
