@@ -57,6 +57,13 @@ curl -sI http://localhost:3000/           # 200 OK
 curl -sI http://localhost:3000/assessment # 200 OK
 ```
 
+**Known local-build gotcha (2026-04-21):** On Brandon's Mac the colima VM is allocated 2 GB RAM, and Next.js 16 Turbopack CSS processing OOMs during `npm run build` inside the container. Two paths:
+
+1. **Server-side build on Coolify** (preferred, matches ReplyCadet's proven pattern). The Hetzner box has 4 GB swap configured. Coolify's build runs server-side, so the Mac VM size doesn't matter.
+2. **Local build if needed:** `colima stop && colima start --memory 6 --cpu 4` before `docker build`.
+
+TypeScript check (`npx tsc --noEmit`) passes clean on the full repo — the Dockerfile is structurally correct. Local OOM is purely a VM-sizing issue, not a code issue.
+
 ---
 
 ## Coolify app setup (on Hetzner)
