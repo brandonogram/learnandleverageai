@@ -1,11 +1,39 @@
 # Learn and Leverage AI — Living Context
 
-**Last Updated:** 2026-03-31
-**Status:** CRITICAL — WORKSHOP IN 2 DAYS (April 2, 2026) — 2 registrations, all-hands push
-**Owner:** Claude Code (autonomous execution), Brandon (teaches only)
+**Last Updated:** 2026-04-21 (evening — post codex review + Stage 1 build)
+**Status:** Stage 1 (Foundation) BUILT — 4 chunks shipped on `feat/coolify-migration` branch (commits `7087a44`, `70ad30e`, `5900a46`, `58d75d6`). Awaiting Brandon's SSH approval to deploy Coolify origin and cut DNS.
+**Owner:** Claude Code (autonomous execution), Brandon (teaches + sells + dials)
+**Active plan:** `PROJECT-PLAN.md` (canonical roadmap, 5 stages, 11 chunks)
+**Codex review:** `docs/codex-adversarial-review-2026-04-21.md` (NO-GO 16 issues; 4 CRITICAL fixed in Stage 1)
+
+## 🚨 Open outage (as of 2026-04-21)
+`learnandleverageai.com` returns **HTTP 530 on every route.** Brandon deleted the Vercel account over fees, leaving Cloudflare DNS pointing at a dead origin. Site has no host until Coolify cut-over. Stripe payment link `buy.stripe.com/bJebIUgAoaribNIgML87K0c` is independently live but routes to a non-existent landing page. **Resolution path:** Migrate to Coolify on Hetzner box `5.161.102.158` (same box that runs ReplyCadet). All Dockerfile + env-inventory + DNS-cut-over steps ready in `docs/coolify-migration-plan.md`. Blocked on SSH access approval from Brandon.
+
+## Current Strategy (updated 2026-04-21 PM, post-codex)
+
+**Three revenue legs:**
+1. **AI Opportunity Assessment — $997 one-time (the wedge).** Stripe paid → buyer routes to `/assessment/success` → calls intake line at +13024166285 → AI agent "Emma" runs 20-min interview at `/api/voice-assessment` → transcript emailed to Brandon → Brandon manually produces report in Google Doc → emails buyer + sends calendar link → 30-min walkthrough call. Manual-mode for first 2 assessments, then automate (Chunk 9). See `docs/ai-assessment-service-spec.md`, `docs/ghl-assessment-workflow.md`.
+2. **Two post-assessment engagement options (NOT a 4-tier public ladder, per codex HIGH #3).** `$4,997 one-time AI Build` OR `$4,997/mo Monthly Advisory` (quarterly minimum). Both downstream of the assessment. See `/fcaio` page + `docs/llai-90-day-revenue-plan.md`.
+3. **SaaS products (parallel, 6–12 month bet).** ReplyCadet on Hetzner awaiting Brianna pilot. ContentBrief automated Milan delivery live. Still active, not blocking the assessment business.
+
+**Workshop model:** Top-of-funnel only. Workshop #2 off critical path until 1+ paying assessment customer closes.
+
+**ICP — LOCKED 2026-04-21 (codex CRITICAL #1 fix).** Owner-led service businesses in NCC DE / Delaware County PA / Chester County PA. **10-50 employees**. **No full-time CTO.** Industries (priority order): pool/spa, HVAC/plumbing/electrical, landscaping/lawn-care multi-crew, roofing/exteriors, event venues, multi-provider vet/dental/medical, niche manufacturing, pest/disaster/septic. Phone + warm LinkedIn DMs only. Cold email still off-limits per Brandon's rule.
+
+**90-day execution plan:** `docs/llai-90-day-revenue-plan.md` (codex-flagged as too aggressive for solo; revised cadence in `PROJECT-PLAN.md`: 10 dials/week max, 3 posts/week max, 2 manual assessments concurrent max).
+
+**Brianna + Steve status:** Silent pause as of 2026-04-21. Single gentle nudge planned for 2026-04-22, then stop. Per codex HIGH #13: assume zero usable testimonials from them in next 10 days; do not put their testimonials in the base case.
+
+## Workshop #1 Results (April 2, 2026)
+- **Attendance:** 2 out of 25 target (Brianna from DEBCC + Steve, retired IT)
+- **Upsells:** $0 (not attempted with 2 people)
+- **Content quality:** Excellent — both attendees engaged deeply for 2 hours
+- **Key outcome:** Both attendees independently described problems that map to ReplyCadet (née InboxPilot) and ContentBrief
+- **Lesson:** Acquisition failed for this ICP, but 1-on-1 delivery worked. Pivots outbound channel to warm LinkedIn + phone per Cheney playbook.
+- **Transcript:** https://notes.granola.ai/t/a2f0a866-2e0f-4a2b-8890-1bc9f4deb04e
 
 ## What This Is
-LearnAndLeverageAI.com — Brandon's AI training and consulting brand. In-person workshops for corporate professionals in New Castle County, DE. Built with Next.js, deployed on Vercel. The business model: free 2-hour evening workshop → upsell $25K+ on the spot → paid workshops, consulting, corporate training.
+LearnAndLeverageAI.com — Brandon's AI training and consulting brand for NCC Delaware. Built with Next.js, deployed to Cloudflare Pages (migrated off Vercel April 2026). Revenue model: paid AI Opportunity Assessment ($997) + Fractional AI Officer retainer ($4,997–$24,997/mo). Workshop remains as top-of-funnel only.
 
 ## Current State
 
@@ -33,7 +61,7 @@ LearnAndLeverageAI.com — Brandon's AI training and consulting brand. In-person
 |-------|--------|----------|
 | PRD (full business plan) | ✅ Done | `docs/workshop-business-prd.md` |
 | Training plan (instructional design) | ✅ Done | `docs/workshop-ai-hands-on-plan.md` |
-| Free session deck (28 slides, Gamma) | ✅ Done | https://gamma.app/docs/mllj75rz6s5sve6 |
+| Free session deck V4 (27 slides, Gamma) | ✅ Done | https://gamma.app/docs/p9g9l22kbmeg1yl |
 | Paid workshop deck (55 slides, Gamma) | ✅ Done | https://gamma.app/docs/u7s9ime9g1h1mrw |
 | Free session speaker guide | ✅ Done | `docs/workshop-materials/06-free-session-speaker-guide.md` |
 | Paid workshop speaker guide | ✅ Done | `docs/workshop-materials/05-speaker-guide.md` |
@@ -61,6 +89,14 @@ LearnAndLeverageAI.com — Brandon's AI training and consulting brand. In-person
 | AI Voice Agent (inbound calls) | ✅ LIVE | `src/app/api/voice-inbound/route.ts` — Twilio webhook, Groq LLM, multi-turn stateless, full knowledge base |
 | GHL Voice AI Agent | ✅ Created | Agent ID: `69c08755d5cbc88fcd870d8c` — "Learn & Leverage AI Assistant", full workshop knowledge base, greeting configured, timezone EST |
 | GHL Custom Fields (7 total) | ✅ Created | Company, Job Title, Workshop Date, Purchased, AI Skill Before/After, Biggest AI Challenge (dropdown with 7 options) |
+| **`/assessment` landing page (NEW)** | 🟡 PR open | `src/app/assessment/page.tsx` + `layout.tsx` — PR #1, awaiting merge + CF Pages deploy |
+| **Stripe payment link — $997 AI Assessment** | ✅ LIVE | `https://buy.stripe.com/bJebIUgAoaribNIgML87K0c` · product `prod_UNS85jGx4lXqts` |
+| **`/cheney-playbook` skill** | ✅ Installed | `~/.claude/skills/cheney-playbook/SKILL.md` — auto-triggers on LLAI revenue / fCAIO / AI consulting keywords |
+| **Cheney research dossier** | ✅ Written | `docs/cheney-playbook-research-2026-04-21.md` — verified facts, pricing, 11-interview index |
+| **STE sales playbook** | ✅ Written | `docs/ste-sales-playbook.md` — call structure + objection handling + hire-replacement close |
+| **90-day revenue plan** | ✅ Written | `docs/llai-90-day-revenue-plan.md` — week-by-week execution |
+| **Monetization strategy memo** | ✅ Written | `docs/monetization-insights-2026-04-21.md` — three-leg revenue model |
+| **Outreach kit (2026-04-21)** | ✅ Ready | `marketing/2026-04-21-outreach-kit.md` — 6-CEO target list, 3 DM variants, 3 LinkedIn posts, 3 FB posts, landing page copy |
 
 ### Recent Marketing Update (2026-03-27)
 - Marlo created a fresh workshop promo set for the final 7-day push using fallback planning inputs after the daily brief file was missing.
@@ -103,7 +139,14 @@ LearnAndLeverageAI.com — Brandon's AI training and consulting brand. In-person
 - **Gamma.app** adopted for professional slide decks (API key secured)
 - **Workshop-training skill** installed for reusable training plan generation
 
-### Decision Log
+### Decision Log (Apr 2 — Post-Workshop):
+- **Two new SaaS products** spawned from workshop meeting with Brianna/DEBCC:
+  1. **InboxPilot** (~/projects/workbench/inbox-pilot/) — AI email auto-responder. Build for Brianna free, productize for DEBCC members + chambers nationally.
+  2. **ContentBrief** (~/projects/workbench/content-brief/) — Social media content research + weekly filming briefs. For LLAI workshop attendees, then all small biz.
+- **NO Vercel** for new products — Brandon wants lowest possible costs. Hetzner VPS + Coolify ($4.51/mo for both). Supabase free tier.
+- **Both products are Brandon's IP** — built from scratch, white-labeled, own domains/brands. LLAI workshops serve as a distribution channel.
+- **Hybrid branding** — standalone products with own domains, but sold through LLAI workshops at a discount
+
 
 ## Key Files
 - `src/app/page.tsx` — Homepage
@@ -123,6 +166,30 @@ LearnAndLeverageAI.com — Brandon's AI training and consulting brand. In-person
 - `.vercel/project.json` — Vercel deployment config
 
 ### Recent Changes
+
+**Apr 1 — Claude Code (Workshop deck V4 overhaul with Brandon):**
+- **Deck V4 created via Gamma API:** https://gamma.app/docs/p9g9l22kbmeg1yl (27 slides, 103 credits, 2,091 remaining)
+- **Major flow restructure:** Reordered Hour 1 from "demo → exercise → safety → RACE → exercise" to "demo → safety → RACE → context/custom instructions → ONE combined exercise." Teaching comes first, practice comes after.
+- **Added context + custom instructions segment:** Two new slides teaching that context is the key to AI quality, plus a live walkthrough of setting up custom instructions in ChatGPT/Claude.
+- **Three explicit takeaways:** (1) RACE framework, (2) personalized AI setup (custom instructions), (3) a working prompt they built and tested for their actual job.
+- **ROI tied to exercise:** Instead of hypothetical math, ROI slide references "the task you just completed" — experiential, not theoretical.
+- **Chatbot demo replaces voice agent call:** More reliable in room setting. Shows "change the pricing file, watch the chatbot update" — demonstrates AI is configurable, not magic.
+- **QR codes generated:** 3 PNG images at `public/images/qr-codes/` for the 10%-off Stripe payment links (Workshop $267, Starter Pack $447, Intensive $897).
+- **Speaker guide rewritten:** `docs/workshop-materials/06-free-session-speaker-guide.md` — full V4 with new timing, new slide scripts, chatbot demo instructions.
+- **Training plan updated:** `docs/workshop-ai-hands-on-plan.md` — all blocks rewritten to match new flow.
+- **PPTX saved:** `docs/free-session-deck-v4-gamma.pptx` (36 MB)
+
+**Apr 1 — Elon (8:50 AM ET workshop audit):**
+- Re-audited `docs/workshop-launch-checklist.md` and `docs/ESCALATIONS.md`; tightened the escalation frame from 48 hours to 24 hours because the workshop is tomorrow.
+- Confirmed venue is still locked and the remaining launch blockers are still overwhelmingly Brandon-owned/UI-only/public-action items: personal posts/outreach, Eventbrite, GHL reminder workflow + remaining workflows, Typeform survey, and FB/IG polish.
+- Logged `~/ai-agent-os/learnandleverage-ai/CLAUDE.md` as still missing during audit; checklist/PRD/shared priorities/assignments/CONTEXT/changelog were sufficient fallback context.
+- Core conclusion remains unchanged: the bottleneck is not missing assets; it is Brandon execution today.
+
+**Mar 31 — Elon (6:38 PM ET workshop audit):**
+- Re-audited `docs/workshop-launch-checklist.md` and rewrote `docs/ESCALATIONS.md` with a 48-hour view.
+- Confirmed venue is still locked and the remaining launch blockers are overwhelmingly Brandon-owned/UI-only/public-action items: personal posts, Eventbrite, GHL workflows, Typeform survey, and FB/IG polish.
+- Logged `~/ai-agent-os/learnandleverage-ai/CLAUDE.md` as missing during audit; checklist/PRD/CONTEXT remained sufficient to complete the audit.
+- Core conclusion: the bottleneck is no longer missing assets; it is Brandon execution before April 1 EOD.
 
 **Mar 26 — Elon (Workshop launch audit):**
 - Re-audited `docs/workshop-launch-checklist.md` and `docs/ESCALATIONS.md` at 6:00 AM ET.
@@ -314,6 +381,25 @@ LearnAndLeverageAI.com — Brandon's AI training and consulting brand. In-person
 
 **Key files:** `marketing/BRANDON-MORNING-BRIEFING.md`, `marketing/ZERO-BUDGET-FILL-PLAN.md`, `marketing/HORMOZI-TACTICS.md`, `marketing/CODEX-TRAINING-REVIEW.md`
 
+## 2026-03-31 — Claude Code (Session with Brandon)
+- **Checked AgentMail inbox** — found DEBCC Zoom invite for Wed 4/1 10 AM (Zoom ID: 896 8879 1544). Brandon confirmed he'll attend.
+- **Full inbox audit** — only real responses: Brianna (DEBCC, active), Chris Glanden (barcodesecurity, unanswered 4 days), Ashley Cloud (Rotary, Fall pipeline), DE SHRM (auto-confirm of speaker proposal). Rest is bounces + phishing spam.
+- **Texted Steven Tusio + Adam Bates** via Twilio — "bring a colleague" with free AI toolkit bonus ($97 value)
+- **Sent 8 outreach emails** — 5 new (PMI-DVC, DE State Chamber, Tech Forum DE, Delaware SBDC, DYPN) + 3 follow-ups (NCC Chamber, Emerging Enterprise Center, DE SHRM)
+- **Meta ads report pulled** — $202/7d, 6.48% CTR, 535 link clicks, Ad 4 "Career Growth" winning (49% budget). No disapprovals.
+- **Landing page verified** — live, form working. Added phone (302-416-6285) + email to footer.
+- **Created workshop overview slide** — `marketing/workshop-overview-slide.html` for Brandon to screenshare on Brianna Zoom
+- **Brianna forwarding package sent** (agent fired before Brandon could stop it) — Brandon chose to leave it as-is
+- **RULE SAVED:** Never auto-message Brianna/DEBCC — Brandon manages that relationship personally
+
+## 2026-03-31 — Marlo content update
+- The daily brief file was missing, so today’s package used the fallback stack: shared content calendar + ICP personas + examples bank.
+- Built 2 new Facebook workshop variants for the final push, targeting Behind-the-Curve Brian.
+- Hooks tested: statement (smart people still wasting hours on repetitive work) vs question (how many times have you opened ChatGPT and closed it because it was not useful enough?).
+- Scores: 9.2 and 9.1.
+- Winning angle: practical relief from repetitive admin, framed in plain language for a non-technical corporate audience.
+- Review package saved in `~/.openclaw/workspaces/marlo/memory/2026-03-31.md` with Catbox media link.
+
 ## 2026-03-30 — Marlo content update
 - Created a second same-day refinement package for Chief review so the Mar 30 content queue contains fresh A/B workshop options instead of only one repeated urgency post.
 - New LinkedIn variants target Behind-the-Curve Brian with statement-vs-question hooks.
@@ -321,4 +407,13 @@ LearnAndLeverageAI.com — Brandon's AI training and consulting brand. In-person
 - Scores: 9.2 and 9.1.
 - Review package saved in `~/.openclaw/workspaces/marlo/memory/2026-03-30.md` with Catbox media link.
 - Top-scoring draft also promoted into `~/shared-brain/content-examples.md` for future LLAI calibration.
+
+
+## Voice Notes
+> Auto-populated from Plaud/Granola transcripts
+
+### 2026-04-02 — Learn and Leverage AI Free Session #1 (granola)
+*(Multi-project transcript — also mentions: learnandleverageai)*
+
+Meeting: Learn and Leverage AI Free Session #1
 
