@@ -69,10 +69,10 @@ Built on Jon Cheney's Gen AIPI playbook (see `docs/cheney-playbook-research-2026
 ### Chunk 3: Credibility Layer
 
 **Capabilities:**
-1. 2 quantified case studies written (TSAS speed-to-lead, 302PB booking automation) with before/after numbers
-2. Published at `/case-studies/tsas-speed-to-lead` and `/case-studies/302pb-booking-agent`
+1. ~~2 quantified case studies (TSAS speed-to-lead, 302PB booking automation)~~ → **REVISED 2026-04-21:** TSAS speed-to-lead system is designed but **not yet deployed to production** — zero measured before/after numbers exist. 302PB has limited but real numbers ($680/mo recovered labor + 140 customers in active CheckCherry→GHL sync; the 38% booking lift has uncertain attribution between AI stack vs concurrent branding/website refresh). **Decision:** publish 1 honest 302PB case study NOW; **TSAS case study moves to Chunk 7** (after first real assessment delivery generates fresh metrics). The honest framing — "we recovered $680/month immediately by replacing one part-time admin hire with an AI stack, here's the playbook" — is more credible than fabricated numbers and matches Brandon's actual operating reality.
+2. Published at `/case-studies/302-photo-booth` (TSAS deferred to Chunk 7)
 3. Single ICP locked everywhere: **owner-led NCC/Delco/Chesco service businesses, 10–50 employees, no tech lead**
-4. `/assessment` CTA switched from "Pay $997 now" to **"Apply for an assessment call"** (codex HIGH #4 — no cold traffic to pay until external proof exists)
+4. ~~`/assessment` CTA switched to "Apply"~~ → **OVERRIDDEN by Brandon 2026-04-21:** Brandon explicitly said "don't worry about Stripe link." Page keeps the $997 Pay CTA. Iterate on conversion later.
 5. Assessment-specific refund policy + privacy/consent terms for paid AI voice intake (codex CRITICAL #7, HIGH #8)
 6. Existing `terms/page.tsx` + `privacy/page.tsx` reconciled (no more contradictions)
 
@@ -99,11 +99,12 @@ Built on Jon Cheney's Gen AIPI playbook (see `docs/cheney-playbook-research-2026
 3. Claude Code supports: drafts posts, logs call outcomes, follows up per Brandon's verbatim, updates CRM
 4. **Success = 1 application submitted + 1 discovery call held + 1 $997 paid**
 
-### Chunk 7: Assessment Delivery Dry-Run
+### Chunk 7: Assessment Delivery Dry-Run + TSAS Case Study
 1. Real buyer completes voice intake
 2. Brandon delivers manual report (Google Doc, 20-min walkthrough call)
 3. Testimonial + quantified before/after captured → feeds Chunk 10
 4. Validates the 48-business-hour SLA with real timing data
+5. **TSAS speed-to-lead case study** (deferred from Chunk 3) — by this point Brandon should have shipped the TSAS speed-to-lead system to production for at least 30 days, generating real before/after response time + lead conversion data
 
 ### Chunk 8: First Retainer Close
 1. $4,997 one-time build OR $4,997/mo retainer signed by the Chunk 7 buyer OR next-in-pipeline

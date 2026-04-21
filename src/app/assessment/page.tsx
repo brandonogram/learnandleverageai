@@ -63,8 +63,8 @@ export default function AssessmentPage() {
 
   const faqs = [
     {
-      q: 'Will this work for my industry?',
-      a: 'If you run any kind of operating business — services, construction, healthcare, events, real estate, hospitality, professional services — yes. The core AI opportunities are the same: manual tasks that shouldn\'t need a human, lead response that\'s too slow, reports built by hand every week, communication that repeats itself. The specific tools change. The patterns don\'t.',
+      q: 'Is this a fit for my business?',
+      a: 'This is built specifically for owner-led service businesses in New Castle, Delaware and Chester counties — pool service, HVAC, landscaping, construction, event venues, multi-provider medical/dental/vet, niche manufacturing — with 10 to 50 employees and no full-time tech lead. If that sounds like you, the patterns we look for (slow lead response, manual reports, repetitive customer communication, dispatch chaos) almost always show up. If you\'re outside that lane, send a note before paying — we\'ll tell you straight whether it fits.',
     },
     {
       q: 'How is this different from a $20/month ChatGPT subscription?',
@@ -72,19 +72,19 @@ export default function AssessmentPage() {
     },
     {
       q: 'What if I need help implementing what\'s in the report?',
-      a: 'The report includes step-by-step install guides. Most owners execute the Quick-Win Plan on their own. If you\'d rather have it done for you, we offer bigger engagements — starting at $4,997/month — where we install and run the systems with your team.',
+      a: 'The report includes prioritized recommendations and rollout steps for each one. After your walkthrough call, you have a defined next step — DIY (you and your team execute), a one-time build engagement ($4,997 — we install and hand off), or a monthly advisory engagement ($4,997/month — we install, train your team, and stay for ongoing improvements). You pick what fits.',
     },
     {
       q: 'Why is Brandon qualified to do this?',
-      a: 'Brandon has built AI systems in three of his own businesses: Tri-State Aquatic Solutions (pool service — AI voice receptionist answers every call), 302 Photo Booth (AI-powered booking automation), and Call2Calendar (voice agent SaaS). He doesn\'t teach theory. He runs companies that use AI every day.',
+      a: 'Brandon runs three businesses where AI is part of daily operations: Tri-State Aquatic Solutions (pool service — AI voice receptionist), 302 Photo Booth (AI-powered booking automation), and Call2Calendar (voice agent SaaS). He doesn\'t teach theory — he runs companies that use these systems every week.',
     },
     {
       q: 'What exactly happens after I pay?',
-      a: 'You get an email with (1) a phone number to call our AI assistant at any time of day, and (2) a link to book your 30-minute walkthrough call with Brandon. The AI call takes about 20 minutes. The report is in your inbox within 48 hours of the call. The walkthrough is booked at your convenience after.',
+      a: 'You\'re routed to a confirmation page with a phone number to call our AI intake agent (Emma). You can call any time — the call takes about 20 minutes and there\'s no prep. Your report lands within 48 business hours of completing the intake call. After delivery you receive a calendar link to book the 30-minute walkthrough with Brandon at your convenience.',
     },
     {
-      q: 'Is there a guarantee?',
-      a: 'Yes. If the report doesn\'t identify at least 5 hours a week in time-savings opportunities for your business, we refund you. Full stop.',
+      q: 'What\'s the refund policy?',
+      a: 'If your assessment report doesn\'t identify at least 5 hours per week of recoverable time for your business, request a refund within 30 days of delivery and we\'ll refund the full $997 within 5 business days. You\'ll be asked to share which recommendations you reviewed and why they didn\'t apply (so we can improve). Full assessment-specific terms are linked in the footer.',
     },
   ];
 
@@ -114,7 +114,7 @@ export default function AssessmentPage() {
             </a>
           </div>
           <p className="font-body text-sm text-[#78716C] mt-4">
-            Delivered in 48 hours · 30-min walkthrough included · 5-hour-a-week guarantee
+            Delivered within 48 business hours of your intake call · 30-min walkthrough · 5-hour-a-week refund guarantee
           </p>
         </div>
       </section>
@@ -125,10 +125,10 @@ export default function AssessmentPage() {
       <section className="bg-white border-y border-amber-100 py-6 px-5">
         <div className="max-w-3xl mx-auto">
           <p className="font-body text-sm text-center text-[#57534E]">
-            Brandon has built AI systems for three of his own businesses:{' '}
+            Brandon runs three operating businesses where AI is part of daily operations:{' '}
             <span className="font-semibold text-[#1C1917]">Tri-State Aquatic Solutions</span> (pool service),{' '}
             <span className="font-semibold text-[#1C1917]">302 Photo Booth</span>, and{' '}
-            <span className="font-semibold text-[#1C1917]">Call2Calendar</span> (voice agent).
+            <span className="font-semibold text-[#1C1917]">Call2Calendar</span> (voice agent SaaS).
           </p>
         </div>
       </section>
@@ -148,14 +148,14 @@ export default function AssessmentPage() {
           <div className="bg-white rounded-xl p-8 border border-amber-100 shadow-sm max-w-2xl mx-auto">
             <ul className="space-y-4">
               {[
-                'A 20–30 minute phone call with our AI assistant — any time of day, no calendar dance',
-                'A custom PDF report delivered inside 48 hours',
-                'The top 3–5 AI opportunities specific to your business',
-                'Exact tools to install, step-by-step setup guides',
-                'A 4-day Quick-Win Plan your team can execute without us',
+                'A 20–30 minute phone call with our AI intake agent — any time of day, no calendar dance',
+                'An executive-ready PDF report within 48 business hours of your intake call',
+                'The top 3–5 AI opportunities prioritized for your business',
+                'Specific tools, install steps, and the rollout order',
+                'A 4-day Quick-Win Plan you can run with your team',
                 'The financial impact — in real dollars per month',
                 'A 30-minute walkthrough call with Brandon to answer your team\'s questions',
-                'What comes next if you want to go bigger (optional, zero pressure)',
+                'A defined next-step choice — DIY, one-time build ($4,997), or monthly advisory ($4,997/mo)',
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <CheckIcon />
@@ -181,27 +181,27 @@ export default function AssessmentPage() {
               {
                 n: '1',
                 title: 'Pay $997',
-                body: 'Secure checkout via Stripe. You\'ll get an email with a phone number to call and a link to book your walkthrough.',
+                body: 'Secure checkout via Stripe. You\'re routed straight to a confirmation page with the intake phone number and what happens next. A confirmation email is also sent to the address you used at checkout.',
               },
               {
                 n: '2',
-                title: 'Call the number — whenever it\'s convenient',
-                body: 'Our AI assistant walks you through 20 minutes of questions about your business, your team, your tools, and your biggest headaches. No prep required. Call at 9 AM or 11 PM — whatever works.',
+                title: 'Call the intake line — whenever it\'s convenient',
+                body: 'Our AI intake agent (Emma) walks you through about 20 minutes of questions about your business, team, tools, and biggest headaches. No prep required. Call at 9 AM or 11 PM — whatever works.',
               },
               {
                 n: '3',
-                title: 'Report delivered in 48 hours',
-                body: 'A PDF built in Gamma, designed to actually be read. Effort-vs-impact matrix. Specific tools. Install guides. Financial math. No fluff.',
+                title: 'Report delivered within 48 business hours',
+                body: 'An executive-ready PDF: effort-vs-impact matrix, specific tools, prioritized rollout steps, and the dollar-per-month financial impact. No fluff. The 48-hour clock starts when your intake call wraps up — not when you pay.',
               },
               {
                 n: '4',
-                title: 'We meet for 30 minutes',
-                body: 'Brandon walks you through the report, answers questions from you or anyone on your team you invite. You\'ll leave with a clear next step.',
+                title: 'Walkthrough call with Brandon (30 min)',
+                body: 'Brandon walks you through the report and answers questions from you or anyone on your team you invite. You leave with a clear next step.',
               },
               {
                 n: '5',
-                title: 'What happens next is up to you',
-                body: 'Execute the Quick-Win Plan on your own. Or talk to us about doing more together. No pressure, no follow-up sequence.',
+                title: 'You pick the next step',
+                body: 'DIY — you and your team execute the Quick-Win Plan with the install guides in the report. One-time build ($4,997) — we install and hand off the system you pick. Monthly advisory ($4,997/month) — we install, train your team, and stay on for ongoing improvements. Three options, zero high-pressure pitch.',
               },
             ].map((step) => (
               <div key={step.n} className="flex gap-5">
@@ -235,10 +235,10 @@ export default function AssessmentPage() {
               </h3>
               <ul className="space-y-3">
                 {[
-                  'Run a Delaware or regional business doing $2M–$50M',
-                  'Don\'t have a dedicated tech person on staff',
-                  'Lead a team of 5–50 drowning in manual work',
-                  'Want to see what AI actually does before betting on anything bigger',
+                  'Run an owner-led service business in New Castle, Delaware, or Chester County',
+                  'Have 10–50 employees',
+                  'Don\'t have a full-time CTO or tech lead — that work lands on you',
+                  'Live with obvious operational pain — slow lead response, manual reports, dispatch chaos, repetitive customer comms',
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2">
                     <CheckIcon />
@@ -255,9 +255,9 @@ export default function AssessmentPage() {
               </h3>
               <ul className="space-y-3">
                 {[
-                  'Are already deep into AI — you don\'t need us',
-                  'Run a one-person shop — the ROI math doesn\'t work yet',
-                  'Work at an enterprise with a data science team',
+                  'Are a one-person shop — the ROI math doesn\'t work yet',
+                  'Already have a CTO or in-house data science team',
+                  'Are already deep into AI and have your stack figured out',
                   'Want abstract theory instead of a concrete plan',
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2">
@@ -278,10 +278,13 @@ export default function AssessmentPage() {
         <div className="max-w-2xl mx-auto text-center">
           <div className="inline-block bg-amber-50 border border-amber-200 rounded-2xl p-8 sm:p-10">
             <h2 className="font-display text-2xl font-black text-[#1C1917] mb-3">
-              5-hour-a-week guarantee
+              5-hour-a-week refund guarantee
             </h2>
             <p className="font-body text-[#44403C] leading-relaxed">
-              If the report doesn&apos;t identify at least 5 hours per week in real time-savings opportunities for your business, we refund you. Full stop. No hoops, no deflection.
+              If your assessment report doesn&apos;t identify at least 5 hours per week of recoverable time for your business, request a refund within 30 days of delivery — we refund the full $997 to your original payment method within 5 business days. You&apos;ll be asked to share which recommendations you reviewed and why they didn&apos;t apply, so we can improve.
+            </p>
+            <p className="font-body text-sm text-[#78716C] mt-3">
+              See the full <a href="/terms#assessment-refund" className="underline hover:text-[#1C1917]">assessment refund terms</a>.
             </p>
           </div>
         </div>
@@ -342,7 +345,7 @@ export default function AssessmentPage() {
             Get My Assessment — $997
           </a>
           <p className="font-body text-sm text-[#78716C] mt-4">
-            Secure checkout via Stripe · 5-hour-a-week guarantee · 48-hour delivery
+            Secure checkout via Stripe · 5-hour-a-week refund guarantee · Within 48 business hours of your intake call
           </p>
         </div>
       </section>

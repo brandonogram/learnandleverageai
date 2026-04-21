@@ -72,10 +72,52 @@ export default function TermsOfServicePage() {
           <section>
             <h2 className="font-display text-xl font-semibold text-white mb-3">5. Payments &amp; Refunds</h2>
             <p>
-              Payments for paid workshops, the AI Starter Pack, consulting services, and other offerings are processed securely through <strong className="text-white">Stripe</strong>. All prices are listed in US dollars.
+              Payments for paid workshops, the AI Starter Pack, the AI Opportunity Assessment, consulting services, and other offerings are processed securely through <strong className="text-white">Stripe</strong>. All prices are listed in US dollars.
             </p>
             <p className="mt-2">
-              Refund requests for paid workshops must be made at least 48 hours before the scheduled event. Refunds for consulting engagements are handled on a case-by-case basis. Digital products (such as the AI Starter Pack) are non-refundable once delivered, except where required by law.
+              <strong className="text-white">General refund policy:</strong> Refund requests for paid workshops must be made at least 48 hours before the scheduled event. Refunds for consulting engagements are handled on a case-by-case basis. Digital products (such as the AI Starter Pack) are non-refundable once delivered, except where required by law and except as specifically described below for the AI Opportunity Assessment.
+            </p>
+          </section>
+
+          <section id="assessment-refund">
+            <h2 className="font-display text-xl font-semibold text-white mb-3">5a. AI Opportunity Assessment — Refund Terms</h2>
+            <p>
+              These terms apply specifically to purchases of the AI Opportunity Assessment ($997 one-time) and override the general digital-product refund clause in Section 5 above.
+            </p>
+            <p className="mt-2">
+              <strong className="text-white">5-hour-a-week refund guarantee.</strong> If your delivered assessment report does not identify at least <strong>five (5) hours per week</strong> of recoverable time savings for your business, you may request a refund of the full $997 within thirty (30) days of report delivery.
+            </p>
+            <p className="mt-2">
+              <strong className="text-white">How to request:</strong> Email <a href="mailto:brandon@learnandleverageai.com" className="text-amber-400 hover:underline">brandon@learnandleverageai.com</a> with the subject line &ldquo;Assessment refund request&rdquo; within the 30-day window. Briefly describe which recommendations you reviewed and why they did not apply to your business. We use this feedback to improve future assessments.
+            </p>
+            <p className="mt-2">
+              <strong className="text-white">Decision standard.</strong> The standard for evaluating a refund request is whether the report&rsquo;s recommendations, taken together, would credibly recover at least five hours per week of time for your business if implemented. We apply this standard in good faith. We do not require you to implement the recommendations to qualify for a refund.
+            </p>
+            <p className="mt-2">
+              <strong className="text-white">Processing.</strong> Approved refunds are issued to your original payment method within five (5) business days of the decision. We will respond to your request within three (3) business days.
+            </p>
+            <p className="mt-2">
+              <strong className="text-white">No fit, no charge:</strong> If, during your intake call with our AI intake agent, it becomes clear that your business falls outside the assessment&rsquo;s target fit (for example, you are a one-person shop, you already have a full-time CTO, or your business operates outside the New Castle / Delaware / Chester county region), we may at our discretion refund your $997 in full and end the engagement before producing a report.
+            </p>
+            <p className="mt-2">
+              <strong className="text-white">What is non-refundable.</strong> If you have received the report and the 30-day window has passed without a refund request, the assessment is considered delivered and is non-refundable. The 30-minute walkthrough call with Brandon is included in the assessment fee and is non-refundable separately.
+            </p>
+          </section>
+
+          <section id="assessment-ai-disclosures">
+            <h2 className="font-display text-xl font-semibold text-white mb-3">5b. AI Opportunity Assessment — AI Voice Intake Disclosures</h2>
+            <p>
+              The AI Opportunity Assessment includes a phone-based intake call conducted by an AI agent (currently named &ldquo;Emma&rdquo;). By calling our intake number after purchase, you acknowledge and agree to the following:
+            </p>
+            <ul className="list-disc list-inside mt-2 space-y-1 ml-2">
+              <li>The intake call is conducted by an AI agent, not a human. The agent will identify itself as an AI at the start of the call.</li>
+              <li>Audio of the call is processed in real time and converted to text by Twilio (telephony) and Groq (language model). A text transcript is generated and stored.</li>
+              <li>The transcript is sent by email to brandon@learnandleverageai.com so Brandon can produce your assessment report. It is not shared with third parties beyond the processors named above.</li>
+              <li>If you would prefer a manual (non-AI) intake call with Brandon directly instead of the AI agent, email <a href="mailto:brandon@learnandleverageai.com" className="text-amber-400 hover:underline">brandon@learnandleverageai.com</a> within 7 days of purchase to schedule one. There is no additional charge.</li>
+              <li>You may request deletion of your intake transcript and any derived report at any time by emailing the address above. Deletion will be completed within 5 business days, except where retention is required by law or for our legitimate accounting records.</li>
+            </ul>
+            <p className="mt-3">
+              See the <Link href="/privacy#assessment" className="text-amber-400 hover:underline">Privacy Policy</Link> for full details on how we handle assessment-related data.
             </p>
           </section>
 

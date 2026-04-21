@@ -112,6 +112,53 @@ export default function PrivacyPolicyPage() {
             </p>
           </section>
 
+          <section id="assessment">
+            <h2 className="font-display text-xl font-semibold text-white mb-3">5a. AI Opportunity Assessment — Voice Intake &amp; Data Handling</h2>
+            <p>
+              Customers who purchase the AI Opportunity Assessment ($997 one-time) complete a 20-minute intake interview with our AI agent (currently named &ldquo;Emma&rdquo;) by phone. This section explains how that data is collected, processed, and stored.
+            </p>
+
+            <h3 className="text-lg font-semibold text-white mt-4 mb-2">What we record</h3>
+            <ul className="list-disc list-inside mt-2 space-y-1 ml-2">
+              <li>Audio of the call is processed in real time by Twilio (telephony) and Groq (large language model) to produce a text transcript.</li>
+              <li>The text transcript and conversation history are emailed to brandon@learnandleverageai.com so Brandon can produce your assessment report.</li>
+              <li>We do not retain the raw audio of the call beyond what Twilio retains for its own billing and quality purposes (see the Twilio privacy policy at twilio.com/legal/privacy).</li>
+              <li>The agent identifies itself as an AI at the start of the call, and you may end the call at any time.</li>
+            </ul>
+
+            <h3 className="text-lg font-semibold text-white mt-4 mb-2">How we use the transcript</h3>
+            <ul className="list-disc list-inside mt-2 space-y-1 ml-2">
+              <li>To prepare your custom assessment report (the deliverable you paid for).</li>
+              <li>To improve our AI intake agent and our assessment process. We may quote anonymized excerpts internally for QA. We do not publish identifying excerpts publicly without your written permission.</li>
+              <li>To follow up with you about the assessment (delivery, walkthrough booking, refund eligibility).</li>
+            </ul>
+
+            <h3 className="text-lg font-semibold text-white mt-4 mb-2">Who can see your transcript</h3>
+            <ul className="list-disc list-inside mt-2 space-y-1 ml-2">
+              <li>Brandon Calloway and any contractor or employee under written confidentiality with Dude Ventures Services LLC.</li>
+              <li>Twilio and Groq, as the processors that handle telephony and language-model inference for the call. They process the data as service providers and do not use it for their own marketing purposes.</li>
+              <li>AgentMail, as the email delivery service that transports the transcript to brandon@learnandleverageai.com.</li>
+              <li>We do not sell your transcript or share it with advertisers.</li>
+            </ul>
+
+            <h3 className="text-lg font-semibold text-white mt-4 mb-2">Manual (non-AI) intake option</h3>
+            <p>
+              If you would prefer to do your intake call with Brandon directly instead of with the AI agent, email{" "}
+              <a href="mailto:brandon@learnandleverageai.com" className="text-amber-400 hover:underline">brandon@learnandleverageai.com</a>{" "}
+              within 7 days of purchase. There is no additional charge.
+            </p>
+
+            <h3 className="text-lg font-semibold text-white mt-4 mb-2">Deletion</h3>
+            <p>
+              You may request deletion of your intake transcript and any derived report at any time by emailing the address above. Deletion will be completed within 5 business days, except where retention is required by law or for our legitimate accounting records (such as the Stripe transaction record for your purchase).
+            </p>
+
+            <h3 className="text-lg font-semibold text-white mt-4 mb-2">Refund and consumer rights</h3>
+            <p>
+              See the <Link href="/terms#assessment-refund" className="text-amber-400 hover:underline">Assessment Refund Terms</Link> in our Terms of Service for the 5-hour-a-week refund guarantee, the 30-day request window, and the no-fit-no-charge policy.
+            </p>
+          </section>
+
           <section>
             <h2 className="font-display text-xl font-semibold text-white mb-3">6. Cookies &amp; Tracking Technologies</h2>
             <p>We use the following cookies and tracking technologies on our website:</p>
