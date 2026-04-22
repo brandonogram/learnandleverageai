@@ -69,15 +69,23 @@ By the end of this workshop, attendees will be able to:
 
 | Time | Block | Minutes |
 |------|-------|---------|
-| 6:00 | Opening — who Brandon is, the promise, show of hands | 10 |
-| 6:10 | "What AI Is" — live demos, first hands-on exercise | 30 |
-| 6:40 | "How to Talk to AI" — RACE intro, one powerful exercise | 25 |
-| 7:05 | "AI Agents" — Call2Calendar live demo (jaw-drop moment) | 15 |
-| 7:20 | "What's Possible" — time-saved math, quick toolkit preview | 10 |
-| 7:30 | Closing + upsell — recap, present offers, QR codes, today-only bonus | 15 |
+| 6:00 | Opening — who Brandon is, the promise (3 takeaways), show of hands | 10 |
+| 6:10 | "What AI Is" — live demos (summarize, write, explain) | 20 |
+| 6:30 | Safety — 3 rules + quick checklist | 5 |
+| 6:35 | RACE Framework — intro, bad vs RACE demo, iteration | 15 |
+| 6:50 | Context + Custom Instructions — the secret weapon, live setup | 10 |
+| 7:00 | Hands-On Exercise — set up custom instructions + write RACE prompt for YOUR job | 15 |
+| 7:15 | AI Agents — chatbot demo (change pricing file live), Brandon's businesses | 10 |
+| 7:25 | ROI + Recap — math tied to exercise they just did, 3 takeaways confirmed | 5 |
+| 7:30 | Closing + upsell — tease paid content, present offers, QR codes, today-only bonus | 15 |
 | 7:45 | Stay-after conversations (where $5K+ deals close) | 30 |
 
 No break. 2 hours flies by. Keeping them in seats the whole time ensures 100% of the room is there for the close.
+
+**The 3 takeaways (promised at opening, confirmed at close):**
+1. The RACE Framework — how to talk to AI and get useful results every time
+2. A Personalized AI Setup — custom instructions configured for their role, industry, and style
+3. A Working Prompt for Their Job — something they built, tested, and will use Monday morning
 
 **PAID WORKSHOP ($297-$497) — 4 hours (offered as upsell):**
 The full deep dive: complete RACE mastery, advanced prompting, AI agents deep dive, full toolkit build (3 tools set up), automation setup, Monday morning action plan. This is the implementation session the free session leaves them wanting.
@@ -101,9 +109,9 @@ The full deep dive: complete RACE mastery, advanced prompting, AI agents deep di
 
 ---
 
-### BLOCK 1: "What AI Actually Is" (30 min) | 6:10 - 6:40
+### BLOCK 1: "What AI Actually Is" + Live Demos (20 min) | 6:10 - 6:30
 
-**Learning objective:** EXPLAIN what AI is; USE an AI tool successfully for the first time
+**Learning objective:** EXPLAIN what AI is; SEE it work in real time
 
 **Key concepts (2 — keep it tight):**
 1. AI is a prediction machine — not magic, not sentient. Just type what you need in plain English.
@@ -116,24 +124,31 @@ The full deep dive: complete RACE mastery, advanced prompting, AI agents deep di
 - Demo 3: "Explain quarterly results like I'm new to finance" — show complexity adaptation
 - After each: "No coding. No software install. Just English."
 
-**Hands-on exercise (10 min):**
-- Attendees open ChatGPT or Claude (Google sign-in, 90 seconds)
-- "Ask it to do something useful from YOUR job this week. Here are starters if you're stuck:
-  1. 'Summarize this email thread and list action items'
-  2. 'Write a professional response to this email'
-  3. 'Help me explain [work topic] to someone outside my department'"
-- Brandon walks the room, helps anyone stuck, celebrates wins
+**No hands-on exercise yet.** Demos only. Teach them the framework first (RACE + safety + custom instructions), THEN let them try. This way their first attempt is a good attempt.
 
-**Quick debrief (5 min):**
-- "Who got something useful?" — 2-3 people share
-- Privacy basics in 60 seconds: don't paste confidential data, use "don't train" setting
-- "AI works. You just proved it. Now let me show you how to make it dramatically better."
-
-**Expected outcome:** Every attendee has used AI successfully. Anxiety replaced with curiosity. They want more.
+**Expected outcome:** They've seen AI work. Anxiety reduced. They're ready to learn HOW to use it properly.
 
 ---
 
-### BLOCK 2: "How to Talk to AI" (25 min) | 6:40 - 7:05
+### SAFETY (5 min) | 6:30 - 6:35
+
+**Purpose:** Quick, necessary safety briefing before anyone touches AI
+
+**Three rules (2 min):**
+1. CHECK — verify AI outputs. AI is confident even when wrong.
+2. NEVER PASTE confidential data into free AI tools (SSNs, proprietary financials, trade secrets, customer PII).
+3. KNOW THE DIFFERENCE — free tools may train on your data, company-approved tools typically don't.
+
+**Quick Safety Checklist (2 min):**
+- Safe to paste: general emails, reports, your own notes, meeting agendas, public info
+- Never paste: SSNs, proprietary data, trade secrets, customer info, anything marked confidential
+- When in doubt, don't paste it. Use company-approved tools for sensitive work.
+
+**Expected outcome:** Responsible use established. Fear not created. Move on quickly.
+
+---
+
+### BLOCK 2: RACE Framework (15 min) | 6:35 - 6:50
 
 **Learning objective:** COMPOSE an effective prompt using the RACE framework
 
@@ -141,64 +156,111 @@ The full deep dive: complete RACE mastery, advanced prompting, AI agents deep di
 1. The RACE framework: **R**ole, **A**ction, **C**ontext, **E**xpectations. The difference between garbage output and gold.
 2. Before/after: show the SAME task done with a lazy prompt vs RACE. Dramatic difference.
 
-**Live demo (10 min):**
+**Live demo — Bad vs RACE (8 min):**
 - BAD prompt: "Write me an email." → generic garbage
 - RACE prompt: "You are a senior project manager at a pharma company (R). Write an email to my team (A) about moving the Q3 deadline from June 15 to May 30 due to FDA feedback (C). Under 200 words, professional, 3 action items (E)." → exactly right
 - Show iteration: "Make the tone warmer, these are people I've worked with for 5 years." → AI adjusts instantly
+- Iterate 2-3 more times to show the conversation concept
 
-**Hands-on exercise (10 min):**
-- Each attendee picks ONE real task from their job
-- Write a RACE prompt on the handout, then type it in
-- Brandon walks the room, gives feedback, helps refine
+**No exercise yet.** They'll apply RACE in the main exercise after custom instructions are set up.
 
-**Quick debrief (5 min):**
-- "Who got a dramatically better result? Show us."
-- Drop the key line: "AI doesn't replace people. People who use AI replace people who don't. You just joined the right side."
-- "Now let me show you something that's going to blow your mind."
-
-**Expected outcome:** They've felt the before/after. They know RACE works. They want to learn more — but we're intentionally NOT going deep. That's the paid workshop.
+**Expected outcome:** They understand RACE and have seen the before/after. Ready to apply it.
 
 ---
 
-### BLOCK 3: "AI Agents — The Jaw-Drop Moment" (15 min) | 7:05 - 7:20
+### BLOCK 3: Context + Custom Instructions (10 min) | 6:50 - 7:00
+
+**Learning objective:** UNDERSTAND that context is the key to great AI output; KNOW how to set up custom instructions
+
+**The secret weapon — context (5 min):**
+- Without context: AI gives generic answers for anyone
+- With context: AI gives answers tailored to YOUR industry, role, company
+- Context is the single most important factor in output quality
+- "The more AI knows about your situation, the better it performs"
+
+**Custom instructions walkthrough (5 min):**
+- Show where to find custom instructions in ChatGPT (Settings > Personalization > Custom Instructions) and Claude (Profile)
+- What to include: job title, industry, communication preferences, common tasks, things to avoid
+- Live example: "I'm a finance director at a mid-size pharma company. I write emails to my team and reports for executives. Keep everything under 300 words, professional but warm. Use bullet points."
+- "Set this up once. Every conversation after is better. Permanently."
+
+**Expected outcome:** They understand context matters AND they know exactly where to set it up. Ready for the exercise.
+
+---
+
+### HANDS-ON EXERCISE (15 min) | 7:00 - 7:15
+
+**Learning objective:** SET UP custom instructions and COMPOSE a RACE prompt for a real job task
+
+**This is the ONE exercise.** Teaching comes first, practice comes after. By now they know: safety rules, RACE framework, the power of context, and where custom instructions live. Their first attempt will be a good one.
+
+**Steps (12 min hands-on):**
+1. Open ChatGPT or Claude (sign in with Google, 90 seconds)
+2. Set up custom instructions with their role, industry, communication style
+3. Pick ONE real task from their job this week
+4. Write a RACE prompt for that task (R, A, C, E)
+5. Run it. See the result. Iterate until it's right.
+
+**Brandon walks the room.** Help anyone stuck on sign-in or custom instructions. Celebrate wins. Make sure EVERY person successfully: (a) sets up custom instructions, and (b) gets a useful RACE prompt result.
+
+**Debrief (3 min):**
+- "Who got something useful?" — 2-3 people share
+- Drop the key line: "AI doesn't replace people. People who use AI replace people who don't."
+- "Now let me show you something that's going to blow your mind."
+
+**Expected outcome:** Every attendee walks away with takeaway #2 (custom instructions) and takeaway #3 (working RACE prompt). The exercise is tied to a real job task they'll reuse Monday.
+
+---
+
+### BLOCK 4: AI Agents (10 min) | 7:15 - 7:25
 
 **Learning objective:** EXPLAIN what AI agents are; see one working LIVE
 
 **This is the credibility anchor. This is where Brandon proves he's not theoretical.**
 
-**Instruction (5 min):**
-- "Everything we've done so far is AI that WRITES. Now let me show you AI that ACTS. An AI agent doesn't just answer questions — it makes phone calls, books appointments, processes requests. Think of it as a digital employee who works 24/7."
+**Chat AI vs AI Agents (2 min):**
+- "Everything we've done so far is AI that WRITES. Now let me show you AI that ACTS."
+- Chat AI: you type, AI responds, you use the result
+- AI Agent: works on its own — answers calls, books appointments, sends follow-ups, 24/7
 
-**Live demo — Call2Calendar (8 min):**
-- Brandon calls the Call2Calendar voice agent LIVE on speakerphone
-- The room hears AI answer, have a natural conversation, and book an appointment
-- This is the jaw-drop moment. Audible reactions expected.
-- "I built this for one of my businesses. The AI answers every call, 24/7, never takes a day off, never has a bad attitude. My customers don't even know they're talking to AI."
+**Live demo — AI Chatbot (5 min):**
+- Show a chatbot that knows Brandon's business (services, pricing, FAQs)
+- Demo 1: Customer asks about pricing → chatbot answers accurately
+- Demo 2: Brandon changes the pricing in the knowledge base file → chatbot's answers update immediately
+- Demo 3: Complex question → chatbot handles it naturally
+- "This is what 'AI running your front office' looks like. No coding. Just configuration."
 
-**Quick hits (2 min):**
-- "I did the same thing for my pool service company — AI handles scheduling and follow-ups"
-- "And for my photo booth business — AI handles booking inquiries and quotes"
-- "This is what I do. I'm not teaching you from a textbook. I'm showing you what I actually run."
+**NOTE:** Chatbot demo replaces the live voice agent call. More reliable in a room setting, more relatable (they just learned chat AI), and the "change the file, watch the answer change" moment is the jaw-drop.
 
-**Expected outcome:** The room is energized. They've seen something they didn't think was possible. Brandon's credibility is cemented. They're thinking "I need this for my company" — which is exactly the setup for the upsell.
+**Brandon's businesses (3 min):**
+- Pool Cleaning Dude — AI handles calls, scheduling, follow-ups
+- Christmas Lights Dude — AI handles quotes, booking, inquiries
+- Call2Calendar — AI voice agents for other businesses
+- "Three businesses. AI runs the front office of all of them. Right now. Today."
+
+**Expected outcome:** Credibility cemented. They see AI agents are real and achievable. Seeds corporate training and consulting upsells.
 
 ---
 
-### BLOCK 4: "What's Possible" (10 min) | 7:20 - 7:30
+### ROI + RECAP (5 min) | 7:25 - 7:30
 
-**Learning objective:** IDENTIFY where AI fits in their work; see the ROI math
+**Learning objective:** IDENTIFY the financial value of AI; CONFIRM the 3 takeaways
 
-**The math (5 min):**
-- "Quick exercise. Think of a task you do every day that takes 30 minutes. With AI, it takes 2 minutes. That's 28 minutes saved per day. Times 5 days = 2.3 hours per week. Times 50 weeks = 115 hours per year. What's your hourly rate? Multiply. That's what AI is worth to YOU."
-- Let them do the mental math. Some people will gasp.
+**ROI tied to the exercise (3 min):**
+- "Think about the task you just completed in the exercise. How long would that normally take? How long did it take with AI?"
+- Formula: **Minutes Saved × Times Per Week × 50 Weeks ÷ 60 = Hours/Year**
+- **Hours Saved × Your Hourly Rate = What AI Is Worth to You**
+- Example: 25 min saved × 5 days × 50 weeks ÷ 60 = 104 hours/year. At $75/hr = $7,800 from one task.
+- "How many tasks like that do you have?"
+- Let them do the mental math. Watch faces react.
 
-**Toolkit preview (5 min):**
-- "What we covered today is the tip of the iceberg. There's a whole world of custom instructions, prompt libraries, automation workflows, and AI agents that we didn't have time to get into."
-- Show a quick flash of: custom instructions setup, a prompt library, a Zapier automation running
-- "That's what the full workshop covers — 4 hours, completely hands-on, you leave with everything set up and running."
-- This is the TEASE. Don't satisfy the hunger. Create it.
+**The 3 things you're taking home (2 min):**
+- Takeaway #1: The RACE framework — use it every time you talk to AI
+- Takeaway #2: Your personalized AI setup — custom instructions configured, every conversation starts smarter
+- Takeaway #3: A working prompt for your job — you built it, tested it, it works, use it Monday
+- "You walked in unsure about AI. You're walking out using it."
 
-**Expected outcome:** They see the financial value. They see there's way more to learn. They WANT the paid workshop.
+**Expected outcome:** They feel the financial value. They feel accomplished. Emotional peak before the close.
 
 ---
 
@@ -206,9 +268,9 @@ The full deep dive: complete RACE mastery, advanced prompting, AI agents deep di
 
 **This is where the $25K gets closed. Do NOT rush this section.**
 
-**Recap (3 min):**
-- "In the last 2 hours, you used AI for the first time, learned the RACE framework for getting great results, saw a live AI agent answer a phone call, and calculated what AI is worth to your career."
-- "Show of hands — how many of you feel more confident about AI right now than you did at 6 PM?" (Everyone raises their hand. Emotional peak.)
+**Tease what they didn't get (3 min):**
+- Advanced RACE mastery, prompt libraries by job function, automation workflows, AI agent deep dives, Monday morning action plan
+- "Tonight created the spark. The full workshop lights the fire."
 
 **Upsell presentation (7 min):**
 - "Today was the appetizer. Here's the full meal."

@@ -1,96 +1,74 @@
 # AI Tool Quick Reference Card
 
-## FRONT: Top 10 AI Tools for Professionals
+## FRONT: Your 5 Tools + Top AI Apps
 
-| # | Tool | What It Does | Free? | Paid Price | Best For |
-|---|------|-------------|-------|-----------|----------|
-| 1 | **ChatGPT** | Write, analyze, brainstorm, answer questions — the Swiss Army knife of AI | Yes | $20/mo | General daily tasks; the best all-around starting point |
-| 2 | **Claude** | Write, analyze long documents, careful reasoning | Yes | $20/mo | Working with long reports and documents; detailed analysis |
-| 3 | **Microsoft Copilot** | AI built into Word, Excel, Outlook, Teams, PowerPoint | Basic free | $30/mo (with M365) | If your company uses Microsoft 365 |
-| 4 | **Google Gemini** | AI built into Gmail, Docs, Sheets, Slides | Basic free | $20/mo | If your company uses Google Workspace |
-| 5 | **Grammarly** | Fixes grammar, improves writing, rewrites text — works everywhere you type | Yes | $12/mo | Making every email and document sound polished |
-| 6 | **Perplexity** | AI-powered research — like Google, but gives you answers with sources instead of links | Yes | $20/mo | Research, fact-checking, finding information fast |
-| 7 | **Otter.ai** | Records and transcribes meetings; generates notes and action items | Yes (300 min/mo) | $17/mo | Anyone in a lot of meetings |
-| 8 | **Zapier** | Connects your apps; automates repetitive tasks (no coding) | Yes (100 tasks/mo) | $20/mo | Simple automations between 2-3 apps |
-| 9 | **Gamma** | Creates presentations and documents from a text description | Yes (10 credits) | $10/mo | Making slides and one-pagers fast |
-| 10 | **Canva AI** | Graphic design with AI — social posts, flyers, presentations, videos | Yes | $13/mo | Creating professional-looking visuals without a designer |
+### The 5 Tools You Set Up Tonight
 
-### Where to start:
+| # | Tool | What It Does |
+|---|------|-------------|
+| 1 | **Handy.computer** | Free voice dictation. Press a key, speak, your words appear in any app. Works offline. Download at handy.computer |
+| 2 | **Custom Instructions** | Permanent context about your business saved in Claude/ChatGPT. Set it once, every conversation is smarter. |
+| 3 | **RACE Framework** | Role + Action + Context + Expectations. The method for getting useful results from AI every time. |
+| 4 | **Your Tested Prompt** | The prompt you built tonight for your #1 task. Copy-paste it tomorrow morning. |
+| 5 | **Claude Project** | Upload your business docs (pricing, FAQs, emails, processes). AI knows your business permanently. |
 
-**Step 1:** Sign up for ChatGPT (chat.openai.com) or Claude (claude.ai) — free.
-**Step 2:** Install Grammarly browser extension — free.
-**Step 3:** Try Zapier for one automation — free.
+---
 
-### Scan to visit each tool:
+### Top AI Tools for Business
 
-| ChatGPT | Claude | Copilot | Gemini | Grammarly |
-|---------|--------|---------|--------|-----------|
-| [QR] | [QR] | [QR] | [QR] | [QR] |
+| Tool | What It Does | Free? | Best For |
+|------|-------------|-------|----------|
+| **Claude** | Writing, analysis, long documents, nuance | Yes | Daily work. Brandon's personal recommendation. claude.ai |
+| **ChatGPT** | Most popular, great all-around | Yes | General tasks. Good alternative to Claude. chatgpt.com |
+| **Copilot** | AI inside Word, Excel, Outlook, Teams | With M365 | If your company uses Microsoft |
+| **Gemini** | AI inside Gmail, Docs, Sheets | Yes | If you use Google Workspace |
+| **Perplexity** | AI research — answers with sources | Yes | Research and fact-checking. perplexity.ai |
+| **OpenClaw** | AI agents that run tasks on autopilot — scheduling, outreach, reporting | Custom | Automating entire workflows. This is what runs Brandon's businesses. openclaw.com |
 
-| Perplexity | Otter.ai | Zapier | Gamma | Canva |
-|------------|----------|--------|-------|-------|
-| [QR] | [QR] | [QR] | [QR] | [QR] |
+**Where to start:** Claude (claude.ai) or ChatGPT (chatgpt.com) — both free. Add Handy.computer for voice. Perplexity for research.
 
 ---
 
 \newpage
 
-## BACK: Brandon's Top 5 Prompt Templates
+## BACK: The RACE Framework + 5 Prompt Templates
 
-Copy these prompts exactly. Replace the [brackets] with your information. Use in ChatGPT or Claude.
+### The RACE Framework
 
----
-
-### 1. The Email Writer
-
-> You are a [your job title] at a [your industry] company. Write a professional email to [recipient/audience] about [topic]. The tone should be [friendly / formal / direct / encouraging]. Keep it under [number] words. Include [specific items: action items, deadlines, a question, next steps].
-
-**Use this for:** Any email you need to write. Client updates, team announcements, status reports, follow-ups.
-
----
-
-### 2. The Document Summarizer
-
-> I'm pasting a [type of document: report, email chain, article, policy document] below. Summarize it in [number] bullet points. Each bullet should be one clear sentence. Highlight any action items, deadlines, or decisions that need attention. Write it so a busy [executive / manager / team member] can understand the key points in 30 seconds.
->
-> [Paste your document here]
-
-**Use this for:** Long emails, reports, meeting notes, policy documents, articles — anything you need to read but don't have time to read carefully.
+| Letter | What It Means | Example |
+|--------|--------------|---------|
+| **R** — Role | Tell AI who to be | "You are a senior project manager" |
+| **A** — Action | Tell AI what to do | "Write an email to my team" |
+| **C** — Context | Give AI the details | "About moving the deadline due to client feedback" |
+| **E** — Expectations | Tell AI the format | "Under 200 words, professional, 3 action items" |
 
 ---
 
-### 3. The Data Analyzer
+### 5 Ready-to-Use Prompt Templates
 
-> You are a [your job title] with expertise in [your field]. I'm sharing [type of data: sales numbers, survey results, budget figures, performance metrics]. Analyze this data and give me: (1) The top 3 trends or patterns, (2) Anything that looks unusual or concerning, (3) 2-3 recommended actions based on what you see. Present your analysis as a brief executive summary (under 200 words) followed by a detail table.
->
-> [Paste your data here]
+**1. The Email Writer**
+> You are a [your role] at a [your industry] company. Write a professional email to [who] about [topic]. Tone: [friendly/formal/direct]. Under [number] words. Include [action items/deadlines/next steps].
 
-**Use this for:** Spreadsheet data, quarterly numbers, survey results, KPIs — anything with numbers that need interpretation.
+**2. The Summarizer**
+> I'm pasting a [report/email chain/document] below. Summarize in [number] bullet points. Highlight any action items or deadlines. Write it so a busy [executive/manager] gets the key points in 30 seconds.
+> [Paste document here]
 
----
+**3. The Response Drafter**
+> Here's an email I received. Draft a response that [accepts/declines/asks for more info]. Keep my tone [professional but warm/direct/friendly]. Under 150 words.
+> [Paste the email here]
 
-### 4. The Meeting Prep
+**4. The Meeting Prep**
+> I have a meeting with [who] about [topic]. My goal: [what you want]. Prepare: (1) 5 talking points, (2) 3 tough questions they might ask with suggested responses, (3) A one-paragraph opening I can use.
 
-> I have a meeting with [who] on [topic] on [date]. My goal for the meeting is [what you want to achieve]. The audience cares most about [their priorities]. Prepare for me: (1) 5 talking points that address their priorities, (2) 3 potential objections or tough questions they might raise, with suggested responses, (3) A one-paragraph opening statement I can use to start the meeting. Keep everything concise and practical.
-
-**Use this for:** Any important meeting — presentations to leadership, client calls, vendor negotiations, performance reviews, project kickoffs.
-
----
-
-### 5. The Weekly Planner
-
-> You are my executive assistant. Here are my priorities for this week: [list 3-5 priorities]. Here are my recurring commitments: [list regular meetings or tasks]. Help me create a daily plan for Monday through Friday that: blocks focused time for my priorities, groups similar tasks together, leaves buffer time for unexpected issues, and identifies which tasks I could delegate or use AI to handle. Present it as a simple daily schedule.
-
-**Use this for:** Sunday evening or Monday morning planning. Gets your whole week organized in 2 minutes.
+**5. The Task Automator**
+> I do [task] every [day/week]. It takes me [time]. Walk me through how to do this faster with AI. Give me the exact steps and the exact prompt I'd use. Keep it simple — I'm not technical.
 
 ---
 
-### Remember: The secret to good AI results is good prompts.
+### Remember: Use Handy.computer to dictate these prompts instead of typing them.
 
-**Role + Context + Task + Format = Great results every time.**
+**Simpler: Talk to AI like a colleague. Give it your role, your task, your details, and what you want back.**
 
 ---
 
-**LearnAndLeverageAI.com** | brandon@learnandleverageai.com
-
-**Keep learning:** Scan to join our free community [QR CODE]
+**(302) 416-6285** | **info@learnandleverageai.com** | **learnandleverageai.com**

@@ -183,11 +183,16 @@ Brandon Calloway
 ---
 
 ## ALREADY CONTACTED (Do Not Re-Send Initial Outreach)
-- office@rotarywilmington.org — Rotary Wilmington
-- info@ncccc.com — NCC Chamber
-- email@debcc.org — DE Black Chamber
-- info@eecincubator.com — Emerging Enterprise Center
-- info@deshrm.org — DE SHRM (replied — speaker app)
+- office@rotarywilmington.org — Rotary Wilmington (REPLIED — Fall consideration)
+- info@ncccc.com — NCC Chamber (follow-up sent 3/31)
+- email@debcc.org — DE Black Chamber (ACTIVE — Brianna Cunningham, Zoom 4/1, attending 4/2)
+- info@eecincubator.com — Emerging Enterprise Center (follow-up sent 3/31)
+- info@deshrm.org — DE SHRM (replied — speaker app; follow-up sent 3/31)
+- VP-Prof-Dev@PMI-DVC.ORG — PMI-DVC (NEW outreach sent 3/31)
+- info@dscc.com — DE State Chamber (NEW outreach sent 3/31)
+- dscc@dscc.com — DYPN via State Chamber (NEW outreach sent 3/31)
+- info@techforumde.org — Tech Forum of DE (NEW outreach sent 3/31)
+- delaware-sbdc@udel.edu — DE SBDC (NEW outreach sent 3/31)
 - chris@barcodesecurity.com — DO NOT CONTACT
 - events@delawaretoday.com — BOUNCED
 - newark-de@patch.com — BOUNCED
@@ -195,6 +200,7 @@ Brandon Calloway
 - info@fewde.org — BOUNCED
 - info@1313innovation.com — BOUNCED
 - score@scoredelaware.org — BOUNCED
+- info@pikecreeknetworking.com — BOUNCED
 - UD Alumni, WilmU, DSU — already emailed
 - Spotlight Delaware — already emailed
 - WHYY — already emailed

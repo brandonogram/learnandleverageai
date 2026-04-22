@@ -2,314 +2,330 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>The AI Landscape — What Actually Matters Right Now</title>
+<title>The AI Landscape v1.0</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap');
-
-  @page { size: letter; margin: 0.6in 0.65in; }
+  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;900&display=swap');
+  @page { size: letter; margin: 0; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     font-family: 'Source Sans 3', -apple-system, sans-serif;
-    font-size: 10.5pt;
-    color: #1C1917;
-    line-height: 1.45;
-    background: #fff;
-    max-width: 7.5in;
-    margin: 0 auto;
-    padding: 0.5in;
+    width: 8.5in; min-height: 11in; margin: 0 auto;
+    background: #1C1917; color: #fff; overflow: hidden;
   }
-
-  /* Header */
   .header {
-    text-align: center;
-    margin-bottom: 18px;
-    padding-bottom: 14px;
-    border-bottom: 3px solid #D97706;
+    background: linear-gradient(135deg, #1C1917 0%, #292524 100%);
+    padding: 24px 40px 16px; text-align: center; position: relative;
   }
-  .header h1 {
-    font-size: 20pt;
-    font-weight: 700;
-    color: #1C1917;
-    margin-bottom: 4px;
-    letter-spacing: -0.5px;
+  .header::after {
+    content: ''; position: absolute; bottom: 0; left: 40px; right: 40px;
+    height: 3px; background: linear-gradient(90deg, transparent, #D97706, transparent);
   }
-  .header .subtitle {
-    font-size: 10pt;
-    color: #78716C;
-  }
-  .header .brand {
-    font-size: 9pt;
-    color: #D97706;
-    font-weight: 600;
-    margin-top: 4px;
-  }
+  .brand { font-size: 9pt; font-weight: 700; color: #D97706; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 4px; }
+  .header h1 { font-size: 24pt; font-weight: 900; line-height: 1.1; margin-bottom: 3px; }
+  .header h1 span { color: #F59E0B; }
+  .header .sub { font-size: 9.5pt; color: #A8A29E; }
+  .version { position: absolute; top: 12px; right: 28px; font-size: 7.5pt; color: #57534E; font-weight: 600; letter-spacing: 1px; }
 
-  /* Big picture */
-  .big-picture {
-    background: #FFFBF5;
-    border: 1px solid #FDE68A;
-    border-radius: 8px;
-    padding: 10px 14px;
-    margin-bottom: 16px;
-    text-align: center;
-    font-size: 10pt;
-    color: #57534E;
-  }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 14px 28px 8px; }
 
-  /* Section */
-  .section {
-    margin-bottom: 16px;
-    page-break-inside: avoid;
-  }
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-  }
-  .section-number {
-    background: #D97706;
-    color: #fff;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11pt;
-    font-weight: 700;
-    flex-shrink: 0;
-  }
-  .section-title {
-    font-size: 13pt;
-    font-weight: 700;
-    color: #1C1917;
-  }
-  .section-desc {
-    font-size: 9.5pt;
-    color: #57534E;
-    margin-bottom: 8px;
-  }
+  .card { border-radius: 12px; padding: 12px 14px 10px; position: relative; overflow: hidden; }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
+  .c1 { background: #1a1412; } .c1::before { background: #F59E0B; }
+  .c2 { background: #111518; } .c2::before { background: #3B82F6; }
+  .c3 { background: #14120e; } .c3::before { background: #10B981; }
+  .c4 { background: #171214; } .c4::before { background: #A855F7; }
 
-  /* Tables */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 8px;
-    font-size: 9.5pt;
-  }
-  th {
-    background: #1C1917;
-    color: #fff;
-    text-align: left;
-    padding: 5px 8px;
-    font-weight: 600;
-    font-size: 9pt;
-  }
-  th:first-child { border-radius: 4px 0 0 0; }
-  th:last-child { border-radius: 0 4px 0 0; }
-  td {
-    padding: 5px 8px;
-    border-bottom: 1px solid #E7E5E4;
-    vertical-align: top;
-  }
-  tr:nth-child(even) td { background: #FAFAF9; }
-  td strong { color: #1C1917; }
+  .card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .card-icon { width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 14pt; flex-shrink: 0; }
+  .c1 .card-icon { background: #F59E0B22; }
+  .c2 .card-icon { background: #3B82F622; }
+  .c3 .card-icon { background: #10B98122; }
+  .c4 .card-icon { background: #A855F722; }
+  .card-title { font-size: 11pt; font-weight: 900; line-height: 1.2; }
+  .c1 .card-title { color: #F59E0B; }
+  .c2 .card-title { color: #60A5FA; }
+  .c3 .card-title { color: #34D399; }
+  .c4 .card-title { color: #C084FC; }
+  .card-desc { font-size: 7.5pt; color: #A8A29E; margin-bottom: 8px; line-height: 1.3; }
 
-  /* Brandon's take */
-  .take {
-    background: #FFFBF5;
-    border-left: 3px solid #D97706;
-    padding: 6px 10px;
-    font-size: 9pt;
-    color: #44403C;
-    margin-bottom: 4px;
+  .tools { display: flex; flex-direction: column; gap: 4px; }
+  .tool {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px; padding: 5px 8px;
   }
-  .take strong { color: #D97706; }
+  .tool-logo {
+    width: 20px; height: 20px; border-radius: 5px; flex-shrink: 0;
+    object-fit: contain; background: #fff;
+  }
+  .tool-info { flex: 1; min-width: 0; }
+  .tool-name { font-size: 8.5pt; font-weight: 700; color: #fff; line-height: 1.2; }
+  .tool-what { font-size: 7pt; color: #78716C; line-height: 1.2; }
+  .tool-cost { font-size: 6.5pt; color: #57534E; font-weight: 600; white-space: nowrap; }
 
-  /* Start here */
-  .start-here {
-    background: #1C1917;
-    color: #fff;
-    border-radius: 8px;
-    padding: 14px 16px;
-    margin-bottom: 14px;
-    page-break-inside: avoid;
+  .pick-badge {
+    display: inline-block; font-size: 6pt; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.4px; padding: 1px 5px; border-radius: 3px; margin-left: 3px; vertical-align: middle;
   }
-  .start-here h2 {
-    font-size: 13pt;
-    color: #F59E0B;
-    margin-bottom: 8px;
-  }
-  .start-here ol {
-    padding-left: 18px;
-    font-size: 9.5pt;
-    color: #D6D3D1;
-  }
-  .start-here ol li {
-    margin-bottom: 4px;
-  }
-  .start-here ol li strong { color: #fff; }
+  .c1 .pick-badge { background: #F59E0B33; color: #F59E0B; }
+  .c2 .pick-badge { background: #3B82F633; color: #60A5FA; }
+  .c3 .pick-badge { background: #10B98133; color: #34D399; }
+  .c4 .pick-badge { background: #A855F733; color: #C084FC; }
 
-  /* Honest truth */
-  .truth {
-    margin-bottom: 14px;
+  .bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 8px 28px 0; }
+  .start-box {
+    background: linear-gradient(135deg, #292117, #1C1917);
+    border: 1px solid #F59E0B33; border-radius: 12px; padding: 12px 14px;
   }
-  .truth h2 {
-    font-size: 12pt;
-    font-weight: 700;
-    margin-bottom: 6px;
+  .start-box h2 { font-size: 10.5pt; font-weight: 900; color: #F59E0B; margin-bottom: 6px; }
+  .steps { list-style: none; counter-reset: step; }
+  .steps li {
+    counter-increment: step; display: flex; align-items: flex-start; gap: 7px;
+    margin-bottom: 4px; font-size: 7.5pt; color: #D6D3D1; line-height: 1.3;
   }
-  .truth ul {
-    list-style: none;
-    padding: 0;
-    font-size: 9.5pt;
-    color: #44403C;
+  .steps li::before {
+    content: counter(step); background: #F59E0B; color: #1C1917;
+    width: 15px; height: 15px; border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-size: 7pt; font-weight: 900; flex-shrink: 0; margin-top: 1px;
   }
-  .truth ul li {
-    padding-left: 16px;
-    position: relative;
-    margin-bottom: 3px;
-  }
-  .truth ul li::before {
-    content: "\2713";
-    position: absolute;
-    left: 0;
-    color: #D97706;
-    font-weight: 700;
-  }
+  .steps li strong { color: #fff; }
 
-  /* Footer */
+  .truth-box {
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px; padding: 12px 14px;
+  }
+  .truth-box h2 { font-size: 10.5pt; font-weight: 900; color: #fff; margin-bottom: 6px; }
+  .truth-item {
+    display: flex; align-items: flex-start; gap: 5px;
+    margin-bottom: 5px; font-size: 7.5pt; color: #A8A29E; line-height: 1.3;
+  }
+  .truth-check { color: #F59E0B; font-size: 9pt; line-height: 1; flex-shrink: 0; margin-top: -1px; }
+  .truth-item strong { color: #D6D3D1; }
+
   .footer {
-    border-top: 2px solid #D97706;
-    padding-top: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 8.5pt;
-    color: #78716C;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 28px 14px; margin-top: 6px;
   }
-  .footer .cta {
-    background: #D97706;
-    color: #fff;
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-weight: 700;
-    font-size: 9pt;
-    text-decoration: none;
+  .footer-left { font-size: 7.5pt; color: #57534E; }
+  .footer-left strong { color: #A8A29E; }
+  .footer-cta {
+    background: #D97706; color: #fff; padding: 7px 14px; border-radius: 8px;
+    font-weight: 700; font-size: 8pt; text-decoration: none; letter-spacing: 0.3px;
   }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <h1>The AI Landscape</h1>
-  <div class="subtitle">What Actually Matters Right Now &mdash; A Plain-English Guide</div>
+  <div class="version">v1.0 &mdash; April 2026</div>
   <div class="brand">Learn &amp; Leverage AI</div>
+  <h1>The AI Landscape<br><span>What Actually Matters Right Now</span></h1>
+  <div class="sub">A plain-English guide &mdash; no jargon, no hype, just what you need to know.</div>
 </div>
 
-<div class="big-picture">
-  AI in 2026 fits into <strong>four categories</strong>. You don't need to learn all of them &mdash; but you should know what exists so you can pick what's useful for <em>your</em> work.
-</div>
+<div class="grid">
 
-<!-- Section 1 -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-number">1</div>
-    <div class="section-title">AI Assistants &mdash; Your New Thinking Partner</div>
+  <!-- 1. AI Assistants -->
+  <div class="card c1">
+    <div class="card-header">
+      <div class="card-icon">&#128172;</div>
+      <div class="card-title">AI Assistants</div>
+    </div>
+    <div class="card-desc">Ask questions, analyze documents, write drafts, brainstorm. Your new thinking partner.</div>
+    <div class="tools">
+      <div class="tool">
+        <img class="tool-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAY1BMVEX///8AAACYmJj5+fnz8/P29vaOjo4YGBjQ0NDDw8Pl5eXX19dQUFDLy8t1dXWfn5+tra0uLi47Ozu2trZfX19oaGhLS0s0NDQmJiaHh4dubm4gICBGRkbt7e0KCgoSEhJ+fn57FpRlAAACjUlEQVRYhe1WW4OyIBB1Ak0EL3kpM63+/6/8mAGR6kPdfdqHzsPGKnPmdhiMoi+++OPgaZ7L35tXJyB0v+MQN3Ao2M/tS213SoTMK4Wrqhjrc1tNu+0rgEdj19nZi4Xvs8+009gFc0fTizI55bsIdNizvXhoK5XSOh/1ugmbOUiAyoZCFVi86tQg2yY4ANAve2LQlf+qAai3zKfkCK3dDPC0ucxi0Jxi3f6KZom1bzPn+GbsOBj2EHgNM8HB+ZIjPVTE1gGs6Ir1AGfZzwT0LC4oFfxzZSSxFT0NWitRdPQJKiugSb+DexPlAGnQPqcEmUeQYkqXbMlE6QjCp0uLlvsEbDAKdrUkUUJQz5NONfIJEGVJ2dst9DBYA2HS8wlQBrGvJ95qaYbaUJnoFoLOhp7p3kFta5cADHsJlleUzWBib4N9aEx6/yegqXDA9RQUY260xx5wzD8ISoaCOuM/Q0iMzGaHZ1hN5SuBdp6dTI4iOFdae9qpc/UHAQbFTQ6BsaIniaIFp86FCPjbkPBQuBZJLJqyopXqnSA42PTO0TafpiGOYV7MDbAE+cpsjedT60phpPxCUCwz9wOT2T3r1pQCBuYTZGtDCQeyWnQr8X4c5WsRx7UDnaJM6V7spojTaaZ6OQKGvS6C9hheE9mTOHj1mAmO4mLlGEBs6Xn3OklcBLBuT2I0FdbDrLfNkrXNJHEHKgyxTB/rnWTQ04Tv4HbYvOLHN5mVnletii1zKqO3TfTLIMGBs+NmxSSgbqgQKUriMjd961ZzkFTru7rgT+/y4f3qneSDXZePmnr2L+6b97KHuHm2Z3UVNd1FjRTJ6f1L4eex3PZ9Hr0jsxSnX7h3HPqDN3j+v/jir+AfWRkZ4tp3YAUAAAAASUVORK5CYII=" alt="ChatGPT">
+        <div class="tool-info">
+          <div class="tool-name">ChatGPT <span class="pick-badge">Start here</span></div>
+          <div class="tool-what">All-around: writing, analysis, images, code</div>
+        </div>
+        <div class="tool-cost">Free / $20</div>
+      </div>
+      <div class="tool">
+        <img class="tool-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAZlBMVEX6+fUUFBMAAAD////9/Pj29fH///3///ttbWvY19QRERDe3dkNDQy9vLnv7urp6OQ6OjmJiIZOTUxEREO0tLEyMTCtrKmlpKEqKinR0Mx2dnSPjoyBgX5UVFJjYmHDw7+Yl5QdHRzi9ahqAAABsklEQVRYhe2V25aCMAxFtYFWsSBeEe/+/09Om6RQRoQ4j7M4LzYU0pPdps5mkyZN+t9KSD2B8Pv1ElVgUON4/U0GKBVqoV2gKSjhCwMrNUep1Ec5Rmolt2A2IUFlfKgyP95ouQP8wsmeoMmXKbEDk7MBt2ydNBWpvREmgK1tEpy9b9j5B3YrxJiscUFKotDSniwId9Jc/Ou2jDASFHWR1cDQqyvmOXjfmjGKEoRtL5b0u4ww5pIa4OZfVjeAk20xljiWYGSEbjFTqb9gNM9QblLE209jAUZt6dy6N+FO24EYr0KMyaPtnM6YMT7GaiCEtOpM04ZeEePBEtsRA1z3Ea3SkaIuMkcRRkI4VxpQPRifwxQgtAAL29ruEOMZi5sP1sDYnG0W9yRirAUYaePeRJcRY7wPWGCEb2KMfDKLzxYYoVWRMjrYHl06ihFeePMcFpFOWXMZjWIMmHLQjaBqtz/M159q0Iue855GXcQN/hEjv7vpJND3NusIxjDd/QcKHYWX0TBGMkjHLn5M/Y1dREXaV28NbinU8Vd611EobnBU/2lMSe9zPIGrRONJkyZN6uoHDOIUEM1IBJkAAAAASUVORK5CYII=" alt="Claude">
+        <div class="tool-info">
+          <div class="tool-name">Claude <span class="pick-badge">Start here</span></div>
+          <div class="tool-what">Long docs, careful analysis, natural writing</div>
+        </div>
+        <div class="tool-cost">Free / $20</div>
+      </div>
+      <div class="tool">
+        <img class="tool-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAABmFBMVEVHcEzxpiEvvG2l0VCudKQdtXmDy2TrU1lciO3kVmMzh/82ltnfkkHofUQ0kO0euW9BjPpBhvnywxs6qqf5RUT0Yz8zh/8xhv+a1Fn1SEpMwWwUuWgxhv85mN33vBj2R0ijvla7a5kOumL3pRwWtnTyryIzhv/uY07b0TFCwWfxxx5Mob2JwmfxaUDC1UPtbEnPYoBtyWXvXFI5oc+DgdT4RkW91UUxhv8yhv80h/42ivo5jfY5h/46ke9AiPxHivdRifI7l+DRZHzwTVE8mtc8lOgUuWj4uxb3R0ZqhuM4ocM7nc1CpLtivH7Dao12x2tZt4qjeLCXfbwzp7EosI5QspbdW21OrKO5zUKBg8/uxB9uwXRJqLC4b5mLf8d3hNngxyovq6GRz1zNzDZAsZNNleTrtiKUwlqdq2/qkTJgjeQwtX/QeHa7gYyljJ9gw29emtG1lnZtrJPQuDVHun7gaGboaFfZgFxNn8mov06NoZLeqDLTmUlporNvkdRMwG+FkL6DvGq/ola6tkeOlqx7tHp2mb/IjmhHIydbAAAAN3RSTlMA/v7+/P7+/v7+2RIS/lQvykMt9y1S8oHMgU2BKvSB3PRI9NvaQrDE2tro7/ewVdTWsNOvsPKvk5yoeQAAAu1JREFUWIXNlflT2kAYhlcUtRprq+KBjkxHrceMvVsRFFAwjVpBKyq1l1ZCUwtiRBFvi9e/3W+zSwihULKZ6fT9/XnyfnsFof89bW0meUEwZ+gShC5TAocgOMzwnCAIfs6EACbw15mZ4bXg99fdY+dtCr/6iFngEDC/+oyVbyMFpoOsFRyUD9aw8TbCTwc/L7FVUPmapfcs/KiG//LKOG/T8h++PjTKc4X87GyjQUGdjq+vN8a/SB8cFPK+B0b4QT3v8/m8BgyD6fRBPJ7Q8l6vx1Ox4Wk6fRiPBxM63uNpqAjnmpoOgU8kdgi/rfKeifYK9sLWpAgwf32p5SeU3P8bP6rwd3JiZwf4c5VX6HHI4/Kf/wE5Pb2TZcxfnp8X8eNOZ+kSA32Ez8qyfHx9eQv8tpjjKY3T8OdzPdBXBTk5Oc1mZen4+Pr2dndX4d0eilPeOTZWrOB6q6oon8pmJRCcnWFenMzzKo7T3qHZkJbevrc4sVjsJJW6upIkaW8PC0RR9LpBkKcprqSho4fyhMZ8LAWCI0m6wYJMJiDOTLrdLldOMKZPj0awDtnYwAWOvv8CwdqnTEac0giKaFUAI4ysE35jaytylBO8ywRAMFlSoI5AFnGE8lAABAuLWDAfyFVw6g0Fi0i3cQj4rUikGgQfFxZXwDCfr1C4BCVOQssQFYSoYC5fQbuKJXCcJxEQVH+rDekruDQbWf4+vSkQaCtQQ/nLhEuAoISh/E1SwxVVyBsqeVAgnUUVFIPLVdmTphiIYKUV1nF+Kmcw8Cx3FlYgBkM/hk4iiK4tqwZDPEK1oVByYTEabV2eI4YZYzziakGwH41uLlOD0Z8rsoeSyf28oYL91+c5FSiGl8Z5hJIXF/s/w2HFwMIjOxYQA8MAOMMXFiwIb7ay8ajZYiGGZkYBGrZYrFZruJ+VR3ZFYLUzC5CF53mrlZ1H3cDz3SYEjdCAN3yItennefYlxIEZzEwAR4HnmQ8BNZjk/0F+A/QHUwmIl9HnAAAAAElFTkSuQmCC" alt="Gemini">
+        <div class="tool-info">
+          <div class="tool-name">Gemini <span style="font-size:6.5pt;color:#78716C;font-weight:400">by Google</span></div>
+          <div class="tool-what">Gmail, Docs, Calendar, YouTube integration</div>
+        </div>
+        <div class="tool-cost">Free / $20</div>
+      </div>
+      <div class="tool">
+        <img class="tool-logo" src="data:image/png;base64,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" alt="Copilot">
+        <div class="tool-info">
+          <div class="tool-name">Copilot <span style="font-size:6.5pt;color:#78716C;font-weight:400">by Microsoft</span></div>
+          <div class="tool-what">Word, Excel, Outlook, Teams, PowerPoint</div>
+        </div>
+        <div class="tool-cost">Incl. w/ M365</div>
+      </div>
+    </div>
   </div>
-  <div class="section-desc">You type a question or paste in text, and they give you a useful answer. Think of them as a smart colleague who's read everything on the internet.</div>
-  <table>
-    <tr><th>Tool</th><th>Best For</th><th>Cost</th><th>Start Here?</th></tr>
-    <tr><td><strong>ChatGPT</strong><br><span style="color:#78716C;font-size:8pt">by OpenAI</span></td><td>All-around tasks, writing, brainstorming, analyzing data, creating images</td><td>Free tier. Plus: $20/mo</td><td>Yes &mdash; most popular</td></tr>
-    <tr><td><strong>Claude</strong><br><span style="color:#78716C;font-size:8pt">by Anthropic</span></td><td>Long documents, careful analysis, writing that sounds human</td><td>Free tier. Pro: $20/mo</td><td>Yes &mdash; try alongside ChatGPT</td></tr>
-    <tr><td><strong>Gemini</strong><br><span style="color:#78716C;font-size:8pt">by Google</span></td><td>Gmail, Docs, Calendar integration. Summarizing YouTube videos.</td><td>Free with Google. Advanced: $20/mo</td><td>If you use Google Workspace</td></tr>
-    <tr><td><strong>Copilot</strong><br><span style="color:#78716C;font-size:8pt">by Microsoft</span></td><td>Word, Excel, Outlook, Teams, PowerPoint</td><td>Included with some M365 plans</td><td>If your company uses Microsoft</td></tr>
-  </table>
-  <div class="take"><strong>Brandon's take:</strong> Start with ChatGPT or Claude. Most professionals end up using both &mdash; Claude for writing and analysis, ChatGPT for quick tasks and image creation.</div>
-</div>
 
-<!-- Section 2 -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-number">2</div>
-    <div class="section-title">AI Search &mdash; Better Answers Than Google</div>
+  <!-- 2. AI Search -->
+  <div class="card c2">
+    <div class="card-header">
+      <div class="card-icon">&#128269;</div>
+      <div class="card-title">AI Search</div>
+    </div>
+    <div class="card-desc">Get answers, not links. AI reads the web for you and gives you sourced answers directly.</div>
+    <div class="tools">
+      <div class="tool">
+        <img class="tool-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAY1BMVEUAAAD///+SkpIbGxukpKTKysoWFhYtLS1JSUlERERbW1seHh6YmJitra0TExMQEBA0NDT39/ckJCRhYWFQUFC9vb20tLQ5OTnDw8Pr6+vi4uLX19d0dHR7e3uEhISMjIxqamrzHYx7AAADBklEQVRYhbWXiZaqMAyGE60UcHBkUUBEfP+nnKZlaUpBvJwbjx5a0g+65E8EREzyKJJSnoPgN1BfWLBLYCxTvjKKwjgXajBgmi2N+GzXVAF2jAc4IyR7xgMIyPcBcij2AWKI9gFCuPKOHw7sEDv+RMH9I5C8445Pu3lAPNjtFzqLXoKzizdE+xk/iD8M7wKucJ4BsFkCPHAGkHDkHZXywXSclw0oU/QBAg8AMe6bYgI8zR0HkMFlBmjoSYcRIMYrTE8egBN8ehEb5VxxwEmvTbIRQFPHBzX7EUGNei6qed8EgIKmEQ6Agl6/AB/A2UTrHNA0WgN4jVsrvgDoaSQKIBIct+IrAIQp9paGMAJui4CQrKSNyq7apGzM+LoIC7IyU0e5KrXjBBgXEb+yYVSwF/DLACdmzelhnB/qkpkFuDCAs6DX1FlDjysH8Mh8Ti/MVem4DUDRI9RhEHRRfQ+guG6NHtBJrLMvAbR+hT6OKrBzmkbuBQSTHtgAEp+U9NoAjBiJ7QB6Yq2vBlXW8dx4AcEccMBeDfRlN80pLWeAowdws1bdygtaLds54OgCGnu6dmKh7dTRvA6gV32BD6C3kwRqFXBnG+aktty8gg04ewB2anNyo/gfgLMFAK27NsBJ78Ko/CLgVFU1A1xUs74wQF1Vth5kDGBsApSmo7QBjiKtAuKhJ94EMKpcTQBLUJ4TwFHlzFNg9ACKiFTxKp6snbyQuSXOuI2JjkgtKDUOSXmemRYBtNKnoUJpTMMHkAuARx83vaDcezXYChjKgRGgl18diA0AOonltPADAFrqk/MK5eoWmsqFHo99CT0CdJFBtzYAsBdUMiuY+jw1q1R9gHpssmisvQCn2E6QVao8nJs5IIKSdyT8rDl6cJsBQvf/QsLkYFatCxdQgJO67zwRuwDonHMQQ8w7nLLRKffnDvmHP12BlMGqw1t9dlkLr89Oa3YA8dlpze5Qf3ZasxSGRP5vViOJsei6tn2/37myOA7jOC4K9ROWsrcyGo1uxMrv/X62HanEH8fYJPV8J9X5AAAAAElFTkSuQmCC" alt="Perplexity">
+        <div class="tool-info">
+          <div class="tool-name">Perplexity <span class="pick-badge">Most in-depth</span></div>
+          <div class="tool-what">Deep research with sourced citations. Best for thorough answers.</div>
+        </div>
+        <div class="tool-cost">Free / $20</div>
+      </div>
+      <div class="tool">
+        <img class="tool-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAM1BMVEUAAAD////f398QEBAgICDv7+9wcHBAQECAgIC/v7/Pz8+vr6+QkJAwMDBQUFCfn59gYGBA/ZVxAAAA2ElEQVQ4jc1SSRLDIAzD7GuS/7+2yKQNENJrqwMMFiBbthB/gkSMrY/F/qik8d4bo69QJt9fd2SFOCh8An7k8aAIseMaw1KaslBSKig1kUL1NMFRxsIiWko98xBxWCx4s+CFihCJRquIqwsUJFZMvFKdYcFYmgvsEKAdHgQ4exOw3EucRfKXL2BoehSpBRo29EkkkbXN0LUIdzA1Q7clj3fvrt1FNoq8O9rhapj5Wv7ZoUzHWfDAXx1uUxHGjioJA07wVLCrQ4HdKdPufexD04jW/4Dl2PwELxkCBNiT/pD8AAAAAElFTkSuQmCC" alt="Grok">
+        <div class="tool-info">
+          <div class="tool-name">Grok <span style="font-size:6.5pt;color:#78716C;font-weight:400">on X.com</span> <span class="pick-badge">Most real-time</span></div>
+          <div class="tool-what">Live posts, trending topics, breaking news as it happens.</div>
+        </div>
+        <div class="tool-cost">Incl. w/ X Premium</div>
+      </div>
+      <div class="tool">
+        <img class="tool-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAY1BMVEX///8AAACYmJj5+fnz8/P29vaOjo4YGBjQ0NDDw8Pl5eXX19dQUFDLy8t1dXWfn5+tra0uLi47Ozu2trZfX19oaGhLS0s0NDQmJiaHh4dubm4gICBGRkbt7e0KCgoSEhJ+fn57FpRlAAACjUlEQVRYhe1WW4OyIBB1Ak0EL3kpM63+/6/8mAGR6kPdfdqHzsPGKnPmdhiMoi+++OPgaZ7L35tXJyB0v+MQN3Ao2M/tS213SoTMK4Wrqhjrc1tNu+0rgEdj19nZi4Xvs8+009gFc0fTizI55bsIdNizvXhoK5XSOh/1ugmbOUiAyoZCFVi86tQg2yY4ANAve2LQlf+qAai3zKfkCK3dDPC0ucxi0Jxi3f6KZom1bzPn+GbsOBj2EHgNM8HB+ZIjPVTE1gGs6Ir1AGfZzwT0LC4oFfxzZSSxFT0NWitRdPQJKiugSb+DexPlAGnQPqcEmUeQYkqXbMlE6QjCp0uLlvsEbDAKdrUkUUJQz5NONfIJEGVJ2dst9DBYA2HS8wlQBrGvJ95qaYbaUJnoFoLOhp7p3kFta5cADHsJlleUzWBib4N9aEx6/yegqXDA9RQUY260xx5wzD8ISoaCOuM/Q0iMzGaHZ1hN5SuBdp6dTI4iOFdae9qpc/UHAQbFTQ6BsaIniaIFp86FCPjbkPBQuBZJLJqyopXqnSA42PTO0TafpiGOYV7MDbAE+cpsjedT60phpPxCUCwz9wOT2T3r1pQCBuYTZGtDCQeyWnQr8X4c5WsRx7UDnaJM6V7spojTaaZ6OQKGvS6C9hheE9mTOHj1mAmO4mLlGEBs6Xn3OklcBLBuT2I0FdbDrLfNkrXNJHEHKgyxTB/rnWTQ04Tv4HbYvOLHN5mVnletii1zKqO3TfTLIMGBs+NmxSSgbqgQKUriMjd961ZzkFTru7rgT+/y4f3qneSDXZePmnr2L+6b97KHuHm2Z3UVNd1FjRTJ6f1L4eex3PZ9Hr0jsxSnX7h3HPqDN3j+v/jir+AfWRkZ4tp3YAUAAAAASUVORK5CYII=" alt="ChatGPT Search">
+        <div class="tool-info">
+          <div class="tool-name">ChatGPT Search</div>
+          <div class="tool-what">Web search built into ChatGPT. Good general-purpose.</div>
+        </div>
+        <div class="tool-cost">Incl. w/ ChatGPT</div>
+      </div>
+      <div class="tool">
+        <img class="tool-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAnFBMVEVHcEz7/Pz7/Pz09fX8/f39/v77+/zy8/Py8vP7+/v+/v7////v7/D6+vr09fXv8PHw8vL///9JivQ5qlfsUEP8wBDrSz49rForp01BhfXqPy/4+Pg2gfTU4f3va2CMsff4w7/96ePi8eeLypqf06z61tT0nZe/4chvvoL+7cNPsW7vZ0XV69r90mL+3I4+nZ2NtUmpxPr2oCXFvkFRVdGkAAAAEXRSTlMAfMttPu3cMRi3m0qUUl6msZyb5rsAAAMHSURBVFiF5VfbdqIwFEVBBVu13AOxVBSVaq/T//+3SUIgJxcQu9Y8zW6fTPbOPhfCwbL+HRbOZLn0vOVy4izuJru2N/MBZp7t3kFfTX0DpquR9PXMRGc+1iPozryPTjF3bvGXQ3SK5SDdHTyemxjIpnObTtEbxmoc3/cfzPwHbSMujwQlHqewUDaVpyJKcoIkKk6lsmhoTVfesbvmSRIxJAnRue7kdT2TUvPtirxl0z+KvDjCHVOVP4Grpzxq6Y0C08hPcM+kP4Cy4KdHXQgJN9EfhAf4keDTo0EUUh68ngpg7fTWQq7kcWE2APyT5EdFEZFCmvjQAshAlz9CL3as/CWtic6HWRAlKLvz8wI0z7Ew8EEhxA3SBSDXzMdHlU0w0yMo4yvnGw7U0cZgd798xPE10c/vg63VICb4Q/JXDLAAPDUFr3GjMC4AkQQYAcMVbHrWIRbVNnznAu9AYJtl2VbCi1hsmlHchJwfv0KBQEaWBWLR+YUAgSqw0gTKXoGM/ovF5m580AQGQwg0gfEhZKoDp6cKH1Ag68ANAIGF8ii0ffADBF4EmIEgA2V0jZ0Yf6E334BvRg+2390vbSd2Nzpm/DQMa5MAT8FWdGJ7t4v7hCThJyVAZ53/vG1SGIg3XXujiCy+xl8hFUjDvcrHDT3LtE6GTxPmfBKFqsD5wVZ7liw4lpxRyhVQBen7gJcAdoEYVsBroeYWSB4uZx4tfjugT+4AGgAvBjHZ4E6AmEjrQ1Ud6gtCYXhpAgAZmAs+nE26IFgmEKJkChQyBTBsSGPjHCqEKf8LQ6bCgT6z4NlsQB6vqAIkAgXAV0ct8Hb031Jmu/EQdkroAkvrWQrgJIVrpB+PDj7covKVGXFfIyTTa7mzDFOWNOQQieqCOlwqpTEnOt+yHn0F+3N1IKjO2oPxaOJb1kbd14eNmW/wYEbP+RS2PtVqwHY/nzxWN+f9+a0PsMdBE3jAfgv3qVcCe+M+3RZmCfw0/svPXXtYEsHYW9/z4ch82JvpDBPMphv7/k/X/wl/AdK1zOhq9FqQAAAAAElFTkSuQmCC" alt="Google AI Overviews">
+        <div class="tool-info">
+          <div class="tool-name">Google AI Overviews</div>
+          <div class="tool-what">AI answers at the top of your Google searches. Already live.</div>
+        </div>
+        <div class="tool-cost">Free</div>
+      </div>
+    </div>
   </div>
-  <div class="section-desc">Traditional search gives you links. AI search reads those links for you and gives you the answer directly, with sources.</div>
-  <table>
-    <tr><th>Tool</th><th>What It Does</th><th>Cost</th></tr>
-    <tr><td><strong>Perplexity</strong></td><td>Ask any question, get a sourced answer with citations. Like a research assistant.</td><td>Free tier. Pro: $20/mo</td></tr>
-    <tr><td><strong>ChatGPT Search</strong></td><td>Google-quality search built into ChatGPT. Real-time web data.</td><td>Included with ChatGPT</td></tr>
-    <tr><td><strong>Google AI Overviews</strong></td><td>AI answers at the top of your Google searches. Already live.</td><td>Free (it's just Google)</td></tr>
-  </table>
-  <div class="take"><strong>Brandon's take:</strong> Try Perplexity for your next research question. You get an answer, not 10 blue links to click through.</div>
-</div>
 
-<!-- Section 3 -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-number">3</div>
-    <div class="section-title">AI Automation &mdash; Work That Happens Without You</div>
+  <!-- 3. AI Automation -->
+  <div class="card c3">
+    <div class="card-header">
+      <div class="card-icon">&#9889;</div>
+      <div class="card-title">AI Automation</div>
+    </div>
+    <div class="card-desc">Work that happens without you. Connect apps, automate tasks, answer phones 24/7.</div>
+    <div class="tools">
+      <div class="tool">
+        <img class="tool-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAtFBMVEX/TwD///////3/NAD/PwD/UQn/RwD/uaT/RQT/+/n/SwD/cFH///v/PTX/non/VBP/wrP/KwD/6+f/sKD/AAD/HAD/va3/tZ//4tj/9/P/kYb/y77/1sn/iYH/sZ3/g2H/UB//mov/oZX/TBT/Xy3/iHP/ZDv/i3z/aFD/kn//eV7/aUX/mYL/XlD/kIv/alv/TCj/e1T/WTT/QS3/fWj/qpT/fXD/VVL/NhP/j3L/WDz/cklLhWZvAAACPElEQVRYhe2U23LaMBBAtdJKyLaKbWEbO3axCSThlkIotJD+/391fUlL6Ez6wEs748OMR7DSYbUrmbGenp6env8ORPe29aOgusWAQ4BA3yKYkgA/nOLqDsakqxG1pN+UYpLGTDK8u59RRGEX0dqVFL1YP/c6Kobuw3TqhYxVj3MpvOkTKjZfLOYuE/5yNFwJyXzP88V8/bsqUoyhxVnojakHaUUb5885Da0nvgCMcDaCNqJKgG0Bhb4WcGOyxYsDkHEDRzEEZwyGPnl0R4Jww8HkaV2N0nEGcClg7n61WnkFQL57CYplvDfGfh2C4Qe2zDjgZxLEmbH7KAp49lw6HIp8eFkEpXWcOFCcXBWjnsXW2E/UuzyWgnZxqAUV8OJp+TTmfFU6kIZ4uZ6xmaT/Pwrf9RPT7KYW8CNKpJ1/I8H9jhLitEvHKUmQUC3ftREL4GOs/DDgTjA5dhkMQh+TVkAZQLHYbrffVxUJgvCdwF2nwM+n/X6HGaRxfDJtBtlObS2HWVMDkj5rcR54sz8EfpyDY1JrbbrOwMkHNmsETmYL6ohtu3AEk96PMrCvVMQrQVR05wAOR07PUQJNBhtLXczKsDkHelKHwJyx5FcZSLEZdPzQ5yIdYjk5nuoivgY2LbX2xpNSSXzI0zQ5oPs4mZzxXQ0kig7FVByhVAKx6YKIY2qXWwfoLoRRJOgAKxTXV0u+QUPfr59SUxcS4ft+G2+nNbFfXz/GfXw4rG96D9GlVX+f1dPT09PzL/ETSHAsPjLSHtIAAAAASUVORK5CYII=" alt="Zapier">
+        <div class="tool-info">
+          <div class="tool-name">Zapier <span class="pick-badge">Start here</span></div>
+          <div class="tool-what">Connect 7,000+ apps: "When X happens, do Y"</div>
+        </div>
+        <div class="tool-cost">Free / $20</div>
+      </div>
+      <div class="tool">
+        <img class="tool-logo" src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAEAAQAMBEQACEQEDEQH/xAAaAAEAAwEBAQAAAAAAAAAAAAAABQYHBAMC/8QANRAAAQMDAQQHBQkBAAAAAAAAAQACAwQFEQYHEiFBExQxUZGhsTJCcoHBIyQzUmJxdLLwIv/EABsBAQADAQEBAQAAAAAAAAAAAAADBAUGAgcB/8QALBEAAQQABAQFBAMAAAAAAAAAAAECAwQFERIxQVFxwRMhYbHhQoHR8DIzkf/aAAwDAQACEQMRAD8A3FAEAQBAEAQBAEAQBAEAQBAEAQBAEAQEdqC6R2a0VFdJxLG4Y38zzwaPFWKsCzypGnH2J60CzypGn6hSrBtCnMkdPd6fpS9wa2anGDknhlvP5eC1rWENRFdEuXov5NKzhjW5ujX7L+SLvG0G9UV9ro6R9PJSxTujjjliyAGnHaCDyypIcLhfC1XZ5qnMrJWYrEVdz41HtEv1NRWmppWU9OauB8j2Fm+OEjmgjPeAD80q4XXe57XKq5L2PyKsxyqi8Cd2W6ruupZLk26PicKcRmPo4932t7PoFVxWlFW0LHxz7EVmFseWk0BY5VCAIDLtpl463co7bC7MNL/1JjsMhH0HqV0+D1dESzO3dt0+TqsGp6IFmdu7bp8r7HJoO3tkq6i71Lfu1tjMnHsdIASPAcfBesUmVrEhbu/2IsVk0NSJN3exSJnPdvSSHL3Zc4955rQyRPJCu5qbIWDahRdQFgo8cYLa1h/cHj5qlhUnieK/m4r1V1I5fUl9hH496+GH1eq2PbR/fsQ3vpNcXOFAICO1BdI7PaaitfgljcMafeceAHirFWBbEzY04+xapVltTtiTjv04mHudNV1Jcd6WeZ+T3vcT9Su4yaxnJEPoj2MZHyRE/wARDTLxRN05s7npAR0skYZIR7z3kB3kT8guVilW3iCP4cOibHCLMtq74nDh0TYzOzUfXr1QUuMiWoY1w/TkZ8srdsP8OJzuSKWpl0sVSw7am5vVB/FP9iqWB/1O6laj/Bep7bDBipvXww+r1Hj20f37Ed76TWlzpnhAQeq9PjUNHHAal8Donb7MDLScY4j/AHartG4tR6u055mjhuILSkV+nPP98is6T0ZWW+/dYubIzFTjeicx2Q9/I9/Dt488LTv4pHLBoi3Xf0Q2MTxqKerohXzdv6J8k/rizVt7tUVLQPiDmTCRwkcRvAAjtAPes3D7EdeVXScjAqSsiernFV0fpK62/U8FTcaTchga9wkEjXNLsboHA55nwWjevwy11bG7zXItWbMb4lRq+anRtN0zdr5cqSa2UnTsZAWOPSNbg72eZC8YVcggjc2R2S5+pHTmjjaqOU9Nlem7rYZrm+60vVxOIhH9o129jez7JPeF4xa3DYRiRrnln2PFuVkmWlTQVjFIIAgCAIAgCAIAgCAIAgCAIAgCAID/2Q==" alt="Make">
+        <div class="tool-info">
+          <div class="tool-name">Make</div>
+          <div class="tool-what">Visual workflow builder for complex automations</div>
+        </div>
+        <div class="tool-cost">Free / $9</div>
+      </div>
+      <div class="tool">
+        <div class="tool-logo" style="background:#10B981;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11pt;">&#9742;</div>
+        <div class="tool-info">
+          <div class="tool-name">AI Voice Agents</div>
+          <div class="tool-what">Answers calls, books appointments, 24/7</div>
+        </div>
+        <div class="tool-cost">$50-200/mo</div>
+      </div>
+      <div class="tool">
+        <div class="tool-logo" style="background:#3B82F6;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11pt;">&#9993;</div>
+        <div class="tool-info">
+          <div class="tool-name">AI Email Assistants</div>
+          <div class="tool-what">Drafts replies in your style, you approve</div>
+        </div>
+        <div class="tool-cost">$50-100/mo</div>
+      </div>
+    </div>
   </div>
-  <div class="section-desc">This is where AI goes from "helpful tool" to "it does the work for me." These tools connect your apps and run tasks automatically.</div>
-  <table>
-    <tr><th>Tool</th><th>What It Does</th><th>Cost</th><th>Example</th></tr>
-    <tr><td><strong>Zapier</strong></td><td>Connects 7,000+ apps. "When X happens, do Y."</td><td>Free tier. From $20/mo</td><td>New client email &rarr; auto-create task</td></tr>
-    <tr><td><strong>Make</strong></td><td>Visual workflow builder. More powerful for complex automations.</td><td>Free tier. From $9/mo</td><td>Form submission &rarr; CRM + email + Slack</td></tr>
-    <tr><td><strong>AI Voice Agents</strong></td><td>Answers your phone, books appointments, handles common questions 24/7.</td><td>$50-200/mo</td><td>Customer calls 9 PM &rarr; AI books Tuesday</td></tr>
-    <tr><td><strong>AI Email Assistants</strong></td><td>Reads your inbox, drafts replies in your style, queues for your approval.</td><td>$50-100/mo</td><td>30 overnight emails &rarr; review in 10 min</td></tr>
-  </table>
-  <div class="take"><strong>Brandon's take:</strong> I run a voice agent for my pool company that answers every call. My competitors miss half of theirs. Start with Zapier if you want to dip your toe in.</div>
-</div>
 
-<!-- Section 4 -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-number">4</div>
-    <div class="section-title">AI Content Creation &mdash; Making Things</div>
+  <!-- 4. AI Content Creation -->
+  <div class="card c4">
+    <div class="card-header">
+      <div class="card-icon">&#127912;</div>
+      <div class="card-title">AI Content Creation</div>
+    </div>
+    <div class="card-desc">Create presentations, images, study guides, and slide decks in minutes.</div>
+    <div class="tools">
+      <div class="tool">
+        <img class="tool-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAFAklEQVRYhbVXW2xUVRRde99hpp3pdFKehYJiLZTysDyMPCSm0qAIajB+oNFEjP1AMdoETUBDAgZQJHw0GqMoIRp8kBhjNDRAgy9SBIqBQmgk0AEkLS2F0qGd6bQz52w/5nnn3rZTxPV179777LXOuefusw8hS2it8wE8KSJLAJQDKAbgjbtvA7gEoJGIDgPYz8y3s809FHGpUmqPUqpXsoRSKqSU2q21nnLHxCLiVkrtVEpFsyW2ERJRSu3QWucOd9ZTlVLn7pTYRsgZrXWJHRfZkM8VkYPMPDrTp661oO/XQ4icOonoFT90oAsQAef7YNxbDGf5XLgql8EommQ3qQ5mfoyITg8oQGs9VUTqM8lVWyuCuz5C35FfAJHBl48Irocr4FnzJozCCRYRRLSImS9aBGitPSJygpmnpw8K19Wip2Y7JNw7OHGmjlw3vOvehatiaaaIs0Q0n5l7AYATDhF5L5M89N2X6N6+adjkACC9IfQ3/GmxM/MsEdmcFBpXVSoi55jZSDjCdbXo3r7JNrmjuATOhxbBGF8EEEG1tqC/4SiizReSMTkrnoG3ej1Alm0GrXWUiMqY+SIBgFJqDzOvTgSoay24VfU8pC9sGmiML0Je9Xo45823FdZ/8hi6d26Fa3EF8taus41JE7HbMIwqEhGf1rqNmXMSzmDNGwj9fMw0YETZTPi21YC8XkuydEgoCHJ7Bo2JCwgRUSGLyIp0cun1w1W2C64HO5LBPHIU8rfsHJIcQFbkAMDMbgDLWWK1PTWD9n2AoeFe2gLPyssgp8DzylqwryCrxMOBiCxxIHawpIydvyWfnWVdcBTlwVm57K6Tx1HuQOxUSwkINpkijCkLAIdjwAyV24JZs21c6ULFdFOuYkbqSI0h0mF6pVzbEn5HaO2yVFEf2wX+X+iPWss4I9ZMpDBijOlVQhdwt+BxWYpSwIFYJzMqYaG8GZDO9mREW1cTxuooRrD9Pjj8jv1vd6lDo+pzcwkf57MI8DOAxnQLFTyafD7QNxHPtRaj9vLvtiSD4USzstimjjcyTY0c7+FSAsatQgQO7Oh5AJu75yIMA5+c/QY3w11Zk/eEBd8fj5hs94xmFGasABEdZgD7tdbJtaLcyfjMswE/hCcnAzvDAVT/sQ2B/u4hySMK2PJjHzqD5g33RLn5E8ZLcS3Hu9dv052rZq2B25FjGvD3LT9ePPg2jrT+NSD5ha4reHX/PjT4+032kR7CU3Mse+hrIupJHMdTRKSJObXTDlw5go3HamyJJucXYWHhHEzKKwQR4XrvTZy63oTGG+chEBjhErjbXwdFY+V787M5WFya+v5a60j8OG5OfhSl1A5mfiudaO/5n1Bz+qsBZzwYSHmR2/4aXp5XjtWPOE0+rfUHhmFsANJaMhFxa62PM/PM9OBD/9Rja8OnCEWH1xUZZKCq7AVUzXo6k7yRmRcQUdgkIO4sEZGjzGyqRm2hG/i4cS/qrtZDD9WUApg3dgaqZ7+EaQWmYwZa63ZmXkRE/oTNUhlEZLbW+lCmCAC4FuxA3dV6NLSfRXPgKm71BSAC+Fxe3OudgNljpqFy4kKUFtxnEaW1bieix5m50eK0CS5RSp25ixeT0yJSPCRxhohcpdSHSqnIfyDuV0q9LyI5QzMOvhpfKKWCwyAOKqV2aa3vHyq/tWceWIgXwHIxX899cXcAgB/x6zkR1RJRTzZ5/wXdyH6XrEznkwAAAABJRU5ErkJggg==" alt="NotebookLM">
+        <div class="tool-info">
+          <div class="tool-name">NotebookLM <span style="font-size:6.5pt;color:#78716C;font-weight:400">by Google</span> <span class="pick-badge">Try this</span></div>
+          <div class="tool-what">Upload docs &rarr; get study guides, FAQs, podcast-style audio</div>
+        </div>
+        <div class="tool-cost">Free</div>
+      </div>
+      <div class="tool">
+        <img class="tool-logo" src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAEAAQAMBIgACEQEDEQH/xAAaAAADAQEBAQAAAAAAAAAAAAAABQYHAgQD/8QAMRAAAQIEBQIEBAcBAAAAAAAAAQIDAAQFEQYSEyFhBzEUUXGhM0GB0XKCkZKiscIV/8QAGQEAAwEBAQAAAAAAAAAAAAAAAQMEAgUA/8QAHhEAAwACAgMBAAAAAAAAAAAAAAECERIDMQQTIUH/2gAMAwEAAhEDEQA/AMttBaO7QWjpYJTi0Fo+zDDsw8hmXaW664rKhttJUpR8gB3jRKL0drU6yl2pzkvTs24byayx6gEAH6mM1Uz2wpN9Ga2gtG4yfRaitkKnKpUX7d0oyNpP8SfeM86mYdk8NYmTI01C0Sy5Vt5IWsqNyVA7nlMZnkmnhGnDSyyRtBaO7QWhmDB1aC0dWgtDMHjbOjGFmZOkivzTYVOTd9AqHwmr225Va9/K3MevHvUtjDU4qm06WROT6AC8Vryts3FwDbcqtY222PeKfBZaOD6GWfh/89i37BGETTztN6luvz9szVZK3tTtkLt7m/yyH9IiifZyU6/BzesrA2PUrG9WuKa0kA9vAyBcPvmifxU3ih5UvPYqbnMywW2XJpAQSBuQAALd/KN/lMW4dmp9mnSNYk5iZeJS22w5nzEAk7jbsDEv1xlNbCUvMDvLTiFH0UlSf7IgxyLdLXAHPzOTCbQWjq0Fos1FHu8NxB4biGujxBo8RXohexpPSLErRkU4enXAl9okypUfiIJuUeoN9vL0h7jLAFNxQ6JsuKlJ8Jy67aQoLA7BSfnbzuDGNBopUFJuCDcEHcGK6lY+xBINJacWzOoTsDMoJUB+IEE/W8RcviUr34mNnlnGKH2G+laaLWJWpOVhTrks5nShuXyA/KxJUfkYo+o0mJ3BNWaIvkZ1h+RQX/mIiZ6lVxwWYlpFkeeRSj7qt7QlqGLcRVBpxmYqK9FxJSttDaEgpOxGwv7wteLz1aq2vgfbCWERfhuIPDcQ10eINHiOjohOwy0INGGejxBowwm3FMxLLWytLS9NZFkrte0TUzQqqpRzEP8AOp94u9DiDRjFQq7CrwQktQqqlQyqDHOr9opWJZaGUJdXqLAspVrXMNtHiDR4gzCno8+QWaMGhDPRg0eI0Dc//9k=" alt="Gamma">
+        <div class="tool-info">
+          <div class="tool-name">Gamma</div>
+          <div class="tool-what">Describe a deck &rarr; it builds polished slides for you</div>
+        </div>
+        <div class="tool-cost">Free / $10</div>
+      </div>
+      <div class="tool">
+        <img class="tool-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAY1BMVEX///8AAACYmJj5+fnz8/P29vaOjo4YGBjQ0NDDw8Pl5eXX19dQUFDLy8t1dXWfn5+tra0uLi47Ozu2trZfX19oaGhLS0s0NDQmJiaHh4dubm4gICBGRkbt7e0KCgoSEhJ+fn57FpRlAAACjUlEQVRYhe1WW4OyIBB1Ak0EL3kpM63+/6/8mAGR6kPdfdqHzsPGKnPmdhiMoi+++OPgaZ7L35tXJyB0v+MQN3Ao2M/tS213SoTMK4Wrqhjrc1tNu+0rgEdj19nZi4Xvs8+009gFc0fTizI55bsIdNizvXhoK5XSOh/1ugmbOUiAyoZCFVi86tQg2yY4ANAve2LQlf+qAai3zKfkCK3dDPC0ucxi0Jxi3f6KZom1bzPn+GbsOBj2EHgNM8HB+ZIjPVTE1gGs6Ir1AGfZzwT0LC4oFfxzZSSxFT0NWitRdPQJKiugSb+DexPlAGnQPqcEmUeQYkqXbMlE6QjCp0uLlvsEbDAKdrUkUUJQz5NONfIJEGVJ2dst9DBYA2HS8wlQBrGvJ95qaYbaUJnoFoLOhp7p3kFta5cADHsJlleUzWBib4N9aEx6/yegqXDA9RQUY260xx5wzD8ISoaCOuM/Q0iMzGaHZ1hN5SuBdp6dTI4iOFdae9qpc/UHAQbFTQ6BsaIniaIFp86FCPjbkPBQuBZJLJqyopXqnSA42PTO0TafpiGOYV7MDbAE+cpsjedT60phpPxCUCwz9wOT2T3r1pQCBuYTZGtDCQeyWnQr8X4c5WsRx7UDnaJM6V7spojTaaZ6OQKGvS6C9hheE9mTOHj1mAmO4mLlGEBs6Xn3OklcBLBuT2I0FdbDrLfNkrXNJHEHKgyxTB/rnWTQ04Tv4HbYvOLHN5mVnletii1zKqO3TfTLIMGBs+NmxSSgbqgQKUriMjd961ZzkFTru7rgT+/y4f3qneSDXZePmnr2L+6b97KHuHm2Z3UVNd1FjRTJ6f1L4eex3PZ9Hr0jsxSnX7h3HPqDN3j+v/jir+AfWRkZ4tp3YAUAAAAASUVORK5CYII=" alt="ChatGPT Images">
+        <div class="tool-info">
+          <div class="tool-name">ChatGPT Images <span style="font-size:6.5pt;color:#78716C;font-weight:400">DALL-E</span></div>
+          <div class="tool-what">Create any image from a text description</div>
+        </div>
+        <div class="tool-cost">Incl. w/ Plus</div>
+      </div>
+      <div class="tool">
+        <img class="tool-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAABmFBMVEVHcEzxpiEvvG2l0VCudKQdtXmDy2TrU1lciO3kVmMzh/82ltnfkkHofUQ0kO0euW9BjPpBhvnywxs6qqf5RUT0Yz8zh/8xhv+a1Fn1SEpMwWwUuWgxhv85mN33vBj2R0ijvla7a5kOumL3pRwWtnTyryIzhv/uY07b0TFCwWfxxx5Mob2JwmfxaUDC1UPtbEnPYoBtyWXvXFI5oc+DgdT4RkW91UUxhv8yhv80h/42ivo5jfY5h/46ke9AiPxHivdRifI7l+DRZHzwTVE8mtc8lOgUuWj4uxb3R0ZqhuM4ocM7nc1CpLtivH7Dao12x2tZt4qjeLCXfbwzp7EosI5QspbdW21OrKO5zUKBg8/uxB9uwXRJqLC4b5mLf8d3hNngxyovq6GRz1zNzDZAsZNNleTrtiKUwlqdq2/qkTJgjeQwtX/QeHa7gYyljJ9gw29emtG1lnZtrJPQuDVHun7gaGboaFfZgFxNn8mov06NoZLeqDLTmUlporNvkdRMwG+FkL6DvGq/ola6tkeOlqx7tHp2mb/IjmhHIydbAAAAN3RSTlMA/v7+/P7+/v7+2RIS/lQvykMt9y1S8oHMgU2BKvSB3PRI9NvaQrDE2tro7/ewVdTWsNOvsPKvk5yoeQAAAu1JREFUWIXNlflT2kAYhlcUtRprq+KBjkxHrceMvVsRFFAwjVpBKyq1l1ZCUwtiRBFvi9e/3W+zSwihULKZ6fT9/XnyfnsFof89bW0meUEwZ+gShC5TAocgOMzwnCAIfs6EACbw15mZ4bXg99fdY+dtCr/6iFngEDC/+oyVbyMFpoOsFRyUD9aw8TbCTwc/L7FVUPmapfcs/KiG//LKOG/T8h++PjTKc4X87GyjQUGdjq+vN8a/SB8cFPK+B0b4QT3v8/m8BgyD6fRBPJ7Q8l6vx1Ox4Wk6fRiPBxM63uNpqAjnmpoOgU8kdgi/rfKeifYK9sLWpAgwf32p5SeU3P8bP6rwd3JiZwf4c5VX6HHI4/Kf/wE5Pb2TZcxfnp8X8eNOZ+kSA32Ez8qyfHx9eQv8tpjjKY3T8OdzPdBXBTk5Oc1mZen4+Pr2dndX4d0eilPeOTZWrOB6q6oon8pmJRCcnWFenMzzKo7T3qHZkJbevrc4sVjsJJW6upIkaW8PC0RR9LpBkKcprqSho4fyhMZ8LAWCI0m6wYJMJiDOTLrdLldOMKZPj0awDtnYwAWOvv8CwdqnTEac0giKaFUAI4ysE35jaytylBO8ywRAMFlSoI5AFnGE8lAABAuLWDAfyFVw6g0Fi0i3cQj4rUikGgQfFxZXwDCfr1C4BCVOQssQFYSoYC5fQbuKJXCcJxEQVH+rDekruDQbWf4+vSkQaCtQQ/nLhEuAoISh/E1SwxVVyBsqeVAgnUUVFIPLVdmTphiIYKUV1nF+Kmcw8Cx3FlYgBkM/hk4iiK4tqwZDPEK1oVByYTEabV2eI4YZYzziakGwH41uLlOD0Z8rsoeSyf28oYL91+c5FSiGl8Z5hJIXF/s/w2HFwMIjOxYQA8MAOMMXFiwIb7ay8ajZYiGGZkYBGrZYrFZruJ+VR3ZFYLUzC5CF53mrlZ1H3cDz3SYEjdCAN3yItennefYlxIEZzEwAR4HnmQ8BNZjk/0F+A/QHUwmIl9HnAAAAAElFTkSuQmCC" alt="Gemini Images">
+        <div class="tool-info">
+          <div class="tool-name">Gemini Images <span style="font-size:6.5pt;color:#78716C;font-weight:400">by Google</span></div>
+          <div class="tool-what">Image generation inside Gemini &amp; Google tools</div>
+        </div>
+        <div class="tool-cost">Free / $20</div>
+      </div>
+    </div>
   </div>
-  <div class="section-desc">AI can create images, write drafts, edit video, and build presentations. Good enough for most business uses.</div>
-  <table>
-    <tr><th>Tool</th><th>What It Creates</th><th>Cost</th></tr>
-    <tr><td><strong>ChatGPT / DALL-E</strong></td><td>Images from text descriptions</td><td>Included with Plus</td></tr>
-    <tr><td><strong>Canva AI</strong></td><td>Presentations, social media graphics, marketing materials</td><td>Free tier. Pro: $13/mo</td></tr>
-    <tr><td><strong>Gamma</strong></td><td>Slide decks from a text outline &mdash; describe it, it builds the deck</td><td>Free tier. Plus: $10/mo</td></tr>
-    <tr><td><strong>NotebookLM</strong> <span style="color:#78716C;font-size:8pt">(Google)</span></td><td>Turns documents into study guides, FAQs, or podcast-style audio</td><td>Free</td></tr>
-    <tr><td><strong>Descript / CapCut</strong></td><td>Video editing &mdash; auto-captions, remove filler words, edit by editing text</td><td>Free tiers available</td></tr>
-  </table>
-  <div class="take"><strong>Brandon's take:</strong> Canva + ChatGPT image generation handles 90% of what most professionals need. Pick two tools and get good at them.</div>
+
 </div>
 
-<!-- Start Here -->
-<div class="start-here">
-  <h2>Where to Start (This Week)</h2>
-  <ol>
-    <li><strong>Create a free ChatGPT account</strong> at chatgpt.com</li>
-    <li><strong>Set up Custom Instructions</strong> &mdash; tell it your role, industry, and how you like responses</li>
-    <li><strong>Use it for your next 5 tasks</strong> instead of Google or doing it manually</li>
-    <li><strong>Try Perplexity</strong> (perplexity.ai) for your next research question</li>
-    <li><strong>Pick one repetitive task</strong> you do weekly and ask ChatGPT: "How would I automate this?"</li>
-  </ol>
-</div>
-
-<!-- Honest Truth -->
-<div class="truth">
-  <h2>The Honest Truth</h2>
-  <ul>
-    <li><strong>You don't need all of these tools.</strong> Most people need 2-3, tops.</li>
-    <li><strong>AI won't replace you.</strong> But someone who uses AI will work faster than someone who doesn't.</li>
-    <li><strong>The tools change every few months.</strong> What matters is learning how to work with AI, not memorizing buttons.</li>
-    <li><strong>Start small.</strong> One tool, one task, this week.</li>
-  </ul>
+<!-- Bottom -->
+<div class="bottom">
+  <div class="start-box">
+    <h2>Start Here (This Week)</h2>
+    <ol class="steps">
+      <li><strong>Create a free ChatGPT account</strong> at chatgpt.com</li>
+      <li><strong>Set up Custom Instructions</strong> &mdash; tell it your role and how you like answers</li>
+      <li><strong>Use it for 5 real tasks</strong> instead of Google or doing it manually</li>
+      <li><strong>Try Perplexity</strong> (perplexity.ai) for your next research question</li>
+      <li><strong>Pick one repetitive task</strong> and ask: "How would I automate this?"</li>
+    </ol>
+  </div>
+  <div class="truth-box">
+    <h2>The Honest Truth</h2>
+    <div class="truth-item"><span class="truth-check">&#10003;</span><div><strong>You need 2-3 tools, not 50.</strong> Start with ChatGPT + Perplexity. Add more only when you hit a limit.</div></div>
+    <div class="truth-item"><span class="truth-check">&#10003;</span><div><strong>AI won't replace you.</strong> But someone who uses AI will work faster than someone who doesn't.</div></div>
+    <div class="truth-item"><span class="truth-check">&#10003;</span><div><strong>Tools change every few months.</strong> Learn how to work with AI, not which button to click.</div></div>
+    <div class="truth-item"><span class="truth-check">&#10003;</span><div><strong>Start small.</strong> One tool. One task. This week. That's all it takes.</div></div>
+  </div>
 </div>
 
 <!-- Footer -->
 <div class="footer">
-  <div>
+  <div class="footer-left">
     <strong>Learn &amp; Leverage AI</strong> &nbsp;|&nbsp; learnandleverageai.com &nbsp;|&nbsp; (302) 416-6285
   </div>
-  <a href="https://learnandleverageai.com/workshops" class="cta">Join the Free Workshop Waitlist</a>
+  <a href="https://learnandleverageai.com/workshops" class="footer-cta">Join the Free Workshop Waitlist &rarr;</a>
 </div>
 
 </body>

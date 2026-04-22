@@ -12,7 +12,7 @@ Copy this email, fill in the [brackets] with your information, and send it to yo
 
 Hi [Manager's Name],
 
-I attended an AI workshop this past Saturday hosted by LearnAndLeverageAI in Wilmington, DE. It was a hands-on, 4-hour session where I learned how to use AI tools like ChatGPT and Claude to write emails faster, summarize documents, analyze data, and automate repetitive tasks.
+I attended an AI workshop this past Thursday evening hosted by Learn & Leverage AI in Newark, DE. It was a hands-on, 2-hour session where I learned how to use AI tools like Claude and ChatGPT to write emails faster, summarize documents, analyze data, and automate repetitive tasks.
 
 I walked out with 3 AI tools set up and working for my actual job tasks — not theory, real tools I used on Monday.
 

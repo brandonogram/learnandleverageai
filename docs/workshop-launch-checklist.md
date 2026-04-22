@@ -5,11 +5,15 @@
 **Venue:** Hilton Christiana, 100 Continental Dr, Newark, DE 19713
 **Goal:** 25 attendees → $25K+ in on-the-spot upsells
 
-Last audited: 2026-03-29 08:00 AM ET by Claude Code (cron ws-audit)
+Last audited: 2026-04-03 3:20 PM ET by Elon — POST-WORKSHOP CLOSEOUT
 
-**AUDIT NOTES (Mar 29 8AM):** 4 days out. 2 registrations. $250.52 spent on Meta. Overnight session: deployed CRO fixes (venue photo, social proof bar, deadline extension to Apr 1, "Prompt Engineering" removed from agenda), created /ai-for-beginners SEO page, drafted 9 new outreach emails + 5 follow-ups + Craigslist/Reddit posts. 13 event calendar sites identified for submission. Git push access fixed (brandonbot67 invited as collaborator). All remaining unchecked items still need Brandon except event calendar submissions which Claude will do today.
+**AUDIT NOTES (Apr 3 3:20PM):** Workshop is complete. Actual attendance was 2 (Brianna from DEBCC + Steve, retired IT). Upsells: $0. This launch checklist is now historical; the remaining unchecked items below were either Brandon-owned/UI-only blockers before the event or became irrelevant once the workshop happened. Follow-up now lives in `docs/post-workshop-next-steps.md` and `~/shared-brain/tasks/current.md`. Temporary launch-audit cron disabled after Apr 3 per prompt.
 
-**STATUS: 2 registrations. $250.52 spent (Meta $15/day + LinkedIn $25/day). 558 LPV. 4 days out. CRO fixes deployed. Outreach emails + event calendar submissions ready for today. Brandon's personal posts remain the highest-leverage unpulled action.**
+**AUDIT NOTES (Apr 2 8:50AM):** 🚨 WORKSHOP TONIGHT — 6-8 PM ET. Registrations: STILL 2. No change since midnight audit. All internal infrastructure confirmed complete. Zero new registrations overnight — paid ads ceiling at 0.36% on 622+ LPV confirmed. GHL A2P still pending. GHL workflows still not built. Personal outreach STILL NOT DONE. Brandon has ~9 hours to text/post his personal network — this is the ONLY remaining lever. Chief: communicate to Brandon immediately if not already done. exec blocked in cron context — paperclip report did not run.
+
+**AUDIT NOTES (Apr 1 8:50AM):** Workshop is TOMORROW. Venue remains confirmed. Checklist still has the same Brandon-owned / UI-only / public-action blockers open: personal posting/outreach, GHL workflows, Typeform survey, Eventbrite, FB/IG polish, and GHL A2P/phone/UI items. `~/ai-agent-os/learnandleverage-ai/CLAUDE.md` was still missing during this audit, so launch context came from the checklist, PRD, shared priorities, assignments, CONTEXT, and recent changelog. No new safe internal automations were available from this cron without making external/public changes. Critical path remains Brandon execution today, not more asset creation.
+
+**STATUS: Workshop held Apr 2. Actual attendance: 2. Upsells: $0. Next priority is attendee follow-up and product-pilot execution, not more launch prep.**
 
 ---
 
@@ -59,10 +63,10 @@ Last audited: 2026-03-29 08:00 AM ET by Claude Code (cron ws-audit)
 - [x] LinkedIn ad campaign LIVE — $25/day, Lead Gen Form, targeting JPMorgan/Capital One/DuPont/AstraZeneca managers+ in NCC ✅ (Mar 25)
 - [x] LinkedIn posts written (5 posts) — `marketing/linkedin-posts-ready.md` ✅
 - [x] Nextdoor posts written (2 posts) ✅
-- [ ] **LinkedIn Post 1 POSTED** — Brandon edited copy, needs to paste and post. **BRANDON.** (30 sec)
-- [ ] Nextdoor posts POSTED — **BRANDON.** (2 min)
-- [ ] Facebook follow-up posts — **BRANDON.**
-- [ ] Eventbrite listing — venue confirmed, can create now. reCAPTCHA may block automation.
+- [ ] **LinkedIn Post 1 POSTED** — Brandon edited copy, needs to paste and post. **BRANDON.** (30 sec) _(still open at audit 2026-04-01 08:50 AM ET)_
+- [ ] Nextdoor posts POSTED — **BRANDON.** (2 min) _(still open at audit 2026-04-01 08:50 AM ET)_
+- [ ] Facebook follow-up posts — **BRANDON.** _(still open at audit 2026-04-01 08:50 AM ET)_
+- [ ] Eventbrite listing — venue confirmed, can create now. reCAPTCHA/manual flow likely blocks automation. _(still open at audit 2026-04-01 08:50 AM ET)_
 - [x] Send venue update texts to Steven + Adam — SENT via Twilio ✅ (Mar 25)
 
 ## TRAINING MATERIALS
@@ -79,8 +83,8 @@ Last audited: 2026-03-29 08:00 AM ET by Claude Code (cron ws-audit)
 
 ## POST-WORKSHOP SYSTEMS
 
-- [ ] Typeform survey — **BRANDON.** (5 min)
-- [ ] GHL workflows for post-workshop sequences — **BRANDON.** (needs UI)
+- [ ] Typeform survey — **BRANDON.** (5 min) _(still open at audit 2026-04-01 08:50 AM ET)_
+- [ ] GHL workflows for post-workshop sequences — **BRANDON.** (needs UI) _(still open at audit 2026-04-01 08:50 AM ET)_
 
 ## META / FACEBOOK / INSTAGRAM
 
@@ -88,9 +92,9 @@ Last audited: 2026-03-29 08:00 AM ET by Claude Code (cron ws-audit)
 - [x] FB cover photo uploaded via Chrome CDP ✅ (Mar 24)
 - [x] Instagram @learnandleverageai — profile pic + bio ✅ (Mar 23)
 - [x] Meta ad campaign LIVE ✅
-- [ ] FB profile picture upload — **BRANDON** from phone (30 sec)
-- [ ] FB CTA button — **BRANDON** (1 min)
-- [ ] IG website + display name — **BRANDON** via mobile (2 min)
+- [ ] FB profile picture upload — **BRANDON** from phone (30 sec) _(still open at audit 2026-04-01 08:50 AM ET)_
+- [ ] FB CTA button — **BRANDON** (1 min) _(still open at audit 2026-04-01 08:50 AM ET)_
+- [ ] IG website + display name — **BRANDON** via mobile (2 min) _(still open at audit 2026-04-01 08:50 AM ET)_
 
 ## VOICE / PHONE
 
@@ -98,8 +102,8 @@ Last audited: 2026-03-29 08:00 AM ET by Claude Code (cron ws-audit)
 - [x] A2P 10DLC on Twilio ✅
 - [x] Custom voice agent ✅
 - [x] GHL Voice AI agent created via API ✅
-- [ ] GHL A2P registration — **RESUBMITTED** Mar 26 with checkbox, consent language, DBA, compliance fixes. Pending review.
-- [ ] GHL phone number — blocked by A2P
+- [ ] GHL A2P registration — **RESUBMITTED** Mar 26 with checkbox, consent language, DBA, compliance fixes. Pending review. _(still open at audit 2026-04-01 08:50 AM ET)_
+- [ ] GHL phone number — blocked by A2P _(still open at audit 2026-04-01 08:50 AM ET)_
 
 ## CAMPAIGN PERFORMANCE (as of Mar 29 8AM audit)
 

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Workshop - Learn & Leverage AI</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:#f5f5f5;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',sans-serif;overflow:hidden;height:100vh;width:100vw}
+.slide{display:none;height:100vh;width:100vw;padding:36px 56px;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.slide.active{display:flex}
+h1{font-size:64px;font-weight:700;line-height:1.1;margin-bottom:20px;letter-spacing:-1px}
+h2{font-size:46px;font-weight:600;line-height:1.2;margin-bottom:16px;color:#ccc}
+h3{font-size:36px;font-weight:500;line-height:1.3;color:#aaa}
+p{font-size:30px;line-height:1.4;color:#ddd;max-width:92%}
+.accent{color:#4fc3f7}
+.gold{color:#ffd54f}
+.green{color:#81c784}
+.orange{color:#ffb74d}
+.red{color:#ef5350}
+.big{font-size:80px;font-weight:800}
+.medium{font-size:48px}
+.small-note{font-size:24px;color:#888;margin-top:16px}
+ul{list-style:none;text-align:left;font-size:30px;line-height:1.7}
+ul li{margin-bottom:6px}
+ul li::before{content:"";display:inline-block;width:10px;height:10px;background:#4fc3f7;border-radius:50%;margin-right:14px;vertical-align:middle}
+.race-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;text-align:left;font-size:28px;margin-top:16px;width:90%}
+.race-item{padding:18px;border-left:4px solid #4fc3f7;background:#111}
+.race-item strong{font-size:36px;display:block;margin-bottom:6px}
+.race-item span{color:#aaa}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:16px;text-align:left;width:92%}
+.vs-bad{padding:22px;background:#1a1a1a;border-left:4px solid #ef5350;border-radius:8px}
+.vs-good{padding:22px;background:#1a1a1a;border-left:4px solid #81c784;border-radius:8px}
+.vs-bad p,.vs-good p{font-size:24px;line-height:1.5}
+.vs-bad h3,.vs-good h3{font-size:30px;margin-bottom:8px}
+.vs-neutral{padding:22px;background:#1a1a1a;border-left:4px solid #4fc3f7;border-radius:8px}
+.vs-neutral h3{font-size:30px;margin-bottom:8px}
+.vs-neutral p{font-size:24px;line-height:1.5}
+.price-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:16px;text-align:left;width:92%}
+.price-card{background:#1a1a1a;padding:20px;border-radius:12px;border:1px solid #333}
+.price-card h3{color:#fff;font-size:28px;margin-bottom:4px}
+.price-card .price{font-size:38px;color:#ffd54f;font-weight:700}
+.price-card p{font-size:20px;color:#aaa}
+.counter{position:fixed;bottom:14px;right:22px;font-size:16px;color:#444}
+.section-label{font-size:22px;text-transform:uppercase;letter-spacing:4px;color:#4fc3f7;margin-bottom:12px}
+.quote{font-style:italic;font-size:44px;line-height:1.4;border-left:4px solid #ffd54f;padding-left:28px;text-align:left;max-width:88%}
+.steps{text-align:left;font-size:28px;line-height:1.9}
+.steps p{margin-bottom:4px}
+.steps strong{color:#4fc3f7}
+.contact{font-size:32px;line-height:1.9}
+table{border-collapse:collapse;margin-top:16px;font-size:26px;width:85%;text-align:left}
+table th{color:#4fc3f7;padding:10px 16px;border-bottom:2px solid #333;font-weight:600}
+table td{padding:10px 16px;border-bottom:1px solid #222}
+table td:first-child{font-weight:600;color:#fff}
+.safe-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:12px;text-align:left;width:90%}
+.safe-box{padding:20px;background:#111;border-radius:8px}
+.safe-box h3{font-size:28px;margin-bottom:10px}
+.safe-box ul{font-size:24px;line-height:1.6}
+.safe-box ul li::before{width:8px;height:8px;margin-right:10px}
+.example-box{background:#111;border-radius:8px;padding:20px;text-align:left;width:90%;margin-top:12px;font-size:24px;line-height:1.5;color:#ccc;border-left:4px solid #4fc3f7}
+.example-box .label{color:#4fc3f7;font-weight:600;font-size:20px;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+</style>
+</head>
+<body>
+
+<!-- 1: Title -->
+<div class="slide active" id="s1">
+<h1>AI Hands-On Workshop</h1>
+<h2>See What AI Can Actually Do <span class="accent">for Your Job</span></h2>
+<p>Thursday, April 2, 2026 &nbsp;|&nbsp; 6:00&ndash;8:00 PM</p>
+<p>Hilton Christiana &nbsp;|&nbsp; Newark, DE</p>
+<p class="small-note">Learn & Leverage AI</p>
+</div>
+
+<!-- 2: Tonight's Promise -->
+<div class="slide" id="s2">
+<div class="section-label">Tonight's Promise</div>
+<h1>You're walking out with <span class="accent">3 things</span></h1>
+<ul>
+<li><strong class="gold">The RACE Framework</strong> &mdash; a simple method for getting useful results from AI every time</li>
+<li><strong class="gold">A Personalized AI Setup</strong> &mdash; custom instructions so AI knows your role, industry, and style permanently</li>
+<li><strong class="gold">A Working Prompt for Your Job</strong> &mdash; something you built, tested, and will use at work this week</li>
+</ul>
+<p class="small-note">No theory. No lectures. You'll do all three yourself, tonight, on your own laptop.</p>
+</div>
+
+<!-- 3: Brandon -->
+<div class="slide" id="s3">
+<div class="section-label">Your Instructor</div>
+<h1>Brandon Calloway</h1>
+<p style="margin-bottom:16px">I'm not a professor. I'm a business operator.<br>I run five businesses &mdash; and every one of them runs on AI.</p>
+<ul>
+<li><strong class="accent">Pool Cleaning Dude</strong> &mdash; AI handles scheduling, follow-ups, and every customer call</li>
+<li><strong class="accent">Christmas Lights Dude</strong> &mdash; AI manages quoting, booking, and customer inquiries</li>
+<li><strong class="accent">Call2Calendar</strong> &mdash; AI voice agents that answer phones 24/7 for other businesses</li>
+</ul>
+<p class="small-note">I built this workshop because I kept meeting smart professionals who knew AI mattered but had no idea where to start.</p>
+</div>
+
+<!-- 4: Show of Hands -->
+<div class="slide" id="s4">
+<h1>Quick Show of Hands</h1>
+<ul style="font-size:36px;line-height:2.2">
+<li>Who has used ChatGPT before? Even once?</li>
+<li>Who uses AI regularly at work?</li>
+<li>Who has literally never opened an AI tool?</li>
+</ul>
+<p style="margin-top:24px;font-size:34px">Look around. You're not alone.<br><span class="accent">That's exactly why we're here.</span></p>
+</div>
+
+<!-- 5: Hour 1 -->
+<div class="slide" id="s5">
+<div class="section-label">Hour 1</div>
+<h1 class="big">What AI Actually Is</h1>
+<h2>+ How to Use It</h2>
+</div>
+
+<!-- 6: AI = Prediction -->
+<div class="slide" id="s6">
+<h1>AI Is a <span class="accent">Prediction Machine</span></h1>
+<p style="font-size:34px;margin-bottom:16px">Not magic. Not sentient. Not taking over the world.</p>
+<p style="font-size:34px">You type what you need &mdash; in plain English &mdash; and AI predicts the most useful response.</p>
+<p style="margin-top:24px;font-size:38px"><span class="gold">If you can write an email, you can use AI.</span></p>
+<p class="small-note">No coding. No software to install. No technical skills required.</p>
+</div>
+
+<!-- 7: Big 4 Tools -->
+<div class="slide" id="s7">
+<h1>The Big 4 AI Tools</h1>
+<table>
+<tr><th>Tool</th><th>Best For</th><th>Free?</th></tr>
+<tr><td class="accent">ChatGPT</td><td>Most popular, great all-around</td><td>Yes</td></tr>
+<tr><td class="accent">Claude</td><td>Writing, nuance, long documents</td><td>Yes</td></tr>
+<tr><td class="accent">Microsoft Copilot</td><td>If your company uses Office 365</td><td>With subscription</td></tr>
+<tr><td class="accent">Google Gemini</td><td>If you use Google Workspace</td><td>Yes</td></tr>
+</table>
+<p class="small-note">My recommendation: Start with ChatGPT or Claude. Both free. Both powerful. Don't overthink it.</p>
+</div>
+
+<!-- 8: Live Demo -->
+<div class="slide" id="s8">
+<div class="section-label">Live Demo</div>
+<h1>Watch This</h1>
+<p style="margin-bottom:16px;font-size:28px">Three things AI can do in under 60 seconds each:</p>
+<ul style="font-size:32px">
+<li><strong class="green">Summarize</strong> &mdash; Paste a 3-page report &rarr; 5 bullet points in 5 seconds</li>
+<li><strong class="green">Write</strong> &mdash; "Write a professional email declining a meeting" &rarr; Ready to send</li>
+<li><strong class="green">Explain</strong> &mdash; "Explain quarterly results to someone new to finance" &rarr; Instant simplification</li>
+</ul>
+<p class="small-note">No coding. No software install. Just English.</p>
+</div>
+
+<!-- 9: Safety -->
+<div class="slide" id="s9">
+<h1>Using AI <span class="orange">Safely</span> at Work</h1>
+<p style="font-size:28px;margin-bottom:16px">Three rules. That's it.</p>
+<ul style="font-size:30px">
+<li><strong class="orange">CHECK</strong> &mdash; Before you trust any AI output, verify the facts. AI is confident even when it's wrong.</li>
+<li><strong class="orange">NEVER PASTE</strong> confidential data &mdash; No SSNs, proprietary financials, trade secrets, or customer PII into free AI tools.</li>
+<li><strong class="orange">KNOW THE DIFFERENCE</strong> &mdash; Free AI tools may train on your data. Your company's approved tools typically don't. Ask your IT team which tools are approved.</li>
+</ul>
+</div>
+
+<!-- 10: Safety Checklist -->
+<div class="slide" id="s10">
+<h1>Quick Safety Checklist</h1>
+<div class="safe-grid">
+<div class="safe-box" style="border:1px solid #81c784">
+<h3 class="green">Safe to Paste</h3>
+<ul>
+<li>General business writing (emails, reports, summaries)</li>
+<li>Public information</li>
+<li>Your own notes and ideas</li>
+<li>Job descriptions, meeting agendas</li>
+</ul>
+</div>
+<div class="safe-box" style="border:1px solid #ef5350">
+<h3 class="red">Never Paste</h3>
+<ul>
+<li>Social Security numbers or personal data</li>
+<li>Proprietary financial data</li>
+<li>Trade secrets or confidential IP</li>
+<li>Customer information</li>
+<li>Anything marked "confidential" or "internal only"</li>
+</ul>
+</div>
+</div>
+<p class="small-note">When in doubt, don't paste it. Use your company's approved AI tools for sensitive work.</p>
+</div>
+
+<!-- 11: RACE Framework -->
+<div class="slide" id="s11">
+<div class="section-label">The Framework</div>
+<h1 style="letter-spacing:12px;font-size:72px;margin-bottom:8px"><span style="color:#ef5350">R</span> <span style="color:#ffd54f">A</span> <span style="color:#4fc3f7">C</span> <span style="color:#81c784">E</span></h1>
+<p style="margin-bottom:16px;font-size:28px">Four letters that change everything.</p>
+<div class="race-grid">
+<div class="race-item" style="border-color:#ef5350"><strong style="color:#ef5350">R &mdash; Role</strong><span>Tell AI who to be. "You are a senior financial analyst."</span></div>
+<div class="race-item" style="border-color:#ffd54f"><strong style="color:#ffd54f">A &mdash; Action</strong><span>Tell AI exactly what to do. Not "help me" &mdash; be specific.</span></div>
+<div class="race-item" style="border-color:#4fc3f7"><strong style="color:#4fc3f7">C &mdash; Context</strong><span>Give AI the details. Company, situation, audience, goal.</span></div>
+<div class="race-item" style="border-color:#81c784"><strong style="color:#81c784">E &mdash; Expectations</strong><span>Tell AI the format. Length, tone, structure &mdash; what "good" looks like.</span></div>
+</div>
+</div>
+
+<!-- 12: Bad vs RACE -->
+<div class="slide" id="s12">
+<h1>Bad Prompt vs <span class="green">RACE Prompt</span></h1>
+<div class="vs">
+<div class="vs-bad">
+<h3 class="red">Bad Prompt</h3>
+<p style="font-size:28px;color:#fff;margin-bottom:8px">"Write me an email."</p>
+<p>&rarr; Generic. Boring. Sounds like a robot.</p>
+</div>
+<div class="vs-good">
+<h3 class="green">RACE Prompt</h3>
+<p><strong style="color:#ef5350">Role:</strong> You are a senior project manager at a pharma company.<br>
+<strong style="color:#ffd54f">Action:</strong> Write an email to my team.<br>
+<strong style="color:#4fc3f7">Context:</strong> We need to move the Q3 deadline from June 15 to May 30 due to FDA feedback.<br>
+<strong style="color:#81c784">Expectations:</strong> Under 200 words. Professional. Include 3 action items.</p>
+<p style="margin-top:8px;color:#81c784">&rarr; Exactly what you'd need. Ready to send.</p>
+</div>
+</div>
+<p style="margin-top:16px;font-size:30px"><span class="gold">Same AI. Same task. Completely different output.</span></p>
+</div>
+
+<!-- 13: Iteration -->
+<div class="slide" id="s13">
+<h1>The Power of <span class="accent">Iteration</span></h1>
+<p style="font-size:32px;margin-bottom:16px">AI is not one-and-done. Talk to it like a colleague.</p>
+<ul style="font-size:32px">
+<li>"Make the tone warmer &mdash; these are people I've worked with for 5 years."</li>
+<li>"Cut this in half."</li>
+<li>"Rewrite this for a C-suite presentation."</li>
+<li>"Add a section about timeline risks."</li>
+</ul>
+<p style="margin-top:20px;font-size:30px"><span class="gold">The first prompt is just the start. The people who win at AI iterate.</span></p>
+</div>
+
+<!-- 14: Context = Secret Weapon -->
+<div class="slide" id="s14">
+<h1>The Secret Weapon: <span class="gold">Context</span></h1>
+<p style="font-size:30px;margin-bottom:12px">Here's what separates okay results from great results.</p>
+<div class="vs" style="margin-top:12px">
+<div class="vs-bad" style="border-color:#666">
+<h3 style="color:#888">Without Context</h3>
+<p>AI gives you generic answers that could apply to anyone.</p>
+</div>
+<div class="vs-good">
+<h3 class="green">With Context</h3>
+<p>AI gives you answers tailored to YOUR industry, YOUR role, YOUR company.</p>
+</div>
+</div>
+<p style="margin-top:16px;font-size:28px">Context is the single most important factor in AI output quality.<br><span class="accent">And you can set this up once so every conversation starts smarter.</span></p>
+</div>
+
+<!-- 15: Custom Instructions -->
+<div class="slide" id="s15">
+<h1>Custom Instructions</h1>
+<h2>Set It Once, Use It Forever</h2>
+<p style="font-size:28px;margin-bottom:12px">Every major AI tool lets you save permanent context about yourself.</p>
+<ul style="font-size:28px">
+<li>Your job title and role</li>
+<li>Your industry and company type</li>
+<li>How you prefer to communicate (concise? detailed? bullet points?)</li>
+<li>Common tasks you need help with</li>
+<li>Things you never want AI to do (jargon, fluff, etc.)</li>
+</ul>
+<div class="example-box">
+<div class="label">Example</div>
+"I'm a finance director at a mid-size pharma company. I write emails to my team and reports for executives. Keep everything under 300 words, professional but warm. Use bullet points. Never use jargon my team wouldn't understand."
+</div>
+</div>
+
+<!-- 16: Exercise -->
+<div class="slide" id="s16">
+<div class="section-label">Hands-On Exercise</div>
+<h1>Open Your Laptop</h1>
+<div class="steps">
+<p><strong>Step 1:</strong> Open ChatGPT or Claude on your laptop. (Sign in with Google &mdash; takes 90 seconds.)</p>
+<p><strong>Step 2:</strong> Set up your Custom Instructions. Enter: your role, industry, communication style, common tasks.</p>
+<p><strong>Step 3:</strong> Pick ONE real task from your job this week.</p>
+<p><strong>Step 4:</strong> Write a RACE prompt for that task.</p>
+<p style="padding-left:40px;font-size:24px;color:#aaa"><span style="color:#ef5350">R:</span> What role should AI play? &nbsp; <span style="color:#ffd54f">A:</span> What exactly should it do? &nbsp; <span style="color:#4fc3f7">C:</span> What details does it need? &nbsp; <span style="color:#81c784">E:</span> What format, length, tone?</p>
+<p><strong>Step 5:</strong> Run it. See the result. Iterate until it's right.</p>
+</div>
+<p class="small-note" style="color:#ffd54f">You're building something you'll use Monday morning.</p>
+</div>
+
+<!-- 17: Quote -->
+<div class="slide" id="s17">
+<div class="quote">
+"AI doesn't replace people.<br><br><span class="gold">People who use AI</span> replace people who don't."
+</div>
+<p style="margin-top:28px;font-size:28px;color:#aaa">You just proved it to yourself. You set up a personalized AI. You wrote a prompt using RACE. You got a real, useful result for your actual job.</p>
+<p style="margin-top:12px;font-size:28px;color:#666">The people at your office who didn't come tonight? They're still Googling "how to use ChatGPT."</p>
+</div>
+
+<!-- 18: Hour 2 -->
+<div class="slide" id="s18">
+<div class="section-label">Hour 2</div>
+<h1 class="big">AI Agents</h1>
+<h2>+ What's Possible</h2>
+</div>
+
+<!-- 19: Chat vs Agents -->
+<div class="slide" id="s19">
+<h1>Chat AI vs <span class="green">AI Agents</span></h1>
+<div class="vs">
+<div class="vs-neutral">
+<h3 class="accent">Chat AI (what you just used)</h3>
+<p style="font-size:26px">You type &rarr; AI responds &rarr; You read and use the result</p>
+</div>
+<div class="vs-good">
+<h3 class="green">AI Agents (what I'm about to show you)</h3>
+<p style="font-size:26px">AI works on its own:<br>
+Phone rings &rarr; Agent answers &rarr; Qualifies the caller &rarr; Books appointment &rarr; Sends confirmation &rarr; Follows up</p>
+</div>
+</div>
+<p style="margin-top:20px;font-size:30px">An AI agent is a <span class="gold">digital employee</span>. It doesn't just answer questions &mdash; it takes action.<br>24/7. Never calls in sick. Never forgets to follow up.</p>
+</div>
+
+<!-- 20: Chatbot Demo -->
+<div class="slide" id="s20">
+<div class="section-label">Live Demo</div>
+<h1>AI Chatbot <span class="accent">in Action</span></h1>
+<p style="font-size:28px;margin-bottom:16px">Watch what happens when you give AI a knowledge base and let it work.</p>
+<ul style="font-size:28px">
+<li><strong class="green">Demo 1:</strong> A customer asks about pricing. The chatbot answers instantly with accurate info.</li>
+<li><strong class="green">Demo 2:</strong> I change the pricing in the knowledge base. Watch &mdash; the chatbot's answers update immediately.</li>
+<li><strong class="green">Demo 3:</strong> A customer asks a complex question. The chatbot handles it naturally.</li>
+</ul>
+<p class="small-note">This is what "AI running your front office" looks like. No coding required. Just configuration.</p>
+</div>
+
+<!-- 21: Brandon's Businesses -->
+<div class="slide" id="s21">
+<h1>This Is What I <span class="accent">Actually Run</span></h1>
+<ul style="font-size:30px">
+<li><strong class="accent">Pool Cleaning Dude</strong> &mdash; AI answers every customer call, books service appointments, sends follow-ups. No receptionist. No missed calls.</li>
+<li><strong class="accent">Christmas Lights Dude</strong> &mdash; AI handles quote requests, scheduling, and customer inquiries. Runs the entire front office.</li>
+<li><strong class="accent">Call2Calendar</strong> &mdash; The AI voice agent company I built. Businesses hire us to answer their phones with AI.</li>
+</ul>
+<p style="margin-top:16px;font-size:28px">Three businesses. AI runs the front office of all of them.<br><span class="gold">Not a future plan &mdash; this is what I do right now, today.</span></p>
+</div>
+
+<!-- 22: ROI -->
+<div class="slide" id="s22">
+<h1>The <span class="gold">ROI</span> of AI</h1>
+<p style="font-size:28px;margin-bottom:12px">Think about the task you just completed in the exercise.</p>
+<p style="font-size:28px"><strong>How long would that normally take you?</strong> 15 minutes? 30?<br><strong>How long did it take with AI?</strong> 2 minutes? 5?</p>
+<p style="font-size:26px;margin-top:16px;color:#aaa">Now do the math:</p>
+<p style="font-size:30px;margin-top:8px"><span class="accent">Minutes Saved Per Task &times; Times Per Week &times; 50 Weeks &divide; 60</span> = Hours Saved Per Year</p>
+<p style="font-size:32px;margin-top:8px"><span class="gold">Hours Saved &times; Your Hourly Rate</span> = What AI Is Worth to You</p>
+<p style="font-size:34px;margin-top:16px">Example: 25 min saved &times; 5 days &times; 50 weeks &divide; 60 = <span class="green">104 hours/year</span></p>
+<p style="font-size:34px">At $75/hour = <span class="gold">$7,800 in value</span> &mdash; from ONE task.</p>
+<p class="small-note">How many tasks like that do you have?</p>
+</div>
+
+<!-- 23: 3 Takeaways -->
+<div class="slide" id="s23">
+<h1>The 3 Things You're <span class="accent">Taking Home</span> Tonight</h1>
+<ul style="font-size:32px;line-height:2">
+<li><span class="green" style="font-size:28px">&#10003;</span> <strong class="gold">The RACE Framework</strong> &mdash; Role, Action, Context, Expectations. Use this every time you talk to AI. It works.</li>
+<li><span class="green" style="font-size:28px">&#10003;</span> <strong class="gold">Your Personalized AI Setup</strong> &mdash; Custom instructions configured for your role, industry, style. Every conversation starts smarter.</li>
+<li><span class="green" style="font-size:28px">&#10003;</span> <strong class="gold">A Working Prompt for Your Job</strong> &mdash; Not a template. Something YOU wrote, tested, and saw produce a real result.</li>
+</ul>
+<p style="margin-top:20px;font-size:30px">You walked in unsure about AI. <span class="accent">You're walking out using it.</span></p>
+</div>
+
+<!-- 24: What We Didn't Cover -->
+<div class="slide" id="s24">
+<h1>What We Didn't Have <span class="accent">Time For</span></h1>
+<p style="font-size:28px;margin-bottom:14px">Tonight was the tip of the iceberg. Here's what's waiting:</p>
+<ul style="font-size:28px">
+<li><strong class="gold">Advanced RACE mastery</strong> &mdash; complex multi-step prompts, chain prompting, role stacking</li>
+<li><strong class="gold">Prompt libraries</strong> &mdash; 50+ prompts organized by job function (finance, HR, marketing, ops)</li>
+<li><strong class="gold">Automation workflows</strong> &mdash; AI that runs while you sleep (follow-ups, reports, data processing)</li>
+<li><strong class="gold">AI agent deep dives</strong> &mdash; how to think about AI agents for your role or company</li>
+<li><strong class="gold">Monday morning action plan</strong> &mdash; a concrete 30-day roadmap for using AI at work</li>
+</ul>
+<p style="margin-top:16px;font-size:28px">Tonight created the spark. <span class="gold">The full workshop lights the fire.</span></p>
+</div>
+
+<!-- 25: Pricing -->
+<div class="slide" id="s25">
+<h1>Ready to Go Deeper?</h1>
+<div class="price-grid">
+<div class="price-card">
+<h3>Full AI Workshop</h3>
+<div class="price">$267 <span style="font-size:20px;color:#888;text-decoration:line-through">$297</span></div>
+<p>4 hours. Complete RACE mastery. Build your prompt library. Set up your first automation. Walk out with 3 AI tools fully configured.</p>
+</div>
+<div class="price-card">
+<h3>AI Starter Pack</h3>
+<div class="price">$447 <span style="font-size:20px;color:#888;text-decoration:line-through">$497</span></div>
+<p>Everything above PLUS a 30-minute 1-on-1 call with me. I set up AI specifically for YOUR job. Plus 50+ prompts and 30 days of support.</p>
+</div>
+<div class="price-card">
+<h3>2-Day Intensive</h3>
+<div class="price">$897 <span style="font-size:20px;color:#888;text-decoration:line-through">$997</span></div>
+<p>Capped at 10 people. 2 full days. I build you a custom AI system for your role. You leave with automations running.</p>
+</div>
+<div class="price-card">
+<h3>Corporate Training / Consulting</h3>
+<div class="price">Let's Talk</div>
+<p>Corporate: $5K-$10K/day on-site. Consulting: $4,997+ done-for-you AI implementation.</p>
+</div>
+</div>
+<p class="small-note" style="color:#ffd54f">10% off &mdash; tonight only. Scan the QR code before you leave this room.</p>
+</div>
+
+<!-- 26: Tonight Only CTA -->
+<div class="slide" id="s26">
+<h1><span class="gold">10% Off</span> &mdash; Tonight Only</h1>
+<p style="font-size:28px;margin-bottom:16px">Scan the QR code before you leave this room.</p>
+<table style="width:80%">
+<tr><th>Offer</th><th>Regular</th><th>Tonight Only</th></tr>
+<tr><td>Full Workshop</td><td style="color:#888;text-decoration:line-through">$297</td><td class="gold" style="font-weight:700">$267</td></tr>
+<tr><td>AI Starter Pack</td><td style="color:#888;text-decoration:line-through">$497</td><td class="gold" style="font-weight:700">$447</td></tr>
+<tr><td>2-Day Intensive</td><td style="color:#888;text-decoration:line-through">$997</td><td class="gold" style="font-weight:700">$897</td></tr>
+</table>
+<p style="margin-top:20px;font-size:26px">This isn't a gimmick. The energy in this room right now is the highest it's going to be.<br><span class="accent">The people who act while the energy is high are the ones who change their careers.</span></p>
+<p class="small-note">For Corporate Training or Consulting &mdash; those are conversations, not QR codes. Come talk to me.</p>
+</div>
+
+<!-- 27: Thank You -->
+<div class="slide" id="s27">
+<h1>Thank You</h1>
+<div class="contact">
+<p><strong>Brandon Calloway</strong></p>
+<p>Learn & Leverage AI</p>
+<p class="accent" style="margin-top:12px">(302) 416-6285</p>
+<p>info@learnandleverageai.com</p>
+<p>learnandleverageai.com</p>
+</div>
+<p style="margin-top:20px;font-size:28px">I'm here for the next 30 minutes.<br>Come talk to me about any of the offers &mdash; or just about what AI could do for your team.</p>
+</div>
+
+<div class="counter"><span id="current">1</span> / <span id="total"></span></div>
+
+<script>
+const slides=document.querySelectorAll('.slide');
+let cur=0;
+document.getElementById('total').textContent=slides.length;
+function go(n){
+if(n<0||n>=slides.length)return;
+slides[cur].classList.remove('active');
+cur=n;
+slides[cur].classList.add('active');
+document.getElementById('current').textContent=cur+1;
+}
+document.addEventListener('keydown',e=>{
+if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();go(cur+1)}
+if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(cur-1)}
+if(e.key==='Home')go(0);
+if(e.key==='End')go(slides.length-1);
+});
+let tx=0;
+document.addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+document.addEventListener('touchend',e=>{
+const diff=e.changedTouches[0].clientX-tx;
+if(diff<-50)go(cur+1);
+if(diff>50)go(cur-1);
+});
+document.addEventListener('click',e=>{
+if(e.clientX>window.innerWidth/2)go(cur+1);
+else go(cur-1);
+});
+</script>
+</body>
+</html>

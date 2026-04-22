@@ -4,19 +4,17 @@
 
 ---
 
-## LinkedIn Post — "The Samsung Story" (Authority Builder)
+## LinkedIn Post — "You Keep Hearing About AI" (Curiosity Builder)
 
-Last year, Samsung employees pasted proprietary source code into the free version of ChatGPT. Three separate data leaks in one month. Samsung banned ChatGPT entirely.
+Everyone at work is talking about AI and you're quietly hoping no one asks what you use it for.
 
-Most companies responded the same way — block AI, hope the problem goes away.
+You tried ChatGPT once, got a weird answer, and moved on.
 
-That's like banning calculators because someone entered the wrong numbers.
+The gap between "I've heard of AI" and "I use it every day at work" is about 2 hours.
 
-The answer isn't to avoid AI. It's to teach people how to use it safely.
+This Thursday I'm teaching a free hands-on workshop where you'll set up real tools for your actual job.
 
-That's exactly what I do. I run 3 businesses on AI here in Delaware, and next week I'm teaching a free hands-on workshop for professionals who want to learn AI the right way — including what data to never put in, which tools your company probably already pays for, and how to use AI without getting yourself in trouble.
-
-Thursday, April 2. Newark, DE. 10 seats. No tech experience needed.
+Thursday, April 2. Newark, DE. 10 seats. Bring your laptop. No AI experience needed.
 
 learnandleverageai.com/workshops
 
