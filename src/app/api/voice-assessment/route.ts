@@ -150,13 +150,16 @@ function decodeHistory(encoded: string | null): ChatMessage[] {
 
 // Twilio rejects <Gather action="..."> URLs much longer than ~4KB. If the
 // encoded conversation nears the limit, trim older turns and keep the last 6.
-function buildNextUrl(origin: string, history: ChatMessage[]): string {
+// We return a relative URL — Twilio resolves it against the public request
+// Host, which is what we want when Next runs behind Traefik inside a
+// container (req.url reports the internal 0.0.0.0:3000).
+function buildNextUrl(history: ChatMessage[]): string {
   let encoded = encodeHistory(history);
   if (encoded.length > 2500) {
     const trimmed = history.filter((m) => m.role !== 'system').slice(-6);
     encoded = Buffer.from(JSON.stringify(trimmed)).toString('base64url');
   }
-  return `${origin}/api/voice-assessment?h=${encoded}`;
+  return `/api/voice-assessment?h=${encoded}`;
 }
 
 async function callGroq(messages: ChatMessage[]): Promise<string> {
@@ -259,7 +262,7 @@ export async function POST(req: NextRequest) {
       ? `Hi ${caller.name}, this is Emma from Learn and Leverage AI. Brandon asked me to hop on a quick call to build out your AI opportunity assessment. You have about 20 minutes — sound good?`
       : `Hi, this is Emma from Learn and Leverage AI. Brandon asked me to hop on a quick call to build out your AI opportunity assessment. You have about 20 minutes — sound good? First — what's your name and role?`;
     const newHistory: ChatMessage[] = [{ role: 'assistant', content: greeting }];
-    const nextUrl = buildNextUrl(url.origin, newHistory);
+    const nextUrl = buildNextUrl(newHistory);
     return new NextResponse(buildTwiml(greeting, nextUrl), {
       headers: { 'Content-Type': 'text/xml' },
     });
@@ -268,7 +271,7 @@ export async function POST(req: NextRequest) {
   // Subsequent turn — user has spoken.
   if (!speechResult) {
     const lastAssistant = [...history].reverse().find((m) => m.role === 'assistant')?.content || "I didn't catch that — can you say it again?";
-    const nextUrl = buildNextUrl(url.origin, history);
+    const nextUrl = buildNextUrl(history);
     return new NextResponse(buildTwiml(lastAssistant, nextUrl), {
       headers: { 'Content-Type': 'text/xml' },
     });
@@ -294,7 +297,7 @@ export async function POST(req: NextRequest) {
   // Log every turn so Brandon has a live transcript even if the caller hangs up abruptly
   await logTranscript(from, caller, updatedHistory);
 
-  const nextUrl = buildNextUrl(url.origin, updatedHistory);
+  const nextUrl = buildNextUrl(updatedHistory);
   return new NextResponse(buildTwiml(response, nextUrl), {
     headers: { 'Content-Type': 'text/xml' },
   });
