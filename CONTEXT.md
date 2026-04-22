@@ -1,13 +1,13 @@
 # Learn and Leverage AI — Living Context
 
-**Last Updated:** 2026-04-21 (evening — post codex review + Stage 1 build)
-**Status:** Stage 1 (Foundation) BUILT — 4 chunks shipped on `feat/coolify-migration` branch (commits `7087a44`, `70ad30e`, `5900a46`, `58d75d6`). Awaiting Brandon's SSH approval to deploy Coolify origin and cut DNS.
+**Last Updated:** 2026-04-22 (late night — Stage 1 LIVE)
+**Status:** Stage 1 (Foundation) LIVE in production. 8 commits shipped on `feat/coolify-migration`. Site running on Hetzner Coolify at `5.161.102.158`. Ready for Stage 2 (Brandon's dialing + Nettie outbound).
 **Owner:** Claude Code (autonomous execution), Brandon (teaches + sells + dials)
 **Active plan:** `PROJECT-PLAN.md` (canonical roadmap, 5 stages, 11 chunks)
 **Codex review:** `docs/codex-adversarial-review-2026-04-21.md` (NO-GO 16 issues; 4 CRITICAL fixed in Stage 1)
 
-## 🚨 Open outage (as of 2026-04-21)
-`learnandleverageai.com` returns **HTTP 530 on every route.** Brandon deleted the Vercel account over fees, leaving Cloudflare DNS pointing at a dead origin. Site has no host until Coolify cut-over. Stripe payment link `buy.stripe.com/bJebIUgAoaribNIgML87K0c` is independently live but routes to a non-existent landing page. **Resolution path:** Migrate to Coolify on Hetzner box `5.161.102.158` (same box that runs ReplyCadet). All Dockerfile + env-inventory + DNS-cut-over steps ready in `docs/coolify-migration-plan.md`. Blocked on SSH access approval from Brandon.
+## ✅ Production (2026-04-22)
+**Site LIVE at https://learnandleverageai.com** (HTTP/2, TLS via CF edge + Let's Encrypt origin). Hosting migrated off deleted Vercel → Coolify + Traefik on Hetzner box `5.161.102.158` (same box as ReplyCadet). Container name `llai`, runs on the `coolify` docker network. Verified routes: `/` (307 → /assessment), `/assessment` (200), `/fcaio` (200), `/case-studies/302-photo-booth` (200), `/workshops` (200). API routes respond correctly (405 for POST-only, 200 for voice agents). `.env` on server at `/opt/llai/.env` (chmod 600). DNS: CF A records `learnandleverageai.com` + `www` → `5.161.102.158` (proxied). Redeploy pattern: `ssh root@5.161.102.158 'cd /opt/llai && git pull && docker build ... && docker rm -f llai && docker run ...'`.
 
 ## Current Strategy (updated 2026-04-21 PM, post-codex)
 
