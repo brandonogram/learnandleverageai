@@ -132,17 +132,31 @@ Gather enough detail in ~20 minutes that Brandon can produce:
 `;
 }
 
+// Keep the system prompt OUT of the URL — we rebuild it server-side on each turn.
+// Use base64url (URL-safe alphabet) so `+` / `/` don't get corrupted as `URLSearchParams` decodes `+` → space.
 function encodeHistory(messages: ChatMessage[]): string {
-  return Buffer.from(JSON.stringify(messages)).toString('base64');
+  const conversationOnly = messages.filter((m) => m.role !== 'system');
+  return Buffer.from(JSON.stringify(conversationOnly)).toString('base64url');
 }
 
 function decodeHistory(encoded: string | null): ChatMessage[] {
   if (!encoded) return [];
   try {
-    return JSON.parse(Buffer.from(encoded, 'base64').toString('utf8'));
+    return JSON.parse(Buffer.from(encoded, 'base64url').toString('utf8'));
   } catch {
     return [];
   }
+}
+
+// Twilio rejects <Gather action="..."> URLs much longer than ~4KB. If the
+// encoded conversation nears the limit, trim older turns and keep the last 6.
+function buildNextUrl(origin: string, history: ChatMessage[]): string {
+  let encoded = encodeHistory(history);
+  if (encoded.length > 2500) {
+    const trimmed = history.filter((m) => m.role !== 'system').slice(-6);
+    encoded = Buffer.from(JSON.stringify(trimmed)).toString('base64url');
+  }
+  return `${origin}/api/voice-assessment?h=${encoded}`;
 }
 
 async function callGroq(messages: ChatMessage[]): Promise<string> {
@@ -235,17 +249,17 @@ export async function POST(req: NextRequest) {
   const caller = await lookupCaller(from);
   const history = decodeHistory(encodedHistory);
 
+  // System prompt is rebuilt server-side every turn (not carried in the URL) so the
+  // Gather action URL stays well under Twilio's ~4KB limit.
+  const systemPrompt = buildSystemPrompt(caller);
+
   if (history.length === 0) {
     // First turn — greeting only, no user speech yet.
-    const systemPrompt = buildSystemPrompt(caller);
     const greeting = caller.name
       ? `Hi ${caller.name}, this is Emma from Learn and Leverage AI. Brandon asked me to hop on a quick call to build out your AI opportunity assessment. You have about 20 minutes — sound good?`
       : `Hi, this is Emma from Learn and Leverage AI. Brandon asked me to hop on a quick call to build out your AI opportunity assessment. You have about 20 minutes — sound good? First — what's your name and role?`;
-    const newHistory: ChatMessage[] = [
-      { role: 'system', content: systemPrompt },
-      { role: 'assistant', content: greeting },
-    ];
-    const nextUrl = `${url.origin}/api/voice-assessment?h=${encodeHistory(newHistory)}`;
+    const newHistory: ChatMessage[] = [{ role: 'assistant', content: greeting }];
+    const nextUrl = buildNextUrl(url.origin, newHistory);
     return new NextResponse(buildTwiml(greeting, nextUrl), {
       headers: { 'Content-Type': 'text/xml' },
     });
@@ -253,8 +267,8 @@ export async function POST(req: NextRequest) {
 
   // Subsequent turn — user has spoken.
   if (!speechResult) {
-    const lastAssistant = [...history].reverse().find((m) => m.role === 'assistant')?.content || 'I didn\'t catch that — can you say it again?';
-    const nextUrl = `${url.origin}/api/voice-assessment?h=${encodeHistory(history)}`;
+    const lastAssistant = [...history].reverse().find((m) => m.role === 'assistant')?.content || "I didn't catch that — can you say it again?";
+    const nextUrl = buildNextUrl(url.origin, history);
     return new NextResponse(buildTwiml(lastAssistant, nextUrl), {
       headers: { 'Content-Type': 'text/xml' },
     });
@@ -263,7 +277,7 @@ export async function POST(req: NextRequest) {
   const updatedHistory: ChatMessage[] = [...history, { role: 'user', content: speechResult }];
 
   // Force wrap-up if we've gone too long
-  const turnCount = updatedHistory.filter((m) => m.role !== 'system').length;
+  const turnCount = updatedHistory.length;
   if (turnCount >= MAX_TURNS) {
     const closing = 'Perfect. I have everything Brandon needs. Expect your report within 48 business hours, and Brandon will reach out to book your walkthrough call. Thanks for your time today.';
     updatedHistory.push({ role: 'assistant', content: closing });
@@ -273,13 +287,14 @@ export async function POST(req: NextRequest) {
     });
   }
 
-  const response = await callGroq(updatedHistory);
+  // Prepend the freshly-built system prompt before calling the LLM.
+  const response = await callGroq([{ role: 'system', content: systemPrompt }, ...updatedHistory]);
   updatedHistory.push({ role: 'assistant', content: response });
 
   // Log every turn so Brandon has a live transcript even if the caller hangs up abruptly
   await logTranscript(from, caller, updatedHistory);
 
-  const nextUrl = `${url.origin}/api/voice-assessment?h=${encodeHistory(updatedHistory)}`;
+  const nextUrl = buildNextUrl(url.origin, updatedHistory);
   return new NextResponse(buildTwiml(response, nextUrl), {
     headers: { 'Content-Type': 'text/xml' },
   });
