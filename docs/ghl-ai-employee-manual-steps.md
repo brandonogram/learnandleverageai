@@ -1,7 +1,7 @@
 # GHL AI Employee — Brandon Manual Setup Steps
 
 **Created:** 2026-03-23
-**Why manual:** GHL blocks automated browser login (Tandem fails, Playwright hits 2FA to brandon@boothlaunchpad.com which has no MX records)
+**Why manual:** GHL blocks automated browser login (Tandem fails, Playwright hits 2FA to brandonbot67@gmail.com which has no MX records)
 
 ## What Claude Code Already Did (via API)
 
@@ -24,7 +24,7 @@
 ## What Brandon Must Do (15-20 min total)
 
 ### Step 1: Fix the 2FA Email Problem (5 min)
-The GHL 2FA sends to brandon@boothlaunchpad.com, but that domain has NO MX records — emails never arrive.
+The GHL 2FA sends to brandonbot67@gmail.com, but that domain has NO MX records — emails never arrive.
 
 **Option A (recommended):** Change GHL login email to one that works (brandontcalloway@gmail.com or mcrbrandon@gmail.com)
 **Option B:** Add MX records to boothlaunchpad.com in Siteground

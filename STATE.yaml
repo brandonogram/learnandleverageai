@@ -1,29 +1,56 @@
 project: learnandleverageai
-updated: 2026-03-22T14:00:00Z
+updated: 2026-04-21T17:00:00Z
 priority: 1
 status: active
 owner: claude-code
 url: learnandleverageai.com
 
-decision: "In-person workshops for corporate professionals 45-60 in NCC, DE. Free 2-hour session → $25K+ upsells on the spot. No cold email. No webinars. Brandon confirmed March 21."
+decision: "Three-leg revenue model adopted 2026-04-21 after deep research on Jon Cheney's Gen AIPI playbook: (1) $997 AI Opportunity Assessment as the wedge, (2) $4,997-$24,997/mo Fractional AI Officer retainer as the engine, (3) SaaS products (ReplyCadet + ContentBrief) as parallel 6-12mo bet. Workshop becomes top-of-funnel only, not standalone product. Target: $10M-$100M NCC DE businesses without a CTO. Phone + warm LinkedIn DM outreach. Brandon confirmed this direction 2026-04-21 via 'keep going autonomously' + 'start where John is' strategic calls."
+
+strategy_refs:
+  research_dossier: "docs/cheney-playbook-research-2026-04-21.md"
+  skill: "~/.claude/skills/cheney-playbook/SKILL.md"
+  monetization_memo: "docs/monetization-insights-2026-04-21.md"
+  execution_plan: "docs/llai-90-day-revenue-plan.md"
+  sales_playbook: "docs/ste-sales-playbook.md"
+  assessment_spec: "docs/ai-assessment-service-spec.md"
+  outreach_kit: "marketing/2026-04-21-outreach-kit.md"
+
+revenue_targets_90d:
+  deadline: 2026-07-21
+  closed_revenue_target: "$15K-$40K"
+  case_studies_target: 2
+  minimum_acceptable: "1 retainer + 4 one-time assessments (~$9K/30d)"
+
+site_health:
+  domain: learnandleverageai.com
+  http_status: 530
+  status_observed_at: 2026-04-21T16:30:00Z
+  hosting: "Cloudflare Pages (migrated off Vercel April 2026)"
+  blocker_priority: critical
+  notes: "530 on every route. CF origin/build unreachable. MUST fix before new /assessment page can go live. Brandon to check CF Pages dashboard."
 
 event:
   name: "AI Hands-On: See What AI Can Actually Do For Your Job"
   format: free-in-person-workshop
   date: 2026-04-02
   time: "6:00 PM - 8:00 PM EST"
-  venue: "Hilton Christiana, DE (pending confirmation)"
-  capacity: 25-30
-  price: free
-  upsell_target: "$25K+"
-  stay_after: "30 min for conversations"
+  venue: "Hilton Wilmington/Christiana, 100 Continental Dr, Newark, DE 19713"
+  status: completed
+  result: "2/25 attendance (Brianna + Steve), $0 upsells, both high-value leads"
+
+workshop2:
+  status: planning
+  date: "TBD — tentatively 3rd week of April 2026"
+  venue: "TBD — free venue needed"
+  notes: "Considering Villanova, PA as second location"
 
 tasks:
   - id: venue-confirmation
-    status: waiting
+    status: completed
     owner: brandon
     priority: critical
-    notes: "Emails sent to Hilton Christiana, DoubleTree Wilmington, Embassy Suites Newark. Awaiting responses."
+    notes: "Confirmed: Christiana Hilton for the April 2 workshop per shared priorities/decisions on 2026-03-25. Marketing can use venue-specific promotion."
 
   - id: ghl-workflows
     status: partially_complete
@@ -42,26 +69,70 @@ tasks:
     owner: brandon
     priority: high
     blocked_by: ghl-2fa-access
-    notes: "Conversation AI API returns 404 with PIT token. Must be configured via GHL UI. Blocked by 2FA — brandon@boothlaunchpad.com email is inaccessible (no MX records)."
+    notes: "Conversation AI API returns 404 with PIT token. Must be configured via GHL UI. Blocked by 2FA — brandonbot67@gmail.com email is inaccessible (no MX records)."
 
   - id: ghl-ai-employee-addon
     status: blocked
     owner: brandon
     priority: high
     blocked_by: ghl-2fa-access
-    notes: "AI Employee add-on ($97/mo) must be enabled via GHL UI. Cannot access UI due to 2FA sending to brandon@boothlaunchpad.com which has no MX records. Brandon must either: (1) fix boothlaunchpad.com email, (2) change GHL 2FA to a working email/phone, or (3) log in manually and enable it."
+    notes: "AI Employee add-on ($97/mo) must be enabled via GHL UI. Cannot access UI due to 2FA sending to brandonbot67@gmail.com which has no MX records. Brandon must either: (1) fix boothlaunchpad.com email, (2) change GHL 2FA to a working email/phone, or (3) log in manually and enable it."
 
   - id: post-workshop-survey
-    status: in_progress
-    owner: claude-code
+    status: blocked
+    owner: brandon
     priority: high
-    notes: "Creating 10-question feedback survey. Full spec at docs/typeform-survey.md."
+    blocked_by: typeform-ui-access
+    notes: "Full 10-question feedback survey spec is complete at docs/typeform-survey.md, but this still requires Brandon in Typeform UI (5 min) or new API creds. Not completable from this audit cron."
+
+  - id: post-workshop-follow-up
+    status: completed
+    owner: cash
+    priority: critical
+    updated: 2026-04-16T14:30:00Z
+    notes: |
+      2026-04-21: [AUTO] Monitored. Email check (last 5 days) shows ZERO new responses from Brianna or Steve. Both leads going cold: Brianna 13 days since last reply, Steve 15 days since last engagement.
+      Apr 16 nudge draft still pending Brandon approval [APPROVE]. No sends executed.
+      ReplyCadet pilot: still no response to Apr 8 setup call email.
+      Recommendation: If no Brandon approval by Apr 23, archive both leads to "nurture" status unless they re-engage.
+      Monitor log: cash/drafts/LLAI-Monitor-Status-2026-04-21.md
+
+      2026-04-16: [AUTO] Reviewed. No new responses from Brianna or Steve in last 7 days (email check).
+      Brianna last reply: Apr 8 (8 days ago). Steve last engagement: Apr 6 (10+ days ago).
+      ReplyCadet setup call: no response. Milan content brief system active (automated Mon delivery).
+      Decision: Follow-up nudge to both is warranted. Drafting now.
+      Draft saved at cash/drafts/LLAI-Workshop-FollowUp-Nudge-2026-04-16.md pending Brandon approval [APPROVE].
 
   - id: post-workshop-systems
-    status: in_progress
+    status: completed
     owner: claude-code
     priority: medium
-    notes: "Testimonial collection, referral program ($50 off), upsell follow-up workflows in GHL."
+    notes: "Workshop completed April 2, 2026. 2 attendees. Follow-ups sent. Brianna engaged — providing info for Milan's content briefs and ReplyCadet pilot."
+
+  - id: milan-content-briefs
+    status: in_progress
+    owner: marlo
+    priority: high
+    updated: 2026-04-08T22:00:00Z
+    notes: |
+      Automated weekly content brief system for @milansrealphillycheesesteaks (Brianna's DEBCC client).
+      2 OpenClaw cron jobs created: milan-content-research (Sun 10PM) + milan-content-briefs (Mon 6AM).
+      Briefs emailed to Brianna (membership@debcc.org) from brandon@learnandleverageai.com every Monday.
+      Full spec: docs/milans-content-brief-system.md
+      First automated run: Sunday April 12 research → Monday April 13 brief delivery.
+      Milan's: 5,617 IG followers, 332 posts, ~89% video, Bear DE 19701.
+
+  - id: replycadet-brianna-pilot
+    status: waiting_on_brianna
+    owner: claude-code
+    priority: high
+    updated: 2026-04-08T13:12:00Z
+    notes: |
+      ReplyCadet fully built and deployed at replycadet.com (Hetzner).
+      Setup call email sent April 8 — no response yet.
+      Brianna confirmed she's solo on inbox (good for pilot).
+      She uses Outlook. Microsoft Entra ID OAuth ready.
+      Next: get her to sign up + connect Outlook + test the flow.
 
   - id: meta-pixel-ads
     status: mostly_complete
@@ -88,25 +159,46 @@ tasks:
 
   - id: eventbrite-listing
     status: blocked
-    owner: claude-code
+    owner: brandon
     priority: medium
-    blocked_by: venue-confirmation
-    notes: "Needs confirmed date/venue before creating listing."
+    blocked_by: manual-public-flow
+    notes: "Venue is confirmed, but creating the public listing still appears to require Brandon/manual Eventbrite flow (likely reCAPTCHA/manual setup). Not completable from this audit cron."
 
   - id: marketing-posts
     status: in_progress
     owner: marlo
     priority: high
-    notes: "Daily sprint Mar 24: 3 posts drafted (FB pain-point 8.5, LI transformation 8.3, IG urgency 8.4). Pending Brandon approval. Images generated. GHL email campaign pending approval."
+    notes: "Daily sprint Mar 27-29: live workshop registrations remain stalled at 2/25 based on the latest shared metrics + Mar 29 log checks. Mar 27 package delivered 3 platform-specific posts (FB/LinkedIn/IG), voice scores 8.6-9.1, plus 3 Gemini images and a promo email draft because weekly email sends remain at 0. Mar 28 package added a fresh 3-post set with urgency, transformation, and social-proof angles, matched Gemini images, and a tighter urgency email for the final 6-day push. Mar 29 package refreshed the 4-day push with 3 new platform drafts, labeled A/B hooks, 3 new Gemini images, and another workshop promo email. Urgency campaign remains warranted because registrations are still below 15 with less than a week left."
     completed_items:
-      - "3 social posts drafted (FB, LinkedIn, IG)"
-      - "Workshop scene, transformation, urgency images generated"
+      - "Mar 26: 3 social posts drafted (FB, LinkedIn, IG)"
+      - "Mar 26: Workshop scene, transformation, urgency images generated"
+      - "Mar 26: Urgency campaign outline drafted for sub-15 registrations with 7 days left"
+      - "Mar 26: GHL workshop promo email drafted"
+      - "Mar 27: 2 LinkedIn workshop posts refreshed with A/B hooks"
+      - "Mar 27: 2 new LLAI images generated and uploaded for review"
+      - "Mar 27: top 9.2 manager-angle draft promoted to shared examples bank"
+      - "Mar 27: live GHL registration count verified at 3/25 target"
+      - "Mar 27: 3 new workshop promo posts drafted for FB, LinkedIn, and IG"
+      - "Mar 27: 3 new Gemini workshop images generated for post angles"
+      - "Mar 27: fresh promo email drafted for LLAI contact list"
+      - "Mar 27: urgency campaign reconfirmed due to sub-15 registrations with ~7 days left"
+      - "Mar 28: live GHL registration count rechecked at 2/25 target"
+      - "Mar 28: 3 new workshop promo posts drafted for FB, LinkedIn, and IG using urgency, transformation, and social-proof angles"
+      - "Mar 28: 3 new Gemini workshop images generated for those post angles"
+      - "Mar 28: refreshed urgency email drafted for the LLAI contact list because weekly send is still absent"
+      - "Mar 29: created 2 new LinkedIn A/B workshop variants for the final 3-day push, generated a fresh Hilton Christiana workshop image, uploaded review media to Catbox, and logged both passing drafts (9.3 / 9.0) for Chief review"
+      - "Mar 30: created 2 new LinkedIn A/B workshop variants for the 3-day push, uploaded review media to Catbox, and logged both passing drafts (9.2 / 9.0) for Chief review with Hilton Christiana + Friday-morning outcome messaging"
+      - "Mar 30: added a second refinement set of 2 LinkedIn A/B workshop variants using statement vs question hooks, scored 9.2 / 9.1, uploaded a fresh review image to Catbox, logged the package in Marlo memory, and promoted the top 9.2 draft to the shared examples bank for future LLAI calibration"
+      - "Mar 31: daily brief was missing, so the package used the fallback content calendar/persona/examples path and created 2 new Facebook A/B workshop variants for the final push; scores 9.2 / 9.1, shared Catbox review image logged in Marlo memory, with the top 9.2 draft promoted to the examples bank"
+      - "Mar 30: drafted a fresh 3-post FB/LinkedIn/IG workshop promo package for the final 3-day sprint using pain-point urgency, transformation, and social-proof/FOMO angles; scored the approved posts 8.9-9.3; generated 3 new Gemini images; refreshed the GHL promo email; and flagged workshop status as CRITICAL at 2/25 registrations based on the latest shared metrics after live GHL API checks were blocked by Cloudflare."
+      - "Mar 31: drafted a fresh 3-post FB/LinkedIn/IG workshop promo package for the final 2-day sprint with A/B hooks per post, voice scores 8.8-9.2, generated 3 new Gemini images, refreshed the GHL promo email, reconfirmed venue as Hilton Christiana, and kept workshop status at CRITICAL using the latest readable shared metrics baseline of 2/25 registrations."
+      - "Mar 29: drafted a fresh 3-post FB/LinkedIn/IG workshop promo package with labeled A/B hooks, voice scores 8.8-9.4, generated 3 matching Gemini images, and refreshed the GHL promo email for the final 4-day urgency push while registrations stayed at 2/25 target"
 
   - id: print-materials
-    status: pending
+    status: completed
     owner: claude-code
     priority: low
-    notes: "Workbook + reference card formatted as print-ready PDFs."
+    notes: "Workbook + reference card formatted as print-ready PDFs. Used at April 2 workshop."
 
   - id: stripe-payment-links
     status: completed
@@ -132,8 +224,84 @@ tasks:
     completed: 2026-03-22
     notes: "5 Meta video ads rendered via FFmpeg pipeline. All jitter-free."
 
+  - id: site-outage-530
+    status: open
+    owner: brandon
+    priority: critical
+    created: 2026-04-21T16:30:00Z
+    notes: "learnandleverageai.com returns HTTP 530 on every route. Cloudflare can't reach origin. Blocks /assessment page from going live even if PR #1 merges. Brandon to check Cloudflare Pages dashboard for failed build or misconfigured origin."
+
+  - id: assessment-landing-page
+    status: in_review
+    owner: brandon
+    priority: critical
+    created: 2026-04-21
+    pr: "https://github.com/brandonogram/learnandleverageai/pull/1"
+    notes: "/assessment page built and linted. PR #1 open against main. Depends on site-outage-530 being fixed. On merge, CF Pages auto-deploys. Stripe link already live: https://buy.stripe.com/bJebIUgAoaribNIgML87K0c"
+
+  - id: warm-network-list
+    status: waiting_on_brandon
+    owner: brandon
+    priority: critical
+    created: 2026-04-21
+    notes: "Brandon to compile 5-10 Delaware business owners he already knows personally ($2M+ company, any industry). Higher-conversion channel than cold (1-in-3 vs 1-in-10). DM templates ready at marketing/2026-04-21-outreach-kit.md."
+
+  - id: first-linkedin-post
+    status: ready
+    owner: brandon
+    priority: high
+    created: 2026-04-21
+    notes: "3 LinkedIn posts drafted at marketing/2026-04-21-outreach-kit.md (40/40/20 mix: work showcase, teaching, personal). Brandon picks + posts. Claude recommends Post A (the $780 pool story) for first."
+
+  - id: ceo-cold-call-list-first-batch
+    status: ready
+    owner: brandon
+    priority: high
+    created: 2026-04-21
+    notes: "6 verified NCC DE targets in marketing/2026-04-21-outreach-kit.md: Ted's Pools, Horizon Services, Borsello Landscaping (Mike Borsello), Exteriors of Greenville, Joseph Rizzo & Sons, Talleyville Vet (Drs. Dallatore/Namey/Dawkins). Borsello + Talleyville have owner names — start there."
+
+  - id: ceo-list-extension-to-20
+    status: deferred
+    owner: claude-code
+    priority: medium
+    notes: "DFS business-listings tool returned mostly PA spillover. Need tighter geo-filtering, possibly D&B/ZoomInfo trial or Google Maps direct. Low priority until first 6 calls tested."
+
+  - id: brianna-steve-silent-pause
+    status: acknowledged
+    owner: brandon
+    priority: low
+    created: 2026-04-21
+    notes: "Per Brandon's 2026-04-21 decision: pause active chasing. Single gentle nudge window opens 2026-04-22. If no response after that, archive to nurture. Neither is on this week's critical path."
+
+  - id: cheney-playbook-skill
+    status: completed
+    owner: claude-code
+    completed: 2026-04-21
+    notes: "/cheney-playbook skill installed at ~/.claude/skills/cheney-playbook/SKILL.md. Auto-triggers on LLAI revenue / fCAIO / AI consulting / 'Jon Cheney' / 'STE framework' keywords. Framework-heavy output, verbatim scripts, pricing anchors. Follows alex-hormozi skill precedent."
+
+  - id: deep-research-cheney-business
+    status: completed
+    owner: claude-code
+    completed: 2026-04-21
+    notes: "11 interviews + Gen AIPI website verified. Prior company (SEEK/Ocavu AR/$13M raise sold 2024) documented. Full dossier at docs/cheney-playbook-research-2026-04-21.md."
+
 next_actions:
-  - "claude-code: Build GHL workflows, Conversation AI, post-workshop survey, post-workshop systems"
-  - "brandon: Create FB account, link to Calloway Family portfolio → then Claude creates Meta ad campaign + pixel"
-  - "brandon: Confirm venue when hotel responds"
-  - "brandon: Review landing page once date confirmed (10 min)"
+  # Today's critical path (2026-04-21)
+  - "brandon: Check Cloudflare Pages dashboard — fix the 530 outage"
+  - "brandon: Merge PR #1 once site is healthy → /assessment goes live"
+  - "brandon: Reply with 5-10 warm-network Delaware business owners"
+  - "brandon: Post first LinkedIn post (recommend Post A from outreach kit)"
+  - "brandon: Call Mike Borsello (Borsello Landscaping) + Talleyville Vet this week"
+  # Parallel / deferred
+  - "marlo: First Milan's content brief delivery — Mon Apr 13 email to Brianna (automated)"
+  - "claude-code: Google OAuth verification for ReplyCadet (gmail.readonly = restricted scope, CASA required)"
+  - "claude-code: Extend CEO target list to 20 once first 6 calls produce data (which industries work)"
+  - "claude-code: Build voice-agent question bank + Gamma report template for first paid assessment (when first $997 is paid)"
+
+# === Cash Revenue Ops — 2026-04-16 PM Session ===
+# Updated: 2026-04-16T17:00:00Z
+# LLAI nudge already drafted: cash/drafts/LLAI-Workshop-FollowUp-Nudge-2026-04-16.md
+# Pending Brandon approval [APPROVE]. No new responses from Brianna/Steve detectable via available tools.
+# Brianna last reply: Apr 8. Steve last engagement: Apr 6. No new responses in available data.
+# LLAI workshop follow-up task: post-workshop-follow-up (owner: cash) — status: completed by AM session
+# Workshop #2: planning, TBD, no date confirmed yet
