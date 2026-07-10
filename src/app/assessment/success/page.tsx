@@ -3,13 +3,12 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "You're in — AI Opportunity Assessment",
-  description: "Your AI Opportunity Assessment is being prepared. Next: call our intake number, then get your report within 48 business hours.",
+  description: "Your AI Opportunity Assessment is reserved. Next: schedule your guided intake, then get your report within 48 business hours.",
   robots: { index: false, follow: false },
 };
 
-const INTAKE_PHONE = "(302) 416-6285";
-const INTAKE_PHONE_TEL = "+13024166285";
 const BRANDON_EMAIL = "brandon@learnandleverageai.com";
+const INTAKE_EMAIL = `mailto:${BRANDON_EMAIL}?subject=${encodeURIComponent("Paid AI Opportunity Assessment intake")}&body=${encodeURIComponent("I just purchased the AI Opportunity Assessment. Please send me the next available intake times.\n\nName:\nBusiness:\nBest phone (optional):")}`;
 
 export default function AssessmentSuccessPage() {
   return (
@@ -24,7 +23,7 @@ export default function AssessmentSuccessPage() {
         </h1>
 
         <p className="mt-4 text-lg text-slate-600">
-          Your AI Opportunity Assessment is reserved. The next step is a quick intake call with Emma, our AI intake agent — she&apos;ll take down the details Brandon needs to build your report.
+          Your AI Opportunity Assessment is reserved. The next step is a quick guided intake so Brandon can capture the details needed to build your report.
         </p>
 
         <ol className="mt-10 space-y-8">
@@ -34,18 +33,18 @@ export default function AssessmentSuccessPage() {
                 1
               </span>
               <div>
-                <h2 className="text-xl font-semibold">Call the intake line</h2>
+                <h2 className="text-xl font-semibold">Schedule your guided intake</h2>
                 <p className="mt-2 text-slate-600">
-                  Any time — day or night. Plan for about 20 minutes. Call from a quiet spot where you can talk.
+                  Plan for about 20 minutes. Email Brandon now and he&apos;ll send the next available times.
                 </p>
                 <a
-                  href={`tel:${INTAKE_PHONE_TEL}`}
+                  href={INTAKE_EMAIL}
                   className="mt-4 inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-lg font-semibold text-white transition hover:bg-slate-800"
                 >
-                  Call {INTAKE_PHONE}
+                  Email Brandon to schedule
                 </a>
                 <p className="mt-3 text-sm text-slate-500">
-                  You can also schedule a time by replying to the confirmation email we just sent you.
+                  Include your name and business so Brandon can match the intake to your payment.
                 </p>
               </div>
             </div>
@@ -62,7 +61,7 @@ export default function AssessmentSuccessPage() {
                   Delivered as a PDF + web-viewable link. It covers your pain points, 3–5 specific tools to install, a 4-day quick-win plan, and the dollar-per-month impact math.
                 </p>
                 <p className="mt-2 text-sm text-slate-500">
-                  The 48-hour clock starts when your intake call wraps up, not when you pay.
+                  The 48-hour clock starts when your intake wraps up, not when you pay.
                 </p>
               </div>
             </div>
@@ -90,10 +89,10 @@ export default function AssessmentSuccessPage() {
             <a href={`mailto:${BRANDON_EMAIL}`} className="font-medium text-white underline underline-offset-4">
               {BRANDON_EMAIL}
             </a>
-            {" "}or call the intake number above and say &quot;I need Brandon.&quot;
+            {" "}and put &quot;assessment&quot; in the subject.
           </p>
           <p className="mt-4 text-sm text-slate-400">
-            A confirmation email is on its way to the address you used at checkout. Check spam if you don&apos;t see it in 5 minutes.
+            Keep your Stripe receipt for your records. Brandon will reply directly to your intake-scheduling email.
           </p>
         </div>
 

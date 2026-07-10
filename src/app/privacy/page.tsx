@@ -113,9 +113,9 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section id="assessment">
-            <h2 className="font-display text-xl font-semibold text-white mb-3">5a. AI Opportunity Assessment — Voice Intake &amp; Data Handling</h2>
+            <h2 className="font-display text-xl font-semibold text-white mb-3">5a. AI Opportunity Assessment — Intake &amp; Data Handling</h2>
             <p>
-              Customers who purchase the AI Opportunity Assessment ($997 one-time) complete a 20-minute intake interview with our AI agent (currently named &ldquo;Emma&rdquo;) by phone. This section explains how that data is collected, processed, and stored.
+              Customers who purchase the AI Opportunity Assessment ($997 one-time) currently schedule a guided intake with Brandon. If a customer later affirmatively chooses an optional phone intake with our AI agent (currently named &ldquo;Emma&rdquo;), this section explains how that data is collected, processed, and stored.
             </p>
 
             <h3 className="text-lg font-semibold text-white mt-4 mb-2">What we record</h3>
@@ -141,9 +141,9 @@ export default function PrivacyPolicyPage() {
               <li>We do not sell your transcript or share it with advertisers.</li>
             </ul>
 
-            <h3 className="text-lg font-semibold text-white mt-4 mb-2">Manual (non-AI) intake option</h3>
+            <h3 className="text-lg font-semibold text-white mt-4 mb-2">Manual (non-AI) intake</h3>
             <p>
-              If you would prefer to do your intake call with Brandon directly instead of with the AI agent, email{" "}
+              A guided intake with Brandon is the default. To schedule or keep that option, email{" "}
               <a href="mailto:brandon@learnandleverageai.com" className="text-amber-400 hover:underline">brandon@learnandleverageai.com</a>{" "}
               within 7 days of purchase. There is no additional charge.
             </p>
@@ -307,10 +307,6 @@ export default function PrivacyPolicyPage() {
               <li>
                 <strong className="text-white">Email:</strong>{" "}
                 <a href="mailto:info@learnandleverageai.com" className="text-amber-400 hover:underline">info@learnandleverageai.com</a>
-              </li>
-              <li>
-                <strong className="text-white">Phone:</strong>{" "}
-                <a href="tel:+13024166285" className="text-amber-400 hover:underline">(302) 416-6285</a>
               </li>
               <li>
                 <strong className="text-white">Business:</strong> Dude Ventures Services LLC, Delaware, USA

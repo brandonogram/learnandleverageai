@@ -61,7 +61,7 @@ function buildConfirmationEmailHtml(firstName: string): string {
     <tr><td><a href="https://learnandleverageai.com/workshops" style="color: #78716C; font-size: 13px; text-decoration: underline;">Know someone who should come? Share this link</a></td></tr>
   </table>
 
-  <p style="color: #78716C; font-size: 13px; margin-top: 20px;">Learn & Leverage AI<br/>(302) 416-6285 | info@learnandleverageai.com</p>
+  <p style="color: #78716C; font-size: 13px; margin-top: 20px;">Learn & Leverage AI<br/>brandon@learnandleverageai.com</p>
 
 </div>
 `.trim();

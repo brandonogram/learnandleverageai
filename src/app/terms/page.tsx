@@ -97,7 +97,7 @@ export default function TermsOfServicePage() {
               <strong className="text-white">Processing.</strong> Approved refunds are issued to your original payment method within five (5) business days of the decision. We will respond to your request within three (3) business days.
             </p>
             <p className="mt-2">
-              <strong className="text-white">No fit, no charge:</strong> If, during your intake call with our AI intake agent, it becomes clear that your business falls outside the assessment&rsquo;s target fit (for example, you are a one-person shop, you already have a full-time CTO, or your business operates outside the New Castle / Delaware / Chester county region), we may at our discretion refund your $997 in full and end the engagement before producing a report.
+              <strong className="text-white">No fit, no charge:</strong> If, during your guided intake, it becomes clear that your business falls outside the assessment&rsquo;s target fit (for example, you are a one-person shop, you already have a full-time CTO, or your business operates outside the New Castle / Delaware / Chester county region), we may at our discretion refund your $997 in full and end the engagement before producing a report.
             </p>
             <p className="mt-2">
               <strong className="text-white">What is non-refundable.</strong> If you have received the report and the 30-day window has passed without a refund request, the assessment is considered delivered and is non-refundable. The 30-minute walkthrough call with Brandon is included in the assessment fee and is non-refundable separately.
@@ -105,15 +105,15 @@ export default function TermsOfServicePage() {
           </section>
 
           <section id="assessment-ai-disclosures">
-            <h2 className="font-display text-xl font-semibold text-white mb-3">5b. AI Opportunity Assessment — AI Voice Intake Disclosures</h2>
+            <h2 className="font-display text-xl font-semibold text-white mb-3">5b. AI Opportunity Assessment — Intake Disclosures</h2>
             <p>
-              The AI Opportunity Assessment includes a phone-based intake call conducted by an AI agent (currently named &ldquo;Emma&rdquo;). By calling our intake number after purchase, you acknowledge and agree to the following:
+              The current default is a scheduled guided intake with Brandon. If we later offer you an optional phone-based intake conducted by an AI agent (currently named &ldquo;Emma&rdquo;) and you affirmatively choose that option, the following terms apply:
             </p>
             <ul className="list-disc list-inside mt-2 space-y-1 ml-2">
               <li>The intake call is conducted by an AI agent, not a human. The agent will identify itself as an AI at the start of the call.</li>
               <li>Audio of the call is processed in real time and converted to text by Twilio (telephony) and Groq (language model). A text transcript is generated and stored.</li>
               <li>The transcript is sent by email to brandon@learnandleverageai.com so Brandon can produce your assessment report. It is not shared with third parties beyond the processors named above.</li>
-              <li>If you would prefer a manual (non-AI) intake call with Brandon directly instead of the AI agent, email <a href="mailto:brandon@learnandleverageai.com" className="text-amber-400 hover:underline">brandon@learnandleverageai.com</a> within 7 days of purchase to schedule one. There is no additional charge.</li>
+              <li>You may choose or return to a manual (non-AI) intake with Brandon by emailing <a href="mailto:brandon@learnandleverageai.com" className="text-amber-400 hover:underline">brandon@learnandleverageai.com</a>. There is no additional charge.</li>
               <li>You may request deletion of your intake transcript and any derived report at any time by emailing the address above. Deletion will be completed within 5 business days, except where retention is required by law or for our legitimate accounting records.</li>
             </ul>
             <p className="mt-3">
@@ -212,10 +212,6 @@ export default function TermsOfServicePage() {
               <li>
                 <strong className="text-white">Email:</strong>{" "}
                 <a href="mailto:info@learnandleverageai.com" className="text-amber-400 hover:underline">info@learnandleverageai.com</a>
-              </li>
-              <li>
-                <strong className="text-white">Phone:</strong>{" "}
-                <a href="tel:+13024166285" className="text-amber-400 hover:underline">(302) 416-6285</a>
               </li>
               <li>
                 <strong className="text-white">Business:</strong> Dude Ventures Services LLC, Delaware, USA

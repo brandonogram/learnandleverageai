@@ -15,7 +15,7 @@ const stripe = new Stripe(env.STRIPE_SECRET_KEY);
 
 const product = await stripe.products.create({
   name: 'AI Opportunity Assessment',
-  description: 'A custom AI plan for your business, delivered in 48 hours. One 20-minute voice-agent call + PDF report identifying your top 3-5 AI opportunities with install steps, quick-win plan, and financial impact. Includes a 30-min walkthrough call with Brandon.',
+  description: 'A custom AI plan for your business, delivered within 48 business hours after your completed guided intake. Includes a PDF report identifying your top 3-5 AI opportunities with install steps, a quick-win plan, and a financial-impact estimate, plus a 30-minute walkthrough call with Brandon.',
   metadata: { product_type: 'assessment', wedge: 'true' }
 });
 
@@ -32,10 +32,10 @@ const paymentLink = await stripe.paymentLinks.create({
     type: 'redirect',
     redirect: { url: 'https://learnandleverageai.com/assessment/success' }
   },
-  allow_promotion_codes: true,
+  allow_promotion_codes: false,
+  phone_number_collection: { enabled: true },
   custom_fields: [
     { key: 'company_name', label: { type: 'custom', custom: 'Company Name' }, type: 'text' },
-    { key: 'phone', label: { type: 'custom', custom: 'Best Phone Number' }, type: 'text' },
     { key: 'industry', label: { type: 'custom', custom: 'Industry' }, type: 'text' }
   ],
   metadata: { product_type: 'assessment' }

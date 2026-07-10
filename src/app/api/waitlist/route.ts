@@ -27,7 +27,7 @@ async function sendWaitlistEmail(email: string, firstName: string): Promise<void
   <p>These are small sessions (10-15 people max), so waitlist gets priority seating.</p>
   <p>In the meantime, if you have a specific AI question or a task you wish you could automate, just reply to this email. I read every one.</p>
   <p>— Brandon</p>
-  <p style="color: #78716C; font-size: 13px; margin-top: 20px;">Learn & Leverage AI<br/>(302) 416-6285 | info@learnandleverageai.com</p>
+  <p style="color: #78716C; font-size: 13px; margin-top: 20px;">Learn & Leverage AI<br/>brandon@learnandleverageai.com</p>
 </div>
 `.trim();
 

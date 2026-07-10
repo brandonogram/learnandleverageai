@@ -5,10 +5,9 @@
  * Same stateless multi-turn pattern — conversation history passed through the
  * Gather action URL as a base64-encoded query parameter, so no in-memory state.
  *
- * Routing (Brandon decides):
- *   Option A: Point a dedicated Twilio number's voice webhook at this route
- *   Option B: Route `/api/voice-inbound` to this handler when the caller has
- *             GHL tag `assessment-purchased`
+ * Routing:
+ *   A dedicated LLAI Twilio number points its signed voice webhook at this route.
+ *   The caller's LLAI GHL tags determine paid-assessment context.
  *
  * Flow:
  * 1. Twilio POSTs → greeting + <Gather> with empty history
@@ -19,14 +18,16 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { hasPaidAssessmentTags } from '@/lib/assessment-contract';
+import { validateTwilioFormRequest } from '@/lib/twilio-webhook';
 
 interface ChatMessage {
   role: 'system' | 'user' | 'assistant';
   content: string;
 }
 
-const GHL_API_TOKEN = process.env.GHL_LLAI_API_KEY || process.env.GHL_API_KEY || '';
-const GHL_LOCATION_ID = process.env.GHL_LLAI_LOCATION_ID || process.env.GHL_LOCATION_ID || '';
+const GHL_API_TOKEN = process.env.GHL_LLAI_API_KEY || '';
+const GHL_LOCATION_ID = process.env.GHL_LLAI_LOCATION_ID || '';
 const GROQ_API_KEY = process.env.GROQ_API_KEY || '';
 const AGENTMAIL_API_KEY = process.env.AGENTMAIL_API_KEY || '';
 
@@ -57,7 +58,7 @@ async function lookupCaller(phone: string): Promise<CallerInfo> {
       name: contact.contactName || contact.firstName || '',
       company: contact.companyName || '',
       contactId: contact.id,
-      hasPaidAssessment: tags.includes('assessment-purchased') || tags.includes('assessment-paid'),
+      hasPaidAssessment: hasPaidAssessmentTags(tags),
     };
   } catch {
     return empty;
@@ -79,7 +80,7 @@ function buildSystemPrompt(caller: CallerInfo): string {
 - Short, conversational sentences — NO jargon, NO AI-hype language
 - ${nameCue} ${companyCue}
 - ${paidCue}
-- Contact email for follow-up: info@learnandleverageai.com
+- Contact email for follow-up: brandon@learnandleverageai.com
 
 ## Your Mission
 Gather enough detail in ~20 minutes that Brandon can produce:
@@ -242,9 +243,15 @@ async function logTranscript(from: string, caller: CallerInfo, history: ChatMess
 }
 
 export async function POST(req: NextRequest) {
-  const form = await req.formData();
-  const from = String(form.get('From') || '');
-  const speechResult = String(form.get('SpeechResult') || '');
+  const rawBody = await req.text();
+  const validation = validateTwilioFormRequest(req, rawBody);
+  if (!validation.valid) {
+    return new NextResponse(validation.status === 503 ? 'Twilio verification is not configured' : 'Invalid Twilio signature', {
+      status: validation.status,
+    });
+  }
+  const from = String(validation.params.From || '');
+  const speechResult = String(validation.params.SpeechResult || '');
 
   const url = new URL(req.url);
   const encodedHistory = url.searchParams.get('h');

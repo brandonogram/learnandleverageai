@@ -80,7 +80,7 @@ export default function AssessmentPage() {
     },
     {
       q: 'What exactly happens after I pay?',
-      a: 'You\'re routed to a confirmation page with a phone number to call our AI intake agent (Emma). You can call any time — the call takes about 20 minutes and there\'s no prep. Your report lands within 48 business hours of completing the intake call. After delivery you receive a calendar link to book the 30-minute walkthrough with Brandon at your convenience.',
+      a: 'You\'re routed to a confirmation page where you email Brandon to schedule a 20-minute guided intake. There\'s no prep. Your report lands within 48 business hours of completing the intake. After delivery you receive a calendar link to book the 30-minute walkthrough with Brandon at your convenience.',
     },
     {
       q: 'What\'s the refund policy?',
@@ -99,10 +99,10 @@ export default function AssessmentPage() {
             For Delaware business owners
           </span>
           <h1 className="font-display text-3xl sm:text-5xl font-black text-[#1C1917] mb-5 leading-tight">
-            Get a custom AI plan for your business — in 48 hours.
+            Get a custom AI plan within 48 business hours after your completed guided intake.
           </h1>
           <p className="font-body text-lg text-[#44403C] mb-8 max-w-2xl mx-auto leading-relaxed">
-            One 20-minute phone call. A PDF report showing exactly where AI reclaims hours, cuts costs, or brings in more revenue — with specific tools, install steps, and dollar impact. Built by someone who&apos;s run the systems in his own businesses.
+            One 20-minute guided intake. A PDF report showing exactly where AI reclaims hours, cuts costs, or brings in more revenue — with specific tools, install steps, and dollar impact. Built by someone who&apos;s run the systems in his own businesses.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
             <a
@@ -142,14 +142,14 @@ export default function AssessmentPage() {
             What you get
           </h2>
           <p className="font-body text-[#78716C] text-center mb-10 max-w-xl mx-auto">
-            A 20-minute call. A report built for your business. A walkthrough to answer questions.
+            A 20-minute intake. A report built for your business. A walkthrough to answer questions.
           </p>
 
           <div className="bg-white rounded-xl p-8 border border-amber-100 shadow-sm max-w-2xl mx-auto">
             <ul className="space-y-4">
               {[
-                'A 20–30 minute phone call with our AI intake agent — any time of day, no calendar dance',
-                'An executive-ready PDF report within 48 business hours of your intake call',
+                'A 20–30 minute guided intake about your business, tools, team, and bottlenecks',
+                'An executive-ready PDF report within 48 business hours of your intake',
                 'The top 3–5 AI opportunities prioritized for your business',
                 'Specific tools, install steps, and the rollout order',
                 'A 4-day Quick-Win Plan you can run with your team',
@@ -181,17 +181,17 @@ export default function AssessmentPage() {
               {
                 n: '1',
                 title: 'Pay $997',
-                body: 'Secure checkout via Stripe. You\'re routed straight to a confirmation page with the intake phone number and what happens next. A confirmation email is also sent to the address you used at checkout.',
+                body: 'Secure checkout via Stripe. You\'re routed straight to a confirmation page with a one-click email to schedule your guided intake with Brandon.',
               },
               {
                 n: '2',
-                title: 'Call the intake line — whenever it\'s convenient',
-                body: 'Our AI intake agent (Emma) walks you through about 20 minutes of questions about your business, team, tools, and biggest headaches. No prep required. Call at 9 AM or 11 PM — whatever works.',
+                title: 'Complete the guided intake',
+                body: 'Brandon walks you through about 20 minutes of questions about your business, team, tools, and biggest headaches. No prep required.',
               },
               {
                 n: '3',
                 title: 'Report delivered within 48 business hours',
-                body: 'An executive-ready PDF: effort-vs-impact matrix, specific tools, prioritized rollout steps, and the dollar-per-month financial impact. No fluff. The 48-hour clock starts when your intake call wraps up — not when you pay.',
+                body: 'An executive-ready PDF: effort-vs-impact matrix, specific tools, prioritized rollout steps, and the dollar-per-month financial impact. No fluff. The 48-hour clock starts when your intake wraps up — not when you pay.',
               },
               {
                 n: '4',
@@ -332,10 +332,10 @@ export default function AssessmentPage() {
       <section className="py-20 px-5 bg-gradient-to-b from-[#FFFBF5] to-amber-50">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="font-display text-2xl sm:text-4xl font-black text-[#1C1917] mb-4 leading-tight">
-            Your quickest path from &ldquo;I should do something with AI&rdquo; to &ldquo;I have a specific plan&rdquo; is 48 hours away.
+            Your specific AI plan arrives within 48 business hours after your completed guided intake.
           </h2>
           <p className="font-body text-[#44403C] mb-8 text-lg">
-            One call. One report. One walkthrough. Then you decide what&apos;s next.
+            One intake. One report. One walkthrough. Then you decide what&apos;s next.
           </p>
           <a
             href={stripeUrl('final_cta')}
@@ -345,7 +345,7 @@ export default function AssessmentPage() {
             Get My Assessment — $997
           </a>
           <p className="font-body text-sm text-[#78716C] mt-4">
-            Secure checkout via Stripe · 5-hour-a-week refund guarantee · Within 48 business hours of your intake call
+            Secure checkout via Stripe · 5-hour-a-week refund guarantee · Within 48 business hours of your intake
           </p>
         </div>
       </section>
@@ -360,7 +360,7 @@ export default function AssessmentPage() {
             Hands-on AI consulting for Delaware business owners.
           </p>
           <p className="font-body text-xs mt-4">
-            Questions? Text (302) 416-6285 or email{' '}
+            Questions? Email{' '}
             <a href="mailto:brandon@learnandleverageai.com" className="text-amber-400 hover:text-amber-300">
               brandon@learnandleverageai.com
             </a>

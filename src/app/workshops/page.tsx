@@ -797,8 +797,6 @@ export default function WorkshopsPage() {
             Learn & Leverage <span className="text-amber-400">AI</span>
           </p>
           <div className="flex items-center justify-center gap-3 mb-3">
-            <a href="tel:+13024166285" className="font-body text-xs text-gray-400 hover:text-amber-400 transition-colors">(302) 416-6285</a>
-            <span className="text-gray-600">|</span>
             <a href="mailto:info@learnandleverageai.com" className="font-body text-xs text-gray-400 hover:text-amber-400 transition-colors">info@learnandleverageai.com</a>
           </div>
           <div className="flex items-center justify-center gap-4 mb-3">

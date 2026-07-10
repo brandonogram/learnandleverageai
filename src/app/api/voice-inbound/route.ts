@@ -13,6 +13,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { validateTwilioFormRequest } from '@/lib/twilio-webhook';
 
 // ---- Types ----
 
@@ -23,8 +24,8 @@ interface ChatMessage {
 
 // ---- GHL Contact Lookup ----
 
-const GHL_API_TOKEN = process.env.GHL_LLAI_API_KEY || process.env.GHL_API_KEY || '';
-const GHL_LOCATION_ID = process.env.GHL_LLAI_LOCATION_ID || process.env.GHL_LOCATION_ID || '';
+const GHL_API_TOKEN = process.env.GHL_LLAI_API_KEY || '';
+const GHL_LOCATION_ID = process.env.GHL_LLAI_LOCATION_ID || '';
 
 interface CallerInfo {
   state: 'unknown' | 'lead' | 'registered' | 'confirmed' | 'attended' | 'no-show' | 'purchased';
@@ -106,7 +107,7 @@ function buildVoiceSystemPrompt(caller: CallerInfo): string {
 - Sound like a knowledgeable friend, not a corporate robot
 - NEVER give out Brandon's personal phone or email
 - Contact email: info@learnandleverageai.com
-- This phone number: (302) 416-6285
+- This incoming Learn & Leverage AI phone line
 
 ${stateInstructions[caller.state]}
 
@@ -284,8 +285,8 @@ async function getAIResponse(messages: ChatMessage[]): Promise<string> {
 // ---- GHL Contact Creation ----
 
 async function createGHLContact(callerPhone: string, name?: string, email?: string) {
-  const ghlApiKey = process.env.GHL_LLAI_API_KEY || process.env.GHL_API_KEY;
-  const ghlLocationId = process.env.GHL_LLAI_LOCATION_ID || process.env.GHL_LOCATION_ID;
+  const ghlApiKey = process.env.GHL_LLAI_API_KEY;
+  const ghlLocationId = process.env.GHL_LLAI_LOCATION_ID;
 
   if (!ghlApiKey || !ghlLocationId) {
     console.warn('[Voice] GHL credentials not set — skipping contact creation');
@@ -329,10 +330,16 @@ async function createGHLContact(callerPhone: string, name?: string, email?: stri
 
 export async function POST(request: NextRequest) {
   try {
-    const formData = await request.formData();
-    const speechResult = formData.get('SpeechResult') as string | null;
-    const callerPhone = formData.get('From') as string || '';
-    const callSid = formData.get('CallSid') as string || '';
+    const rawBody = await request.text();
+    const validation = validateTwilioFormRequest(request, rawBody);
+    if (!validation.valid) {
+      return new NextResponse(validation.status === 503 ? 'Twilio verification is not configured' : 'Invalid Twilio signature', {
+        status: validation.status,
+      });
+    }
+    const speechResult = String(validation.params.SpeechResult || '');
+    const callerPhone = String(validation.params.From || '');
+    const callSid = String(validation.params.CallSid || '');
 
     // Get history from query params (stateless approach)
     const url = new URL(request.url);
